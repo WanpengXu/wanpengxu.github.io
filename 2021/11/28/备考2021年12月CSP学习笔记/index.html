@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="许">
+  <meta name="keywords" content="">
+  <meta name="description" content="202104第4题题目链接202104-4 校门外的树 问题描述X 校最近打算美化一下校园环境。前段时间因为修地铁，X 校大门外种的行道树全部都被移走了。现在 X 校打算重新再种一些树，为校园增添一抹绿意。 X 校大门外的道路是东西走向的，我们可以将其看成一条数轴。在这条数轴上有 n 个障碍物，例如电线杆之类的。虽然障碍物会影响树的生长，但是障碍物不一定能被随便移走，所以 X 校规定在障碍物的位置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备考2021年12月CSP学习笔记">
+<meta property="og:url" content="http://example.com/2021/11/28/%E5%A4%87%E8%80%832021%E5%B9%B412%E6%9C%88CSP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="须臾所学之野">
+<meta property="og:description" content="202104第4题题目链接202104-4 校门外的树 问题描述X 校最近打算美化一下校园环境。前段时间因为修地铁，X 校大门外种的行道树全部都被移走了。现在 X 校打算重新再种一些树，为校园增添一抹绿意。 X 校大门外的道路是东西走向的，我们可以将其看成一条数轴。在这条数轴上有 n 个障碍物，例如电线杆之类的。虽然障碍物会影响树的生长，但是障碍物不一定能被随便移走，所以 X 校规定在障碍物的位置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280047617.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048528.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049170.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049110.png">
+<meta property="article:published_time" content="2021-11-27T17:44:56.000Z">
+<meta property="article:modified_time" content="2021-11-27T18:21:38.242Z">
+<meta property="article:author" content="许">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CSP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280047617.png">
+  
+  <title>备考2021年12月CSP学习笔记 - 须臾所学之野</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>许&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="备考2021年12月CSP学习笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-28 01:44" pubdate>
+        2021年11月28日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/WanpengXu" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">备考2021年12月CSP学习笔记</h1>
+            
+            <div class="markdown-body">
+              <h1 id="202104"><a href="#202104" class="headerlink" title="202104"></a>202104</h1><h2 id="第4题"><a href="#第4题" class="headerlink" title="第4题"></a>第4题</h2><h3 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h3><p><a target="_blank" rel="noopener" href="http://118.190.20.162/view.page?gpid=T125">202104-4 校门外的树</a></p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>X 校最近打算美化一下校园环境。前段时间因为修地铁，X 校大门外种的行道树全部都被移走了。现在 X 校打算重新再种一些树，为校园增添一抹绿意。</p>
+<p>X 校大门外的道路是东西走向的，我们可以将其看成一条数轴。在这条数轴上有 n 个障碍物，例如电线杆之类的。虽然障碍物会影响树的生长，但是障碍物不一定能被随便移走，所以 X 校规定在障碍物的位置上<strong>不能</strong>种树。n 个障碍物的坐标都是整数；如果规定向东为正方向，则 n 个障碍物的坐标按照从西到东的顺序分别为 a1,a2,⋯,an。X 校打算在 [a1,an] 之间种一些树，使得这些树看起来比较美观。</p>
+<p>X 校希望，在一定范围内，树应该是等间隔的。更具体地说，如果把 [a1,an) 划分成一些区间 [ap1,ap2),⋯,[apm−1,apm)（1=p1&lt;p2&lt;⋯&lt;pm=n），那么每个区间 [api,api+1) 内需要至少种一棵树，且该区间内种的树的坐标连同区间端点 api,api+1 应该构成一个等差数列。不同区间的公差，也就是树的间隔可以不相同。</p>
+<p>例如，如果障碍物位于 0,2,6 这三处，那么我们可以选择在 [0,2) 和 [2,6) 分别种树，也可以选择在 [0,6) 等间隔种树。如果是分别在 [0,2) 和 [2,6) 种树，由于每个区间内至少要种一棵树，坐标 1 上必须种树；而 [2,6) 上的树可以按照 1 的间隔种下，也可以按照 2 的间隔种下。下图表示了这两种美观的种树方案，其中橙色的圆表示障碍物，绿色的圆表示需要在这个位置种树，箭头上的数字表示种下这棵树时对应的间隔为多少。</p>
+<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280047617.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对区间 [0,2) 和 [2,6) 分别以 1 和 2 的间隔种树是美观的</p>
+<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048528.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对区间 [0,2) 和 [2,6) 分别以 1 的间隔种树也是美观的</p>
+<p>而如果选择在 [0,6) 区间等间隔种树，我们只能以 3 的间隔种树，因为无论是选择间隔 1 或者间隔 2，都需要在坐标 2 上种树，而这个位置已经有障碍物了。下图分别表示了间隔为 3,2,1 时的种树情况，红色箭头表示不能在这里种树。</p>
+<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048407.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对区间 [0,6) 以 3 的间隔种树是美观的</p>
+<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049170.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对区间 [0,6) 以 2 的间隔种树是不美观的</p>
+<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049110.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对区间 [0,6) 以 1 的间隔种树也是不美观的</p>
+<p>一般地，给定一个区间 [al,ar)，对于树的坐标的集合 T⊂(al,ar)（T⊂Z），归纳定义 T 在 [al,ar) 上是<strong>美观的</strong>：</p>
+<ol>
+<li>如果 T≠∅，T∩{al,al+1,⋯,ar}=∅，并且存在一个公差 d≥1，使得 T∪{al,ar} 中的元素按照从小到大的顺序排序后，可以构成一个公差为 d 的等差数列（显然，这个等差数列的首项为 al，末项为 ar），则 T 在 [al,ar) 上是美观的；</li>
+<li>如果 T∩{al,al+1,⋯,ar}=∅，并且存在一个下标 m（l&lt;m&lt;r），使得 T∩(al,am) 在 [al,am) 上是美观的，且 T∩(am,ar) 在 [am,ar) 上是美观的，则 T 在 [al,ar) 上是美观的。</li>
+</ol>
+<p>根据这一定义，空集在任意区间上都不是美观的；另外，如果存在下标 i 使得 ai∈T，那么 T 一定不是美观的。</p>
+<p>我们称两种种树的方案是<strong>本质不同的</strong>，当且仅当两种方案中，种树的坐标集合不同。请帮助 X 校对 [a1,an) 求出所有本质不同的美观的种树方案。当然，由于方案可能很多，你只需要输出总方案数对 109+7 取模的结果。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入的第一行包含一个正整数 n，表示障碍物的数量。</p>
+<p>输入的第二行包括 n 个非负整数 a1,⋯,an，表示每个障碍物的坐标。</p>
+<p>保证对 i=1,2,⋯,n−1，ai&lt;ai+1。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一个非负整数，表示本质不同的美观的种树方案的数量对 109+7 取模的结果。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">3</span><br><span class="hljs-symbol">0 </span><span class="hljs-number">2</span> <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs data">3<br></code></pre></td></tr></table></figure>
+<h3 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h3><p>这组样例即为题面描述中提到的那组。</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs data">11<br>0 10 20 30 40 50 60 70 80 90 100<br></code></pre></td></tr></table></figure>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs data">256507<br></code></pre></td></tr></table></figure>
+<h3 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs data">333<br>33 44 67 210 528 762 873 984 1234 1466 1739 2859 3421 4061 4598 5172 5201 5220 5261 5322 5389 5559 6670 7070 7898 8079 8129 8192 8616 8641 8806 9559 9585 9750 10263 10627 10674 10692 10903 11649 11885 12179 12307 12743 13173 13352 13389 13496 13611 15292 15321 16018 16327 16415 16959 16972 17499 17617 17786 18476 18966 19239 19498 19875 20312 20392 21603 21620 21730 21967 21972 21999 22015 22590 22775 23709 23839 24165 24408 24595 25160 25479 25812 26482 27328 28101 28297 28305 28342 28557 28986 29110 29401 29765 30292 30493 30739 31027 31201 31218 31414 32089 32759 32770 32777 32815 32877 32890 33297 33457 33603 33757 33866 34498 34525 34659 34679 34861 34870 34997 35311 35846 36411 36457 36738 36902 37940 38228 40156 40320 40705 40737 40803 41066 41443 41460 41954 41968 42040 42062 42099 43281 43320 43527 43537 43587 43729 44750 44822 45655 45769 46109 46525 47060 47128 47999 48635 48887 48981 49366 49424 49524 50546 50580 50689 51332 51861 51943 52097 52702 53009 53067 53397 53526 53901 54280 54399 54801 55535 55592 55740 55843 56110 56428 56552 56682 56848 57179 57688 57797 57847 57959 58330 58831 59553 59699 59884 59939 61233 61636 61732 61908 62145 62549 62649 62740 62912 62971 63053 64312 64322 64412 64816 64845 64873 64923 64976 65023 65166 65496 66065 66491 66803 66941 67081 68331 68336 68360 68476 69179 69719 69758 69948 70072 70544 70598 70990 71014 71454 71687 71743 71958 72282 72384 72456 72985 73327 74325 75046 75097 76647 77062 77088 77431 77553 77673 77753 78217 78518 78564 79565 79588 79686 80275 80939 81052 81348 81386 81440 81589 81610 81793 82408 82801 82836 83239 83466 83610 83867 83943 84441 84467 85248 85305 85554 85565 85758 86251 86603 86743 87323 87565 87824 87833 88265 88309 89178 89509 89618 89699 89708 90331 90359 90878 90902 91449 92284 92374 92549 92609 93609 94345 94934 95140 95475 95733 95985 95995 96270 96641 96807 97003 97632 98160 98677 98853 98943 99037 99055 99075 99185 99395 99592<br></code></pre></td></tr></table></figure>
+<h3 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs data">7094396<br></code></pre></td></tr></table></figure>
+<h3 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h3><p>对于 10% 的数据，保证 n=2；</p>
+<p>对于 30% 的数据，保证 n≤10；</p>
+<p>对于 60% 的数据，保证 n≤100,ai≤1000；</p>
+<p>对于 100% 的数据，保证 2≤n≤1000,0≤ai≤100,000，且至少存在一种美观的种树方案。</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>动态规划+打表</p>
+<p>设$dp[i]$为到第i个障碍物之间的方案总数，那么有状态转移方程</p>
+<script type="math/tex; mode=display">
+dp[i]=\sum_\limits{j=1}^{i-1}dp[j]\times{calc(j,i)}</script><p>其中$calc(j,i)$为第$j$个障碍物到第$i$个障碍物的方案总数。</p>
+<p>为了得出优化的calc函数进行如下分析：</p>
+<ol>
+<li><p>第j个障碍物到第i个障碍物的间隔必须为obstacles[i]-obstacles[j]的因子，否则树不是等间隔的，挑选撞不上障碍物的因子作为种树方案。</p>
+</li>
+<li><p>若从j从i-1开始倒着枚举，开始时i-1和i之间没有障碍物，即obstacles[i]-obstacles[i-1]的所有因子都是种树方案，将这些因子设为不可再用(false)，当j=i-2时，对因子进行筛选时不可使用false的因子，因为按这些间隔排序一定会撞到原先作为左端点的障碍物。</p>
+<p>所以我们可以从i-1到1遍历j，如果obstacles[i]-obstacles[j]的因子可使用就数量+1并标记为false，否则啥也不干。</p>
+<p>注意当i增长时要重置因子可用集合flag为true。</p>
+</li>
+<li><p>因为我们需要频繁地获取某区间长度的因子，所以可以用筛选法进行预处理，即将因子打个表</p>
+<p>这个表可以从1打到最大长度AMAX，也可以进行时间复杂度的优化，因为</p>
+<ol>
+<li>种树间隔不会超过最大障碍物距离的一半</li>
+<li>种树的区间不会超过最大障碍物距离</li>
+</ol>
+<p>注：最大障碍物距离只是我形象的说法，其实比真实的最大障碍物距离大，因为坐标0不一定有障碍物。</p>
+</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-comment">// #define DEBUG  // 定义空的宏，只可判断其是否被定义</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1000</span> + <span class="hljs-number">5</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> AMAX = <span class="hljs-number">100000</span> + <span class="hljs-number">5</span>;<br><br><span class="hljs-keyword">int</span> n, obstacles[N];<br><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> dp[N];<br><span class="hljs-keyword">bool</span> flag[AMAX];<br>vector&lt;<span class="hljs-keyword">int</span>&gt; v[AMAX];  <span class="hljs-comment">// 以向量为元素的数组</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">calc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len = obstacles[y] - obstacles[x];<br>    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> d: v[len])<br>        <span class="hljs-keyword">if</span> (flag[d]) &#123;<br>            cnt++;<br>            flag[d] = <span class="hljs-literal">false</span>;<br>        &#125;<br>    flag[len] = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">return</span> cnt;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;obstacles[i]);<br><br>    <span class="hljs-comment">// 确定以i(种树间隔)为因数的j</span><br>    <span class="hljs-comment">// 经优化的打表，右界可以直接为AMAX</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= obstacles[n] / <span class="hljs-number">2</span>; i++)  <span class="hljs-comment">// 间隔不超过最大障碍物距离的一半</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">2</span> * i; j &lt;= obstacles[n]; j += i)  <span class="hljs-comment">// 两障碍物间至少有一颗树，即间隔i不能为j自己（j=ki&lt;=最大障碍物距离,k=2,3,...）</span><br>            v[j].<span class="hljs-built_in">push_back</span>(i);<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> DEBUG</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">20</span>; i++) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Case #%2d: &quot;</span>, i);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; (<span class="hljs-keyword">int</span>) v[i].<span class="hljs-built_in">size</span>(); j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, v[i][j]);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br><span class="hljs-comment">// #else</span><br><span class="hljs-comment">//     printf(&quot;Not debugging\n&quot;);</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br><br>    dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-built_in">memset</span>(flag, <span class="hljs-literal">true</span>, <span class="hljs-keyword">sizeof</span> flag);  <span class="hljs-comment">// 刻板印象：sizeof其实是个关键字！后面括号是提优先级用的！</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">1</span>; j--)<br>            dp[i] = (dp[i] + dp[j] * <span class="hljs-built_in">calc</span>(j, i)) % MOD;<br>    &#125;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, dp[n]);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="知识"><a href="#知识" class="headerlink" title="知识"></a>知识</h3><ol>
+<li><p>宏定义可以定义一个空的宏，如<code>#define DEBUG</code>，这种宏只能被用来判断是否被定义，常用于DEBUG时运行一些不想在RELEASE运行的语句</p>
+<p>使用方法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> DEBUG</span><br>    定义了DEBUG时要做的<br>[<br><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span><br>	没定义DEBUG时要做的<br>]<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>sizeof</code>其实是个关键字，一直认为它是函数的原因在于它经常加括号使用以区分操作对象</p>
+<p>举个例子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span>* p=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>]&#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%zd\n&quot;</span>,<span class="hljs-keyword">sizeof</span> p);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%zd\n&quot;</span>,<span class="hljs-keyword">sizeof</span> p+<span class="hljs-number">1</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%zd\n&quot;</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span> (p+<span class="hljs-number">1</span>));<br></code></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">8<br>9<br>8<br></code></pre></td></tr></table></figure>
+<p>注：%zd是sizeof的返回类型unsigned int的输出控制符</p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CSP/">CSP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/28/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"VR5uSrKiTuoIcwbhhvot8Bf4-gzGzoHsz","appKey":"w57XHS7hMjAYidjnpR0AAoTC","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
