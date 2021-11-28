@@ -26,12 +26,12 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281731890.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281721522.jfif">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280209683.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048528.png?token=AQRLGJTTMW36LVR2T42UXZDBUJQ2C">
-<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048407.png?token=AQRLGJUAYZ7Z5QU3CDGRELDBUJZAE">
-<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049170.png?token=AQRLGJRREFTQDHYTTHBIM53BUJQ5Q">
-<meta property="og:image" content="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049110.png?token=AQRLGJXSMNMRINRUQVORAXDBUJQ62">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280048528.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281919845.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280049170.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281921265.png">
 <meta property="article:published_time" content="2021-11-27T17:44:56.000Z">
-<meta property="article:modified_time" content="2021-11-28T09:51:01.890Z">
+<meta property="article:modified_time" content="2021-11-28T11:25:34.816Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="CSP">
@@ -260,7 +260,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：2021年11月28日 晚上
                 
               </p>
             
@@ -405,28 +405,28 @@ Neighbor(i, j, r) = \left\{ A_{xy} | 0 \le x, y < n \mathrm{~and~} |x-i| \le r \
 <p>X 校大门外的道路是东西走向的，我们可以将其看成一条数轴。在这条数轴上有 n 个障碍物，例如电线杆之类的。虽然障碍物会影响树的生长，但是障碍物不一定能被随便移走，所以 X 校规定在障碍物的位置上<strong>不能</strong>种树。n 个障碍物的坐标都是整数；如果规定向东为正方向，则 n 个障碍物的坐标按照从西到东的顺序分别为 a1,a2,⋯,an。X 校打算在 [a1,an] 之间种一些树，使得这些树看起来比较美观。</p>
 <p>X 校希望，在一定范围内，树应该是等间隔的。更具体地说，如果把 [a1,an) 划分成一些区间 [ap1,ap2),⋯,[apm−1,apm)（1=p1&lt;p2&lt;⋯&lt;pm=n），那么每个区间 [api,api+1) 内需要至少种一棵树，且该区间内种的树的坐标连同区间端点 api,api+1 应该构成一个等差数列。不同区间的公差，也就是树的间隔可以不相同。</p>
 <p>例如，如果障碍物位于 0,2,6 这三处，那么我们可以选择在 [0,2) 和 [2,6) 分别种树，也可以选择在 [0,6) 等间隔种树。如果是分别在 [0,2) 和 [2,6) 种树，由于每个区间内至少要种一棵树，坐标 1 上必须种树；而 [2,6) 上的树可以按照 1 的间隔种下，也可以按照 2 的间隔种下。下图表示了这两种美观的种树方案，其中橙色的圆表示障碍物，绿色的圆表示需要在这个位置种树，箭头上的数字表示种下这棵树时对应的间隔为多少。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280209683.png" srcset="/img/loading.gif" lazyload alt="RequireFile"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280209683.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>对区间 [0,2) 和 [2,6) 分别以 1 和 2 的间隔种树是美观的</p>
-<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048528.png?token=AQRLGJTTMW36LVR2T42UXZDBUJQ2C" srcset="/img/loading.gif" lazyload alt="RequireFile (1)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280048528.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>对区间 [0,2) 和 [2,6) 分别以 1 的间隔种树也是美观的</p>
 <p>而如果选择在 [0,6) 区间等间隔种树，我们只能以 3 的间隔种树，因为无论是选择间隔 1 或者间隔 2，都需要在坐标 2 上种树，而这个位置已经有障碍物了。下图分别表示了间隔为 3,2,1 时的种树情况，红色箭头表示不能在这里种树。</p>
-<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280048407.png?token=AQRLGJUAYZ7Z5QU3CDGRELDBUJZAE" srcset="/img/loading.gif" lazyload alt="RequireFile (2)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281919845.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>对区间 [0,6) 以 3 的间隔种树是美观的</p>
-<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049170.png?token=AQRLGJRREFTQDHYTTHBIM53BUJQ5Q" srcset="/img/loading.gif" lazyload alt="RequireFile (3)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280049170.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>对区间 [0,6) 以 2 的间隔种树是不美观的</p>
-<p><img src="https://raw.githubusercontent.com/WanpengXu/myPicGo/main/img/202111280049110.png?token=AQRLGJXSMNMRINRUQVORAXDBUJQ62" srcset="/img/loading.gif" lazyload alt="RequireFile (4)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281921265.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>对区间 [0,6) 以 1 的间隔种树也是不美观的</p>
-<p>一般地，给定一个区间 [al,ar)，对于树的坐标的集合 T⊂(al,ar)（T⊂Z），归纳定义 T 在 [al,ar) 上是<strong>美观的</strong>：</p>
+<p>一般地，给定一个区间 $[al,ar)$，对于树的坐标的集合 $T⊂(al,ar)(T⊂Z)$，归纳定义 $T$ 在 $[al,ar)$ 上是<strong>美观的</strong>：</p>
 <ol>
-<li>如果 T≠∅，T∩{al,al+1,⋯,ar}=∅，并且存在一个公差 d≥1，使得 T∪{al,ar} 中的元素按照从小到大的顺序排序后，可以构成一个公差为 d 的等差数列（显然，这个等差数列的首项为 al，末项为 ar），则 T 在 [al,ar) 上是美观的；</li>
-<li>如果 T∩{al,al+1,⋯,ar}=∅，并且存在一个下标 m（l&lt;m&lt;r），使得 T∩(al,am) 在 [al,am) 上是美观的，且 T∩(am,ar) 在 [am,ar) 上是美观的，则 T 在 [al,ar) 上是美观的。</li>
+<li>如果 $T≠∅$，$T∩{al,al+1,⋯,ar}=∅$，并且存在一个公差 $d≥1$，使得 $T∪{al,ar}$ 中的元素按照从小到大的顺序排序后，可以构成一个公差为 $d$ 的等差数列（显然，这个等差数列的首项为 $al$，末项为 $ar$），则 $T$ 在 $[al,ar)$ 上是美观的；</li>
+<li>如果 $T∩{al,al+1,⋯,ar}=∅$，并且存在一个下标 $m（l&lt;m&lt;r）$，使得 $T∩(al,am)$ 在 $[al,am)$ 上是美观的，且 $T∩(am,ar)$ 在 $[am,ar)$ 上是美观的，则 $T$ 在 $[al,ar)$ 上是美观的。</li>
 </ol>
-<p>根据这一定义，空集在任意区间上都不是美观的；另外，如果存在下标 i 使得 ai∈T，那么 T 一定不是美观的。</p>
-<p>我们称两种种树的方案是<strong>本质不同的</strong>，当且仅当两种方案中，种树的坐标集合不同。请帮助 X 校对 [a1,an) 求出所有本质不同的美观的种树方案。当然，由于方案可能很多，你只需要输出总方案数对 109+7 取模的结果。</p>
-<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入的第一行包含一个正整数 n，表示障碍物的数量。</p>
-<p>输入的第二行包括 n 个非负整数 a1,⋯,an，表示每个障碍物的坐标。</p>
-<p>保证对 i=1,2,⋯,n−1，ai&lt;ai+1。</p>
-<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一个非负整数，表示本质不同的美观的种树方案的数量对 109+7 取模的结果。</p>
+<p>根据这一定义，空集在任意区间上都不是美观的；另外，如果存在下标 $i$ 使得 $ai∈T$，那么 $T$ 一定不是美观的。</p>
+<p>我们称两种种树的方案是<strong>本质不同的</strong>，当且仅当两种方案中，种树的坐标集合不同。请帮助 X 校对 $[a1,an)$ 求出所有本质不同的美观的种树方案。当然，由于方案可能很多，你只需要输出总方案数对 $10^9+7$ 取模的结果。</p>
+<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入的第一行包含一个正整数 $n$，表示障碍物的数量。</p>
+<p>输入的第二行包括 $n$ 个非负整数 $a1,⋯,an$，表示每个障碍物的坐标。</p>
+<p>保证对 $i=1,2,⋯,n−1$，$ai&lt;ai+1$。</p>
+<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一个非负整数，表示本质不同的美观的种树方案的数量对 $10^9+7$ 取模的结果。</p>
 <h3 id="样例输入-4"><a href="#样例输入-4" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">3</span><br><span class="hljs-symbol">0 </span><span class="hljs-number">2</span> <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
 <h3 id="样例输出-4"><a href="#样例输出-4" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs data">3<br></code></pre></td></tr></table></figure>
 <h3 id="样例说明-2"><a href="#样例说明-2" class="headerlink" title="样例说明"></a>样例说明</h3><p>这组样例即为题面描述中提到的那组。</p>
