@@ -16,12 +16,12 @@
   <meta name="description" content="">
   <meta name="author" content="许">
   <meta name="keywords" content="">
-  <meta name="description" content="《Java语言及网络编程》课后小结11.29 发现java17中的java x.java似乎只能编译单个类   另外，想要从指令路径中的class运行，需要使用java -classpath &lt;dir&gt; &lt;file&gt; 所以vscode中java对应的task.json可以这样配置   123456789101112131415161718192021222324252627">
+  <meta name="description" content="《Java语言及网络编程》课后小结11.29 发现java17中的java x.java似乎只能编译单个类   另外，想要从指令路径中的class运行，需要使用java -classpath &lt;dir&gt; &lt;file&gt; 所以vscode中java对应的task.json可以这样配置  1234567891011121314151617181920212223242526272">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Java语言及网络编程》课后小结">
 <meta property="og:url" content="http://example.com/2021/11/29/%E3%80%8AJava%E8%AF%AD%E8%A8%80%E5%8F%8A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E3%80%8B%E8%AF%BE%E5%90%8E%E5%B0%8F%E7%BB%93/index.html">
 <meta property="og:site_name" content="须臾所学之野">
-<meta property="og:description" content="《Java语言及网络编程》课后小结11.29 发现java17中的java x.java似乎只能编译单个类   另外，想要从指令路径中的class运行，需要使用java -classpath &lt;dir&gt; &lt;file&gt; 所以vscode中java对应的task.json可以这样配置   123456789101112131415161718192021222324252627">
+<meta property="og:description" content="《Java语言及网络编程》课后小结11.29 发现java17中的java x.java似乎只能编译单个类   另外，想要从指令路径中的class运行，需要使用java -classpath &lt;dir&gt; &lt;file&gt; 所以vscode中java对应的task.json可以这样配置  1234567891011121314151617181920212223242526272">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291010551.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291011178.png">
@@ -29,10 +29,12 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291015737.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291020289.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291023640.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291027333.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291028360.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291030193.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291032952.png">
 <meta property="article:published_time" content="2021-11-29T02:37:34.000Z">
-<meta property="article:modified_time" content="2021-11-29T02:38:15.913Z">
+<meta property="article:modified_time" content="2021-11-29T02:43:26.410Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +219,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      2.3k 字
     </span>
   
 
@@ -226,7 +228,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      7 分钟
     </span>
   
 
@@ -271,16 +273,13 @@
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291011178.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>另外，想要从指令路径中的class运行，需要使用<code>java -classpath &lt;dir&gt; &lt;file&gt;</code></p>
 <p>所以vscode中java对应的task.json可以这样配置</p>
-</li>
-</ol>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-comment">// See https://go.microsoft.com/fwlink/?LinkId=733558</span><br>    <span class="hljs-comment">// for the documentation about the tasks.json format</span><br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,<br>    <span class="hljs-attr">&quot;tasks&quot;</span>: [<br>        &#123;<br>            <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;javac&quot;</span>,<br>            <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;javac $&#123;file&#125; -d $&#123;fileDirname&#125;\\bin&quot;</span>,<br>            <span class="hljs-comment">// &quot;command&quot;: &quot;javac $&#123;file&#125;&quot;,</span><br>            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>            <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>                <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>                <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">&quot;presentation&quot;</span>: &#123;<br>                <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>                <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;new&quot;</span>,<br>                <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">true</span><br>            &#125;<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;run&quot;</span>,<br>            <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;java -classpath $&#123;fileDirname&#125;\\bin $&#123;fileBasenameNoExtension&#125;&quot;</span>,<br>            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>            <span class="hljs-attr">&quot;dependsOn&quot;</span>: <span class="hljs-string">&quot;javac&quot;</span>,<span class="hljs-comment">// 加入这个依赖就会先javac生成class文件</span><br>            <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>                <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;test&quot;</span>,<br>                <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">&quot;presentation&quot;</span>: &#123;<br>                <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>                <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;new&quot;</span>,<br>                <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">true</span><br>            &#125;<br>        &#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
-<ol>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-comment">// See https://go.microsoft.com/fwlink/?LinkId=733558</span><br>    <span class="hljs-comment">// for the documentation about the tasks.json format</span><br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,<br>    <span class="hljs-attr">&quot;tasks&quot;</span>: [<br>     &#123;<br>      <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;javac&quot;</span>,<br>      <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;javac $&#123;file&#125; -d $&#123;fileDirname&#125;\\bin&quot;</span>,<br>      <span class="hljs-comment">// &quot;command&quot;: &quot;javac $&#123;file&#125;&quot;,</span><br>      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>      <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>          <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>      &#125;,<br>      <span class="hljs-attr">&quot;presentation&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>          <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;new&quot;</span>,<br>          <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">true</span><br>      &#125;<br>     &#125;,<br>     &#123;<br>      <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;run&quot;</span>,<br>      <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;java -classpath $&#123;fileDirname&#125;\\bin $&#123;fileBasenameNoExtension&#125;&quot;</span>,<br>      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>      <span class="hljs-attr">&quot;dependsOn&quot;</span>: <span class="hljs-string">&quot;javac&quot;</span>,<span class="hljs-comment">// 加入这个依赖就会先javac生成class文件</span><br>      <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;test&quot;</span>,<br>          <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>      &#125;,<br>      <span class="hljs-attr">&quot;presentation&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>          <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;new&quot;</span>,<br>          <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">true</span><br>      &#125;<br>     &#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li><p>java先把所有的类加载到正文段，同时静态初始化（static执行的时机），类似于预编译</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291017517.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 <li><p>Math库中都是静态方法，都不需要生成对象(eg. random)，静态方法可以通过import引入</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291015737.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<ol>
+</li>
 <li><p>单例设计模式：创建型模式，提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。</p>
 <ul>
 <li>单例类只能有一个实例。</li>
@@ -289,7 +288,7 @@
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291020289.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>单例模式事实上有6种，课上介绍的这种叫做“线程安全的懒汉式”</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 线程安全的懒汉式</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">T</span><span class="hljs-params">()</span></span>&#123;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> T obj;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(obj==<span class="hljs-keyword">null</span>)<br>            obj=<span class="hljs-keyword">new</span> T();<br>        <span class="hljs-keyword">return</span> obj;<br>    &#125;<br><br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">signle</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        T t1=T.getInstance();<br>        T t2=T.getInstance();<br>        System.out.println(t1==t2);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 线程安全的懒汉式</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">T</span><span class="hljs-params">()</span></span>&#123;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> T obj;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;<br>     <span class="hljs-keyword">if</span>(obj==<span class="hljs-keyword">null</span>)<br>      obj=<span class="hljs-keyword">new</span> T();<br>     <span class="hljs-keyword">return</span> obj;<br>    &#125;<br><br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">signle</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>     T t1=T.getInstance();<br>     T t2=T.getInstance();<br>     System.out.println(t1==t2);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291023640.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>这体现出两次获取的都是统一对象</p>
 </li>
@@ -299,16 +298,10 @@
 <p>所以一般情况下 equals 比较的是值是否相等。</p>
 </li>
 <li><p>父类引用不能被强制转换为子类引用，子类引用可以隐式转换/强制转换成父类引用（指针）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291027333.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>子类引用按需隐式转换到父类引用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291028360.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-</ol>
-</li>
-</ol>
-<pre><code>  ![](https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291027333.png)
-
-  子类引用按需隐式转换到父类引用
-
-  ![](https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111291028360.png)
-</code></pre><ol>
 <li><p>switch可以接收字符串，但不能为空</p>
 </li>
 <li><p>instanceof，二元操作符，使用方式类似于==</p>
