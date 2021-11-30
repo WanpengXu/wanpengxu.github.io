@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111280049170.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202111281921265.png">
 <meta property="article:published_time" content="2021-11-27T17:44:56.000Z">
-<meta property="article:modified_time" content="2021-11-28T12:04:06.640Z">
+<meta property="article:modified_time" content="2021-11-30T01:01:12.175Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="CSP">
@@ -260,7 +260,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年11月28日 晚上
+                  本文最后更新于：2021年11月30日 上午
                 
               </p>
             
@@ -293,8 +293,8 @@ B_i = \max \left\{ A_1, A_2,  \cdots, A_i \right\}</script><p>如上所示，$B_
 <script type="math/tex; mode=display">
 A_i=\left\{
 \begin{aligned}
-0 & , & A_i = A_{i-1}, \\
-B_i & , & A_i\geq A_{i-1} .
+0 & , & B_{i-1} = B_i \\
+B_i & , & B_{i-1}< B_i 
 \end{aligned}
 \right.</script><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">n=<span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())<br>b=[<span class="hljs-built_in">int</span>(_) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">input</span>().split()]<br>max_sum=<span class="hljs-built_in">sum</span>(b)<br>min_sum=<span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">if</span> b[i-<span class="hljs-number">1</span>]&gt;=b[i]:<br>        min_sum+=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">else</span>:<br>        min_sum+=b[i]<br>min_sum+=b[<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(max_sum)<br><span class="hljs-built_in">print</span>(min_sum)<br></code></pre></td></tr></table></figure>
 <h1 id="202104"><a href="#202104" class="headerlink" title="202104"></a>202104</h1><h2 id="第1题-1"><a href="#第1题-1" class="headerlink" title="第1题"></a>第1题</h2><h3 id="题目链接-1"><a href="#题目链接-1" class="headerlink" title="题目链接"></a>题目链接</h3><p><a target="_blank" rel="noopener" href="http://118.190.20.162/view.page?gpid=T128">202104-1 灰度直方图</a></p>
@@ -489,7 +489,7 @@ Neighbor(i, j, r) = \left\{ A_{xy} | 0 \le x, y < n \mathrm{~and~} |x-i| \le r \
 <h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p>动态规划+打表</p>
 <p>设$dp[i]$为到第i个障碍物之间的方案总数，那么有状态转移方程</p>
 <script type="math/tex; mode=display">
-dp[i]=\sum_\limits{j=1}^{i-1}dp[j]\times{calc(j,i)}</script><p>其中$calc(j,i)$为第$j$个障碍物到第$i$个障碍物的方案总数。</p>
+dp[i]=\sum\limits_{j=1}^{i-1}dp[j]\times{calc(j,i)}</script><p>其中$calc(j,i)$为第$j$个障碍物到第$i$个障碍物的方案总数。</p>
 <p>为了得出优化的calc函数进行如下分析：</p>
 <ol>
 <li><p>第j个障碍物到第i个障碍物的间隔必须为obstacles[i]-obstacles[j]的因子，否则树不是等间隔的，挑选撞不上障碍物的因子作为种树方案。</p>
