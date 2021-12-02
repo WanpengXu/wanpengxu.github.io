@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112011108665.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112011131246.png">
 <meta property="article:published_time" content="2021-11-29T02:37:34.000Z">
-<meta property="article:modified_time" content="2021-12-01T15:45:00.340Z">
+<meta property="article:modified_time" content="2021-12-02T13:27:53.690Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,7 +264,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年12月1日 晚上
+                  本文最后更新于：2021年12月2日 晚上
                 
               </p>
             
@@ -336,6 +336,7 @@
 <p>继承链(inheritance chain)：</p>
 </li>
 </ol>
+<p>网上找的一份第二次作业第一题的答案，不小心粘在这了</p>
 <p>①②③比较好理解，一般不会出错。④⑤就有点糊涂了，为什么输出的不是”B and B”呢？！！先来回顾一下多态性。         </p>
 <p>运行时多态性是面向对象程序设计代码重用的一个最强大机制，动态性的概念也可以被说成“一个接口，多个方法”。Java实现运行时多态性的基础是动态方法调度，它是一种在运行时而不是在编译期调用重载方法的机制。         方法的重写Overriding和重载Overloading是Java多态性的不同表现。重写Overriding是父类与子类之间多态性的一种表现，重载Overloading是一个类中多态性的一种表现。如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写(Overriding)。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被“屏蔽”了。如果在一个类中定义了多个同名的方法，它们或有不同的参数个数或有不同的参数类型，则称为方法的重载(Overloading)。Overloaded的方法是可以改变返回值的类型。         </p>
 <p>当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法。 （但是如果强制把超类转换成子类的话，就可以调用子类中新添加而超类没有的方法了。）         </p>
