@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112011108665.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112011131246.png">
 <meta property="article:published_time" content="2021-11-29T02:37:34.000Z">
-<meta property="article:modified_time" content="2021-12-08T16:20:35.847Z">
+<meta property="article:modified_time" content="2021-12-09T04:07:16.190Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -221,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.2k 字
+      8.6k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22 分钟
+      27 分钟
     </span>
   
 
@@ -264,7 +264,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年12月9日 凌晨
+                  本文最后更新于：2021年12月9日 中午
                 
               </p>
             
@@ -385,9 +385,37 @@
 </li>
 </ol>
 <h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>lambda表达式：匿名函数，是代码块以及必须传入代码块的变量规范。</p>
+<blockquote>
+<p>为什么是λ？</p>
+<p>这是逻辑学家Alonzo Church受《数学原理》（<em>Principia Mathematica</em>）中用重音符^表示自由变量启发，采用大写lambda（Λ）表示参数，后来又改为了小写lambda（λ）。从此带参数变量的表达式就被称为lambda表达式。</p>
+</blockquote>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>语法格式为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">(parameters) -&gt; expression<br></code></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">(parameters) -&gt; &#123;<br>    statements;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">(String first, String second) -&gt; &#123;<br>    first.length()-second.length();<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<p>特征：</p>
+<ol>
+<li>可选参数类型：编译器可以识别参数类型，可以忽略参数类型</li>
+<li>可选的圆括号：若只有一个参数，可以忽略圆括号</li>
+<li>可选的大括号及return：若只有一条语句，可以忽略大括号、分号及<code>return</code></li>
+</ol>
+<p>若一个lambda表达式只在某些分支有返回值而其他分支无返回值，编译器会报错，如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">(<span class="hljs-keyword">int</span> x) -&gt; &#123;<br>    <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;  <span class="hljs-comment">// ERROR</span><br></code></pre></td></tr></table></figure>
+<p>lambda 表达式的局部变量必须具有final特性，即lambda表达式使用的变量不可在之后被修改。</p>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>函数式接口：只有一个抽象方法的接口</p>
+<p>如静态方法<code>Arrays.sort</code>的第二个参数需要一个<code>Comparator</code>实例，而<code>Comparator</code>就是只有一个方法的接口，所以可以提供一个lambda表达式。</p>
+<p>下面是<code>Arrays.sort</code>和<code>Comparator</code>的方法原型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Contract(mutates = &quot;param1&quot;)</span> <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">    <span class="hljs-meta">@NotNull</span> T[] a,</span></span><br><span class="hljs-params"><span class="hljs-function">    <span class="hljs-meta">@Nullable</span> Comparator&lt;? <span class="hljs-keyword">super</span> T&gt; c)</span> </span>&#123;<br>    ...<br>&#125;<br>    <br><span class="hljs-meta">@FunctionalInterface</span> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Comparator</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(T o1, T o2)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>那么我们可以这样使用<code>Arrays.sort</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Array.sort(words,<br>          (first, second) -&gt; first.length() - second.length());<br></code></pre></td></tr></table></figure>
+<p>这其实就相当于C++11中的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">sort</span>(words.<span class="hljs-built_in">begin</span>(), <br>     words.<span class="hljs-built_in">end</span>(),<br>     [](string first, string second) -&gt; <span class="hljs-keyword">bool</span> &#123; <span class="hljs-keyword">return</span> first.<span class="hljs-built_in">length</span>() &gt; second.<span class="hljs-built_in">length</span>(); &#125;);<br></code></pre></td></tr></table></figure>
+<p>或者C++11前（没有lambda表达式，只能传函数名）的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">comp</span><span class="hljs-params">(string first, string second)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> first.<span class="hljs-built_in">length</span>() &gt; second.<span class="hljs-built_in">length</span>();<br>&#125; <br><span class="hljs-built_in">sort</span>(words.<span class="hljs-built_in">begin</span>(),words.<span class="hljs-built_in">end</span>(),comp);<br></code></pre></td></tr></table></figure>
+<p>lambda表达式可以转换为函数式接口，如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">var</span> timer = <span class="hljs-keyword">new</span> Timer (<span class="hljs-number">1000</span>, <br>                      event -&gt; &#123;<br>                          System.out.println(<span class="hljs-string">&quot;At the tone, the time is &quot;</span> + <br>                                            Instant.ofEpochMilli(event.getWhen()));<br>                          Toolkit.getDefaultToolKit().beep();<br>                      &#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3>
             </div>
             <hr>
             <div>
