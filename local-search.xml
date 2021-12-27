@@ -8,7 +8,7 @@
     <link href="/2021/12/11/%E6%95%A3%E4%B9%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E4%B9%8B%E5%A1%94/"/>
     <url>/2021/12/11/%E6%95%A3%E4%B9%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E4%B9%8B%E5%A1%94/</url>
     
-    <content type="html"><![CDATA[<p>翻看C98、C99标准时偶然发现了从没见过的初始化方式。可以在初始化块中忽略对象直接指定初始化成员。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112111411363.png" alt=""></p><p>另外，C++官方提供了在线编译环境，支持到C++14。</p><p><a href="http://cpp.sh/">C++ shell</a></p>]]></content>
+    <content type="html"><![CDATA[<p>python可以使用<code>@jit</code>装饰器达到媲美C++的运行速度。</p><p>翻看C98、C99标准时偶然发现了从没见过的初始化方式。可以在初始化块中忽略对象直接指定初始化成员。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112111411363.png" alt=""></p><p>另外，C++官方提供了在线编译环境，支持到C++14。</p><p><a href="http://cpp.sh/">C++ shell</a></p>]]></content>
     
     
     
