@@ -1,0 +1,918 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#908e83">
+  <meta name="description" content="">
+  <meta name="author" content="许">
+  <meta name="keywords" content="">
+  <meta name="description" content="JAVA Open EXAM StudyChap1 概述开发环境配置、环境变量、系统变量、编译是哪个、虚拟机是哪个？JAVA_HOME：JAVA安装目录 PATH：%JAVA_HOME%\bin CLASSPATH：用户级类库  编译程序：JDK（含javac.exe和java.exe） 运行程序：JRE（含java.exe） 虚拟机：JVM 关系：  JVM+核心类库(lib&#x2F;*.jar)&#x3D;JR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA Open EXAM Study">
+<meta property="og:url" content="http://example.com/2022/01/09/JAVA-Open-EXAM-Study/index.html">
+<meta property="og:site_name" content="须臾所学之野">
+<meta property="og:description" content="JAVA Open EXAM StudyChap1 概述开发环境配置、环境变量、系统变量、编译是哪个、虚拟机是哪个？JAVA_HOME：JAVA安装目录 PATH：%JAVA_HOME%\bin CLASSPATH：用户级类库  编译程序：JDK（含javac.exe和java.exe） 运行程序：JRE（含java.exe） 虚拟机：JVM 关系：  JVM+核心类库(lib&#x2F;*.jar)&#x3D;JR">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071139160.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071135270.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071452570.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071508222.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071510806.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071510931.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071458249.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071456962.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071514399.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071537459.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071543526.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071538863.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071532268.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071527958.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091109699.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071617524.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071715394.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081143437.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081143638.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081144378.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081151007.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081155072.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090929205.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090930896.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090931010.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090939965.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090938257.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090932520.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090933210.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090933167.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090933683.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090934578.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091010731.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091010256.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090953078.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090944975.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090954313.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090958902.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091002061.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091000994.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090954631.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090956060.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090957800.png">
+<meta property="og:image" content="c:/Users/XuWanpeng/AppData/Roaming/Typora/typora-user-images/image-20220109101510866.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091513625.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091514549.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091515514.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091518993.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091518895.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091518872.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091520104.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091554831.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091554166.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091613069.png">
+<meta property="article:published_time" content="2022-01-09T09:19:57.000Z">
+<meta property="article:modified_time" content="2022-01-09T09:21:08.660Z">
+<meta property="article:author" content="许">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071139160.png">
+  
+  <title>JAVA Open EXAM Study - 须臾所学之野</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"VR5uSrKiTuoIcwbhhvot8Bf4-gzGzoHsz","app_key":"w57XHS7hMjAYidjnpR0AAoTC","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>许&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JAVA Open EXAM Study">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-09 17:19" pubdate>
+        2022年1月9日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      15k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/WanpengXu" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JAVA Open EXAM Study</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月9日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="JAVA-Open-EXAM-Study"><a href="#JAVA-Open-EXAM-Study" class="headerlink" title="JAVA Open EXAM Study"></a>JAVA Open EXAM Study</h1><h2 id="Chap1-概述"><a href="#Chap1-概述" class="headerlink" title="Chap1 概述"></a>Chap1 概述</h2><h3 id="开发环境配置、环境变量、系统变量、编译是哪个、虚拟机是哪个？"><a href="#开发环境配置、环境变量、系统变量、编译是哪个、虚拟机是哪个？" class="headerlink" title="开发环境配置、环境变量、系统变量、编译是哪个、虚拟机是哪个？"></a>开发环境配置、环境变量、系统变量、编译是哪个、虚拟机是哪个？</h3><p>JAVA_HOME：JAVA安装目录</p>
+<p><strong>PATH：%JAVA_HOME%\bin</strong></p>
+<p>CLASSPATH：用户级类库</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071139160.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>编译程序：JDK（含javac.exe和java.exe）</p>
+<p>运行程序：JRE（含java.exe）</p>
+<p>虚拟机：JVM</p>
+<p>关系：</p>
+<ol>
+<li><p>JVM+核心类库(lib/*.jar)=JRE</p>
+</li>
+<li><p>JDK&gt;JRE&gt;JVM</p>
+</li>
+</ol>
+<h3 id="源文件后缀、中间字节码后缀？"><a href="#源文件后缀、中间字节码后缀？" class="headerlink" title="源文件后缀、中间字节码后缀？"></a>源文件后缀、中间字节码后缀？</h3><p>.java</p>
+<p>.class</p>
+<h3 id="源文件命名？编译后出现几个字节码？"><a href="#源文件命名？编译后出现几个字节码？" class="headerlink" title="源文件命名？编译后出现几个字节码？"></a>源文件命名？编译后出现几个字节码？</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071135270.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>关于2）：内部类也会生成class字节码文件，若为匿名内部类，则<code>文件名=&quot;外部类&quot;+&quot;$&quot;+num（该外部类的第几个内部类）+&quot;.class&quot;</code></p>
+<h2 id="Chap2、3-语法"><a href="#Chap2、3-语法" class="headerlink" title="Chap2、3 语法"></a>Chap2、3 语法</h2><h3 id="用户标识符命名规则？"><a href="#用户标识符命名规则？" class="headerlink" title="用户标识符命名规则？"></a>用户标识符命名规则？</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071452570.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071508222.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071510806.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071510931.png" srcset="/img/loading.gif" lazyload alt="is me"></p>
+<h3 id="基本数据类型？类型转换？"><a href="#基本数据类型？类型转换？" class="headerlink" title="基本数据类型？类型转换？"></a>基本数据类型？类型转换？</h3><p>8中基本数据类型及其存储需求、默认值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071458249.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>类型转换：</p>
+<ol>
+<li>隐式转换（自动转换）</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071456962.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>更精确的隐式类型转换图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071514399.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071537459.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071543526.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>强制转换</li>
+</ol>
+<p><code>(类型名)转换数值</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071538863.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="数据作用域、初始化？"><a href="#数据作用域、初始化？" class="headerlink" title="数据作用域、初始化？"></a>数据作用域、初始化？</h3><p>成员变量：编译器</p>
+<p>形参：实参</p>
+<p>局部变量、块变量：用户</p>
+<p>数组初始化：基本数据类型为各自默认初始值，对象（Object）类型为null</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071532268.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="运算符？"><a href="#运算符？" class="headerlink" title="运算符？"></a>运算符？</h3><p>优先级：单目 &gt; <strong>算术</strong> &gt; 移位 &gt; <strong>关系</strong> &gt; <strong>逻辑</strong> &gt; 三目 &gt; 赋值</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071527958.png" srcset="/img/loading.gif" lazyload alt="image-20220107152753858"></p>
+<h3 id="参数传递？（函数栈帧）"><a href="#参数传递？（函数栈帧）" class="headerlink" title="参数传递？（函数栈帧）"></a><strong>参数传递</strong>？（函数栈帧）</h3><ol>
+<li>画出主调方法和被调方法的栈帧，其中含有引用或值（基本数据类型）</li>
+<li>画出堆（new出来的对象变量放这）或常量池（直接在代码中给出的变量放这，重复变量只放一个）</li>
+<li>画出箭头将引用指向对应的变量</li>
+<li>分析</li>
+</ol>
+<p>static执行的时机</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091109699.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.grammar;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test3</span> </span>&#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> staticVar;<br>    <span class="hljs-keyword">int</span> instanceVar;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStaticVar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>&#123;<br>        staticVar=i;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setVar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>&#123;<br>        staticVar=i;<br>        instanceVar=i;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;staticVar=&quot;</span>+Test3.staticVar);<br>        setStaticVar(<span class="hljs-number">11</span>);<br>        System.out.println(<span class="hljs-string">&quot;staticVar=&quot;</span>+Test3.staticVar);<br>        Test3 test3=<span class="hljs-keyword">new</span> Test3();<br>        test3.setVar(<span class="hljs-number">13</span>);<br>        System.out.println(<span class="hljs-string">&quot;staticVar=&quot;</span>+Test3.staticVar);<br>        System.out.println(<span class="hljs-string">&quot;test3&#x27;s instanceVar=&quot;</span>+test3.instanceVar);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">staticVar</span>=0<br><span class="hljs-attribute">staticVar</span>=11<br><span class="hljs-attribute">staticVar</span>=13<br>test3<span class="hljs-string">&#x27;s instanceVar=13</span><br></code></pre></td></tr></table></figure>
+<h2 id="Chap4-面向对象"><a href="#Chap4-面向对象" class="headerlink" title="Chap4 面向对象"></a>Chap4 面向对象</h2><h3 id="访问权限修饰符？非访问权限修饰符？"><a href="#访问权限修饰符？非访问权限修饰符？" class="headerlink" title="访问权限修饰符？非访问权限修饰符？"></a>访问权限修饰符？非访问权限修饰符？</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071617524.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="继承？多态？覆盖？重载？"><a href="#继承？多态？覆盖？重载？" class="headerlink" title="继承？多态？覆盖？重载？"></a>继承？多态？覆盖？重载？</h3><p>子类可以继承父类的所有成员，但被<code>private</code>修饰的成员是不可见的。</p>
+<p>在继承机制中，不允许在子类中降低成员(包括变量和方法)的访问权限。</p>
+<p>如果子类中新定义的静态成员变量与父类中的某个静态成员变量同名，则这两个静态成员变量相互独立。</p>
+<p>编译时类型由声明该变量时使用的类型（引用的类型）决定</p>
+<p>运行时类型由实际赋给该变量的对象的类型（实例的类型）决定。</p>
+<p><strong>因为有编译时类型的限制，所以变量所调用的方法只能来自编译时类型的方法</strong></p>
+<p>覆盖：函数原型完全一致，即返回值类型、方法名、参数列表</p>
+<p>重载：方法名相同而参数列表不同</p>
+<h3 id="对象初始化-实例化过程？（作业二）"><a href="#对象初始化-实例化过程？（作业二）" class="headerlink" title="对象初始化/实例化过程？（作业二）"></a>对象初始化/实例化过程？（作业二）</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201071715394.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>注：1处不准确，若是第一次加载类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *    控制台打印</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Log</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">baseFieldInit</span><span class="hljs-params">()</span></span>&#123;System.out.println(<span class="hljs-string">&quot;Base Normal Field&quot;</span>);<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">baseStaticFieldInit</span><span class="hljs-params">()</span></span>&#123;System.out.println(<span class="hljs-string">&quot;Base Static Field&quot;</span>);<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">fieldInit</span><span class="hljs-params">()</span></span>&#123;System.out.println(<span class="hljs-string">&quot;Normal Field&quot;</span>);<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">staticFieldInit</span><span class="hljs-params">()</span></span>&#123;System.out.println(<span class="hljs-string">&quot;Static Field&quot;</span>);<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;&#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *	基类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Base</span> </span>&#123;<br>    <span class="hljs-comment">/*1*/</span> <span class="hljs-keyword">static</span> &#123;System.out.println(<span class="hljs-string">&quot;Base Static Block 1&quot;</span>);&#125;<br>    <span class="hljs-comment">/*1*/</span> <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String staticValue=Log.baseStaticFieldInit();<br>    <span class="hljs-comment">/*1*/</span> <span class="hljs-keyword">static</span> &#123;System.out.println(<span class="hljs-string">&quot;Base Static Block 2&quot;</span>);&#125;<br><br>    <span class="hljs-comment">/*3*/</span> &#123;System.out.println(<span class="hljs-string">&quot;Base Normal Block 1&quot;</span>);&#125;<br>    <span class="hljs-comment">/*3*/</span> <span class="hljs-keyword">private</span> String value=Log.baseFieldInit();<br>    <span class="hljs-comment">/*3*/</span> &#123;System.out.println(<span class="hljs-string">&quot;Base Normal Block 2&quot;</span>);&#125;<br><br>    <span class="hljs-comment">/*4*/</span> Base()&#123;System.out.println(<span class="hljs-string">&quot;Base Constructor&quot;</span>);&#125;<br><br>    <span class="hljs-comment">/*3*/</span> &#123;System.out.println(<span class="hljs-string">&quot;Base Normal Block 3&quot;</span>);&#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *	派生类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Derived</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Base</span></span>&#123;<br>    <span class="hljs-comment">/*2*/</span> <span class="hljs-keyword">static</span> &#123;System.out.println(<span class="hljs-string">&quot;Static Block 1&quot;</span>);&#125;<br>    <span class="hljs-comment">/*2*/</span> <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String staticValue=Log.staticFieldInit();<br>    <span class="hljs-comment">/*2*/</span> <span class="hljs-keyword">static</span> &#123;System.out.println(<span class="hljs-string">&quot;Static Block 2&quot;</span>);&#125;<br><br>    <span class="hljs-comment">/*5*/</span> &#123;System.out.println(<span class="hljs-string">&quot;Normal Block 1&quot;</span>);&#125;<br>    <span class="hljs-comment">/*5*/</span> <span class="hljs-keyword">private</span> String value=Log.fieldInit();<br>    <span class="hljs-comment">/*5*/</span> &#123;System.out.println(<span class="hljs-string">&quot;Normal Block 2&quot;</span>);&#125;<br>    <span class="hljs-comment">/*6*/</span> Derived()&#123;System.out.println(<span class="hljs-string">&quot;Derived Constructor&quot;</span>);&#125;<br><br>    <span class="hljs-comment">/*5*/</span> &#123;System.out.println(<span class="hljs-string">&quot;Normal Block 3&quot;</span>);&#125;<br>    <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *  MAIN 主线程</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        Derived d=<span class="hljs-keyword">new</span> Derived();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>（1 2只在加载进正文段时执行一次）</p>
+<ol>
+<li>父类static字段/块</li>
+<li>子类static字段/块</li>
+<li>子类构造方法进<code>super()</code>，父类构造方法进<code>this()</code>，父类非static字段/块（包括构造方法后的）</li>
+<li>父类构造方法其余操作</li>
+<li>子类构造方法<code>super()</code>结束，子类构造方法进<code>this()</code>，子类非static字段/块（包括构造方法后的）</li>
+<li>子类构造方法其余操作</li>
+</ol>
+<p>注：方法只有指名道姓时才会被调用。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs scss">Base Static Block 1  <span class="hljs-comment">// 父类static</span><br>Base Static Field  <span class="hljs-comment">// 父类static</span><br>Base Static Block 2  <span class="hljs-comment">// 父类static</span><br>Static Block 1  <span class="hljs-comment">// 子类static</span><br>Static Field  <span class="hljs-comment">// 子类static</span><br>Static Block 2  <span class="hljs-comment">// 子类static</span><br>Base <span class="hljs-attribute">Normal</span> Block 1  <span class="hljs-comment">// 父类非static</span><br>Base <span class="hljs-attribute">Normal</span> Field  <span class="hljs-comment">// 父类非static</span><br>Base <span class="hljs-attribute">Normal</span> Block 2  <span class="hljs-comment">// 父类非static</span><br>Base <span class="hljs-attribute">Normal</span> Block 3   <span class="hljs-comment">// 父类非static</span><br>Base Constructor  <span class="hljs-comment">// 父类构造方法其余操作</span><br><span class="hljs-attribute">Normal</span> Block 1  <span class="hljs-comment">// 子类非static</span><br><span class="hljs-attribute">Normal</span> Field  <span class="hljs-comment">// 子类非static</span><br><span class="hljs-attribute">Normal</span> Block 2  <span class="hljs-comment">// 子类非static</span><br><span class="hljs-attribute">Normal</span> Block 3  <span class="hljs-comment">// 子类非static</span><br>Derived Constructor  <span class="hljs-comment">// 子类构造方法其余操作</span><br></code></pre></td></tr></table></figure>
+<p>初始化过程常与动态绑定结合出题</p>
+<ul>
+<li>如果通过子类构造函数调用父类构造函数（无论显示还是隐式），父类在构造时调用了被子类重写的方法，实际上调用的是子类覆盖的方法。<ul>
+<li><strong>优点：通过继承相同的父类，初始化不同子类时，父类会调用不同的复写方法（真正new的那个子类的复写方法），从而实现多态性。</strong></li>
+<li><strong>缺点：若是在父类构造函数中调用被子类重写的方法，会致使导致重写的方法在子类构造器的全部代码以前执行（子类构造函数在<code>super()</code>中，还没有<code>this()</code>），从而致使子类重写的方法访问不到子类实例变量的值，因为此时这些变量尚未被初始化。</strong>（作业二）</li>
+</ul>
+</li>
+</ul>
+<p>作业二魔改版</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.oop2;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Base</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String name = <span class="hljs-string">&quot;base&quot;</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Base</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// this();  // 这里只是为了理解，程序角度并不正确</span><br>        tellName();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tellName</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Base tell name: &quot;</span> + name);<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Derived2</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Base</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String name = <span class="hljs-string">&quot;derived2&quot;</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Derived2</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// super();</span><br>        <span class="hljs-comment">// this();  // 这里只是为了理解，程序角度并不正确</span><br>        tellName();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tellName</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Derived2 tell name: &quot;</span> + name);<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Derived</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Base</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String name = <span class="hljs-string">&quot;derived&quot;</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Derived</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// super();</span><br>        <span class="hljs-comment">// this();  // 这里只是为了理解，程序角度并不正确</span><br>        tellName();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tellName</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Derived tell name: &quot;</span> + name);<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DerivedDerived</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Derived</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String name = <span class="hljs-string">&quot;derivedDerived&quot;</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DerivedDerived</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// super();</span><br>        <span class="hljs-comment">// this();  // 这里只是为了理解，程序角度并不正确</span><br>        tellName();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tellName</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;DerivedDerived tell name: &quot;</span> + name);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">new</span> Derived();<br>        <span class="hljs-keyword">new</span> Derived2();<br>        <span class="hljs-keyword">new</span> DerivedDerived();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs applescript">Derived <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: null<br>Derived <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: derived<br>Derived2 <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: null<br>Derived2 <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: derived2<br>DerivedDerived <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: null<br>DerivedDerived <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: null<br>DerivedDerived <span class="hljs-keyword">tell</span> <span class="hljs-built_in">name</span>: derivedDerived<br></code></pre></td></tr></table></figure>
+<p>流程：</p>
+<ol>
+<li><strong>new Derived();</strong></li>
+<li><strong>Derived里的super(</strong>) 进Base()</li>
+<li><strong>Base里的this()</strong>：<code>private String name = &quot;base&quot;;</code>，这时Base.name=”base”,Derived.name=null</li>
+<li><strong>Base里的其他</strong>：<code>tellName()</code>，这个方法被主调类重写了，所以调的是Derived.tellname()</li>
+<li><strong>Derived里的this（）</strong>：<code>private String name = &quot;derived&quot;;</code>,这时Base.name=”base”,Derived.name=”derived”</li>
+<li><strong>Derived里的其他</strong>：tellName()，自己就是将其重写的主调类，所以调的是Derived.tellname()</li>
+<li><strong>new Derived2();</strong></li>
+<li>…</li>
+</ol>
+<p>其他流程都差不多，要注意的是父类构造函数调的方法一定是被真正new的子类重写的</p>
+<h3 id="接口？抽象类？"><a href="#接口？抽象类？" class="headerlink" title="接口？抽象类？"></a>接口？抽象类？</h3><p>详见<strong>课后小结</strong></p>
+<p>接口：interface</p>
+<p>接口是对希望符合这个接口的类的一组<strong>需求</strong>。</p>
+<p>接口没有实例。</p>
+<p>接口中的所有方法都是<code>public</code>，所有字段都是<code>public static final</code></p>
+<p>实现接口的类若非抽象类，则必须实现接口中的所有方法</p>
+<p>实现接口时必须将方法声明为<code>public</code>，因为缺省访问权限为包内权限，编译器会报错，认为你试图提供更严格的（更弱的）访问权限</p>
+<p>当方法冲突时：</p>
+<ol>
+<li><p>超类冲突，超类优先</p>
+</li>
+<li><p>接口冲突，抛给程序员解决</p>
+<p>使用<code>&#123;接口名&#125;.super.&#123;方法名&#125;</code>解决冲突</p>
+</li>
+</ol>
+<p>抽象类：abstract</p>
+<p>可以提供方法实现</p>
+<p>修饰符任意</p>
+<p>抽象类也只能被单继承</p>
+<h3 id="内部类？匿名内部类？"><a href="#内部类？匿名内部类？" class="headerlink" title="内部类？匿名内部类？"></a>内部类？匿名内部类？</h3><p>内部类（inner class）：定义在另一个类中的类。</p>
+<p>使用内部类的原因：</p>
+<ol>
+<li>内部类可以对同一个包中的其他类隐藏</li>
+<li>内部类方法可以访问外围类的作用域中所有的数据，包括原本私有的数据</li>
+<li>便于<strong>回调</strong></li>
+</ol>
+<p>语法格式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OuterClass</span> </span>&#123;   <span class="hljs-comment">// 外部类</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InnerClass</span> </span>&#123; <span class="hljs-comment">// 嵌套类，或称为内部类</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
+<p>内部类与外围类的字段、方法处于相同地位（都是外围类的成员）</p>
+<p>内部类可以直接访问外围类成员</p>
+<p><strong>匿名内部类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.course.anonymousinnerclasstest;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Class1</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;I am Class1&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Class2</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Class1</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;I am Class2&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Class1 commonClassObject = <span class="hljs-keyword">new</span> Class2();<br>        commonClassObject.display();<br><br>        Class1 anonymousInnerClassObject = <span class="hljs-keyword">new</span> Class1() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;<br>                System.out.println(<span class="hljs-string">&quot;I am Class3&quot;</span>);<br>            &#125;<br>        &#125;;<br>        anonymousInnerClassObject.display();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Chap5-异常"><a href="#Chap5-异常" class="headerlink" title="Chap5 异常"></a>Chap5 异常</h2><h3 id="异常处理机制？"><a href="#异常处理机制？" class="headerlink" title="异常处理机制？"></a>异常处理机制？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    ...<br>&#125; <span class="hljs-keyword">catch</span>(Exception e) &#123;<br>    ...<br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.exception;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            System.out.print(<span class="hljs-string">&#x27;a&#x27;</span>);<br>            method1(args);<br>            System.out.print(<span class="hljs-string">&#x27;e&#x27;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            System.out.print(<span class="hljs-string">&#x27;m&#x27;</span>);<br>        &#125;<br>        System.out.print(<span class="hljs-string">&#x27;f&#x27;</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">(String[] a)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            method2(a);<br>            System.out.print(<span class="hljs-string">&#x27;b&#x27;</span>);<br><span class="hljs-comment">//        &#125; catch (Exception e) &#123;</span><br><span class="hljs-comment">//            System.out.print(&#x27;n&#x27;);</span><br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            System.out.print(<span class="hljs-string">&#x27;c&#x27;</span>);<br>        &#125;<br>        System.out.print(<span class="hljs-string">&#x27;d&#x27;</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">(String[] a)</span> </span>&#123;<br>        System.out.println(a[a.length]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>正常的结果<code>abcdef</code>,<code>m</code>和<code>n</code>作为捕获异常的标志</p>
+<p>带注释，存在异常抛出</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">acmf</span><br></code></pre></td></tr></table></figure>
+<p>去掉注释，各try块正常接受异常</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ancdef</span><br></code></pre></td></tr></table></figure>
+<p>出现异常立刻中断，找本try块的catch、finally，如果没有被catch就往主调函数抛直到被catch或不能再抛而报错。</p>
+<p><strong>带资源的try</strong></p>
+<p>资源在try块结束后会自动关闭，不需要finally</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> (FileInputStream fileInputStream = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;file1.data&quot;</span>);<br>     ObjectInputStream objectInputStream = <span class="hljs-keyword">new</span> ObjectInputStream(fileInputStream)) &#123;<br>            Equation equation = (Equation) objectInputStream.readObject();<br>            System.out.println(<span class="hljs-string">&quot;已将文件\&quot;file1.data\&quot;中的byte数组反序列化为一元二次方程对象&quot;</span>);<br>            equation.display();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException | ClassNotFoundException e) &#123;<br>            System.out.println(e.getMessage());<br>        &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> (Scanner scanner = <span class="hljs-keyword">new</span> Scanner(System.in)) &#123;<br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="声明语句？"><a href="#声明语句？" class="headerlink" title="声明语句？"></a>声明语句？</h3><p>throws</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Equation</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a, <span class="hljs-keyword">double</span> b, <span class="hljs-keyword">double</span> c)</span> <span class="hljs-keyword">throws</span> AWrongException</span><br></code></pre></td></tr></table></figure>
+<h3 id="抛出语句？"><a href="#抛出语句？" class="headerlink" title="抛出语句？"></a>抛出语句？</h3><p>throw</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (a == <span class="hljs-number">0</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AWrongException(<span class="hljs-string">&quot;二次项系数不能为0！&quot;</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="Chap6-核心类"><a href="#Chap6-核心类" class="headerlink" title="Chap6 核心类"></a>Chap6 核心类</h2><h3 id="包装类？-star-Interger"><a href="#包装类？-star-Interger" class="headerlink" title="包装类？:star:Interger"></a>包装类？:star:Interger</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081143437.png" srcset="/img/loading.gif" lazyload alt="image-20220108114300287"></p>
+<p>自动装箱</p>
+<p><strong>编译器</strong>加上<code>Integer.valueOf()</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081143638.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>自动拆箱</p>
+<p><strong>编译器</strong>加上<code>.intValue()</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081144378.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>Integer类的方法</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081151007.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201081155072.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>直译</p>
+<p><code>compareTo</code>：比较</p>
+<p><code>intValue</code>：int型值</p>
+<p><code>parseInt</code>：转为int型</p>
+<p><code>valueOf</code>：取()作为Integer的值</p>
+<p><code>toString</code>：转为String型</p>
+<h3 id="String？（除正则）"><a href="#String？（除正则）" class="headerlink" title="String？（除正则）"></a>String？（除正则）</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090929205.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090930896.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090931010.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>另，前两个方法应为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090939965.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090938257.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090932520.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090933210.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090933167.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090933683.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090934578.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091010731.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091010256.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="泛型类？（选择、考使用、遇到的问题）"><a href="#泛型类？（选择、考使用、遇到的问题）" class="headerlink" title="泛型类？（选择、考使用、遇到的问题）"></a>泛型类？（选择、考使用、遇到的问题）</h3><p>泛型类：有一个或多个类型的类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pair</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">private</span> T first;<br>    <span class="hljs-keyword">private</span> T second;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Pair</span><span class="hljs-params">()</span> </span>&#123;<br>        first = <span class="hljs-keyword">null</span>;<br>        second = <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Pair</span><span class="hljs-params">(T first, T second)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.first = first;<br>        <span class="hljs-keyword">this</span>.second = second;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getFirst</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> first;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getSecond</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> second;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFirst</span><span class="hljs-params">(T first)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.first = first;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSecond</span><span class="hljs-params">(T second)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.second = second;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090953078.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090944975.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090954313.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>泛型方法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090958902.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>有界泛型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091002061.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>定义：</p>
+<p><code>&lt;T extends 类型1&gt;</code>：继承自类型1的任意类型T</p>
+<p>使用：</p>
+<p><code>&lt;? extends 类型1&gt;</code>：继承自类型1的任意类型</p>
+<p><code>&lt;? super 类型1&gt;</code>：是类型1父类的任意类型</p>
+<p>类型擦除</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091000994.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090954631.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090956060.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201090957800.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>StringBuffer</p>
+<p><img src="C:/Users/XuWanpeng/AppData/Roaming/Typora/typora-user-images/image-20220109101510866.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        StringBuffer stringBuffer=<span class="hljs-keyword">new</span> StringBuffer(<span class="hljs-string">&quot;2022年1月9日&quot;</span>);<br>        stringBuffer.append(<span class="hljs-string">&quot;我&quot;</span>);<br>        stringBuffer.append(<span class="hljs-string">&quot;学不完&quot;</span>);<br>        stringBuffer.append(<span class="hljs-string">&quot;了&quot;</span>);<br>        stringBuffer.delete(<span class="hljs-number">11</span>,<span class="hljs-number">12</span>);<br>        stringBuffer.insert(<span class="hljs-number">10</span>,<span class="hljs-string">&quot;终于&quot;</span>);<br>        String string=stringBuffer.toString();<br>        System.out.println(string);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="IO？"><a href="#IO？" class="headerlink" title="IO？"></a>IO？</h3><p>节点流、包装流考1-2选择</p>
+<p>略</p>
+<p>Scanner要会应用。</p>
+<h2 id="Chap7-图形编程GUI"><a href="#Chap7-图形编程GUI" class="headerlink" title="Chap7 图形编程GUI"></a>Chap7 图形编程GUI</h2><p>先把这几个包写上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.awt.*;<br><span class="hljs-keyword">import</span> java.awt.event.*;<br><span class="hljs-keyword">import</span> javax.swing.*;<br></code></pre></td></tr></table></figure>
+<p>创建GUI程序可以有两种思路</p>
+<p>第一种是直接生成JFarme的实例，使用它自带的方法。（少）</p>
+<p>第二种是写一个继承自JFarme的类（实名类或匿名类），按我们的需要重载它的方法，最后只需要一句话生成它的实例即可。（多）</p>
+<p>第二种方法有一个好处是可以直接在类里调用方法，不用指定对象。</p>
+<h3 id="布局管理器有哪些？布局管理器怎么用？组件怎么放？"><a href="#布局管理器有哪些？布局管理器怎么用？组件怎么放？" class="headerlink" title="布局管理器有哪些？布局管理器怎么用？组件怎么放？"></a>布局管理器有哪些？布局管理器怎么用？组件怎么放？</h3><p>布局管理器有哪些？</p>
+<ol>
+<li><p>FlowLayout 流布局（Jpanel默认）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091513625.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li><p><strong>BoarderLayout 边框布局</strong>（JFrame默认）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091514549.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li><p>GridLayout 网格布局</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091515514.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091518993.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li><p>CardLayout 卡片布局</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091518895.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091518872.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li><p>GridBagLayout</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091520104.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h3 id="事件处理机制？（监听器）"><a href="#事件处理机制？（监听器）" class="headerlink" title="事件处理机制？（监听器）"></a>事件处理机制？（监听器）</h3><ol>
+<li>对本类<strong>实现事件处理接口</strong></li>
+<li>使用<strong>匿名内部类</strong>（多个方法，如鼠标事件MouseAdapter）/<strong>lambda表达式</strong>（函数式方法，如按键事件ActionListener）</li>
+<li>使用<strong>外部类</strong></li>
+</ol>
+<p>本质上都是往里传一个自定义了方法的<strong>类</strong></p>
+<h3 id="绘制图像？（Paint-Grahpics-g-、repaint-）"><a href="#绘制图像？（Paint-Grahpics-g-、repaint-）" class="headerlink" title="绘制图像？（Paint(Grahpics g)、repaint()）"></a>绘制图像？（Paint(Grahpics g)、repaint()）</h3><p>一个例子解决这些问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.gui;<br><br><span class="hljs-keyword">import</span> java.awt.*;<br><span class="hljs-keyword">import</span> java.awt.event.*;<br><span class="hljs-keyword">import</span> javax.swing.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GUIDemo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JFrame</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ActionListener</span> </span>&#123;<br>    <span class="hljs-keyword">boolean</span> draw = <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">private</span> JButton jButton1 = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">private</span> JButton jButton2 = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">private</span> JButton jButton3 = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">private</span> JButton jButton4 = <span class="hljs-keyword">null</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GUIDemo</span><span class="hljs-params">(String title)</span> </span>&#123;<br>        setTitle(title);<br>        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br><span class="hljs-comment">//        setLayout(new FlowLayout());</span><br>        setLayout(<span class="hljs-keyword">new</span> BorderLayout());<br>        setBounds(<span class="hljs-number">500</span>, <span class="hljs-number">250</span>, <span class="hljs-number">300</span>, <span class="hljs-number">200</span>);<br>        jButton1 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">&quot;按钮1&quot;</span>);<br>        jButton2 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">&quot;按钮2&quot;</span>);<br>        jButton3 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">&quot;按钮1&quot;</span>);<br>        jButton4 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">&quot;按钮4&quot;</span>);<br>        jButton3.setText(<span class="hljs-string">&quot;按钮3&quot;</span>);<br><span class="hljs-comment">//        add(jButton1);</span><br><span class="hljs-comment">//        add(jButton2);</span><br><span class="hljs-comment">//        add(jButton3);</span><br>        add(jButton1, BorderLayout.NORTH);<br>        add(jButton2, BorderLayout.SOUTH);<br>        add(jButton3, BorderLayout.WEST);<br>        add(jButton4, BorderLayout.EAST);<br>        add(<span class="hljs-keyword">new</span> JButton(<span class="hljs-string">&quot;按钮5&quot;</span>), BorderLayout.CENTER);<br><br>        <span class="hljs-comment">// 传匿名内部类</span><br>        jButton1.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">actionPerformed</span><span class="hljs-params">(ActionEvent e)</span> </span>&#123;<br>                jButton1.setEnabled(<span class="hljs-keyword">false</span>);<br>            &#125;<br>        &#125;);<br><br>        <span class="hljs-comment">// 传lambda</span><br>        jButton2.addActionListener(e -&gt; jButton2.setEnabled(<span class="hljs-keyword">false</span>));<br><br>        <span class="hljs-comment">// 传lambda</span><br>        jButton3.addActionListener(e -&gt; &#123;<br>            draw = <span class="hljs-keyword">false</span>;  <span class="hljs-comment">// 控制是否绘图</span><br>            JFrame jFrame = <span class="hljs-keyword">new</span> JFrame(<span class="hljs-string">&quot;图&quot;</span>) &#123;<br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">paint</span><span class="hljs-params">(Graphics g)</span> </span>&#123;<br>                    <span class="hljs-keyword">super</span>.paint(g);<br>                    g.setColor(Color.RED);<br>                    <span class="hljs-keyword">if</span> (draw) &#123;  <span class="hljs-comment">// 防止窗口在实例化时即显示图形</span><br>                        g.drawOval(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<br>                        g.drawRect(<span class="hljs-number">300</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<br>                    &#125;<br>                &#125;<br>            &#125;;<br>            jFrame.setBounds(<span class="hljs-number">200</span>, <span class="hljs-number">200</span>, <span class="hljs-number">500</span>, <span class="hljs-number">300</span>);<br>            jFrame.setVisible(<span class="hljs-keyword">true</span>);<br>            jFrame.addMouseListener(<span class="hljs-keyword">new</span> MouseAdapter() &#123;<br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mouseClicked</span><span class="hljs-params">(MouseEvent e)</span> </span>&#123;<br>                    draw = <span class="hljs-keyword">true</span>;<br>                    jFrame.repaint();<br>                &#125;<br>            &#125;);<br>        &#125;);<br><br>        <span class="hljs-comment">// 传本类</span><br>        jButton4.addActionListener(<span class="hljs-keyword">this</span>);<br>        setVisible(<span class="hljs-keyword">true</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">actionPerformed</span><span class="hljs-params">(ActionEvent e)</span> </span>&#123;<br>        jButton4.setEnabled(<span class="hljs-keyword">false</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        GUIDemo guiDemo = <span class="hljs-keyword">new</span> GUIDemo(<span class="hljs-string">&quot;考试&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Graphics-g怎么画圆形？正方形？"><a href="#Graphics-g怎么画圆形？正方形？" class="headerlink" title="Graphics g怎么画圆形？正方形？"></a>Graphics g怎么画圆形？正方形？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">paint</span><span class="hljs-params">(Graphics g)</span> </span>&#123;<br>    	<span class="hljs-keyword">super</span>.paint(g);<br>        g.setColor(Color.RED);<br>        g.drawOval(x,y,w,h);<br>        g.drawRect(x,y,w,h)；    <span class="hljs-comment">//矩形</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+<p><strong>常用组件</strong></p>
+<p><code>JButton</code></p>
+<p>无常用方法</p>
+<p><code>JTextField</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091554831.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><code>JLabel</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091554166.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>JFarme常用方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">setTitle(title);<br><br>setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br><br>setLayout(<span class="hljs-keyword">new</span> BorderLayout());<br><br>setLocation(x,y);<br>setSize(w,h);<br>setBounds(x, y, w, h);<br><br>add()<br>    <br>setVisible(<span class="hljs-keyword">true</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="Chap8-线程"><a href="#Chap8-线程" class="headerlink" title="Chap8 线程"></a>Chap8 线程</h2><h3 id="线程类定义？（构造线程的方法？）"><a href="#线程类定义？（构造线程的方法？）" class="headerlink" title="线程类定义？（构造线程的方法？）"></a>线程类定义？（构造线程的方法？）</h3><p>线程是一个继承自Thread的对象或一个实现了Runnable接口的对象</p>
+<ol>
+<li><p>继承Thread</p>
+<p><code>extends Thread</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">myThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">//code</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>实现Runnable接口，通过Thread包装</p>
+<p><code>implements Runnable</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">myThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">//code</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>开始线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Thread t1 = <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">this</span>);<br>t1.start();<br></code></pre></td></tr></table></figure>
+<h3 id="线程六态转换的方法？"><a href="#线程六态转换的方法？" class="headerlink" title="线程六态转换的方法？"></a>线程六态转换的方法？</h3><p>线程的六种状态：</p>
+<ul>
+<li>New 新建</li>
+<li>Runnable 可运行</li>
+<li>Blocked 阻塞</li>
+<li>Waiting 等待</li>
+<li>Timed waiting 计时等待</li>
+<li>Terminated 终止</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201091613069.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>yield：运行-&gt;可运行</p>
+<p>stop：-&gt;终止</p>
+<p>wait：挂起，可运行-&gt;等待/计时等待</p>
+<p>notify：唤醒，等待-&gt;可运行</p>
+<p>sleep：暂停程序</p>
+<h3 id="线程同步？（synchronized互斥）"><a href="#线程同步？（synchronized互斥）" class="headerlink" title="线程同步？（synchronized互斥）"></a>线程同步？（synchronized互斥）</h3><p>同步方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">get</span> <span class="hljs-params">()</span></span><br></code></pre></td></tr></table></figure>
+<p>同步语句块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">synchronized</span> (对象/类/<span class="hljs-keyword">this</span>)&#123;<br>        ...<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Guard.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.thread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Guard</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> value = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">final</span> String str = <span class="hljs-string">&quot;&quot;</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getValue</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">synchronized</span> (str) &#123;<br>            System.out.println(<span class="hljs-string">&quot;=====start=====&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;get value is: &quot;</span> + value);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setValue</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">synchronized</span> (str) &#123;<br>            value++;<br>            System.out.println(<span class="hljs-string">&quot;value + 1: &quot;</span> + value);<br>            System.out.println(<span class="hljs-string">&quot;======end======&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>MyThread.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.thread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;<br>    Guard guard;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyThread</span><span class="hljs-params">(Guard guard)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.guard=guard;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;<br>            guard.getValue();<br>            <span class="hljs-keyword">try</span>&#123;<br>                sleep(<span class="hljs-number">1000</span>);  <span class="hljs-comment">// 静态方法</span><br>            &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>                e.getStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>YourThread.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.thread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;<br>    Guard guard;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">YourThread</span><span class="hljs-params">(Guard guard)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.guard=guard;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;<br>            guard.setValue();<br>            <span class="hljs-keyword">try</span>&#123;<br>                sleep(<span class="hljs-number">1000</span>);  <span class="hljs-comment">// 静态方法</span><br>            &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>                e.getStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Test.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> edu.wanpengxu.exam.thread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        Guard guard=<span class="hljs-keyword">new</span> Guard();<br>        MyThread myThread=<span class="hljs-keyword">new</span> MyThread(guard);<br>        YourThread yourThread=<span class="hljs-keyword">new</span> YourThread(guard);<br>        myThread.start();<br>        yourThread.start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs routeros">=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 0<br>value + 1: 1<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 1<br>value + 1: 2<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 2<br>value + 1: 3<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 3<br>value + 1: 4<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 4<br>value + 1: 5<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 5<br>value + 1: 6<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 6<br>value + 1: 7<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 7<br>value + 1: 8<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 8<br>value + 1: 9<br>======<span class="hljs-attribute">end</span>======<br>=====<span class="hljs-attribute">start</span>=====<br><span class="hljs-builtin-name">get</span> value is: 9<br>value + 1: 10<br>======<span class="hljs-attribute">end</span>======<br><br>进程已结束,退出代码0<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/02/%E3%80%8AJava%E8%AF%AD%E8%A8%80%E5%8F%8A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E3%80%8B%E4%BD%9C%E4%B8%9A/">
+                        <span class="hidden-mobile">《Java语言及网络编程》作业</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"my-comment-4gzjxuqv80cca5ee","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script  src="/js/duration.js" ></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
