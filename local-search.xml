@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>深度学习之路</title>
+    <link href="/2022/01/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/"/>
+    <url>/2022/01/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/</url>
+    
+    <content type="html"><![CDATA[<h2 id="明确概念"><a href="#明确概念" class="headerlink" title="明确概念"></a>明确概念</h2><h3 id="人工智能、机器学习、深度学习"><a href="#人工智能、机器学习、深度学习" class="headerlink" title="人工智能、机器学习、深度学习"></a>人工智能、机器学习、深度学习</h3><p>人工智能是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门技术科学。</p><p>机器学习是使计算机具有智能的一类算法，如神经网络算法。</p><p>深度学习是机器学习中一种基于对数据进行表征学习的算法，可认为是改良版的神经网络算法。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201201010779.png" alt="一图流"></p><h3 id="mxnet、pytorch、tensorflow"><a href="#mxnet、pytorch、tensorflow" class="headerlink" title="mxnet、pytorch、tensorflow"></a>mxnet、pytorch、tensorflow</h3><p>待补充</p><h2 id="关于conda"><a href="#关于conda" class="headerlink" title="关于conda"></a>关于conda</h2><p>虽说，学习一样知识不应过于关注其以外的内容，就像学习编程语言不应过于关注IDE，能跑就行，学习深度学习，也不应过于关注环境，同样能跑就行。</p><p>但我有强迫症，研究conda到底是个什么东西，要从这个Warning说起。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221004567.png" alt=""></p><p>google查询发现是pytorch和CUDA的版本兼容问题，需要cudatoolkit=11.3，但</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221007700.png" alt=""></p><p>我的虚拟环境装的CUDA版本就是11.3，所以它可能用了我base环境里的10.3的CUDA。</p><p>问题引入完毕，我们先来看看conda到底是什么</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221031685.png" alt=""></p><p>Conda 是一个开源包管理系统和环境管理系统。</p><p>可见Conda是pip功能的一个超集，不只可以管理包、还可以管理环境。</p><p>那让我们看看Conda所管理的环境，事实上这个目录是Conda的base环境。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221123760.png" alt=""></p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221133818.png" alt=""></p><p>再看看python环境</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221124861.png" alt=""></p><p>可以看到，Conda环境确实是python环境的超集。</p><p>再来看看Conda所管理的其他环境，进入<code>~\envs</code></p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221138279.png" alt=""></p><p>除Conda自带的base环境外，我还创建了两个Conda环境：<code>gluon</code>和<code>myenv</code></p><p>进入myenv看看</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221139607.png" alt=""></p><p>可见也是python环境的超集。</p><p>那么为了区分二者，我们可以简单地认为Conda环境不是python环境，它包含的功能比python环境要多。</p><p>接下来介绍一下两种环境如何安装包。</p><p>python环境下，python官方推荐使用pip进行包管理。</p><p>接下来插入一下多个python环境并存的情况。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201221025665.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>机器学习</category>
+      
+      <category>深度学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JAVA Open EXAM Study</title>
     <link href="/2022/01/09/JAVA-Open-EXAM-Study/"/>
     <url>/2022/01/09/JAVA-Open-EXAM-Study/</url>
