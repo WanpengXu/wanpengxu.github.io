@@ -23,6 +23,9 @@
 <meta property="og:site_name" content="须臾所学之野">
 <meta property="og:description" content="枯燥生活中令人眼前一亮的知识">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231127376.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231126045.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231133325.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211215563.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211217950.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211224748.png">
@@ -31,10 +34,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211221902.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112111411363.png">
 <meta property="article:published_time" content="2021-12-11T06:04:26.000Z">
-<meta property="article:modified_time" content="2022-01-21T04:25:02.400Z">
+<meta property="article:modified_time" content="2022-01-23T03:36:45.960Z">
 <meta property="article:author" content="许">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211215563.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231127376.png">
   
   <title>散乱的知识之塔 - 须臾所学之野</title>
 
@@ -215,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.2k 字
     </span>
   
 
@@ -224,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      4 分钟
     </span>
   
 
@@ -266,12 +269,20 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年1月21日 中午
+                  本文最后更新于：2022年1月23日 中午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="ipynb文件的优雅打开方式"><a href="#ipynb文件的优雅打开方式" class="headerlink" title="ipynb文件的优雅打开方式"></a>ipynb文件的优雅打开方式</h1><p>其一 将某个终端加入右键菜单</p>
+              <h1 id="python拆包"><a href="#python拆包" class="headerlink" title="python拆包"></a>python拆包</h1><p>做线性回归的时候碰到了一个少见的用法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231127376.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>查了一下这个语法叫拆包，其实在函数定义时就学过，可变参数就是这个原理。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231126045.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在<code>PEP 448</code>中找到了提出者的一个奇妙用法：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231133325.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">new_list=my_list+<span class="hljs-built_in">list</span>(my_tuple)+<span class="hljs-built_in">list</span>(my_range)<br><span class="hljs-comment"># 等价于</span><br>new_list=[*my_list,*my_tuple,*my_range]<br></code></pre></td></tr></table></figure>
+<p>简直是太太太太pythonnic了！</p>
+<h1 id="ipynb文件的优雅打开方式"><a href="#ipynb文件的优雅打开方式" class="headerlink" title="ipynb文件的优雅打开方式"></a>ipynb文件的优雅打开方式</h1><p>其一 将某个终端加入右键菜单</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211215563.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>其二 单行powershell</p>
 <p>资源管理器的地址栏可以视作一个单行powershell，你可以在这里输入命令。</p>
