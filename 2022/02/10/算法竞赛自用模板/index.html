@@ -30,9 +30,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040101375.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040101441.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040102555.jpeg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040129969.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040050191.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-03-03T17:27:19.848Z">
+<meta property="article:modified_time" content="2022-03-03T17:34:05.138Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      175 分钟
+      176 分钟
     </span>
   
 
@@ -409,6 +410,22 @@
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040102555.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>注：自然落下后裸露出的顶点接回此前上方断开的结点，另外yxc老师是按照这里的1243讲的。另外，<strong>虽然流程上是先下落（旋转）后让冲突侧子树下滑，但是代码更新时要先让冲突侧子树下滑</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span></span><br><span class="hljs-function"></span>&#123;<br>    h[u] = <span class="hljs-number">1</span> + <span class="hljs-built_in">max</span>(h[l[u]], h[r[u]]);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get_balance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> h[l[u]] - h[r[u]];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">L</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;u)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> p = r[u];  <span class="hljs-comment">// 固定右子树</span><br>    r[u] = l[p], l[p] = u;  <span class="hljs-comment">// 这里要先操作多余的结点，不是按思维顺序的，可以先理清关系再写</span><br>    <span class="hljs-built_in">update</span>(u), <span class="hljs-built_in">update</span>(p);<br>    u = p;  <span class="hljs-comment">// 更新根的索引</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">R</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;u)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> p = l[u];<br>    l[u] = r[p], r[p] = u;<br>    <span class="hljs-built_in">update</span>(u), <span class="hljs-built_in">update</span>(p);<br>    u = p;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;u, <span class="hljs-keyword">int</span> w)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (!u) u = ++ idx, v[u] = w;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (w &lt; v[u])<br>        &#123;<br>            <span class="hljs-built_in">insert</span>(l[u], w);<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">get_balance</span>(u) == <span class="hljs-number">2</span>)<br>            &#123;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">get_balance</span>(l[u]) == <span class="hljs-number">1</span>) <span class="hljs-built_in">R</span>(u);  <span class="hljs-comment">// 情况1：&#x27;/&#x27;</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">get_balance</span>(l[u]) == <span class="hljs-number">-1</span>) <span class="hljs-built_in">L</span>(l[u]), <span class="hljs-built_in">R</span>(u);  <span class="hljs-comment">// 情况3：&#x27;&lt;&#x27;</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-built_in">insert</span>(r[u], w);<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">get_balance</span>(u) == <span class="hljs-number">-2</span>)<br>            &#123;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">get_balance</span>(r[u]) == <span class="hljs-number">-1</span>) <span class="hljs-built_in">L</span>(u);  <span class="hljs-comment">// 情况2：&#x27;\&#x27;</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">get_balance</span>(r[u]) == <span class="hljs-number">1</span>) <span class="hljs-built_in">R</span>(r[u]), <span class="hljs-built_in">L</span>(u);  <span class="hljs-comment">// 情况4：&#x27;&gt;&#x27;</span><br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-built_in">update</span>(u);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>红黑树（RBT）：是一种平衡二叉搜索树，具有以下五个属性。eg. AcWing 1628. 判断红黑树</p>
+<ul>
+<li><p>节点是红色或黑色。</p>
+</li>
+<li><p><strong>根节点是黑色。</strong></p>
+</li>
+<li><p>所有叶子都是黑色。（叶子是 NULL节点）</p>
+</li>
+<li><p><strong>每个红色节点的两个子节点都是黑色。</strong></p>
+</li>
+<li><p><strong>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</strong>（可以递归判断：对每一个结点判断其左子树和右子树的黑色结点数目，自身使用引用传递自身树黑色结点数目（返回值用来传递根的权值了））</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040129969.jpeg" srcset="/img/loading.gif" lazyload alt="红黑树"></p>
+<p>其中<strong>加粗</strong>的部分是RBT的充分条件，判断RBT时只需判断他们是否成立即可。</p>
+</li>
+</ul>
 </li>
 <li><p><strong>将无向图视作树遍历</strong>以求最深根结点的时候记得在dfs里加<code>if (j == father) continue</code><strong>防止走回头路</strong>。 eg. AcWing 1498. PAT 1021. 最深的根</p>
 </li>
