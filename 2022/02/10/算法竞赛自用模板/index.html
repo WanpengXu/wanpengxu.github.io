@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202250155132.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202252345102.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-03-08T09:50:57.157Z">
+<meta property="article:modified_time" content="2022-03-08T15:34:10.613Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -218,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      59k 字
+      60k 字
     </span>
   
 
@@ -227,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      186 分钟
+      187 分钟
     </span>
   
 
@@ -269,7 +269,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月8日 下午
+                  本文最后更新于：2022年3月8日 晚上
                 
               </p>
             
@@ -429,30 +429,35 @@ a \cdot a^{p-2} \equiv 1{\pmod p}</script><p>那么 $a^{p-2}$ 即为 $a$ 的逆�
 <li><p>暴力</p>
 <script type="math/tex; mode=display">
 C_a^b = \frac{a!}{b!(a - b)!}</script></li>
-<li><p>由组合数递推公式预处理结果（结果打表，时间复杂度$O(n^2)$）$eg. 1\leq b\leq a\leq 2000$</p>
+<li><p>由组合数递推公式预处理结果（结果打表）时间复杂度$O(n^2)$ $eg. 1\leq b\leq a\leq 2000$</p>
 <script type="math/tex; mode=display">
 C_a^b = C_{a-1}^{b-1} +C_{a-1}^b</script><p>从 $a$ 个元素中选取 $b$ 个元素，等价于：对于某个元素，</p>
 <p>若选取它，则还需从剩余 $a - 1$ 个元素中选取 $b - 1$ 个元素；</p>
 <p>若不选取它，则还需从剩余 $a - 1$ 个元素中选取 $b$ 个元素。</p>
 </li>
-<li><p>预处理阶乘及其逆元（阶乘打表，时间复杂度$O(nlogn)$）$eg. 1\leq b\leq a\leq 10^5$</p>
+<li><p>预处理阶乘及其逆元（阶乘打表）时间复杂度$O(nlogn)$ $eg. 1\leq b\leq a\leq 10^5$</p>
 <p>在同余式中可以将除数视作逆元，如下</p>
 <script type="math/tex; mode=display">
 C_a^b = a!\ b!^{-1}\ (a - b)!^{-1}(mod\ p)</script><blockquote>
 <p>两个 $ 10^9 $相乘不会在 $ long\ long $ 范围内溢出 ，三个会。</p>
 <p>mod = 1e9 + 7是比1e9大的第一个质数</p>
 </blockquote>
-</li>
-</ol>
 <p>阶乘递推公式（定义）</p>
 <script type="math/tex; mode=display">
 n! = (n - 1)! \cdot n</script><p>对等式取逆得阶乘逆元递推公式</p>
 <script type="math/tex; mode=display">
-n!^{-1} = (n - 1)!^{-1} \cdot n^{-1}</script><ol>
-<li><p>卢卡斯定理（$Lucas’s\ theorem$） $eg. 1\leq b\leq a\leq 10^{18},1 \leq p \leq 10^5$</p>
+n!^{-1} = (n - 1)!^{-1} \cdot n^{-1}</script></li>
+</ol>
+<ol>
+<li><p>卢卡斯定理（$Lucas’s\ theorem$）时间复杂度 <script type="math/tex">O(plogn)</script> $eg. 1\leq b\leq a\leq 10^{18},1 \leq p \leq 10^5$</p>
+<p>一次递归：</p>
 <script type="math/tex; mode=display">
-C_a^b\pmod p = C_{\left\lfloor a/p\right\rfloor}^{\left\lfloor b/p \right\rfloor} \cdot C_{a\bmod p}^{b\bmod p}\pmod p</script></li>
-<li><p>…</p>
+C_a^b\pmod p = C_{\left\lfloor a/p\right\rfloor}^{\left\lfloor b/p \right\rfloor} \cdot C_{a\bmod p}^{b\bmod p}\pmod p</script><p>最终把a, b变成p进制</p>
+</li>
+<li><p>分解质因数，将阶乘转换为乘法，这样也可以进行高精度运算。</p>
+<p>即</p>
+<script type="math/tex; mode=display">
+C_a^b = \frac{a!}{b!(a - b)!} = p_{1}^{\alpha_{1} } p_{2}^{\alpha_{2} } \cdots p_{k}^{\alpha_{k}}</script><p>我们可以通过枚举所有素数 <script type="math/tex">p</script> ，计算所有 <script type="math/tex">\alpha</script>，就是先计算 <script type="math/tex">a!</script>中 <script type="math/tex">p</script> 的个数，然后再减去<script type="math/tex">b!</script> 和 <script type="math/tex">(a - b)!</script>中 <script type="math/tex">p</script> 的个数即可。</p>
 </li>
 </ol>
 <h1 id="第一讲-基础算法"><a href="#第一讲-基础算法" class="headerlink" title="第一讲 基础算法"></a>第一讲 基础算法</h1><h2 id="AcWing-785-快速排序"><a href="#AcWing-785-快速排序" class="headerlink" title="AcWing 785. 快速排序"></a>AcWing 785. 快速排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp">#<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> q[N];<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (l&gt;=r) <span class="hljs-keyword">return</span> ;<br><br>    <span class="hljs-keyword">int</span> x=q[(l+r)&gt;&gt;<span class="hljs-number">1</span>],i=l<span class="hljs-number">-1</span>,j=r+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (i&lt;j)&#123;<br>        <span class="hljs-keyword">while</span> (q[++i]&lt;x);<br>        <span class="hljs-keyword">while</span> (q[--j]&gt;x);<br>        <span class="hljs-keyword">if</span>(i&lt;j) <span class="hljs-built_in">swap</span>(q[i],q[j]);<br>    &#125;<br>    <span class="hljs-built_in">quickSort</span>(q,l,j);<br>    <span class="hljs-built_in">quickSort</span>(q,j+<span class="hljs-number">1</span>,r);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q[i]);<br><br>    <span class="hljs-built_in">quickSort</span>(q,<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,q[i]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
