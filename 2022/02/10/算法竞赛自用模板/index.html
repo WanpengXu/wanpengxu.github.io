@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202250155132.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202252345102.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-03-09T07:31:36.005Z">
+<meta property="article:modified_time" content="2022-03-09T07:36:08.251Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -425,17 +425,13 @@ a^{p-1} \equiv 1{\pmod {p}}</script><p>其等价于</p>
 <script type="math/tex; mode=display">
 a \cdot a^{p-2} \equiv 1{\pmod p}</script><p>那么 $a^{p-2}$ 即为 $a$ 的逆元。</p>
 <h1 id="组合数学"><a href="#组合数学" class="headerlink" title="组合数学"></a>组合数学</h1><p>根据数据量的不同，可以使用不同复杂度的方法解题。</p>
-<ol>
-<li><p>暴力</p>
-<script type="math/tex; mode=display">
-C_a^b = \frac{a!}{b!(a - b)!}</script></li>
-<li><p>由组合数递推公式预处理结果（结果打表）时间复杂度$O(n^2)$ $eg. 1\leq b\leq a\leq 2000$</p>
+<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><script type="math/tex; mode=display">
+   C_a^b = \frac{a!}{b!(a - b)!}</script><h2 id="组合数递推公式"><a href="#组合数递推公式" class="headerlink" title="组合数递推公式"></a>组合数递推公式</h2><p>由组合数递推公式预处理结果（结果打表）时间复杂度$O(n^2)$ $eg. 1\leq b\leq a\leq 2000$</p>
 <script type="math/tex; mode=display">
 C_a^b = C_{a-1}^{b-1} +C_{a-1}^b</script><p>从 $a$ 个元素中选取 $b$ 个元素，等价于：对于某个元素，</p>
 <p>若选取它，则还需从剩余 $a - 1$ 个元素中选取 $b - 1$ 个元素；</p>
 <p>若不选取它，则还需从剩余 $a - 1$ 个元素中选取 $b$ 个元素。</p>
-</li>
-<li><p>预处理阶乘及其逆元（阶乘打表）时间复杂度$O(nlogn)$ $eg. 1\leq b\leq a\leq 10^5$</p>
+<h2 id="预处理阶乘及其逆元"><a href="#预处理阶乘及其逆元" class="headerlink" title="预处理阶乘及其逆元"></a>预处理阶乘及其逆元</h2><p>预处理阶乘及其逆元（阶乘打表）时间复杂度$O(nlogn)$ $eg. 1\leq b\leq a\leq 10^5$</p>
 <p>在同余式中可以将除数视作逆元，如下</p>
 <script type="math/tex; mode=display">
 C_a^b = a!\ b!^{-1}\ (a - b)!^{-1}(mod\ p)</script><blockquote>
@@ -446,25 +442,50 @@ C_a^b = a!\ b!^{-1}\ (a - b)!^{-1}(mod\ p)</script><blockquote>
 <script type="math/tex; mode=display">
 n! = (n - 1)! \cdot n</script><p>对等式取逆得阶乘逆元递推公式</p>
 <script type="math/tex; mode=display">
-n!^{-1} = (n - 1)!^{-1} \cdot n^{-1}</script></li>
-<li><p>卢卡斯定理（$Lucas’s\ theorem$）时间复杂度 <script type="math/tex">O(plogn)</script> $eg. 1\leq b\leq a\leq 10^{18},1 \leq p \leq 10^5$</p>
+n!^{-1} = (n - 1)!^{-1} \cdot n^{-1}</script><h2 id="卢卡斯定理（-Lucas’s-theorem-）"><a href="#卢卡斯定理（-Lucas’s-theorem-）" class="headerlink" title="卢卡斯定理（$Lucas’s\ theorem$）"></a>卢卡斯定理（$Lucas’s\ theorem$）</h2><p>卢卡斯定理（$Lucas’s\ theorem$）时间复杂度 <script type="math/tex">O(plogn)</script> $eg. 1\leq b\leq a\leq 10^{18},1 \leq p \leq 10^5$</p>
 <p>一次递归：</p>
 <script type="math/tex; mode=display">
 C_a^b\pmod p = C_{\left\lfloor a/p\right\rfloor}^{\left\lfloor b/p \right\rfloor} \cdot C_{a\bmod p}^{b\bmod p}\pmod p</script><p>最终把a, b变成p进制</p>
-</li>
-<li><p>分解质因数，将阶乘转换为乘法，这样也可以进行高精度运算。</p>
+<h2 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h2><p>分解质因数，将阶乘转换为乘法，这样也可以进行高精度运算。</p>
 <p>即</p>
 <script type="math/tex; mode=display">
 C_a^b = \frac{a!}{b!(a - b)!} = p_{1}^{\alpha_{1} } p_{2}^{\alpha_{2} } \cdots p_{k}^{\alpha_{k}}</script><p>我们可以通过枚举所有素数 <script type="math/tex">p</script> ，计算所有 <script type="math/tex">\alpha</script>，就是先计算 <script type="math/tex">a!</script>中 <script type="math/tex">p</script> 的个数，然后再减去<script type="math/tex">b!</script> 和 <script type="math/tex">(a - b)!</script>中 <script type="math/tex">p</script> 的个数即可。</p>
-<ol>
-<li><p>卡特兰数(<script type="math/tex">Catalan\ number</script>)</p>
+<h2 id="卡特兰数-Catalan-number"><a href="#卡特兰数-Catalan-number" class="headerlink" title="卡特兰数(Catalan\ number)"></a>卡特兰数(<script type="math/tex">Catalan\ number</script>)</h2><p>卡特兰数(<script type="math/tex">Catalan\ number</script>)</p>
 <p>卡特兰数有多种常见公式。</p>
 <script type="math/tex; mode=display">
 C_n = C_{2n}^{n} - C_{2n}^{n +1}=\frac{C_{2n}^{n}}{n + 1} \quad\mbox{ for }n\ge 1</script><p>卡特兰数列往往包含很多问题的解，所以重要的是分析出问题的规律以应用卡特兰公式。</p>
-<p>| $H_0$ | $H_1$ | $H_2$ | $H_3$ | $H_4$ | $H_5$ | $H_6$ | $\dots$ |<br>| :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :——-: |<br>|   1   |   1   |   2   |   5   |  14   |  42   |  132  | $\dots$ |</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$H_0$</th>
+<th style="text-align:center">$H_1$</th>
+<th style="text-align:center">$H_2$</th>
+<th style="text-align:center">$H_3$</th>
+<th style="text-align:center">$H_4$</th>
+<th style="text-align:center">$H_5$</th>
+<th style="text-align:center">$H_6$</th>
+<th style="text-align:center">$\dots$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">42</td>
+<td style="text-align:center">132</td>
+<td style="text-align:center">$\dots$</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>关于卡特兰数的更多知识包含在这里：<a target="_blank" rel="noopener" href="https://oeis.org/A000108">OEIS A000108</a></p>
 <p>这里给出一种构造性证明方法：</p>
-<script type="math/tex; mode=display">proof:</script><p>考虑含 $n$ 个 $+1$ 、$n$ 个 $-1$ 的所有序列，长度为 $2n$。</p>
+<p>$ proof: $</p>
+<p>考虑含 $n$ 个 $+1$ 、$n$ 个 $-1$ 的所有序列，长度为 $2n$。</p>
 <p>其中满足前缀和条件</p>
 <script type="math/tex; mode=display">
 a_1 + a_2 + \dots + a_k \geq 0  \quad\mbox{ for } k = 1, 2, \dots, 2n</script><p>的序列的数量即为卡特兰数 <script type="math/tex">C_n</script> 。</p>
@@ -478,10 +499,7 @@ c_1 = -b_1, c_2 = -b_2, \dots c_m = -b_m, c_{m + 1} = b_{m + 1}, c_{m + 2} = b_{
 \begin{cases} c_1 + c_2 + \dots + c_m < 0\\ c_1 + c_2 + \dots + c_m + c_{m + 1} + c_{m + 2} + c_{2n} \ge 0 \end{cases}</script><p>且含 $n$ 个 $+1$ 、$n$ 个 $-1$ （对前 $m$ 个数取相反数后， <script type="math/tex">+1</script> 的数量比 <script type="math/tex">-1</script> 的数量少 $1$ ）。</p>
 <p>那么序列 <script type="math/tex">c_1, c_2, \dots c_{2n}</script> 即为不满足前缀和条件的序列，其数量为 <script type="math/tex">C_{2n}^{n + 1}</script> 或 <script type="math/tex">C_{2n}^{n - 1}</script>。</p>
 <p>即可得满足前缀和条件的序列的数量为 <script type="math/tex">C_n = C_{2n}^{n} - C_{2n}^{n + 1} = C_{2n}^{n} - C_{2n}^{n - 1}</script>。</p>
-<script type="math/tex; mode=display">Q.E.D</script></li>
-</ol>
-</li>
-</ol>
+<p>$Q.E.D$</p>
 <h1 id="第一讲-基础算法"><a href="#第一讲-基础算法" class="headerlink" title="第一讲 基础算法"></a>第一讲 基础算法</h1><h2 id="AcWing-785-快速排序"><a href="#AcWing-785-快速排序" class="headerlink" title="AcWing 785. 快速排序"></a>AcWing 785. 快速排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp">#<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> q[N];<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (l&gt;=r) <span class="hljs-keyword">return</span> ;<br><br>    <span class="hljs-keyword">int</span> x=q[(l+r)&gt;&gt;<span class="hljs-number">1</span>],i=l<span class="hljs-number">-1</span>,j=r+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (i&lt;j)&#123;<br>        <span class="hljs-keyword">while</span> (q[++i]&lt;x);<br>        <span class="hljs-keyword">while</span> (q[--j]&gt;x);<br>        <span class="hljs-keyword">if</span>(i&lt;j) <span class="hljs-built_in">swap</span>(q[i],q[j]);<br>    &#125;<br>    <span class="hljs-built_in">quickSort</span>(q,l,j);<br>    <span class="hljs-built_in">quickSort</span>(q,j+<span class="hljs-number">1</span>,r);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q[i]);<br><br>    <span class="hljs-built_in">quickSort</span>(q,<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,q[i]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="AcWing-786-第k个数"><a href="#AcWing-786-第k个数" class="headerlink" title="AcWing 786. 第k个数"></a>AcWing 786. 第k个数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp">#<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">100005</span>;<br><br><span class="hljs-keyword">int</span> n,k;<br><span class="hljs-keyword">int</span> q[N];<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (l&gt;=r) <span class="hljs-keyword">return</span> ;<br><br>    <span class="hljs-keyword">int</span> x=q[l+r&gt;&gt;<span class="hljs-number">1</span>],i=l<span class="hljs-number">-1</span>,j=r+<span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span>(i&lt;j)&#123;<br>        <span class="hljs-keyword">do</span> i++; <span class="hljs-keyword">while</span> (q[i]&lt;x);<br>        <span class="hljs-keyword">do</span> j--; <span class="hljs-keyword">while</span> (q[j]&gt;x);<br>        <span class="hljs-keyword">if</span>(i&lt;j) <span class="hljs-built_in">swap</span>(q[i],q[j]);<br>    &#125;<br>    <span class="hljs-built_in">quick_sort</span>(q,l,j);<br>    <span class="hljs-built_in">quick_sort</span>(q,j+<span class="hljs-number">1</span>,r);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q[i]);<br><br>    <span class="hljs-built_in">quick_sort</span>(q,<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>);<br><br>    <span class="hljs-comment">// for (int i=0;i&lt;n;i++) printf(&quot;%d &quot;,q[i]);</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,q[k<span class="hljs-number">-1</span>]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="AcWing-787-归并排序"><a href="#AcWing-787-归并排序" class="headerlink" title="AcWing 787. 归并排序"></a>AcWing 787. 归并排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp">#<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">100005</span>;<br><br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> q[N],tmp[N];<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (l&gt;=r) <span class="hljs-keyword">return</span> ;<br><br>    <span class="hljs-keyword">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">merge_sort</span>(q,l,mid);<br>    <span class="hljs-built_in">merge_sort</span>(q,mid+<span class="hljs-number">1</span>,r);<br><br>    <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>,i=l,j=mid+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (i&lt;=mid &amp;&amp; j&lt;=r)<br>        <span class="hljs-keyword">if</span>(q[i]&lt;q[j]) tmp[k++]=q[i++];<br>        <span class="hljs-keyword">else</span> tmp[k++]=q[j++];<br>    <span class="hljs-keyword">while</span> (i&lt;=mid) tmp[k++]=q[i++];<br>    <span class="hljs-keyword">while</span> (j&lt;=r) tmp[k++]=q[j++];<br><br>    <span class="hljs-keyword">for</span> (i=l,k=<span class="hljs-number">0</span>;i&lt;=r;i++,k++) q[i]=tmp[k];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q[i]);<br><br>    <span class="hljs-built_in">merge_sort</span>(q,<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,q[i]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
