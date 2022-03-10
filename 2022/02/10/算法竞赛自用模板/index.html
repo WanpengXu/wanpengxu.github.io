@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202250155132.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202252345102.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-03-10T16:56:29.725Z">
+<meta property="article:modified_time" content="2022-03-10T17:01:43.122Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -555,7 +555,7 @@ a_i = a_i^{\prime}</script><p>与 $ a_i^{\prime} &lt; a_i $ 矛盾，故假设�
 <p>又因为每人每次拿走石子的数量 $\geq$ 1，<br>所以在状态2的人，他的石子数量一定会单调递减，最后转移至败态。</p>
 <p>所以我们称状态1为必胜态，状态2为必败态。</p>
 <p>因此我们可以通过判断初态的异或和为 $0$ 与否，去判断先手方是否必胜，也就是：<br><strong>初态异或和不为0时，先手方必胜。<br>初态异或和为0时，先手方必败。</strong></p>
-<h2 id="斯普莱格–格隆第定理（S-G）"><a href="#斯普莱格–格隆第定理（S-G）" class="headerlink" title="斯普莱格–格隆第定理（S-G）"></a>斯普莱格–格隆第定理（S-G）</h2><p>斯普莱格–格隆第定理（$Sprague–Grundy\ theorem$）</p>
+<h2 id="斯普莱格–格隆第定理（S-G定理）"><a href="#斯普莱格–格隆第定理（S-G定理）" class="headerlink" title="斯普莱格–格隆第定理（S-G定理）"></a>斯普莱格–格隆第定理（S-G定理）</h2><p>斯普莱格–格隆第定理（$Sprague–Grundy\ theorem$）</p>
 <p>该定理指出，所有的一般胜利条件下的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/无偏博弈">无偏博弈</a>都能转换成单堆Nim游戏或其无限泛化。</p>
 <p>定理做如下定义：</p>
 <p>$mex$ (minimum exclusion)：译作“最小排除”，意为良序集合的补集的最小值。</p>
@@ -563,7 +563,7 @@ a_i = a_i^{\prime}</script><p>与 $ a_i^{\prime} &lt; a_i $ 矛盾，故假设�
 <script type="math/tex; mode=display">
 \operatorname{mex}(S)=\min(\complement_NS)</script><p>对于状态 $x$ 和它的所有 $k$ 个后继状态 $y_1, y_2, \dots, y_k$ ，定义 $SG$ 函数：</p>
 <script type="math/tex; mode=display">
-\operatorname{SG}(x)=\operatorname{mex}(\operatorname{SG}(y_1), \operatorname{SG}(y_2), \ldots, \operatorname{SG}(y_k))</script><p>注：${\operatorname {mex} (\emptyset )=0}$，即终点状态的 $SG$ 值为 $0$ 。</p>
+\operatorname{SG}(x)=\operatorname{mex}(\{\operatorname{SG}(y_1), \operatorname{SG}(y_2), \ldots, \operatorname{SG}(y_k)\})</script><p>注：${\operatorname {mex} (\emptyset )=0}$，即终点状态的 $SG$ 值为 $0$ 。</p>
 <p>那么，</p>
 <p>对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \dots, s_n $，当且仅当</p>
 <script type="math/tex; mode=display">
