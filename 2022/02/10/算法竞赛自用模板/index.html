@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202250155132.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202252345102.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-03-10T16:09:13.948Z">
+<meta property="article:modified_time" content="2022-03-10T16:12:56.204Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      196 分钟
+      197 分钟
     </span>
   
 
@@ -522,7 +522,11 @@ C_k^1-C_k^2+C_k^3+\dots+(-1)^{k-1}C_k^k = 1</script><p>$proof:$</p>
 C_k^0-C_k^1+C_k^2-C_k^3+\dots+(-1)^{k}C_k^k = 0</script><p>由二项式定理得：</p>
 <script type="math/tex; mode=display">
 (1+(-1))^k = 0</script><p>$Q.E.D$</p>
-<h1 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h1><h2 id="Nim游戏"><a href="#Nim游戏" class="headerlink" title="Nim游戏"></a>Nim游戏</h2><p>对于Nim游戏<br>首先我们知道：<br>败态：<script type="math/tex">0 \oplus 0 \oplus 0 \dots \oplus 0 = 0</script></p>
+<h1 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h1><h2 id="有向图游戏"><a href="#有向图游戏" class="headerlink" title="有向图游戏"></a>有向图游戏</h2><p>有向图游戏是一个经典的博弈游戏——实际上，大部分的公平组合游戏都可以转换为有向图游戏。</p>
+<p>在一个<strong>有向无环图（DAG）</strong>中，只有一个起点，上面有一个棋子，两个玩家轮流沿着有向边推动棋子，不能走的玩家判负。</p>
+<h2 id="Nim游戏"><a href="#Nim游戏" class="headerlink" title="Nim游戏"></a>Nim游戏</h2><p>$n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任意个物品，但不能不取。</p>
+<p>取走最后一个物品的人获胜。</p>
+<p>首先我们知道：<br>败态：<script type="math/tex">0 \oplus 0 \oplus 0 \dots \oplus 0 = 0</script></p>
 <p>接着，我们可以按异或和是否为0将所有状态分为两类：状态1和状态2<br>状态1：<script type="math/tex">a_1 \oplus a_2 \oplus \dots \oplus a_n = x \neq 0</script></p>
 <p>状态2：<script type="math/tex">a_1 \oplus a_2 \oplus \dots \oplus a_n = 0</script></p>
 <p>再然后，若操作者足够聪明，我们可以发现两件事情：</p>
