@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202250155132.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202252345102.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-03-10T17:02:35.570Z">
+<meta property="article:modified_time" content="2022-03-11T11:00:18.185Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -218,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      63k 字
+      64k 字
     </span>
   
 
@@ -227,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      198 分钟
+      201 分钟
     </span>
   
 
@@ -269,7 +269,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月11日 凌晨
+                  本文最后更新于：2022年3月11日 晚上
                 
               </p>
             
@@ -438,7 +438,47 @@ n = p_{1}^{\alpha_{1} } p_{2}^{\alpha_{2} } \cdots p_{k}^{\alpha_{k}}</script><p
 a^{p-1} \equiv 1{\pmod {p}}</script><p>其等价于</p>
 <script type="math/tex; mode=display">
 a \cdot a^{p-2} \equiv 1{\pmod p}</script><p>那么 $a^{p-2}$ 即为 $a$ 的逆元。</p>
-<h1 id="组合数学"><a href="#组合数学" class="headerlink" title="组合数学"></a>组合数学</h1><p>根据数据量的不同，可以使用不同复杂度的方法解题。</p>
+<h2 id="一次同余方程组"><a href="#一次同余方程组" class="headerlink" title="一次同余方程组"></a>一次同余方程组</h2><p>一次同余方程组有两种形式：</p>
+<ol>
+<li>模数 $m_1, m_2, \dots, m_n$两两互质</li>
+<li>模数 $m_1, m_2, \dots, m_n$不两两互质</li>
+</ol>
+<p>对于情况1，可使用中国剩余定理或一般解法;<br>对于情况2，则只能使用一般解法。</p>
+<p><strong>一般解法：</strong><br>两个同余方程时：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x \equiv a_{1} \mod m_{1}\\\
+x \equiv a_{2} \mod m_{2}
+\end{cases}</script><p>其等价的一般方程形式：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x = a_{1} + k_{1} * m_{1} & k_{1} \in \mathbb{Z}\\\
+x = a_{2} + k_{2} * m_{2} & k_{2} \in \mathbb{Z}
+\end{cases}</script><p>联立，有裴蜀等式（右侧的等式）：</p>
+<script type="math/tex; mode=display">
+x = a_{1} + k_{1} * m_{1} = a_{2} + k_{2} * m_{2}</script><p>令 $k_2 = -k_2$，移项，有：</p>
+<script type="math/tex; mode=display">
+k_{1} * m_{1} + k_{2} * m_{2} = a_{2} - a_{1}</script><p>由裴蜀定理，当且仅当<script type="math/tex">gcd(m_1, m_2) = d\ |\ (a_{2} - a_{1})</script>时，裴蜀等式有整数解。<br>有解时，使用扩展欧几里得算法，可求得方程</p>
+<script type="math/tex; mode=display">
+k_{01} * m_{1} + k_{02} * m_{2} = d</script><p>的一组可行解$(k<em>{01}, k</em>{02})$<br>两侧同乘$\frac{a<em>{2} - a</em>{1}}{d}$，可得原方程的一组可行解$(k<em>{01} * \frac{a</em>{2} - a<em>{1}}{d}, k</em>{02} * \frac{a<em>{2} - a</em>{1}}{d})$<br>又由裴蜀定理，可得原方程的通解</p>
+<script type="math/tex; mode=display">
+{\{(k_1 = k_{01} * \frac{a_{2} - a_{1}}{d}+{k\frac {m_2}{d}},k_2 = k_{02} * \frac{a_{2} - a_{1}}{d}-{k\frac {m_1}{d}})\mid k\in \mathbb {Z} \}}</script><p>又</p>
+<script type="math/tex; mode=display">
+x = a_{1} + k_{1} * m_{1}</script><p>所以要求最小非负整数 $x$ ，就要求最小非负整数 $k_1$ ，只需</p>
+<script type="math/tex; mode=display">
+k_1 = k_1 \% \frac{m_2}{d}</script><p>此时即可得方程组的最小非负解</p>
+<p>最后，使用原方程组通解 $k<em>{01} * \frac{a</em>{2} - a_{1}}{d}+{k\frac {m_2}{d}}$ 进行推导得到通解的同余形式以进行多个同余方程时的运算</p>
+<script type="math/tex; mode=display">
+x = a_{1} + k_{1} * m_{1}</script><script type="math/tex; mode=display">
+x = a_1 + (k_{01} * \frac{a_{2} - a_{1}}{d}+{k\frac {a_2}{d}}) * m_1</script><script type="math/tex; mode=display">
+x = a_1 + k_{01} * \frac{a_{2} - a_{1}}{d} * m_1 + {k\frac {m_2 * m_1}{d}}</script><p>即：</p>
+<script type="math/tex; mode=display">
+x \equiv a_1 + k_{01} * \frac{a_{2} - a_{1}}{d} * m_1 \pmod {\frac {m_2 * m_1}{d}}</script><p>与原式同构，可得更新方程：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+a_1 = a_1 + k_{01} * \frac{a_{2} - a_{1}}{d} * m_1\\\
+m_1 = \frac {m_1 * m_2}{d}
+\end{cases}</script><h1 id="组合数学"><a href="#组合数学" class="headerlink" title="组合数学"></a>组合数学</h1><p>根据数据量的不同，可以使用不同复杂度的方法解题。</p>
 <h2 id="预处理结果"><a href="#预处理结果" class="headerlink" title="预处理结果"></a>预处理结果</h2><p>由组合数递推公式预处理结果，时间复杂度$O(n^2)$ $eg. 1\leq b\leq a\leq 2000$</p>
 <script type="math/tex; mode=display">
 C_a^b = C_{a-1}^{b-1} +C_{a-1}^b</script><p>从 $a$ 个元素中选取 $b$ 个元素，等价于：对于某个元素，</p>
