@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Android学习</title>
+    <link href="/2022/03/12/Android%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2022/03/12/Android%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一些ERROR解决方法"><a href="#一些ERROR解决方法" class="headerlink" title="一些ERROR解决方法"></a>一些ERROR解决方法</h1><p>本文所提供方法仅保证能够work，不一定是最优的。</p><h2 id="gradle下载依赖缓慢、timeout"><a href="#gradle下载依赖缓慢、timeout" class="headerlink" title="gradle下载依赖缓慢、timeout"></a>gradle下载依赖缓慢、timeout</h2><p>方法一：在项目的settings.gradle中的repositories中添加国内镜像源，并<strong>允许使用不安全的仓库</strong>。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203121212175.png" alt=""></p><p>方法二：连接至世界互联网，不多说了。</p><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203121212340.png" alt=""></p><h2 id="一直Loading-Devices"><a href="#一直Loading-Devices" class="headerlink" title="一直Loading Devices"></a>一直Loading Devices</h2><p>下载老版本的platform-tools，替换sdk manager自动下载的最新版本。</p><p>经测试最新的可用版本是<code>platform-tools_r31.0.1-windows.zip</code></p><p>我的sdk目录：<code>C:\Users\XuWanpeng\AppData\Local\Android\Sdk\platform-tools</code></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法竞赛自用模板</title>
     <link href="/2022/02/10/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%87%AA%E7%94%A8%E6%A8%A1%E6%9D%BF/"/>
     <url>/2022/02/10/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%87%AA%E7%94%A8%E6%A8%A1%E6%9D%BF/</url>
