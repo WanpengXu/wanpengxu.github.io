@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203132339973.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203132338026.png">
 <meta property="article:published_time" content="2022-03-12T04:01:32.000Z">
-<meta property="article:modified_time" content="2022-03-13T16:22:47.184Z">
+<meta property="article:modified_time" content="2022-03-15T09:55:39.715Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,7 +214,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.5k 字
+      9.4k 字
     </span>
   
 
@@ -223,7 +223,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26 分钟
+      29 分钟
     </span>
   
 
@@ -265,7 +265,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月14日 凌晨
+                  本文最后更新于：2022年3月15日 下午
                 
               </p>
             
@@ -288,6 +288,8 @@
 <h2 id="运行Java代码报错：SourceSet-with-name-‘main’-not-found"><a href="#运行Java代码报错：SourceSet-with-name-‘main’-not-found" class="headerlink" title="运行Java代码报错：SourceSet with name ‘main’ not found"></a>运行Java代码报错：SourceSet with name ‘main’ not found</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203132339973.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>在<code>.idea</code>文件夹下的<code>gradle.xml</code>文件中添加<code>&lt;option name=&quot;delegatedBuild&quot; value=&quot;false&quot; /&gt;</code>，然后重新运行即可</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203132338026.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="adapterPosition返回-1"><a href="#adapterPosition返回-1" class="headerlink" title="adapterPosition返回-1"></a>adapterPosition返回-1</h2><p>最后一行应直接返回已创建的<code>viewHolder</code>，不能两次调用<code>ViewHolder()</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreateViewHolder</span><span class="hljs-params">(parent: <span class="hljs-type">ViewGroup</span>, viewType: <span class="hljs-type">Int</span>)</span></span>: ViewHolder &#123;<br>        <span class="hljs-keyword">val</span> view = LayoutInflater.from(parent.context).inflate(R.layout.fruit_item, parent, <span class="hljs-literal">false</span>)<br><br>        <span class="hljs-keyword">val</span> viewHolder = ViewHolder(view)<br>        viewHolder.itemView.setOnClickListener &#123;<br>            <span class="hljs-keyword">val</span> position = viewHolder.absoluteAdapterPosition<br><br><span class="hljs-comment">//            Log.e(&quot;tag&quot;, position.toString())</span><br><br>            <span class="hljs-keyword">val</span> fruit = fruitList[position]<br>            Toast.makeText(parent.context, <span class="hljs-string">&quot;You clicked view <span class="hljs-subst">$&#123;fruit.name&#125;</span>&quot;</span>, Toast.LENGTH_SHORT).show()<br>        &#125;<br>        viewHolder.fruitImage.setOnClickListener &#123;<br>            <span class="hljs-keyword">val</span> position = viewHolder.absoluteAdapterPosition<br><br><span class="hljs-comment">//            Log.e(&quot;tag&quot;, position.toString())</span><br><br>            <span class="hljs-keyword">val</span> fruit = fruitList[position]<br>            Toast.makeText(parent.context, <span class="hljs-string">&quot;You clicked image <span class="hljs-subst">$&#123;fruit.name&#125;</span>&quot;</span>, Toast.LENGTH_SHORT).show()<br>        &#125;<br>        <span class="hljs-keyword">return</span> viewHolder  <span class="hljs-comment">// 这里不能写ViewHolder(view)</span><br>    &#125;<br></code></pre></td></tr></table></figure>
 <h1 id="kotlin学习"><a href="#kotlin学习" class="headerlink" title="kotlin学习"></a>kotlin学习</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p><strong>个人感觉：kotlin像一个”exJava”，将其很多难用的功能封装了起来，上手很快。</strong></p>
 <p>可继承类open（kotlin官方认为所有数据类型最好是<code>final</code>的，如果不显式强调“可继承”、“可重新赋值”，那么就是<code>final</code>的）</p>
 <p><code>Person.kt</code></p>
