@@ -13,15 +13,15 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#908e83">
-  <meta name="description" content="一个DHCP攻击的原理及实例">
+  <meta name="description" content="一种DHCP攻击的原理及实例">
   <meta name="author" content="许">
   <meta name="keywords" content="">
-  <meta name="description" content="一个DHCP攻击的原理及实例">
+  <meta name="description" content="一种DHCP攻击的原理及实例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="中间人攻击——DHCP耗尽攻击">
 <meta property="og:url" content="http://xuwp.top/2022/03/25/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB%E2%80%94%E2%80%94DHCP%E8%80%97%E5%B0%BD%E6%94%BB%E5%87%BB/index.html">
 <meta property="og:site_name" content="须臾所学之野">
-<meta property="og:description" content="一个DHCP攻击的原理及实例">
+<meta property="og:description" content="一种DHCP攻击的原理及实例">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251854598.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251854101.png">
@@ -53,7 +53,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251200312.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251200552.png">
 <meta property="article:published_time" content="2022-03-25T15:07:25.000Z">
-<meta property="article:modified_time" content="2022-03-25T15:12:53.052Z">
+<meta property="article:modified_time" content="2022-03-25T15:39:25.231Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="中间人攻击, DHCP耗尽攻击">
 <meta name="twitter:card" content="summary_large_image">
@@ -316,7 +316,7 @@
 <p>网络安全——DHCP攻击</p>
 <p>Step1 受害者向广播域发送DISCOVER报文</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251854101.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>Step2 DHCP服务器和攻击者均向广播域回应OFFER报文</p>
+<p>Step2 DHCP服务器和攻击者均向广播域回应OFFER报文（由于DHCP Server和DHCP Client之间没有认证机制，所以攻击者可以伪装成DHCP Server）</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251855934.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Step3 客户端可能接收到多个OFFER报文，其通常只接受第一个。这里我们<strong>假设受害者接受了攻击者的OFFER</strong>，此后受害者向广播域发送REQUEST报文以通知此事</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203251855258.png" srcset="/img/loading.gif" lazyload alt=""></p>
