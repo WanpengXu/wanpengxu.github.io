@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203071819844.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203110045503.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-01T01:11:30.669Z">
+<meta property="article:modified_time" content="2022-04-01T01:18:42.525Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -295,7 +295,7 @@
 <p><code>i != 0</code> ：<code>i</code>，判断非0</p>
 <p><code>i != -1</code>：<code>~i</code>，判断链表尾（NULL）</p>
 <p><code>u / 2</code>：<code>u &lt;&lt; 1</code>，完全二叉树中的左子结点 </p>
-<p> <code>u / 2 + 1</code>：<code>u &lt;&lt; 1 | 1</code>完全二叉树中的右子结点（左移后最后1位一定是0，在这时<code>0 | 1 = 1</code>等价于<code>0 + 1 = 1</code>）</p>
+<p> <code>u / 2 + 1</code>：<code>u &lt;&lt; 1 | 1</code>，完全二叉树中的右子结点（左移后最后1位一定是0，在这时<code>0 | 1 = 1</code>等价于<code>0 + 1 = 1</code>）</p>
 <p><code>i % 2  == 1</code>：<code>i &amp; 1</code>，判断奇数</p>
 </li>
 </ol>
@@ -690,7 +690,7 @@ s.t. & \ \sum _{i=1}^{n}v_{i}x_{i}\leq V \ and \ x_{i}\in  \{0,1,2,\dots , s_i \
 <p>Q：为什么只看深度不看递归的次数？</p>
 <p>A：因为快速排序的递归树是一棵二叉树，快速排序过程类似于对其进行DFS，只有从根节点到当前遍历点那<strong>一条路径</strong>上的状态被压在栈空间中，离开当前状态后栈空间就被标记为回收了。</p>
 <h1 id="python-in-ACM"><a href="#python-in-ACM" class="headerlink" title="python in ACM"></a>python in ACM</h1><p>记录与C++ in ACM/OI的诸多不同之处</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>二维数组：<code>[[0] * N for _ in range(N)]</code></p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>二维数组：<code>[[0] * M for _ in range(N)]</code>（N行M列矩阵）</p>
 <h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>python以<code>\n</code>为分隔符，<strong>空行需要读入并扔掉！！</strong>（cpp以空白为分隔符）</p>
 <p>将连续无分隔符的字符串str分解为字符可使用<code>list(str)</code>，也可使用列表解析<code>[i for i in str]</code></p>
 <p>从(1, 1)输入的方式：先定义出0矩阵，然后对1 ~ n + 1行整体替换1 ~ m + 1列（<strong>对右下的大正方形按行输入</strong>）</p>
