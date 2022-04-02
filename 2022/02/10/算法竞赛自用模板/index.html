@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203071819844.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203110045503.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-01T18:42:29.680Z">
+<meta property="article:modified_time" content="2022-04-02T03:35:43.443Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      111k 字
+      113k 字
     </span>
   
 
@@ -231,7 +231,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      348 分钟
+      352 分钟
     </span>
   
 
@@ -273,7 +273,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月2日 凌晨
+                  本文最后更新于：2022年4月2日 中午
                 
               </p>
             
@@ -689,6 +689,44 @@ s.t. & \ \sum _{i=1}^{n}v_{i}x_{i}\leq V \ and \ x_{i}\in  \{0,1,2,\dots , s_i \
 <p>快速排序每层的时间复杂度为 $O(n)$，深度为 $log_2n$，故其时间复杂度为 $O(nlogn)$</p>
 <p>Q：为什么只看深度不看递归的次数？</p>
 <p>A：因为快速排序的递归树是一棵二叉树，快速排序过程类似于对其进行DFS，只有从根节点到当前遍历点那<strong>一条路径</strong>上的状态被压在栈空间中，离开当前状态后栈空间就被标记为回收了。</p>
+<h1 id="数学——推公式"><a href="#数学——推公式" class="headerlink" title="数学——推公式"></a>数学——推公式</h1><p>这种题特征很明显，输入少、输出少、代码短（前提是知道公式解）</p>
+<p>在没有题量基础时只能使用我为数不多的智商去推结论，然后一定把它要背下来</p>
+<p>所以用例题讲一下怎么推公式，详见<strong>AcWing 1205. 买不到的数目</strong>、<strong>NOIP2017提高组. 小凯的疑惑</strong></p>
+<blockquote>
+<p>题意：</p>
+<p>输入：两个数 $a$ , $b$ </p>
+<p>输出： $sa + tb$ 的最大不可凑数（$s, t \in \Z^{+}$）</p>
+</blockquote>
+<p>由裴蜀定理：</p>
+<script type="math/tex; mode=display">
+sa + tb = d,iff.\ \ gcd(a, b) | d</script><p>那么若 $a$ , $b$ 不互质，则必存在无穷多个不能被 $gcd(a, b)$ 整除的数</p>
+<p>所以我们需要从互质的两数中找规律</p>
+<p>若 $a$ , $b$ 互质且 $\in Z$ ，则有：</p>
+<script type="math/tex; mode=display">
+sa + tb = 1</script><script type="math/tex; mode=display">
+s \cdot ma + t \cdot mb = m</script><p>由裴蜀定理推论（和我记的推论形式不太一样，没细推，相信y总），有：</p>
+<script type="math/tex; mode=display">
+s \cdot (ma - b) + t \cdot (mb + a) = m</script><p>所以当m足够大时，一定能找到正整数解$(ma - b)\in Z^{+}$和$(mb + a)\in Z^{+}$</p>
+<p>所以我们也只需考虑m较小时的情况，先写个暴力将其转换为找规律问题，m较小，取1000</p>
+<p>暴力解（这个dfs也很灵活、不模板。。）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br>sys.stdin = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;in.txt&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>)<br>sys.stdout = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;out.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>)<br><span class="hljs-built_in">input</span> = sys.stdin.readline<br><br><span class="hljs-comment"># 输入a, b, m，输出m是否能用a, b凑出来</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">a, b, m</span>):</span><br>    <span class="hljs-keyword">if</span> m == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">if</span> m &gt;= a <span class="hljs-keyword">and</span> dfs(a, b, m - a): <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <span class="hljs-keyword">if</span> m &gt;= b <span class="hljs-keyword">and</span> dfs(a, b, m - b): <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;m&#x27;</span>)<br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    a, b = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> a <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> b: <span class="hljs-keyword">break</span><br><br>    res = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1000</span> + <span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> dfs(a, b, m): res = m<br>    <span class="hljs-built_in">print</span>(a, b, res)<br></code></pre></td></tr></table></figure>
+<p>记录一些互质数的最大不可凑数<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">a</span> b m<br><span class="hljs-attribute">2</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">2</span> <span class="hljs-number">5</span> <span class="hljs-number">3</span><br><span class="hljs-attribute">2</span> <span class="hljs-number">7</span> <span class="hljs-number">5</span><br><span class="hljs-attribute">2</span> <span class="hljs-number">9</span> <span class="hljs-number">7</span><br><span class="hljs-attribute">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span><br><span class="hljs-attribute">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span><br><span class="hljs-attribute">3</span> <span class="hljs-number">7</span> <span class="hljs-number">11</span><br><span class="hljs-attribute">3</span> <span class="hljs-number">8</span> <span class="hljs-number">13</span><br><span class="hljs-attribute">4</span> <span class="hljs-number">5</span> <span class="hljs-number">11</span><br><span class="hljs-attribute">4</span> <span class="hljs-number">7</span> <span class="hljs-number">17</span><br><span class="hljs-attribute">4</span> <span class="hljs-number">9</span> <span class="hljs-number">23</span><br></code></pre></td></tr></table></figure><br>奥数规律题：两个变量时固定一个变量再找规律</p>
+<p>$a = 2$时：</p>
+<p>注意到 $b$ 每增加 $2$ ，$m$ 就增加 $2$ ，故$m \propto b$,$ m = b + x$，代入几组数据解得：</p>
+<script type="math/tex; mode=display">
+m = b - 2</script><p>$a = 3$时：</p>
+<p>注意到 $b$ 每增加 $1$ ，$m$ 就增加 $2$ ，故$m \propto 2b$,$ m = 2b + x$，代入几组数据解得：</p>
+<script type="math/tex; mode=display">
+m = 2b - 3</script><p>$a = 4$时：</p>
+<p>注意到 $b$ 每增加 $2$ ，$m$ 就增加 $6$ ，故$m \propto 3b$,$ m = 3b + x$，代入几组数据解得：</p>
+<script type="math/tex; mode=display">
+m = 3b - 4</script><p>…</p>
+<p>$a = a$时，归纳推理得：</p>
+<script type="math/tex; mode=display">
+m = (a - 1)b - a = ab - a - b = (a - 1)(b - 1) -1</script><p>事实上，归纳推理的结论是不准确的，但这个结论是对的，详见y总在NOIP《小凯的疑惑》处的证明</p>
+<p>所以我们直接可以使用公式AC</p>
+<p>公式解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">a, b = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())<br><span class="hljs-built_in">print</span>((a - <span class="hljs-number">1</span>) * (b - <span class="hljs-number">1</span>) - <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
 <h1 id="python-in-ACM"><a href="#python-in-ACM" class="headerlink" title="python in ACM"></a>python in ACM</h1><p>记录与C++ in ACM/OI的诸多不同之处</p>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>二维数组：<code>[[0] * M for _ in range(N)]</code>（N行M列矩阵）</p>
 <h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>python以<code>\n</code>为分隔符，<strong>空行需要读入并扔掉！！</strong>（cpp以空白为分隔符）</p>
