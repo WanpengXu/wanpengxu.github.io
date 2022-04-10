@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>散乱的知识之塔 | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">散乱的知识之塔</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十二月 11, 2021&nbsp;&nbsp;14:04:26</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="vscode中python的相对路径问题"><a href="#vscode中python的相对路径问题" class="headerlink" title="vscode中python的相对路径问题"></a>vscode中python的相对路径问题</h1><p>vscode的默认路径是项目根目录，我们实际上想让默认路径为py文件所在的目录，针对不同情况，有三种方法：</p>
+<ol>
+<li><p>run运行（右上角三角号）</p>
+<p>修改<code>setting.json</code>，加入<code>&quot;python.terminal.executeInFileDir&quot;: true</code></p>
+<p>或</p>
+<p>在python插件中把这项打开</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204021111298.png" alt=""></p>
+</li>
+<li><p>F5运行</p>
+<p>修改<code>launch.json</code>，加入<code>&quot;cwd&quot;: &quot;$&#123;fileDirname&#125;&quot;</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Python: 当前文件&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;stopOnEntry&quot;</span>: <span class="literal">true</span>,  <span class="comment">// 让调试器在自动在程序开始时停在第一行</span></span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;&quot;</span>,  <span class="comment">// run用的，F5应该搜terminal-python-Execute In File Dir</span></span><br><span class="line">            <span class="attr">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>F4运行（自定义运行）</strong></p>
+<p>可能很少有人自定义运行，但是我一直用的F4，很好用，就写一下吧</p>
+<p>修改<code>task.json</code>文件，在<code>&quot;command&quot;</code>的值中添加: <code>cd $&#123;fileDirname&#125;;</code>然后再<code>python $&#123;file&#125;</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// See https://go.microsoft.com/fwlink/?LinkId=733558</span></span><br><span class="line">    <span class="comment">// for the documentation about the tasks.json format</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;run&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;cd $&#123;fileDirname&#125;; python $&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;presentation&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;new&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;focus&quot;</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="latex中的各种mod"><a href="#latex中的各种mod" class="headerlink" title="latex中的各种mod"></a>latex中的各种mod</h1><p>\bmod - 最细间距，无括号，不分行间行内<br>\pmod - 有括号，行间间距大，行内间距稍小<br>\mod - 无括号，其余同 \pmod<br>\pod - 无 mod ，其余同 \pmod</p>
+<p>源代码：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a \equiv b \bmod p</span><br><span class="line">a \equiv b \pmod p</span><br><span class="line">a \equiv b \mod p</span><br><span class="line">a \equiv b \pod p</span><br></pre></td></tr></table></figure></p>
+<p>行间效果：</p>
+<script type="math/tex; mode=display">
+a \equiv b \bmod p</script><script type="math/tex; mode=display">
+a \equiv b \pmod p</script><script type="math/tex; mode=display">
+a \equiv b \mod p</script><script type="math/tex; mode=display">
+a \equiv b \pod p</script><p>行内效果：</p>
+<p>$ a \equiv b \bmod p $<br>$ a \equiv b \pmod p $<br>$ a \equiv b \mod p $<br>$ a \equiv b \pod p $</p>
+<p>我觉得 $(2)$ 好看</p>
+<h1 id="命令行算MD5"><a href="#命令行算MD5" class="headerlink" title="命令行算MD5"></a>命令行算MD5</h1><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202171023825.png" alt=""></p>
+<h1 id="一个思考：为什么bool类型不用1bit而用1byte表示？"><a href="#一个思考：为什么bool类型不用1bit而用1byte表示？" class="headerlink" title="一个思考：为什么bool类型不用1bit而用1byte表示？"></a>一个思考：为什么bool类型不用1bit而用1byte表示？</h1><p>答：bit无法直接寻址，byte可以。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202151915698.png" alt=""></p>
+<h1 id="一个ERROR"><a href="#一个ERROR" class="headerlink" title="一个ERROR"></a>一个ERROR</h1><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202100211493.png" alt=""></p>
+<p>内存开太大导致地址值超过了int上界。</p>
+<h1 id="关于…"><a href="#关于…" class="headerlink" title="关于…"></a>关于…</h1><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201232201014.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201232203797.png" alt=""></p>
+<p>可见<code>...</code>是一个<code>ellipsis</code>对象。</p>
+<p>如果某个函数体中只有<code>...</code>，意思也就是创造了一个<code>ellipsis</code>对象但没有使用，那自然跟函数体中只有<code>pass</code>差不多，代表这个函数目前还没有实现。</p>
+<p>在numpy中的使用方法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201232205676.png" alt=""></p>
+<p>这个实际上是numpy中的array多维切片</p>
+<p>首先，多维切片的形式是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array[<span class="built_in">slice</span>, <span class="built_in">slice</span>, etc]</span><br></pre></td></tr></table></figure>
+<p>其中，每个slice对象的形式为<code>start:stop:step</code></p>
+<p>与python内置list的切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>[<span class="built_in">slice</span>][<span class="built_in">slice</span>]etc</span><br></pre></td></tr></table></figure>
+<p>差不多一个意思</p>
+<p>第0个slice代表对dim-0切片</p>
+<p>第1个slice代表对dim-1切片</p>
+<p>那么上述语句的意思即为</p>
+<p><code>d[1,...]</code>：取d的<code>dim-0</code>中下标为1的元素</p>
+<p><code>d[...,1]</code>：取d的<code>dim-(-1)</code>（最后一个维度）中所有下标为1的元素</p>
+<p><code>d[1,...,1]</code>：取d的<code>dim-0</code>中下标1的元素，再取其<code>dim-(-1)</code>中所有下标为1的元素</p>
+<p>numpy官方文档中对…的说明及复现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201232217120.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201232216717.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201232218765.png" alt=""></p>
+<h1 id="快速发博客"><a href="#快速发博客" class="headerlink" title="快速发博客"></a>快速发博客</h1><p>灵光一闪写了个批处理，所以我为什么手敲了一个学期这三段东西啊！！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231145944.png" alt=""></p>
+<h1 id="python拆包"><a href="#python拆包" class="headerlink" title="python拆包"></a>python拆包</h1><p>做线性回归的时候碰到了一个少见的用法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231127376.png" alt=""></p>
+<p>查了一下这个语法叫拆包，其实在函数定义时就学过，可变参数就是这个原理。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231126045.png" alt=""></p>
+<p>在<code>PEP 448</code>中找到了提出者的一个奇妙用法：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201231133325.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new_list=my_list+<span class="built_in">list</span>(my_tuple)+<span class="built_in">list</span>(my_range)</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line">new_list=[*my_list,*my_tuple,*my_range]</span><br></pre></td></tr></table></figure>
+<p>简直是太太太太pythonnic了！</p>
+<h1 id="ipynb文件的优雅打开方式"><a href="#ipynb文件的优雅打开方式" class="headerlink" title="ipynb文件的优雅打开方式"></a>ipynb文件的优雅打开方式</h1><p>其一 将某个终端加入右键菜单</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211215563.png" alt=""></p>
+<p>其二 单行powershell</p>
+<p>资源管理器的地址栏可以视作一个单行powershell，你可以在这里输入命令。</p>
+<p>eg. <code>cmd</code> <code>jupyter notebook</code> <code>jupyter lab</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211217950.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211224748.png" alt="发博客三连"></p>
+<p>其三 设置默认程序</p>
+<p><code>jupyter notebook</code>其实是一个python程序</p>
+<p>使用<code>where</code>命令查找它的位置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211219144.png" alt=""></p>
+<p>复制前面的路径设置默认程序即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211219369.png" alt=""></p>
+<p>成功后</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202201211221902.png" alt=""></p>
+<h1 id="python-jit"><a href="#python-jit" class="headerlink" title="python @jit"></a>python @jit</h1><p>python可以使用<code>@jit</code>装饰器达到媲美C++的运行速度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numba <span class="keyword">import</span> jit</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">SIZE=<span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normal_test</span>():</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(SIZE):</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(SIZE):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@jit</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jit_test</span>():</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(SIZE):</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(SIZE):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    start=time.time()</span><br><span class="line">    normal_test()</span><br><span class="line">    end=time.time()</span><br><span class="line">    <span class="built_in">print</span>(end-start)</span><br><span class="line">    </span><br><span class="line">    start=time.time()</span><br><span class="line">    jit_test()</span><br><span class="line">    end=time.time()</span><br><span class="line">    <span class="built_in">print</span>(end-start)</span><br><span class="line"></span><br><span class="line">    start=time.time()</span><br><span class="line">    jit_test()</span><br><span class="line">    end=time.time()</span><br><span class="line">    <span class="built_in">print</span>(end-start)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.5333094596862793</span><br><span class="line">0.2395479679107666</span><br><span class="line">0.0</span><br></pre></td></tr></table></figure>
+<p>JIT使用懒编译（Lazy Compilation）技术，在执行到<code>@jit</code>代码块时才将其编译，而纯编译型语言C会在程序运行前整个编译好。</p>
+<p>因为被<code>@jit</code>修饰的代码块已经编译过了，$总时间 = 编译时间 + 运行时间$，所以第二次运行时$编译时间=0$，又因为循环体内为pass，所以<script type="math/tex">运行时间=0</script>，故<script type="math/tex">总时间=0</script></p>
+<p>另外，原生python慢的原因还有一点在于解释器需要推断变量类型，<code>@jit</code>可以使用<code>Eager Compilation</code>技术，指定变量类型，这样可以提高编译速度。</p>
+<h1 id="C初始化列表"><a href="#C初始化列表" class="headerlink" title="C初始化列表"></a>C初始化列表</h1><p>翻看C98、C99标准时偶然发现了从没见过的初始化方式。可以在初始化块中忽略对象直接指定初始化成员。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202112111411363.png" alt=""></p>
+<p>另外，C++官方提供了在线编译环境，支持到C++14。</p>
+<p><a target="_blank" rel="noopener" href="http://cpp.sh/">C++ shell</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://xuwp.top/%E6%95%A3%E4%B9%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E4%B9%8B%E5%A1%94/">http://xuwp.top/%E6%95%A3%E4%B9%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E4%B9%8B%E5%A1%94/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/%E3%80%8AJava%E8%AF%AD%E8%A8%80%E5%8F%8A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E3%80%8B%E4%BD%9C%E4%B8%9A/">《Java语言及网络编程》作业</a>
+            
+            
+            <a class="next" rel="next" href="/%E3%80%8AJava%E8%AF%AD%E8%A8%80%E5%8F%8A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E3%80%8B%E8%AF%BE%E5%90%8E%E5%B0%8F%E7%BB%93/">《Java语言及网络编程》课后小结</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 许 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
