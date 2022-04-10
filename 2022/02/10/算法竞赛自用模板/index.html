@@ -18,7 +18,7 @@
   <meta name="keywords" content="">
   <meta name="description" content="将自己的知识系统化、实用化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法竞赛自用模板">
+<meta property="og:title" content="系统学习算法竞赛">
 <meta property="og:url" content="http://xuwp.top/2022/02/10/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E8%87%AA%E7%94%A8%E6%A8%A1%E6%9D%BF/index.html">
 <meta property="og:site_name" content="须臾所学之野">
 <meta property="og:description" content="将自己的知识系统化、实用化">
@@ -30,6 +30,8 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040129969.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040050191.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203172355958.jpeg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204100932354.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204100933077.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204041731866.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204041059820.svg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202202141556425.jpg">
@@ -39,13 +41,13 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203071819844.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203110045503.png">
 <meta property="article:published_time" content="2022-02-09T20:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-04T15:35:58.878Z">
+<meta property="article:modified_time" content="2022-04-10T01:38:37.490Z">
 <meta property="article:author" content="许">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203040101885.jpeg">
   
-  <title>算法竞赛自用模板 - 须臾所学之野</title>
+  <title>系统学习算法竞赛 - 须臾所学之野</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -203,7 +205,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="算法竞赛自用模板">
+            <span class="h2" id="subtitle" title="系统学习算法竞赛">
               
             </span>
 
@@ -271,11 +273,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">算法竞赛自用模板</h1>
+            <h1 style="display: none">系统学习算法竞赛</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月4日 晚上
+                  本文最后更新于：2022年4月10日 上午
                 
               </p>
             
@@ -640,8 +642,8 @@ a_i = a_i^{\prime}</script><p>与 $ a_i^{\prime} &lt; a_i $ 矛盾，故假设�
 <p>在这种问题中，每件物品的数量的取值域为 ${0, 1}$，故称0-1背包问题。</p>
 <p>写作最优化形式，即为：</p>
 <script type="math/tex; mode=display">
-max & \ \sum _{i=1}^{n}w_{i}x_{i}\\
-s.t. & \ \sum _{i=1}^{n}v_{i}x_{i}\leq V \ and \ x_{i}\in \{0,1\}</script><h3 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h3><blockquote>
+max  \ \sum _{i=1}^{n}w_{i}x_{i}\\
+s.t.  \ \sum _{i=1}^{n}v_{i}x_{i}\leq V \ and \ x_{i}\in \{0,1\}</script><h3 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h3><blockquote>
 <p>有 $N$ 件物品和一个容量是 $V$ 的背包。<strong>每种物品都有无限件可用</strong>。</p>
 <p>第 $i$ 件物品的体积是 $v_i$，价值是 $w_i$。</p>
 <p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p>
@@ -669,6 +671,8 @@ s.t. & \ \sum _{i=1}^{n}v_{i}x_{i}\leq V \ and \ x_{i}\in  \{0,1,2,\dots , s_i \
 <h2 id="区间DP"><a href="#区间DP" class="headerlink" title="区间DP"></a>区间DP</h2><p>特征：求一个区间的最优值，一个区间的最优值由两个或多个小区间合并而来。</p>
 <p>DP问题的起始下标选择：若状态转移方程中含有<code>f[i - 1]</code>，那么令<code>i</code>的起始下标为1；若不含，则可为<code>0</code>。</p>
 <p>$状态转移方程的时间复杂度 = 状态数量（方程左边） \times 转移数量（方程右边）$</p>
+<h2 id="经验积累"><a href="#经验积累" class="headerlink" title="经验积累"></a>经验积累</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204100932354.png" srcset="/img/loading.gif" lazyload alt="闫dp 波动数列"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204100933077.png" srcset="/img/loading.gif" lazyload alt="闫dp 地宫取宝"></p>
 <h1 id="时空复杂度分析"><a href="#时空复杂度分析" class="headerlink" title="时空复杂度分析"></a>时空复杂度分析</h1><p>看起来，我们已经学完了大部分内容！</p>
 <p>但是，怎么根据题目、范围来选定算法呢？没有这第0步，我们后面的步就容易白给。</p>
 <h2 id="由数据范围反推算法复杂度以及算法内容"><a href="#由数据范围反推算法复杂度以及算法内容" class="headerlink" title="由数据范围反推算法复杂度以及算法内容"></a>由数据范围反推算法复杂度以及算法内容</h2><p><strong>这部分转自闫学灿老师。</strong></p>
@@ -697,7 +701,7 @@ s.t. & \ \sum _{i=1}^{n}v_{i}x_{i}\leq V \ and \ x_{i}\in  \{0,1,2,\dots , s_i \
 <blockquote>
 <p>题意：</p>
 <p>输入：两个数 $a$ , $b$ </p>
-<p>输出： $sa + tb$ 的最大不可凑数（$s, t \in \Z^{+}$）</p>
+<p>输出： $sa + tb$ 的最大不可凑数（$s, t \in \mathbb{Z}^{+}$）</p>
 </blockquote>
 <p>由裴蜀定理：</p>
 <script type="math/tex; mode=display">
