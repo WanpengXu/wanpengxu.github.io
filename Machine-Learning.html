@@ -255,7 +255,7 @@
 <p>只观察主要部分，我们可以发现生物学上的神经元由三部分组成：细胞体、细胞核、突触。突触可以分为树突和轴突，树突是神经元的输入通道，轴突用于传递自神经元发出的冲动。当神经递质含量满足要求时，神经元便会兴奋、传递冲动。</p>
 <p>对生物学上的神经元进行简单的抽象，便得到了M-P神经元模型。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140140970.png" alt=""></p>
-<p>在这个模型中，神经元按权重接收来自其他 $n$ 个神经元传递的输入信号，这些总输入值与神经元的阈值进行比较后，通过“激活函数”处理以产生输出，即 $y<em>j=f\left(\sum</em>{i=1}^{n}{\omega_ix_i-\theta_j}\right)=f(\boldsymbol{\omega}^T\boldsymbol{x}-\theta)$。</p>
+<p>在这个模型中，神经元按权重接收来自其他 $n$ 个神经元传递的输入信号，这些总输入值与神经元的阈值进行比较后，通过“激活函数”处理以产生输出，即 <script type="math/tex">y_j=f\left(\sum_{i=1}^{n}{\omega_ix_i-\theta_j}\right)=f(\boldsymbol{\omega}^T\boldsymbol{x}-\theta)</script>。</p>
 <p>如何选定激活函数呢？典型的激活函数有以下两种：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140141559.png" alt=""></p>
 <p>因阶跃函数具有不连续、不平滑的特性，因此常采用$S$型函数，$Sigmoid$函数是最常用的$S$型函数，需要神经元的输出区间为$[-1,1]$时，$S$型函数可以选为<strong>双曲正切函数</strong></p>
