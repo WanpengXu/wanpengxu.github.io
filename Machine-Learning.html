@@ -271,8 +271,8 @@ f(x)=\left\{
 \right.</script><p>尽管形式简单，但其在卷积神经网络中效果很好。</p>
 <h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><p>感知机（Perceptron）：两层神经元，用于实现“与”、“或”、“非”运算。</p>
 <p>注意：<strong>感知机不能实现异或运算！</strong></p>
-<p>对于如下的感知机</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140157116.png" alt=""></p>
+<p>对于上图所示的感知机，选用阶跃函数，对二维空间进行简单划分即可分别得到与、或、非运算的激活函数，他们是不唯一的。</p>
 <div class="table-container">
 <table>
 <thead>
@@ -316,7 +316,126 @@ f(x)=\left\{
 </tbody>
 </table>
 </div>
-<h2 id="误差反向传播算法"><a href="#误差反向传播算法" class="headerlink" title="误差反向传播算法"></a>误差反向传播算法</h2><h2 id="累计误差反向传播算法"><a href="#累计误差反向传播算法" class="headerlink" title="累计误差反向传播算法"></a>累计误差反向传播算法</h2><h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><h2 id="全局最小与局部最小"><a href="#全局最小与局部最小" class="headerlink" title="全局最小与局部最小"></a>全局最小与局部最小</h2>
+<p>更一般地，我们可以给定数据集，让神经网络通过学习以确定权重 $\omega<em>i(i=1,2,\dots,n)$和阈值 $\theta$ 。若将阈值$\theta$视作固定输入为$-1.0$的哑结点所对应的连接权重$\omega</em>{n+1}$，则可将权重 $\omega_i(i=1,2,\dots,n)$和阈值 $\theta$ 的学习统一为权重 $\omega_i(i=1,2,\dots,n+1)$的学习。</p>
+<p>感知机的学习规则为：</p>
+<script type="math/tex; mode=display">
+\omega_i\ \gets\ \omega_i + \mathrm{\Delta}\omega_i,   \mathrm{\Delta}\omega_i = \eta\left(y\ -\ \hat{y}\right)x_i</script><p>其中 $\eta \in (0,1)$，称为学习率，属于超参数。</p>
+<p>学习过程很简单：若感知机对训练样例 $(\boldsymbol x,y)$ 中 $\boldsymbol x$ 预测的结果 $\hat{y}$ 等于 $y$ ，则感知机不发生变化。否则，感知机根据错误的程度（残差）进行权重调整。</p>
+<p>接下来说明一下为什么两层神经元的感知机不能实现异或运算。首先来看一下与、或、非、异或在二维空间中应怎样被划分。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140225846.png" alt=""></p>
+<p>显然，异或问题需要两条直线才能将平面划分为两类模式，而与、或、非只需要一条直线即可。</p>
+<p>对于一个有两类模式的空间，若存在一个超平面（$n$ 维欧氏空间中维度等于 $n-1$ 的线性子空间，eg. 平面中的直线）能将他们分开，则称这两类模式是线性可分的。若两类模式是线性可分的，则感知机的学习过程一定会收敛，得到权向量$\boldsymbol \omega=(\omega<em>1;\omega_2;\dots;\omega</em>{n+1})$.否则感知机会发生振荡，无法求得合适解。</p>
+<p>要解决线性可分问题，需要使用多层神经网络。对于异或问题，我们只需要先对与、或问题中的直线使用线性规划</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+x_1+x_2-0.5\geq0 \\
+x_1+x_2-1.5\leq0 \\
+\end{aligned}
+\right.</script><p>由简单的谓词逻辑：$P\oplus Q = \neg (P \wedge Q) \wedge (P \vee Q) $，接着对$y^{(1)}=f(x_1+x_2-0.5)$和$y^{(2)}=f(-x_1-x_2+1.5)$使用与问题的激活函数即可。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_1$</th>
+<th style="text-align:center">$x_2$</th>
+<th style="text-align:center">$y^{(1)}=f(x_1+x_2-0.5)$</th>
+<th style="text-align:center">$y^{(2)}=f(-x_1-x_2+1.5)$</th>
+<th style="text-align:center">$y=y^{(1)}+y^{(2)}-1.5$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>最终得到二层感知机如下，输入层与输出层之间的其他神经元层称作隐层。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140300967.png" alt=""></p>
+<p>更一般地的，常见的神经网络形如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140302432.png" alt=""></p>
+<p>多层前馈神经网络（multi-layer feedforward neural networks）：仅在相邻层间全互连、且包含隐含层的神经网络</p>
+<p>注：“前馈”并不意味着网络中信号不能向后传，而是指网络拓扑结构上不存在环或回路。</p>
+<h2 id="误差反向传播算法"><a href="#误差反向传播算法" class="headerlink" title="误差反向传播算法"></a>误差反向传播算法</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140306715.png" alt=""></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>变量</strong></th>
+<th style="text-align:center"><strong>意义</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$d$</td>
+<td style="text-align:center">输入神经元个数</td>
+</tr>
+<tr>
+<td style="text-align:center">$l$</td>
+<td style="text-align:center">输出神经元个数</td>
+</tr>
+<tr>
+<td style="text-align:center">$q$</td>
+<td style="text-align:center">隐层神经元个数</td>
+</tr>
+<tr>
+<td style="text-align:center">$θ_j$</td>
+<td style="text-align:center">输出层第$j$个神经元的阈值</td>
+</tr>
+<tr>
+<td style="text-align:center">$γ_h$</td>
+<td style="text-align:center">隐层第$j$个神经元的阈值</td>
+</tr>
+<tr>
+<td style="text-align:center">$v_{ih}$</td>
+<td style="text-align:center">输出层第$i$个神经元与隐层第$h$个神经元间的连接权</td>
+</tr>
+<tr>
+<td style="text-align:center">$ω_{hj}$</td>
+<td style="text-align:center">隐层第$h$个神经元与输出层第$j$神经元间的连接权</td>
+</tr>
+<tr>
+<td style="text-align:center">$α_h$</td>
+<td style="text-align:center">隐层第$h$个神经元接收到的输入</td>
+</tr>
+<tr>
+<td style="text-align:center">$β_j$</td>
+<td style="text-align:center">输出层第$j$个神经元接收到的输入</td>
+</tr>
+<tr>
+<td style="text-align:center">$b_h$</td>
+<td style="text-align:center">隐层第$h$个神经元的输出</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="累计误差反向传播算法"><a href="#累计误差反向传播算法" class="headerlink" title="累计误差反向传播算法"></a>累计误差反向传播算法</h2><h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><h2 id="全局最小与局部最小"><a href="#全局最小与局部最小" class="headerlink" title="全局最小与局部最小"></a>全局最小与局部最小</h2>
         </div>
 
         
