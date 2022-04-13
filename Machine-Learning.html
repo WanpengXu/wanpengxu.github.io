@@ -316,7 +316,7 @@ f(x)=\left\{
 </tbody>
 </table>
 </div>
-<p>更一般地，我们可以给定数据集，让神经网络通过学习以确定权重 <script type="math/tex">\omega_i(i=1,2,\dots,n)</script>和阈值 $\theta$ 。若将阈值$\theta$视作固定输入为$-1.0$的哑结点所对应的连接权重$\omega_{n+1}$，则可将权重 <script type="math/tex">\omega_i(i=1,2,\dots,n)</script> 和阈值 $\theta$ 的学习统一为权重 <script type="math/tex">\omega_i(i=1,2,\dots,n+1)</script>的学习。</p>
+<p>更一般地，我们可以给定数据集，让神经网络通过学习以确定权重<script type="math/tex">\omega_i(i=1,2,\dots,n)</script>和阈值$\theta$。若将阈值$\theta$视作固定输入为$-1.0$的哑结点所对应的连接权重$\omega_{n+1}$，则可将权重<script type="math/tex">\omega_i(i=1,2,\dots,n)</script>和阈值$\theta$的学习统一为权重<script type="math/tex">\omega_i(i=1,2,\dots,n+1)</script>的学习。</p>
 <p>感知机的学习规则为：</p>
 <script type="math/tex; mode=display">
 \omega_i\ \gets\ \omega_i + \mathrm{\Delta}\omega_i,   \mathrm{\Delta}\omega_i = \eta\left(y\ -\ \hat{y}\right)x_i</script><p>其中 $\eta \in (0,1)$，称为学习率，属于超参数。</p>
