@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>机器学习基础 | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">机器学习基础</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 14, 2022&nbsp;&nbsp;1:25:07</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="BP神经网络"><a href="#BP神经网络" class="headerlink" title="BP神经网络"></a>BP神经网络</h1><h2 id="神经元模型"><a href="#神经元模型" class="headerlink" title="神经元模型"></a>神经元模型</h2><p>神经网络中最基本的成分是神经元模型。神经元模型源自“仿生”的思想，是对生物神经元的一种模仿。</p>
+<p>首先，看一下生物学上的神经元。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140130164.png" alt=""></p>
+<p>只观察主要部分，我们可以发现生物学上的神经元由三部分组成：细胞体、细胞核、突触。突触可以分为树突和轴突，树突是神经元的输入通道，轴突用于传递自神经元发出的冲动。当神经递质含量满足要求时，神经元便会兴奋、传递冲动。</p>
+<p>对生物学上的神经元进行简单的抽象，便得到了M-P神经元模型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140140970.png" alt=""></p>
+<p>在这个模型中，神经元按权重接收来自其他 $n$ 个神经元传递的输入信号，这些总输入值与神经元的阈值进行比较后，通过“激活函数”处理以产生输出，即 $y<em>j=\ f\left(\sum</em>{i=1}^{n}{\omega_ix_i-\theta_j}\right)==\ f(\boldsymbol{\omega}^T\boldsymbol{x}\ -\ \theta)$。</p>
+<p>如何选定激活函数呢？典型的激活函数有以下两种：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140141559.png" alt=""></p>
+<p>因阶跃函数具有不连续、不平滑的特性，因此常采用$S$型函数，$Sigmoid$函数是最常用的$S$型函数，需要神经元的输出区间为$[-1,1]$时，$S$型函数可以选为<strong>双曲正切函数</strong></p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1-e^{-\alpha x}}{1+e^{-\alpha x}}</script><p>$Sigmoid$函数也存在缺点，当输入的绝对值大于某个阈值时会过快进入饱和状态，使梯度趋于0，模型收敛缓慢。</p>
+<p>$ReLU$函数在一些现代神经网络中也很常用，它是一个很简单的分段线性函数</p>
+<script type="math/tex; mode=display">
+f(x)=\left\{
+\begin{aligned}
+& 0 &,x<0\\
+& x &,x\geq 0\\
+\end{aligned}
+\right.</script><p>尽管形式简单，但其在卷积神经网络中效果很好。</p>
+<h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><p>感知机（Perceptron）：两层神经元，用于实现“与”、“或”、“非”运算。</p>
+<p>注意：<strong>感知机不能实现异或运算！</strong></p>
+<p>对于如下的感知机</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140157116.png" alt=""></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x_1$</th>
+<th style="text-align:center">$x_2$</th>
+<th style="text-align:center">$y=f(1⋅x_1+1⋅x_2-2)$</th>
+<th style="text-align:center">$y=f(1⋅x_1+1⋅x_2-0.5)$</th>
+<th style="text-align:center">$y=f(-0.6⋅x_1+0⋅x_2+0.5)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="误差反向传播算法"><a href="#误差反向传播算法" class="headerlink" title="误差反向传播算法"></a>误差反向传播算法</h2><h2 id="累计误差反向传播算法"><a href="#累计误差反向传播算法" class="headerlink" title="累计误差反向传播算法"></a>累计误差反向传播算法</h2><h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><h2 id="全局最小与局部最小"><a href="#全局最小与局部最小" class="headerlink" title="全局最小与局部最小"></a>全局最小与局部最小</h2>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://xuwp.top/Machine-Learning.html">http://xuwp.top/Machine-Learning.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"># 机器学习</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/Man-in-the-middle-Attack.html">中间人攻击——DHCP耗尽攻击</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Stay hungry. Stay foolish.</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
