@@ -255,7 +255,7 @@
 <p>只观察主要部分，我们可以发现生物学上的神经元由三部分组成：细胞体、细胞核、突触。突触可以分为树突和轴突，树突是神经元的输入通道，轴突用于传递自神经元发出的冲动。当神经递质含量满足要求时，神经元便会兴奋、传递冲动。</p>
 <p>对生物学上的神经元进行简单的抽象，便得到了M-P神经元模型。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140140970.png" alt=""></p>
-<p>在这个模型中，神经元按权重接收来自其他 $n$ 个神经元传递的输入信号，这些总输入值与神经元的阈值进行比较后，通过“激活函数”处理以产生输出，即 <script type="math/tex">y_j=f\left(\sum_{i=1}^{n}{\omega_ix_i-\theta_j}\right)=f(\boldsymbol{\omega}^T\boldsymbol{x}-\theta)</script>。</p>
+<p>在这个模型中，神经元按权重接收来自其他 $n$ 个神经元传递的输入信号，这些总输入值与神经元的阈值进行比较后，通过“激活函数”处理以产生输出，即。<script type="math/tex">y=f(\sum\limits_{i=1}^{n}w_ix_i-\theta)=f(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}-\theta)</script></p>
 <p>如何选定激活函数呢？典型的激活函数有以下两种：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140141559.png" alt=""></p>
 <p>因阶跃函数具有不连续、不平滑的特性，因此常采用$S$型函数，$Sigmoid$函数是最常用的$S$型函数，需要神经元的输出区间为$[-1,1]$时，$S$型函数可以选为<strong>双曲正切函数</strong></p>
@@ -272,7 +272,12 @@ f(x)=\left\{
 <h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><p>感知机（Perceptron）：两层神经元，用于实现“与”、“或”、“非”运算。</p>
 <p>注意：<strong>感知机不能实现异或运算！</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140157116.png" alt=""></p>
-<p>对于上图所示的感知机，选用阶跃函数，对二维空间进行简单划分即可分别得到与、或、非运算的激活函数，他们是不唯一的。</p>
+<p>对于上图所示的感知机，选用阶跃函数，有：</p>
+<script type="math/tex; mode=display">
+y=\operatorname{sgn}(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}-\theta)=\left\{\begin{array}{rcl}
+1,& {\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x} -\theta\geq 0}\\
+0,& {\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x} -\theta < 0}\\
+\end{array} \right.</script><p>对二维空间进行简单划分即可分别得到与、或、非运算的激活函数，他们不是唯一的。</p>
 <div class="table-container">
 <table>
 <thead>
@@ -317,9 +322,14 @@ f(x)=\left\{
 </table>
 </div>
 <p>更一般地，我们可以给定数据集，让神经网络通过学习以确定权重<script type="math/tex">\omega_i(i=1,2,\dots,n)</script>和阈值$\theta$。若将阈值$\theta$视作固定输入为$-1.0$的哑结点所对应的连接权重$\omega_{n+1}$，则可将权重<script type="math/tex">\omega_i(i=1,2,\dots,n)</script>和阈值$\theta$的学习统一为权重<script type="math/tex">\omega_i(i=1,2,\dots,n+1)</script>的学习。</p>
-<p>感知机的学习规则为：</p>
 <script type="math/tex; mode=display">
-\omega_i\ \gets\ \omega_i + \mathrm{\Delta}\omega_i,   \mathrm{\Delta}\omega_i = \eta\left(y\ -\ \hat{y}\right)x_i</script><p>其中 $\eta \in (0,1)$，称为学习率，属于超参数。</p>
+\begin{aligned}
+\boldsymbol{w}^\mathrm{T}\boldsymbol{x_i}-\theta&=\sum \limits_{j=1}^n w_jx_j+x_{n+1}\cdot w_{n+1}\\
+&=\sum \limits_{j=1}^{n+1}w_jx_j\\
+&=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x_i}
+ \end{aligned}</script><p>感知机的学习规则为：</p>
+<script type="math/tex; mode=display">
+\omega_i\ \gets\ \omega_i + \mathrm{\Delta}\omega_i,\   \mathrm{\Delta}\omega_i = \eta\left(y\ -\ \hat{y}\right)x_i</script><p>其中 $\eta \in (0,1)$，称为学习率，属于超参数。</p>
 <p>学习过程很简单：若感知机对训练样例 $(\boldsymbol x,y)$ 中 $\boldsymbol x$ 预测的结果 $\hat{y}$ 等于 $y$ ，则感知机不发生变化。否则，感知机根据错误的程度（残差）进行权重调整。</p>
 <p>接下来说明一下为什么两层神经元的感知机不能实现异或运算。首先来看一下与、或、非、异或在二维空间中应怎样被划分。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140225846.png" alt=""></p>
@@ -410,7 +420,7 @@ x_1+x_2-1.5\leq0 \\
 <td style="text-align:center">隐层神经元个数</td>
 </tr>
 <tr>
-<td style="text-align:center">$θ_j$</td>
+<td style="text-align:center">$\theta_j$</td>
 <td style="text-align:center">输出层第$j$个神经元的阈值</td>
 </tr>
 <tr>
@@ -426,11 +436,11 @@ x_1+x_2-1.5\leq0 \\
 <td style="text-align:center">隐层第$h$个神经元与输出层第$j$神经元间的连接权</td>
 </tr>
 <tr>
-<td style="text-align:center">$α_h$</td>
+<td style="text-align:center">$\alpha_h$</td>
 <td style="text-align:center">隐层第$h$个神经元接收到的输入</td>
 </tr>
 <tr>
-<td style="text-align:center">$β_j$</td>
+<td style="text-align:center">$\beta_j$</td>
 <td style="text-align:center">输出层第$j$个神经元接收到的输入</td>
 </tr>
 <tr>
@@ -441,7 +451,92 @@ x_1+x_2-1.5\leq0 \\
 </table>
 </div>
 <p>设其隐层和输出层神经元使用$Sigmoid$函数。</p>
-<p>注：开始推导，明天再写</p>
+<p>对训练例$(\boldsymbol x_k, \boldsymbol y_k )$，假定神经网络的输出为$y ̂_k=(y ̂_1^k,y ̂_2^k,…,y ̂_l^k)$，其中$y ̂_j^k=f(β_j-θ_j)$，</p>
+<p>则网络在$(\boldsymbol x_k, \boldsymbol y_k )$上的均方误差为：</p>
+<script type="math/tex; mode=display">
+E_k=\frac{1}{2} \sum_{j=1}^{l}(\hat{y}_1^k-y_1^k )^2</script><p>需要确定的参数：</p>
+<ul>
+<li><p>输入层到隐层的$d×q$个权值</p>
+</li>
+<li><p>隐层到输出层的$q×l$个权值</p>
+</li>
+<li><p>隐层神经元的$q$个阈值</p>
+</li>
+<li><p>输出层神经元的$l$个阈值</p>
+</li>
+</ul>
+<p>共$d×q+q×l+q+l=(d×q+1)+q×l$个</p>
+<p>广义感知机学习规则：任意参数$v$的更新估计式</p>
+<script type="math/tex; mode=display">
+v←v+\Delta v</script><p>对于参数$\omega_{hj}$，以目标的负梯度方向对其进行调整：</p>
+<script type="math/tex; mode=display">
+\Delta \omega_{hj}=-\eta\frac{\partial E_k}{\partial \omega_{hj}}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_k}{\partial \omega_{hj}}=\frac{\partial E_k}{\partial \hat{y}_j^k}\cdot\frac{\partial \hat{y}_j^k}{\partial \beta_j}\cdot\frac{\partial \beta_j}{\partial \omega_{hj}}</script><p>由$\beta_j$的定义，有：</p>
+<script type="math/tex; mode=display">
+\frac{\partial \beta_j}{\partial \omega_{hj}}=b_h</script><p>$Sigmoid$的导函数：</p>
+<script type="math/tex; mode=display">
+f^{'}(x)=f(x)(1-f(x))</script><script type="math/tex; mode=display">
+\begin{aligned}
+g_j&=-\frac{\partial {E_k}}{\partial{\hat{y}_j^k}} \cdot \frac{\partial{\hat{y}_j^k}}{\partial{\beta_j}}
+\\&=-( \hat{y}_j^k-y_j^k ) f ^{\prime} (\beta_j-\theta_j)
+\\&=\hat{y}_j^k(1-\hat{y}_j^k)(y_j^k-\hat{y}_j^k)
+\end{aligned}</script><p>所以</p>
+<script type="math/tex; mode=display">
+\Delta \omega_{hj}=\eta g_j b_h</script><p>对于参数$\theta_j$：</p>
+<script type="math/tex; mode=display">\Delta \theta_j = -\eta g_j</script><p>因为</p>
+<script type="math/tex; mode=display">\Delta \theta_j = -\eta \cfrac{\partial E_k}{\partial \theta_j}</script><p>又</p>
+<script type="math/tex; mode=display">
+\begin{aligned}    
+\cfrac{\partial E_k}{\partial \theta_j} &= \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot\cfrac{\partial \hat{y}_j^k}{\partial \theta_j} \\
+&= \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot\cfrac{\partial [f(\beta_j-\theta_j)]}{\partial \theta_j} \\
+&=\cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot f^{\prime}(\beta_j-\theta_j) \times (-1) \\
+&=\cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot f\left(\beta_{j}-\theta_{j}\right)\times\left[1-f\left(\beta_{j}-\theta_{j}\right)\right]  \times (-1) \\
+&=\cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \hat{y}_j^k\left(1-\hat{y}_j^k\right)  \times (-1) \\
+&=\cfrac{\partial\left[ \cfrac{1}{2} \sum\limits_{j=1}^{l}\left(\hat{y}_{j}^{k}-y_{j}^{k}\right)^{2}\right]}{\partial \hat{y}_{j}^{k}} \cdot \hat{y}_j^k\left(1-\hat{y}_j^k\right) \times (-1)  \\
+&=\cfrac{1}{2}\times 2(\hat{y}_j^k-y_j^k)\times 1 \cdot\hat{y}_j^k\left(1-\hat{y}_j^k\right)  \times (-1) \\
+&=(y_j^k-\hat{y}_j^k)\hat{y}_j^k\left(1-\hat{y}_j^k\right)  \\
+&= g_j
+\end{aligned}</script><p>所以</p>
+<script type="math/tex; mode=display">\Delta \theta_j = -\eta \cfrac{\partial E_k}{\partial \theta_j}=-\eta g_j</script><p>对于参数$v_{ih}$：</p>
+<script type="math/tex; mode=display">
+\Delta v_{ih} = \eta e_h x_i</script><p>因为</p>
+<script type="math/tex; mode=display">\Delta v_{ih} = -\eta \cfrac{\partial E_k}{\partial v_{ih}}</script><p>又</p>
+<script type="math/tex; mode=display">
+\begin{aligned}    
+\cfrac{\partial E_k}{\partial v_{ih}} &= \sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot \cfrac{\partial \beta_j}{\partial b_h} \cdot \cfrac{\partial b_h}{\partial \alpha_h} \cdot \cfrac{\partial \alpha_h}{\partial v_{ih}} \\
+&= \sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot \cfrac{\partial \beta_j}{\partial b_h} \cdot \cfrac{\partial b_h}{\partial \alpha_h} \cdot x_i \\ 
+&= \sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot \cfrac{\partial \beta_j}{\partial b_h} \cdot f^{\prime}(\alpha_h-\gamma_h) \cdot x_i \\
+&= \sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot w_{hj} \cdot f^{\prime}(\alpha_h-\gamma_h) \cdot x_i \\
+&= \sum_{j=1}^{l} (-g_j) \cdot w_{hj} \cdot f^{\prime}(\alpha_h-\gamma_h) \cdot x_i \\
+&= -f^{\prime}(\alpha_h-\gamma_h) \cdot \sum_{j=1}^{l} g_j \cdot w_{hj}  \cdot x_i\\
+&= -b_h(1-b_h) \cdot \sum_{j=1}^{l} g_j \cdot w_{hj}  \cdot x_i \\
+&= -e_h \cdot x_i
+\end{aligned}</script><p>所以</p>
+<script type="math/tex; mode=display">\Delta v_{ih} =-\eta \cfrac{\partial E_k}{\partial v_{ih}} =\eta e_h x_i</script><p>对于$\Delta \gamma_h$</p>
+<script type="math/tex; mode=display">\Delta \gamma_h= -\eta e_h</script><p>因为</p>
+<script type="math/tex; mode=display">\Delta \gamma_h = -\eta \cfrac{\partial E_k}{\partial \gamma_h}</script><p>又</p>
+<script type="math/tex; mode=display">
+\begin{aligned}    
+\cfrac{\partial E_k}{\partial \gamma_h} &= \sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot \cfrac{\partial \beta_j}{\partial b_h} \cdot \cfrac{\partial b_h}{\partial \gamma_h} \\
+&= \sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot \cfrac{\partial \beta_j}{\partial b_h} \cdot f^{\prime}(\alpha_h-\gamma_h) \cdot (-1) \\
+&= -\sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot w_{hj} \cdot f^{\prime}(\alpha_h-\gamma_h)\\
+&= -\sum_{j=1}^{l} \cfrac{\partial E_k}{\partial \hat{y}_j^k} \cdot \cfrac{\partial \hat{y}_j^k}{\partial \beta_j} \cdot w_{hj} \cdot b_h(1-b_h)\\
+&= \sum_{j=1}^{l}g_j\cdot w_{hj} \cdot b_h(1-b_h)\\
+&=e_h
+\end{aligned}</script><p>所以</p>
+<script type="math/tex; mode=display">\Delta \gamma_h=-\eta\cfrac{\partial E_k}{\partial \gamma_h} = -\eta e_h</script><p>综上：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+& \Delta \omega_{hj}=\eta g_j b_h \\
+& \Delta \theta_j = -\eta \cfrac{\partial E_k}{\partial \theta_j}=-\eta g_j \\
+& \Delta v_{ih} = \eta e_h x_i \\
+& \Delta \gamma_h= -\eta e_h \\
+\end{aligned}
+\right. \\
+e_h=b_h(1-b_h)\sum_{j=1}^l w_{hj}g_j</script><p>需要精细调节时，可令(1)与(2)使用$\eta_1$，(3)与(4)使用$\eta_2$</p>
+<p>由此，我们可以给出BP算法：</p>
 <h2 id="累计误差反向传播算法"><a href="#累计误差反向传播算法" class="headerlink" title="累计误差反向传播算法"></a>累计误差反向传播算法</h2><h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><h2 id="全局最小与局部最小"><a href="#全局最小与局部最小" class="headerlink" title="全局最小与局部最小"></a>全局最小与局部最小</h2>
         </div>
 
