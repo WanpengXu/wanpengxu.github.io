@@ -576,7 +576,7 @@ E=\frac{1}{m} \sum_{k=1}^mE_k =\frac{1}{2m} \sum_{k=1}^m\sum_{j=1}^l(\hat{y}_1^k
 </ol>
 <script type="math/tex; mode=display">
 E=\lambda\frac{1}{m} \sum_{k=1}^mE_k +(1-\lambda)\sum_i{\omega_i^2}</script><h2 id="全局最小与局部最小"><a href="#全局最小与局部最小" class="headerlink" title="全局最小与局部最小"></a>全局最小与局部最小</h2><p>局部极小：对<script type="math/tex">\forall(\boldsymbol \omega;\theta)\in \left\{∀(\boldsymbol \omega;\theta)\ |\ ‖(\boldsymbol \omega;\theta)-(\boldsymbol \omega^∗;\theta^∗)‖ ≤ \epsilon\right\}</script>，都有<script type="math/tex">E(\boldsymbol \omega;\theta)\geq E (\boldsymbol \omega^∗;\theta^∗)</script>，则<script type="math/tex">(\boldsymbol \omega^∗;\theta^∗ )</script>为局部极小解。即梯度为$0$且$E$小于某个邻点。</p>
-<p>全局极小：对<script type="math/tex">\forall(\boldsymbol \omega;\theta)</script>，都有，<script type="math/tex">E(\boldsymbol \omega;\theta)\geq E (\boldsymbol \omega^∗;\theta^∗)</script>则<script type="math/tex">(\boldsymbol \omega^∗;\theta^∗ )</script>为全局极小解。</p>
+<p>全局极小：对<script type="math/tex">\forall(\boldsymbol \omega;\theta)</script>，都有<script type="math/tex">E(\boldsymbol \omega;\theta)\geq E (\boldsymbol \omega^∗;\theta^∗)</script>则<script type="math/tex">(\boldsymbol \omega^∗;\theta^∗ )</script>为全局极小解。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141137926.png" alt=""></p>
 <p>因为BP算法的感知机更新规则基于梯度下降，所以当误差函数有多个局部极小时，则不能找到全局极小解，此时我们称参数寻优陷入了局部极小。</p>
 <p>“跳出”局部极小的常见策略：</p>
