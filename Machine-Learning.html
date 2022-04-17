@@ -327,7 +327,8 @@ y=\operatorname{sgn}(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}-\theta)=\left\{\b
 \boldsymbol{w}^\mathrm{T}\boldsymbol{x_i}-\theta&=\sum \limits_{j=1}^n w_jx_j+x_{n+1}\cdot w_{n+1}\\
 &=\sum \limits_{j=1}^{n+1}w_jx_j\\
 &=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x_i}
- \end{aligned}</script><p>感知机的学习规则为：</p>
+ \end{aligned}</script><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204171728083.png" alt=""></p>
+<p>感知机的学习规则为：</p>
 <script type="math/tex; mode=display">
 \omega_i\ \gets\ \omega_i + \mathrm{\Delta}\omega_i,\   \mathrm{\Delta}\omega_i = \eta\left(y\ -\ \hat{y}\right)x_i</script><p>其中 $\eta \in (0,1)$，称为学习率，属于超参数。</p>
 <p>学习过程很简单：若感知机对训练样例 $(\boldsymbol x,y)$ 中 $\boldsymbol x$ 预测的结果 $\hat{y}$ 等于 $y$ ，则感知机不发生变化。否则，感知机根据错误的程度（残差）进行权重调整。</p>
