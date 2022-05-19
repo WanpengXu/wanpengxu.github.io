@@ -275,209 +275,209 @@
 <p>Windows 10 1909：Client-No1</p>
 <h1 id="配置Active-Directory"><a href="#配置Active-Directory" class="headerlink" title="配置Active Directory"></a>配置Active Directory</h1><h2 id="Server-No1"><a href="#Server-No1" class="headerlink" title="Server-No1"></a>Server-No1</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入Windows Server Manager，点击”添加角色和功能”。</p>
 <p>连续”下一步”，直到到达”服务器角色”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191645257.png" alt="">{width=”6.495833333333334in”<br>height=”4.623611111111111in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191645257.png" alt=""></p>
 <p>选中”Active Directory域服务”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648790.png" alt="">{width=”5.40625in”<br>height=”5.354166666666667in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648790.png" alt=""></p>
 <p>点击”添加功能”。</p>
 <p>点击”下一步”，可以看到AD DS的说明。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648773.png" alt="">{width=”6.495833333333334in”<br>height=”4.623611111111111in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648773.png" alt=""></p>
 <p>连续”下一步”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648941.png" alt="">{width=”6.495833333333334in”<br>height=”4.623611111111111in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648941.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”，当然也可以以后配置。</p>
 <p>这些可视化的点击步骤也可以导出为XML文件，此后使用PowerShell安装。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648993.png" alt="">{width=”6.495833333333334in”<br>height=”1.5611111111111111in”}</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648392.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648993.png" alt=""></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648392.png" alt=""></p>
 <p>点击”添加新林”，输入根域名为”xuwp05191643.com”。</p>
 <p>点击”下一步”</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648632.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648632.png" alt=""></p>
 <p>在这里输入DSRM密码，点击”下一步”。</p>
 <p>注：这里的林/域功能级别最高就是Windows Server 2016。</p>
 <p>连续”下一步”，全部使用默认值。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648422.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648422.png" alt=""></p>
 <p>我们需要留意的是这个界面，我们可以通过和此后两个服务器对比这个界面来明确概念。</p>
 <p>这里可以生成Power Shell脚本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># 用于 AD DS 部署的 Windows PowerShell 脚本</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">Import-Module ADDSDeployment</span><br><span class="line">Install-ADDSForest `</span><br><span class="line">-CreateDnsDelegation:$false `</span><br><span class="line">-DatabasePath &quot;C:\Windows\NTDS&quot; `</span><br><span class="line">-DomainMode &quot;WinThreshold&quot; `</span><br><span class="line">-DomainName &quot;xuwp05191643.com&quot; `</span><br><span class="line">-DomainNetbiosName &quot;XUWP05191643&quot; `</span><br><span class="line">-ForestMode &quot;WinThreshold&quot; `</span><br><span class="line">-InstallDns:$true `</span><br><span class="line">-LogPath &quot;C:\Windows\NTDS&quot; `</span><br><span class="line">-NoRebootOnCompletion:$false `</span><br><span class="line">-SysvolPath &quot;C:\Windows\SYSVOL&quot; `</span><br><span class="line">-Force:$true</span><br></pre></td></tr></table></figure>
 <p>点击”下一步”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648791.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648791.png" alt=""></p>
 <p>点击”下一步”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648781.png" alt="">{width=”6.495833333333334in”<br>height=”1.5131944444444445in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648781.png" alt=""></p>
 <p>点击”关闭”，等待重启。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648593.png" alt="">{width=”6.495833333333334in”<br>height=”3.654166666666667in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648593.png" alt=""></p>
 <p>可以发现我们的Administrator用户前面增加了域”XUWP05191643”。</p>
 <p>进入系统后，查看系统属性。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648311.png" alt="">{width=”6.270833333333333in”<br>height=”8.0in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648311.png" alt=""></p>
 <p>这表明成功创建了父域xuwp05191643.com，同时服务器Server-No1属于xuwp05191643.com</p>
 <h2 id="Server-No2"><a href="#Server-No2" class="headerlink" title="Server-No2"></a>Server-No2</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>同Server-No1</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648271.png" alt="">{width=”6.495833333333334in”<br>height=”4.623611111111111in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648271.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”。</p>
 <h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p>“将新域添加到现有林”-“更改”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648782.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648782.png" alt=""></p>
 <p>输入<strong>父域的</strong>账号密码</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648442.png" alt="">{width=”5.916666666666667in”<br>height=”3.6458333333333335in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648442.png" alt=""></p>
 <p>但是发现无法连接，点击”查看详细信息”看一下原因。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648571.png" alt="">{width=”6.495833333333334in”<br>height=”5.729166666666667in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648571.png" alt=""></p>
 <p>原来是DNS服务器找不到父域，那直接把DNS服务器改成父域的服务器就好了。</p>
 <p>我们把Server-No2的DNS服务器改成Server-No1。</p>
 <p>先设置Server-No1的IP和DNS。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648151.png" alt="">{width=”6.177083333333333in”<br>height=”7.083333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648151.png" alt=""></p>
 <p>然后把Server-No2的DNS服务器改成Server-No1。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649832.png" alt="">{width=”6.177083333333333in”<br>height=”7.083333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649832.png" alt=""></p>
 <p>点击”选择”，发现这次能搜索到了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649231.png" alt="">{width=”5.020833333333333in”<br>height=”3.8020833333333335in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649231.png" alt=""></p>
 <p>选择”xuwp05191643.com”（父域）-“确定”。</p>
 <p>将新域名设置为a</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649462.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649462.png" alt=""></p>
 <p>连续”下一步”，直到”查看选项”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649202.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649202.png" alt=""></p>
 <p>a.xuwp05191643.com的PowerShell脚本。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># 用于 AD DS 部署的 Windows PowerShell 脚本</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">Import-Module ADDSDeployment</span><br><span class="line">Install-ADDSDomain `</span><br><span class="line">-NoGlobalCatalog:$false `</span><br><span class="line">-CreateDnsDelegation:$true `</span><br><span class="line">-Credential (Get-Credential) `</span><br><span class="line">-DatabasePath &quot;C:\Windows\NTDS&quot; `</span><br><span class="line">-DomainMode &quot;WinThreshold&quot; `</span><br><span class="line">-DomainType &quot;ChildDomain&quot; `</span><br><span class="line">-InstallDns:$true `</span><br><span class="line">-LogPath &quot;C:\Windows\NTDS&quot; `</span><br><span class="line">-NewDomainName &quot;a&quot; `</span><br><span class="line">-NewDomainNetbiosName &quot;A&quot; `</span><br><span class="line">-ParentDomainName &quot;xuwp05191643.com&quot; `</span><br><span class="line">-NoRebootOnCompletion:$false `</span><br><span class="line">-SiteName &quot;Default-First-Site-Name&quot; `</span><br><span class="line">-SysvolPath &quot;C:\Windows\SYSVOL&quot; `</span><br><span class="line">-Force:$true</span><br></pre></td></tr></table></figure>
 <p>点击”下一步”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649781.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649781.png" alt=""></p>
 <p>点击”下一步”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649961.png" alt="">{width=”6.495833333333334in”<br>height=”1.5131944444444445in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649961.png" alt=""></p>
 <p>点击”关闭”，等待重启。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649583.png" alt="">{width=”6.495833333333334in”<br>height=”3.654166666666667in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649583.png" alt=""></p>
 <p>基本上可以看出来配置AD成功了，再看一下系统属性。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649253.png" alt="">{width=”6.270833333333333in”<br>height=”8.0in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649253.png" alt=""></p>
 <p>这表明成功创建了xuwp05191643.com的子域a.xuwp05191643.com，同时服务器Server-No2属于a.xuwp05191643.com。</p>
 <p>查看一下目前的AD域。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649881.png" alt="">{width=”4.90625in”<br>height=”2.3125in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649881.png" alt=""></p>
 <p>点击”Active Directory域和信任关系”</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649962.png" alt="">{width=”6.495833333333334in”<br>height=”3.5125in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649962.png" alt=""></p>
 <p>在Server-No2中查看也是同样的结果，符合预期，配置完成。</p>
 <h2 id="Server-No3"><a href="#Server-No3" class="headerlink" title="Server-No3"></a>Server-No3</h2><h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><p>略</p>
 <h3 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h3><p>这次我们先修改DNS</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649422.png" alt="">{width=”6.177083333333333in”<br>height=”7.083333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649422.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”后出现配置向导。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649671.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649671.png" alt=""></p>
 <p>点击”将新域添加到现有林”-“树域”。</p>
 <p>“更改”处仍使用xuwp05191643.com的凭据。</p>
 <p>连续”下一步”，直到”其他选项”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649174.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649174.png" alt=""></p>
 <p>这里的NetBIOS域名和xuwp05191643.com的NetBIOS域名重复了，所以向导在后面加了个0（这里最好还是换个名字，因为改起来很麻烦）。</p>
 <p>连续”下一步”，直到”查看选项”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649541.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649541.png" alt=""></p>
 <p>xuwp05191643.org的PowerShell脚本。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># 用于 AD DS 部署的 Windows PowerShell 脚本</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">Import-Module ADDSDeployment</span><br><span class="line">Install-ADDSDomain `</span><br><span class="line">-NoGlobalCatalog:$false `</span><br><span class="line">-CreateDnsDelegation:$false `</span><br><span class="line">-Credential (Get-Credential) `</span><br><span class="line">-DatabasePath &quot;C:\Windows\NTDS&quot; `</span><br><span class="line">-DomainMode &quot;WinThreshold&quot; `</span><br><span class="line">-DomainType &quot;TreeDomain&quot; `</span><br><span class="line">-InstallDns:$true `</span><br><span class="line">-LogPath &quot;C:\Windows\NTDS&quot; `</span><br><span class="line">-NewDomainName &quot;xuwp05191643.org&quot; `</span><br><span class="line">-NewDomainNetbiosName &quot;XUWP051916430&quot; `</span><br><span class="line">-ParentDomainName &quot;xuwp05191643.com&quot; `</span><br><span class="line">-NoRebootOnCompletion:$false `</span><br><span class="line">-SiteName &quot;Default-First-Site-Name&quot; `</span><br><span class="line">-SysvolPath &quot;C:\Windows\SYSVOL&quot; `</span><br><span class="line">-Force:$true</span><br></pre></td></tr></table></figure>
 <p>点击”下一步”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649791.png" alt="">{width=”6.495833333333334in”<br>height=”4.774305555555555in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649791.png" alt=""></p>
 <p>点击”安装”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649451.png" alt="">{width=”6.495833333333334in”<br>height=”1.5131944444444445in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649451.png" alt=""></p>
 <p>点击”关闭”，等待重启。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649896.png" alt="">{width=”6.495833333333334in”<br>height=”3.654166666666667in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649896.png" alt=""></p>
 <p>登录界面</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649508.png" alt="">{width=”6.270833333333333in”<br>height=”8.0in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649508.png" alt=""></p>
 <p>系统属性</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649336.png" alt="">{width=”6.495833333333334in”<br>height=”3.5125in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649336.png" alt=""></p>
 <p>AD域和信任关系。</p>
 <p>查看一下xuwp05191643.com的属性。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649631.png" alt="">{width=”6.03125in”<br>height=”7.145833333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649631.png" alt=""></p>
 <p>配置完成。</p>
 <h2 id="一次尝试：使用Windows-Admin-Center配置AD"><a href="#一次尝试：使用Windows-Admin-Center配置AD" class="headerlink" title="一次尝试：使用Windows Admin Center配置AD"></a>一次尝试：使用Windows Admin Center配置AD</h2><p>Microsoft于2018年推出了Windows Admin<br>Center，这款正在开发的程序正在成为主流的服务器管理方式。</p>
 <p>最初我尝试着使用这款全新的工具，按照Microsoft的推荐在Server-No2和Server-No3上安装了无GUI的Windows<br>Server。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649177.png" alt="">{width=”6.495833333333334in”<br>height=”4.872222222222222in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649177.png" alt=""></p>
 <p>安装完成后可以发现无GUI的Windows Server<br>2022只有一个PowerShell窗口，该版本开机后会自动进入SConfig程序，如下图。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649844.png" alt="">{width=”6.495833333333334in”<br>height=”3.388888888888889in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649844.png" alt=""></p>
 <p>在Server-No1中打开Windows Admin<br>Center，输入服务器名Server-No2即可轻松地与其建立连接。同样地，点击”角色和功能”，可以在其中安装Active<br>Directory域服务。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649302.png" alt="">{width=”6.495833333333334in”<br>height=”3.301388888888889in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649302.png" alt=""></p>
 <p>另外，还可以使用远程桌面连接Server-No2。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650452.png" alt="">{width=”6.495833333333334in”<br>height=”4.084027777777778in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650452.png" alt=""></p>
 <p>但是Windows Admin<br>Center目前还没有集成对其的配置功能，该功能目前仍作为一个扩展插件被开发，我们可以手动安装它。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650389.png" alt="">{width=”6.495833333333334in”<br>height=”4.071527777777778in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650389.png" alt=""></p>
 <p>但遗憾的是这个插件目前只能在作为域控制器的服务器上查看。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650073.png" alt="">{width=”6.495833333333334in”<br>height=”4.608333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650073.png" alt=""></p>
 <p>因为AD配置功能仍在开发，Windows Admin Center目前还没有像Windows Server<br>Manager一样强大的功能，但我相信这样的集大成者在不久后定会成为主流，不负安装系统时的推荐二字。</p>
 <h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><p>先试一下Desktop版添加用户的方式，打开本地用户和组。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650751.png" alt="">{width=”6.495833333333334in”<br>height=”2.6416666666666666in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650751.png" alt=""></p>
 <p>行不通，按它说的在”Active Directory用户和计算机”中添加试试。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650323.png" alt="">{width=”6.495833333333334in”<br>height=”3.379166666666667in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650323.png" alt=""></p>
 <p>右击”xuwp05191643.com”，点击”新建”-“组织单元”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650642.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650642.png" alt=""></p>
 <p>右击”Client Users”，点击”新建”-“组”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650169.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650169.png" alt=""></p>
 <p>右击”Client Users”，点击”新建”-“用户”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650521.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650041.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650532.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650521.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650041.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650532.png" alt=""></p>
 <p>这里为了区分各Server的用户，我在”英文缩写”处做了一个标识”-Nox”。</p>
 <p>注：在实际生产环境中最好勾选”用户下次登录时须更改密码”，这里我勾选了，后面可以看到需要更改密码才能登录进去，后两个用户就不勾了。</p>
 <p>同样的步骤，在Server-No2和Server-No3中操作一遍，有：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650752.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650422.png" alt="">{width=”6.495833333333334in”<br>height=”5.840972222222222in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650752.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650422.png" alt=""></p>
 <h1 id="登录客户机"><a href="#登录客户机" class="headerlink" title="登录客户机"></a>登录客户机</h1><h2 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h2><p>首先要将客户机加入到我们创建的AD林中。</p>
 <p>首先改DNS</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650902.png" alt="">{width=”4.822916666666667in”<br>height=”6.03125in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650902.png" alt=""></p>
 <p>在”系统属性”中加入域即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650473.png" alt="">{width=”3.90625in”<br>height=”5.208333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650473.png" alt=""></p>
 <p>输入xuwp05191643.com的凭据</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650892.png" alt="">{width=”4.729166666666667in”<br>height=”2.90625in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650461.png" alt="">{width=”2.8958333333333335in”<br>height=”1.7708333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650892.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650461.png" alt=""></p>
 <p>加入成功。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650622.png" alt="">{width=”3.6458333333333335in”<br>height=”1.75in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650622.png" alt=""></p>
 <p>重启后查看”系统属性”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650661.png" alt="">{width=”4.96875in”<br>height=”6.208333333333333in”}</p>
-<h2 id="登录xuwp-No1"><a href="#登录xuwp-No1" class="headerlink" title="登录xuwp-No1"></a>登录xuwp-No1</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650221.png" alt="">{width=”6.495833333333334in”<br>height=”3.6194444444444445in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650661.png" alt=""></p>
+<h2 id="登录xuwp-No1"><a href="#登录xuwp-No1" class="headerlink" title="登录xuwp-No1"></a>登录xuwp-No1</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650221.png" alt=""></p>
 <p>因为我们之前勾选了”用户下次登录时须更改密码”，所以这里系统要求我们更改密码后进入。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650441.png" alt="">{width=”6.495833333333334in”<br>height=”4.55625in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650941.png" alt="">{width=”6.495833333333334in”<br>height=”2.8958333333333335in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650441.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650941.png" alt=""></p>
 <p>使用新密码登录系统后，出现和初始化系统相同的界面。</p>
 <p>最后，使用whoami命令确定域和用户。</p>
-<p><img src="C:/Users/XuWanpeng/Desktop/docx_to_markdown-main/images/05191643-%E8%AE%B8%E4%B8%87%E9%B9%8F-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8-%E4%BD%9C%E4%B8%9A%E4%B8%809efe51b1-6c2b-4f90-9733-a3f839a299d1/media/image61.png" alt="">{width=”3.8125in”<br>height=”1.2916666666666667in”}</p>
-<h2 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt="">{width=”6.495833333333334in”<br>height=”3.6347222222222224in”}</p>
+<p><img src="C:/Users/XuWanpeng/Desktop/docx_to_markdown-main/images/05191643-%E8%AE%B8%E4%B8%87%E9%B9%8F-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8-%E4%BD%9C%E4%B8%9A%E4%B8%809efe51b1-6c2b-4f90-9733-a3f839a299d1/media/image61.png" alt=""></p>
+<h2 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt=""></p>
 <p>根据下面”如何登录到其他域？”的提示，我们使用域名\域用户名的格式登录。（这实际上是Windows<br>2000以前版本的登录方式，目前应该使用域用户名\@域名）。</p>
 <p>这里不需要更改密码，等待初始化系统后使用whoami确定域和用户。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650360.png" alt="">{width=”5.697916666666667in”<br>height=”1.8541666666666667in”}</p>
-<h2 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt="">{width=”6.495833333333334in”<br>height=”2.609027777777778in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650360.png" alt=""></p>
+<h2 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt=""></p>
 <p>发现登录不上，我们ping一下Server-No3试试。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650872.png" alt="">{width=”6.416666666666667in”<br>height=”3.25in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650872.png" alt=""></p>
 <p>发现DNS无法解析，那就对xuwp05191643.com设置一个xuwp05191643.org的IP转发。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650151.png" alt="">{width=”4.958333333333333in”<br>height=”2.7291666666666665in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650151.png" alt=""></p>
 <p>点击”工具”-“DNS”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650721.png" alt="">{width=”6.495833333333334in”<br>height=”4.5472222222222225in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650721.png" alt=""></p>
 <p>右击”条件转发器”-“新建条件转发器”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651791.png" alt="">{width=”6.495833333333334in”<br>height=”4.626388888888889in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651791.png" alt=""></p>
 <p>输入”DNS域”和”主服务器的IP地址”，点击”确定”。</p>
 <p>注：这里虽然提示了一个”验证服务器时出现了一个未知错误”，但其实并无大碍。</p>
 <p>再试着ping一下Server-No3。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651681.png" alt="">{width=”6.495833333333334in”<br>height=”5.182638888888889in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651681.png" alt=""></p>
 <p>可以解析了，再次登录一下。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651933.png" alt="">{width=”6.495833333333334in”<br>height=”3.4833333333333334in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651933.png" alt=""></p>
 <p>这次可以登录成功了，使用whoami确定域和用户。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651653.png" alt="">{width=”5.6875in”<br>height=”1.8020833333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651653.png" alt=""></p>
 <h1 id="共享资源"><a href="#共享资源" class="headerlink" title="共享资源"></a>共享资源</h1><p>共享资源有几种方式，但都差不太多。</p>
 <h2 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h2><h3 id="高级共享"><a href="#高级共享" class="headerlink" title="高级共享"></a>高级共享</h3><p>右击想要共享的文件夹-“属性”-“共享”-“高级共享”-“共享此文件夹”-“权限”-允许读取/更改-“确定”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651156.png" alt="">{width=”6.495833333333334in”<br>height=”2.970833333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651156.png" alt=""></p>
 <p>注意这种方式是共享给”Everyone”的，林中的所有用户都可以发现共享文件夹。</p>
 <h3 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h3><p>右击想要共享的文件夹-“属性”-“共享”-下拉箭头-“查找个人”-“位置”</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651380.png" alt="">{width=”6.495833333333334in”<br>height=”3.7930555555555556in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651380.png" alt=""></p>
 <p>选中”整个目录”。</p>
 <p>然后我们就可以搜索我们的3个Administrator和3个XuWanpeng-Nox了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651680.png" alt="">{width=”6.495833333333334in”<br>height=”7.5375in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651680.png" alt=""></p>
 <p>选中他们，点击”确定”。</p>
 <p>将6个用户全部加入后如图。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651522.png" alt="">{width=”6.495833333333334in”<br>height=”4.59375in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651522.png" alt=""></p>
 <p>点击”确定”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651992.png" alt="">{width=”6.495833333333334in”<br>height=”4.8902777777777775in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651992.png" alt=""></p>
 <p>最后将他们权限级别全部改为”读取/写入”。</p>
 <p>注：这种方式也可以实现对”Everyone”的共享，这个选项也在下拉菜单中。</p>
 <h3 id="在Active-Directory上发布共享文件夹"><a href="#在Active-Directory上发布共享文件夹" class="headerlink" title="在Active Directory上发布共享文件夹"></a>在Active Directory上发布共享文件夹</h3><p>有的时候我们不希望整个网络的主机都发现我们的共享文件夹，我们现在试着将文件夹发布到自己所在的AD上。</p>
 <p>首先，使用前两节的方法将其设置为共享文件夹。</p>
 <p>接着，打开”计算机管理”（compmgmt.msc）-“共享文件夹”-“共享”-右击”Server-No1-ADShare”-“属性”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651672.png" alt="">{width=”6.495833333333334in”<br>height=”4.048611111111111in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651672.png" alt=""></p>
 <p>点击”将这个共享在Active<br>Directory中发布”，并为其设置一个关键字即可发布到主机所在AD上，我们在5.2.2节演示怎样使用这些共享文件夹。</p>
 <h2 id="查看共享文件夹"><a href="#查看共享文件夹" class="headerlink" title="查看共享文件夹"></a>查看共享文件夹</h2><h3 id="在网络中发现共享文件"><a href="#在网络中发现共享文件" class="headerlink" title="在网络中发现共享文件"></a>在网络中发现共享文件</h3><p>设置好共享文件夹后，系统会生成一个网络路径，如</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651451.png" alt="">{width=”4.133692038495188in”<br>height=”1.841826334208224in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651451.png" alt=""></p>
 <p>林中的计算机使用这个路径后都可以查看共享文件夹。但是我们并不能<strong>发现</strong>它，这要怎么办呢？</p>
 <p>一个朴素的想法就是在”控制面板”-“网络和Internet”-“网络和共享中心”-“高级共享设置”中”启用网络发现”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652712.png" alt="">{width=”6.133864829396326in”<br>height=”2.725236220472441in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652712.png" alt=""></p>
 <p>但我们发现这个选项点不开，关闭页面后又会变回去。</p>
 <p>更简单的方法是在”服务”（services.msc）中把”Function Discovery Resource<br>Publication”服务打开。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651711.png" alt="">{width=”6.495833333333334in”<br>height=”3.0131944444444443in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651064.png" alt="">{width=”5.40625in”<br>height=”3.2604166666666665in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651711.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651064.png" alt=""></p>
 <p>FDResPub服务的作用是：发布该计算机以及连接到该计算机的资源，以便能够在网络上发现这些资源。如果该服务被停止，将不再发布网络资源，网络上的其他计算机将无法发现这些资源。</p>
 <p>然后我们就可以在”网络”中发现共享文件夹了。</p>
 <p>事实上”启用网络发现”这个选项也是可以打开的，需要用上述方式打开”Function<br>Discovery Resource Publication”服务、”SSDP Discovery”服务、”UPnP Device<br>Host”服务，然后这个选项就永久打开了（推荐这种方式）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651082.png" alt="">{width=”2.3854166666666665in”<br>height=”4.8125in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651082.png" alt=""></p>
 <p>至此，我们随便选择3个Administrator和3个xuwp-Nox中的任何1个都可以查看到这些共享文件夹。</p>
 <h3 id="在Active-Directory上查找共享文件夹"><a href="#在Active-Directory上查找共享文件夹" class="headerlink" title="在Active Directory上查找共享文件夹"></a>在Active Directory上查找共享文件夹</h3><p>点击”网络”-“搜索Active Directory”。</p>
 <p>将”查找”处改为”共享文件夹”。</p>
@@ -485,39 +485,39 @@
 <p>这里我使用通配符*，但并没有发现此前那些共享文件夹，说明这里只能搜索到在AD上发布的共享文件夹。</p>
 <p>事实上，”启用网络发现”的主机也可以看见共享文件夹Server-No1-ADShare，这是不安全的，所以尽量使用Active<br>Directory共享文件夹。</p>
 <p>注：关键字缺省代表搜索所有共享文件夹。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651442.png" alt="">{width=”6.495833333333334in”<br>height=”6.445833333333334in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651442.png" alt=""></p>
 <p>右击”Server-No1-ADShare”行，点击”浏览”即可正常读写文件夹。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651913.png" alt="">{width=”6.495833333333334in”<br>height=”3.0708333333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651913.png" alt=""></p>
 <p>我们在这个共享文件夹中写入一个文件，测试其他主机是否能看到这个文件。</p>
 <p>进入任意一个林中的主机（这里我选用了发布该共享文件的主机），打开文件。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651692.png" alt="">{width=”4.825417760279965in”<br>height=”1.841826334208224in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651692.png" alt=""></p>
 <p>刷新后即可发现这个新增的文件。</p>
 <p>有时我们需要经常用到某个共享文件夹，我们可以将其映射到网络驱动器。</p>
 <p>右击”Server-No1-ADShare”行，点击”映射网络驱动器”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651623.png" alt="">{width=”6.495833333333334in”<br>height=”4.804861111111111in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651623.png" alt=""></p>
 <p>在”驱动器”处选择一个喜欢的盘符。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651862.png" alt="">{width=”5.500476815398075in”<br>height=”1.858494094488189in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651862.png" alt=""></p>
 <p>回到资源管理器即可发现这个网络驱动器。</p>
 <p>最后附一张位于多个域的共享文件夹查询。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651751.png" alt="">{width=”6.383886701662292in”<br>height=”5.675492125984252in”}</p>
-<h1 id="作业展示截图"><a href="#作业展示截图" class="headerlink" title="作业展示截图"></a>作业展示截图</h1><h2 id="域和信任关系的展示截图"><a href="#域和信任关系的展示截图" class="headerlink" title="域和信任关系的展示截图"></a>域和信任关系的展示截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651352.png" alt="">{width=”6.495833333333334in”<br>height=”3.5125in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651751.png" alt=""></p>
+<h1 id="作业展示截图"><a href="#作业展示截图" class="headerlink" title="作业展示截图"></a>作业展示截图</h1><h2 id="域和信任关系的展示截图"><a href="#域和信任关系的展示截图" class="headerlink" title="域和信任关系的展示截图"></a>域和信任关系的展示截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651352.png" alt=""></p>
 <p>Active Directory域和共享关系</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651261.png" alt="">{width=”6.03125in”<br>height=”7.145833333333333in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651261.png" alt=""></p>
 <p>xuwp05191643.com属性</p>
-<h2 id="连通性测试截图"><a href="#连通性测试截图" class="headerlink" title="连通性测试截图"></a>连通性测试截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651041.png" alt="">{width=”5.48380905511811in”<br>height=”4.850419947506562in”}</p>
+<h2 id="连通性测试截图"><a href="#连通性测试截图" class="headerlink" title="连通性测试截图"></a>连通性测试截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651041.png" alt=""></p>
 <p>Server-No1 ping Server-No2 和 Server-No3</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651271.png" alt="">{width=”5.48380905511811in”<br>height=”4.7254090113735785in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651271.png" alt=""></p>
 <p>Server-No2 ping Server-No1 和 Server-No3</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651160.png" alt="">{width=”5.48380905511811in”<br>height=”4.758745625546807in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651160.png" alt=""></p>
 <p>Server-No3 ping Server-No1 和 Server-No2</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651802.png" alt="">{width=”5.48380905511811in”<br>height=”6.883929352580927in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651802.png" alt=""></p>
 <p>Client-No1 ping Server-No1、Server-No2 和 Server-No3</p>
-<h2 id="林中不同域计算机用户登录客户机的截图"><a href="#林中不同域计算机用户登录客户机的截图" class="headerlink" title="林中不同域计算机用户登录客户机的截图"></a>林中不同域计算机用户登录客户机的截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652013.png" alt="">{width=”2.6918996062992124in”<br>height=”5.367131452318461in”}</p>
+<h2 id="林中不同域计算机用户登录客户机的截图"><a href="#林中不同域计算机用户登录客户机的截图" class="headerlink" title="林中不同域计算机用户登录客户机的截图"></a>林中不同域计算机用户登录客户机的截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652013.png" alt=""></p>
 <p>点击开始菜单可以看到的已登录用户</p>
-<h2 id="可查询共享资源截图"><a href="#可查询共享资源截图" class="headerlink" title="可查询共享资源截图"></a>可查询共享资源截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652091.png" alt="">{width=”2.3854166666666665in”<br>height=”4.8125in”}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652942.png" alt="">{width=”6.495833333333334in”<br>height=”0.60625in”}</p>
+<h2 id="可查询共享资源截图"><a href="#可查询共享资源截图" class="headerlink" title="可查询共享资源截图"></a>可查询共享资源截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652091.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652942.png" alt=""></p>
 <p>文件资源管理器的网络选项</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652522.png" alt="">{width=”6.383886701662292in”<br>height=”5.675492125984252in”}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652522.png" alt=""></p>
 <p>在AD上查询共享文件夹</p>
 
         </div>
