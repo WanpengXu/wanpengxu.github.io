@@ -257,10 +257,11 @@
 
         <div class="post-content">
             <blockquote>
-<p>前言：这是本学期数学学院专业课《人工智能控制》所使用的教材，作者王万良教授是控制出身，书中讲述的很细致，但有些地方不够严谨。</p>
-<p>目前只记录考试内容。</p>
+<p>前言：这是本学期数学学院专业课《人工智能控制》所使用的教材，书中有些地方不够准确。</p>
+<p>目前只记录考试内容，大部分知识是《离散数学》+《算法导论》。</p>
 </blockquote>
-<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h1 id="知识表示与知识图谱"><a href="#知识表示与知识图谱" class="headerlink" title="知识表示与知识图谱"></a>知识表示与知识图谱</h1><h2 id="知识的概念"><a href="#知识的概念" class="headerlink" title="知识的概念"></a>知识的概念</h2><p>知识：把有关信息关联在一起所形成的信息结构</p>
+<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>略</p>
+<h1 id="知识表示与知识图谱"><a href="#知识表示与知识图谱" class="headerlink" title="知识表示与知识图谱"></a>知识表示与知识图谱</h1><h2 id="知识的概念"><a href="#知识的概念" class="headerlink" title="知识的概念"></a>知识的概念</h2><p>知识：把有关信息关联在一起所形成的信息结构</p>
 <p>知识分为“事实”和“规则”。</p>
 <p>相对正确性：在一定的条件及环境下，知识一般是正确的。</p>
 <p>不确定性：知识不是“真”与“假”的二值结构，“真”与“假”间存在中间状态，“真”是有程度的。</p>
@@ -479,7 +480,39 @@ C_{12} = (C_1\sigma - \{L_1\sigma\})\vee (C_2\sigma-\{L_2\sigma\})</script><p>�
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205190037208.png" alt=""></p>
 <h1 id="不确定性推理方法"><a href="#不确定性推理方法" class="headerlink" title="不确定性推理方法"></a>不确定性推理方法</h1><p>知识的静态强度：知识的不确定性程度</p>
 <p>知识的动态强度：证据的不确定性程度</p>
-<h2 id="可信度方法"><a href="#可信度方法" class="headerlink" title="可信度方法"></a>可信度方法</h2>
+<h2 id="可信度方法"><a href="#可信度方法" class="headerlink" title="可信度方法"></a>可信度方法</h2><p>可信度方法：根据经验对一个事物或现象为真的相信程度。</p>
+<h3 id="知识不确定性的表示"><a href="#知识不确定性的表示" class="headerlink" title="知识不确定性的表示"></a>知识不确定性的表示</h3><p>C-F（Certainty-Factor）模型中的知识：</p>
+<script type="math/tex; mode=display">
+IF\qquad E \qquad THEN \qquad H\qquad (CF(H, E))</script><p>其中$CF(H, E)$称可信度因子（certainty factor），是当前提条件$E$为真时，对结论$H$的支持程度。</p>
+<p>$CF(H, E) \in [-1,1]$时：小于0代表E支持H为假，等于0代表E与H无关，大于0代表E支持H为真，绝对值越大越支持。</p>
+<h3 id="证据不确定性的表示"><a href="#证据不确定性的表示" class="headerlink" title="证据不确定性的表示"></a>证据不确定性的表示</h3><p>$CF(E)=x$：E的可信度为x</p>
+<p>静态强度$CF(H, E)$：表示当E对应的证据为真时对H的支持程度</p>
+<p>动态强度$CF(E)$：E当前的不确定程度</p>
+<h3 id="组合证据不确定性的算法"><a href="#组合证据不确定性的算法" class="headerlink" title="组合证据不确定性的算法"></a>组合证据不确定性的算法</h3><p>当组合证据是多个单一证据的合取时，即：</p>
+<script type="math/tex; mode=display">
+E=(E_1\quad AND \quad E_2 \quad AND\quad \dots \quad AND \quad E_n)</script><p>若$CF(E_1), CF(E_2), \dots CF(E_n)$已知，则：</p>
+<script type="math/tex; mode=display">
+CF(E) = min\{ CF(E_1), CF(E_2), \dots CF(E_n) \}</script><p>其实很好理解，如果一个人对你说了关于某一件事的观点和得到这个观点的n个小观点，当你认为其中一个小观点不太可信时，那你就会认为他对这件事的观点不太可信。</p>
+<p>当组合证据是多个单一证据的析取时，即：</p>
+<script type="math/tex; mode=display">
+E=(E_1\quad OR \quad E_2 \quad OR \quad \dots \quad OR \quad E_n)</script><p>若$CF(E_1), CF(E_2), \dots CF(E_n)$已知，则：</p>
+<script type="math/tex; mode=display">
+CF(E) = max\{ CF(E_1), CF(E_2), \dots CF(E_n) \}</script><p>同样地，n个人对你说了关于某一件事的n个观点，你会相信这n个观点里最可信的一个作为对这件事的观点。</p>
+<p>注：理解部分只是暂时写一下，有时间再修改润色。</p>
+<h3 id="不确定性的传递算法"><a href="#不确定性的传递算法" class="headerlink" title="不确定性的传递算法"></a>不确定性的传递算法</h3><script type="math/tex; mode=display">
+CF(H) = CF(H,E) \times max\{0, CF(E)\}</script><p>就是从$CF(E)\in[-1, 1]$映射到$CF(H)\in[0,1]$。</p>
+<h3 id="结论不确定性的合成算法"><a href="#结论不确定性的合成算法" class="headerlink" title="结论不确定性的合成算法"></a>结论不确定性的合成算法</h3><p>若由多条不同知识推出了相同的结论，但可信度不同，则可用合成算法求出综合可信度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191732171.png" alt=""></p>
+<p>这个公式其实也很好记，综合可信度$C_{12}$是由$CF_1(H)+CF_2(H)$向0靠近得来的（将$CF_1(H)+CF_2(H)$的绝对值变小）。</p>
+<p>对于1. $CF_1(H)+CF_2(H)$为正，$CF_1(H)CF_2(H)$为正，正-正靠近0</p>
+<p>对于2. $CF_1(H)+CF_2(H)$为负，$CF_1(H)CF_2(H)$为正，负+正靠近0</p>
+<p>对于3. $CF_1(H)+CF_2(H)$不确定，但分母是1-较小值=较大值，所以分式是绝对值较小值</p>
+<p>例4.1</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191736038.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191736967.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191737659.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191737509.png" alt=""></p>
+<h2 id="证据理论"><a href="#证据理论" class="headerlink" title="证据理论"></a>证据理论</h2><h3 id="概率分配函数"><a href="#概率分配函数" class="headerlink" title="概率分配函数"></a>概率分配函数</h3><h3 id="信任函数"><a href="#信任函数" class="headerlink" title="信任函数"></a>信任函数</h3><h3 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h3>
         </div>
 
         
