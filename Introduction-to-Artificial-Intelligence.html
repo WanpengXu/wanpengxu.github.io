@@ -374,7 +374,7 @@ P \rightarrow Q, Q\rightarrow R \Rightarrow P\rightarrow R</script><p>全称固�
 <script type="math/tex; mode=display">
 IF \qquad P \qquad THEN\qquad Q</script><p>不确定性规则知识的产生式：</p>
 <script type="math/tex; mode=display">
-IF \qquad P \qquad THEN\qquad Q\qquad(置信度)</script><h1 id="确定性推理方法"><a href="#确定性推理方法" class="headerlink" title="确定性推理方法"></a>确定性推理方法</h1><p>推理：从已知的事实出发，通过运用已掌握的知识，找出其中蕴涵的事实，或归纳出新的事实的过程。</p>
+IF \qquad P \qquad THEN\qquad Q\qquad(置信度)</script><h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><h1 id="确定性推理方法"><a href="#确定性推理方法" class="headerlink" title="确定性推理方法"></a>确定性推理方法</h1><p>推理：从已知的事实出发，通过运用已掌握的知识，找出其中蕴涵的事实，或归纳出新的事实的过程。</p>
 <p>按推出结论的途径：</p>
 <ul>
 <li><p>演绎推理：一般到个别</p>
@@ -434,8 +434,8 @@ Easy(ds),Easy(y)\rightarrow Like(Wang,y)\Rightarrow Like(Wang, ds)</script><p>�
 <h2 id="谓词公式集-gt-子句集"><a href="#谓词公式集-gt-子句集" class="headerlink" title="谓词公式集-&gt;子句集"></a>谓词公式集-&gt;子句集</h2><p>原子（atom）谓词公式：一个不能再分解的命题</p>
 <p>文字（literal）：原子谓词公式及其否定</p>
 <p>子句（clause）：文字的析取式</p>
-<p>子句集：子句构成的集合</p>
-<p>空子句：NIL，不含任何文字的子句。NIL是永假的，不可满足的</p>
+<p>子句集（set of clauses）：子句构成的集合</p>
+<p>空子句（拉丁语nihil）：NIL，不含任何文字的子句。NIL是永假的，不可满足的</p>
 <p>转换步骤：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205190002594.png" alt=""></p>
 <p>例3.2</p>
@@ -501,7 +501,7 @@ C_{12} = (C_1\sigma - \{L_1\sigma\})\vee (C_2\sigma-\{L_2\sigma\})</script><p>�
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205190036631.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205190037231.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205190037208.png" alt=""></p>
-<h1 id="不确定性推理方法"><a href="#不确定性推理方法" class="headerlink" title="不确定性推理方法"></a>不确定性推理方法</h1><p>知识的静态强度：知识的不确定性程度</p>
+<h2 id="习题-1"><a href="#习题-1" class="headerlink" title="习题"></a>习题</h2><h1 id="不确定性推理方法"><a href="#不确定性推理方法" class="headerlink" title="不确定性推理方法"></a>不确定性推理方法</h1><p>知识的静态强度：知识的不确定性程度</p>
 <p>知识的动态强度：证据的不确定性程度</p>
 <h2 id="可信度方法"><a href="#可信度方法" class="headerlink" title="可信度方法"></a>可信度方法</h2><p>可信度方法：根据经验对一个事物或现象为真的相信程度。</p>
 <h3 id="知识不确定性的表示"><a href="#知识不确定性的表示" class="headerlink" title="知识不确定性的表示"></a>知识不确定性的表示</h3><p>C-F（Certainty-Factor）模型中的知识：</p>
@@ -620,9 +620,21 @@ U = \frac{\sum_{i = 1}^{n}\mu(u_i)u_i}{\sum_{i = 1}^{n}\mu(u_i)}</script></li>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205220007370.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205220011172.jpg" alt=""></p>
 <p>注：右边是女朋友画的。</p>
-<h1 id="搜索求解策略"><a href="#搜索求解策略" class="headerlink" title="搜索求解策略"></a>搜索求解策略</h1><h2 id="搜索的概念"><a href="#搜索的概念" class="headerlink" title="搜索的概念"></a>搜索的概念</h2><p>盲目搜索（Blind search）：在对特定问题不具有任何有关信息的条件下，按固定的步骤（依次或随机调用操作算子）进行的搜索。</p>
+<h2 id="习题-2"><a href="#习题-2" class="headerlink" title="习题"></a>习题</h2><h1 id="搜索求解策略"><a href="#搜索求解策略" class="headerlink" title="搜索求解策略"></a>搜索求解策略</h1><h2 id="搜索的概念"><a href="#搜索的概念" class="headerlink" title="搜索的概念"></a>搜索的概念</h2><p>盲目搜索（Blind search）：在对特定问题不具有任何有关信息的条件下，按固定的步骤（依次或随机调用操作算子）进行的搜索。</p>
 <p>启发式搜索（Heuristic search）：考虑特定问题领域可应用的知识，动态地确定调用操作算子的步骤，优先选择较合适的操作算子，以求减少不必要的搜索、尽快达到结束状态、提高搜索效率的搜索。</p>
-<h3 id="状态空间的搜索策略"><a href="#状态空间的搜索策略" class="headerlink" title="状态空间的搜索策略"></a>状态空间的搜索策略</h3>
+<h2 id="状态空间的搜索策略"><a href="#状态空间的搜索策略" class="headerlink" title="状态空间的搜索策略"></a>状态空间的搜索策略</h2><p>状态空间：利用状态变量和操作符号，表示系统或问题的有关知识的符号体系。</p>
+<script type="math/tex; mode=display">
+(S,O,S_0,G)</script><p>$S$：状态集合</p>
+<p>$O$：操作算子的集合</p>
+<p>$S_0$：初始状态</p>
+<p>$G$：目的状态</p>
+<p>求解路径：从$S_0$结点到$G$结点的路径</p>
+<script type="math/tex; mode=display">
+S_0 \xrightarrow[]{O_1} S_1 \xrightarrow[]{O_2} S_2 \xrightarrow[]{O_3} \dots \xrightarrow[]{O_k} G</script><p>解：求解路径上的操作算子序列</p>
+<script type="math/tex; mode=display">
+O_1,O_2, \dots , O_k</script><h2 id="盲目的图搜索策略"><a href="#盲目的图搜索策略" class="headerlink" title="盲目的图搜索策略"></a>盲目的图搜索策略</h2><h3 id="回溯策略"><a href="#回溯策略" class="headerlink" title="回溯策略"></a>回溯策略</h3><h3 id="宽度优先搜索策略"><a href="#宽度优先搜索策略" class="headerlink" title="宽度优先搜索策略"></a>宽度优先搜索策略</h3><h3 id="广度优先搜索测量"><a href="#广度优先搜索测量" class="headerlink" title="广度优先搜索测量"></a>广度优先搜索测量</h3><p>注1：这一节书上讲的很差，建议去算法方面的书学习这里。我要是还有时间会补这里的，今天太累了不写了。</p>
+<p>注2：Chap2、Chap3、Chap4的课后习题有时间会更新的。</p>
+
         </div>
 
         
