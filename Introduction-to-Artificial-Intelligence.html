@@ -585,7 +585,7 @@ A = [\mu_A(x_1), \mu_A(x_2), \dots ,  \mu_A(x_n)]</script></li>
 <p>并：$\mu_{A\cup B}(x)=max{\mu_A(x), \mu_B(x)}=\mu_A(x)\vee\mu_B(x)$</p>
 <p>补：$\mu_{\overline{A}}(x)=1-\mu_A(x)$</p>
 <p>代数积：$\mu_{A\cdot B}(x)=\mu_A(x)\mu_B(x)$</p>
-<p>代数和：$\mu<em>{A+ B}(x)=\mu_A(x)+\mu_B(x)-\mu</em>{A\cdot B}(x)$</p>
+<p>代数和：$\mu<em>{A+B}(x)=\mu_A(x)+\mu_B(x)-\mu</em>{A\cdot B}(x)$</p>
 <p>有界和：$\mu_{A\oplus B}(x) = min{1,\mu_A(x)+\mu_B(x)}$</p>
 <p>有界积：$\mu_{A\otimes B}(x) = max{0,\mu_A(x)+\mu_B(x)-1}$</p>
 <p>注：下方的$\mu$和$R$应为粗体，代表向量和矩阵，我暂时不会打。</p>
@@ -611,10 +611,10 @@ U = u_i\quad,\mu(u_i)=max\{\mu\}</script></li>
 <li><p>加权平均判决法</p>
 <script type="math/tex; mode=display">
 U = \frac{\sum_{i = 1}^{n}\mu(u_i)u_i}{\sum_{i = 1}^{n}\mu(u_i)}</script></li>
-</ol>
-<ol>
-<li>中位数法<script type="math/tex; mode=display">
-\sum_{u_1}^{U}\mu(u_i)=\sum_{U+1}^{u_n}\mu(u_i)</script>注：可以先计算sum/2，当累加到最接近该值的$\mu(u_i)$时，$U = u_i$。</li>
+<li><p>中位数法</p>
+<script type="math/tex; mode=display">
+\sum_{u_1}^{U}\mu(u_i)=\sum_{U+1}^{u_n}\mu(u_i)</script><p>注：可以先计算sum/2，当累加到最接近该值的$\mu(u_i)$时，$U = u_i$。</p>
+</li>
 </ol>
 <h3 id="综合应用"><a href="#综合应用" class="headerlink" title="综合应用"></a>综合应用</h3><p>例4.10</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205220007370.png" alt=""></p>
