@@ -685,9 +685,22 @@ O_1,O_2, \dots , O_k</script><h2 id="盲目的图搜索策略"><a href="#盲目�
 <p>Pascal伪代码描述：</p>
 <figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">breadth_first_search</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function"><span class="title">open</span> :</span>= [S0];			<span class="comment">// 栈</span></span><br><span class="line">closed := [];			<span class="comment">// 栈</span></span><br><span class="line"><span class="keyword">while</span> open != [] <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		从open表中删除第一个状态，赋给n;</span><br><span class="line">		将n放入closed表中;</span><br><span class="line">		<span class="keyword">if</span> n = G <span class="keyword">then</span> return (success);</span><br><span class="line">		<span class="keyword">if</span> n的深度 &lt; depth_limit <span class="keyword">then</span> <span class="keyword">continue</span>;</span><br><span class="line">		生成n的所有子状态;</span><br><span class="line">		从n的所有子状态中删除已在open表或closed表中出现的状态;</span><br><span class="line">		将n的剩余子状态，按生成次序加入open表的前段;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
 <p>注：这一节书上讲的很差，建议去算法方面的书学习这里。我要是还有时间会补这里的。</p>
-<h2 id="启发式图搜索策略"><a href="#启发式图搜索策略" class="headerlink" title="启发式图搜索策略"></a>启发式图搜索策略</h2><p>启发式策略利用与问题有关的启发信息引导搜索。</p>
+<h2 id="启发式图搜索策略"><a href="#启发式图搜索策略" class="headerlink" title="启发式图搜索策略"></a>启发式图搜索策略</h2><h3 id="启发式策略"><a href="#启发式策略" class="headerlink" title="启发式策略"></a>启发式策略</h3><p>启发式策略利用启发信息引导搜索。</p>
+<p>启发信息：与问题有关的信息。</p>
 <p>例5.6 井字棋</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221732831.png" alt=""></p>
+<p>采用启发式策略，搜索树如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221947727.png" alt=""></p>
+<p>其实这种启发式策略很简单，就是将净赢状态数作为启发值，搜索启发值最大的那个/那些状态。</p>
+<p>以第一步为例（X方回合）：</p>
+<p>首先缩减状态空间，可以看出共有3种不同的落子处（类似魔方中的角块、棱块、中心块）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221952375.png" alt=""></p>
+<p>既然井字棋的规则是只要没被对方棋占住的空格就都可以下，那么以(a)图为例，X方的赢状态数共有8种。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221957419.png" alt=""></p>
+<p>那么下完这步后，O方的赢状态数共有5种。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205222000079.png" alt=""></p>
+<p>所以X方若下在角块处，净赢状态数共有8-5=3种，而下在中心块有8-4=4种，所以依启发式策略，第一步搜索了X方下在中心块的状态。</p>
+<h3 id="启发信息和估价函数"><a href="#启发信息和估价函数" class="headerlink" title="启发信息和估价函数"></a>启发信息和估价函数</h3><h3 id="A搜索算法"><a href="#A搜索算法" class="headerlink" title="A搜索算法"></a>A搜索算法</h3><h3 id="A-搜索算法"><a href="#A-搜索算法" class="headerlink" title="A*搜索算法"></a>A*搜索算法</h3><h1 id="智能计算及其应用"><a href="#智能计算及其应用" class="headerlink" title="智能计算及其应用"></a>智能计算及其应用</h1><p>注：这一章后面就进入机器学习部分了，所以到这里人工智能的基本知识就结束了，后面看西瓜书就可以了。</p>
 
         </div>
 
