@@ -647,7 +647,14 @@ U = \frac{\sum_{i = 1}^{n}\mu(u_i)u_i}{\sum_{i = 1}^{n}\mu(u_i)}</script></li>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205220007370.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205220011172.jpg" alt=""></p>
 <p>注：右边是女朋友画的。</p>
-<h2 id="习题-2"><a href="#习题-2" class="headerlink" title="习题"></a>习题</h2><h1 id="搜索求解策略"><a href="#搜索求解策略" class="headerlink" title="搜索求解策略"></a>搜索求解策略</h1><h2 id="搜索的概念"><a href="#搜索的概念" class="headerlink" title="搜索的概念"></a>搜索的概念</h2><p>盲目搜索（Blind search）：在对特定问题不具有任何有关信息的条件下，按固定的步骤（依次或随机调用操作算子）进行的搜索。</p>
+<h2 id="习题-2"><a href="#习题-2" class="headerlink" title="习题"></a>习题</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221702056.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221702381.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221703485.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221703015.png" alt=""></p>
+<p>4.2 初始可信度需要参与合成。</p>
+<p>4.3 本题中的推理网络还蛮好用，不过没在正文中出现。</p>
+<p>4.9 极小-极大算法可以用“打擂法”在脑中遍历一次直接得出结果。</p>
+<h1 id="搜索求解策略"><a href="#搜索求解策略" class="headerlink" title="搜索求解策略"></a>搜索求解策略</h1><h2 id="搜索的概念"><a href="#搜索的概念" class="headerlink" title="搜索的概念"></a>搜索的概念</h2><p>盲目搜索（Blind search）：在对特定问题不具有任何有关信息的条件下，按固定的步骤（依次或随机调用操作算子）进行的搜索。</p>
 <p>启发式搜索（Heuristic search）：考虑特定问题领域可应用的知识，动态地确定调用操作算子的步骤，优先选择较合适的操作算子，以求减少不必要的搜索、尽快达到结束状态、提高搜索效率的搜索。</p>
 <h2 id="状态空间的搜索策略"><a href="#状态空间的搜索策略" class="headerlink" title="状态空间的搜索策略"></a>状态空间的搜索策略</h2><p>状态空间：利用状态变量和操作符号，表示系统或问题的有关知识的符号体系。</p>
 <script type="math/tex; mode=display">
@@ -659,8 +666,28 @@ U = \frac{\sum_{i = 1}^{n}\mu(u_i)u_i}{\sum_{i = 1}^{n}\mu(u_i)}</script></li>
 <script type="math/tex; mode=display">
 S_0 \xrightarrow[]{O_1} S_1 \xrightarrow[]{O_2} S_2 \xrightarrow[]{O_3} \dots \xrightarrow[]{O_k} G</script><p>解：求解路径上的操作算子序列</p>
 <script type="math/tex; mode=display">
-O_1,O_2, \dots , O_k</script><h2 id="盲目的图搜索策略"><a href="#盲目的图搜索策略" class="headerlink" title="盲目的图搜索策略"></a>盲目的图搜索策略</h2><h3 id="回溯策略"><a href="#回溯策略" class="headerlink" title="回溯策略"></a>回溯策略</h3><h3 id="宽度优先搜索策略"><a href="#宽度优先搜索策略" class="headerlink" title="宽度优先搜索策略"></a>宽度优先搜索策略</h3><h3 id="广度优先搜索测量"><a href="#广度优先搜索测量" class="headerlink" title="广度优先搜索测量"></a>广度优先搜索测量</h3><p>注1：这一节书上讲的很差，建议去算法方面的书学习这里。我要是还有时间会补这里的，今天太累了不写了。</p>
-<p>注2：Chap2、Chap3、Chap4的课后习题有时间会更新的。</p>
+O_1,O_2, \dots , O_k</script><h2 id="盲目的图搜索策略"><a href="#盲目的图搜索策略" class="headerlink" title="盲目的图搜索策略"></a>盲目的图搜索策略</h2><h3 id="回溯策略"><a href="#回溯策略" class="headerlink" title="回溯策略"></a>回溯策略</h3><p>回溯（Backtracking）</p>
+<p>数据结构：</p>
+<p>路径状态表（Path States Table, PS）：保存当前搜索路径上的状态。</p>
+<p>新的路径状态表（New Path States Table, NPS）：保存等待搜索的状态。</p>
+<p>不可解状态表（No Solvable States Table, NSS）：保存找不到解路径的状态。</p>
+<p>当前正在被遍历的状态（Current State, CS）：当前正在被遍历的状态（hhhh废话）。</p>
+<h3 id="宽度优先搜索策略"><a href="#宽度优先搜索策略" class="headerlink" title="宽度优先搜索策略"></a>宽度优先搜索策略</h3><p>宽度优先搜索（Breadth-First Search）</p>
+<p>数据结构：</p>
+<p>open表：NPS表，保存已生成但未被遍历的状态。</p>
+<p>closed表：PS表和NSS表，保存已遍历的状态。</p>
+<p>Pascal伪代码描述：</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">breadth_first_search</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function"><span class="title">open</span> :</span>= [S0];			<span class="comment">// 队列</span></span><br><span class="line">closed := [];			<span class="comment">// 栈</span></span><br><span class="line"><span class="keyword">while</span> open != [] <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		从open表中删除第一个状态，赋给n;</span><br><span class="line">		将n放入closed表中;</span><br><span class="line">		<span class="keyword">if</span> n = G <span class="keyword">then</span> return (success);</span><br><span class="line">		生成n的所有子状态;</span><br><span class="line">		从n的所有子状态中删除已在open表或closed表中出现的状态;</span><br><span class="line">		将n的剩余子状态，按生成次序加入open表的后段;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="深度优先搜索策略"><a href="#深度优先搜索策略" class="headerlink" title="深度优先搜索策略"></a>深度优先搜索策略</h3><p>深度优先搜索（Depth-First Search）</p>
+<p>数据结构：</p>
+<p>open表：NPS表，保存已生成但未被遍历的状态。</p>
+<p>closed表：PS表和NSS表，保存已遍历的状态。</p>
+<p>Pascal伪代码描述：</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">breadth_first_search</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function"><span class="title">open</span> :</span>= [S0];			<span class="comment">// 栈</span></span><br><span class="line">closed := [];			<span class="comment">// 栈</span></span><br><span class="line"><span class="keyword">while</span> open != [] <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		从open表中删除第一个状态，赋给n;</span><br><span class="line">		将n放入closed表中;</span><br><span class="line">		<span class="keyword">if</span> n = G <span class="keyword">then</span> return (success);</span><br><span class="line">		<span class="keyword">if</span> n的深度 &lt; depth_limit <span class="keyword">then</span> <span class="keyword">continue</span>;</span><br><span class="line">		生成n的所有子状态;</span><br><span class="line">		从n的所有子状态中删除已在open表或closed表中出现的状态;</span><br><span class="line">		将n的剩余子状态，按生成次序加入open表的前段;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p>注：这一节书上讲的很差，建议去算法方面的书学习这里。我要是还有时间会补这里的。</p>
+<h2 id="启发式图搜索策略"><a href="#启发式图搜索策略" class="headerlink" title="启发式图搜索策略"></a>启发式图搜索策略</h2><p>启发式策略利用与问题有关的启发信息引导搜索。</p>
+<p>例5.6 井字棋</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205221732831.png" alt=""></p>
 
         </div>
 
