@@ -267,13 +267,13 @@
 
 
  -->
-<h1 id="作业环境"><a href="#作业环境" class="headerlink" title="作业环境"></a>作业环境</h1><p>服务器：</p>
+<h1 id="作业一"><a href="#作业一" class="headerlink" title="作业一"></a>作业一</h1><h2 id="作业环境"><a href="#作业环境" class="headerlink" title="作业环境"></a>作业环境</h2><p>服务器：</p>
 <p>Windows Server 2022：Server-No1</p>
 <p>Windows Server 2022：Server-No2</p>
 <p>Windows Server 2022：Server-No3</p>
 <p>客户端：</p>
 <p>Windows 10 1909：Client-No1</p>
-<h1 id="配置Active-Directory"><a href="#配置Active-Directory" class="headerlink" title="配置Active Directory"></a>配置Active Directory</h1><h2 id="Server-No1"><a href="#Server-No1" class="headerlink" title="Server-No1"></a>Server-No1</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入Windows Server Manager，点击”添加角色和功能”。</p>
+<h2 id="配置Active-Directory"><a href="#配置Active-Directory" class="headerlink" title="配置Active Directory"></a>配置Active Directory</h2><h3 id="Server-No1"><a href="#Server-No1" class="headerlink" title="Server-No1"></a>Server-No1</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>进入Windows Server Manager，点击”添加角色和功能”。</p>
 <p>连续”下一步”，直到到达”服务器角色”。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191645257.png" alt=""></p>
 <p>选中”Active Directory域服务”。</p>
@@ -286,7 +286,7 @@
 <p>点击”将此服务器提升为域控制器”，当然也可以以后配置。</p>
 <p>这些可视化的点击步骤也可以导出为XML文件，此后使用PowerShell安装。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648993.png" alt=""></p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648392.png" alt=""></p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648392.png" alt=""></p>
 <p>点击”添加新林”，输入根域名为”xuwp05191643.com”。</p>
 <p>点击”下一步”</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648632.png" alt=""></p>
@@ -307,10 +307,10 @@
 <p>进入系统后，查看系统属性。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648311.png" alt=""></p>
 <p>这表明成功创建了父域xuwp05191643.com，同时服务器Server-No1属于xuwp05191643.com</p>
-<h2 id="Server-No2"><a href="#Server-No2" class="headerlink" title="Server-No2"></a>Server-No2</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>同Server-No1</p>
+<h3 id="Server-No2"><a href="#Server-No2" class="headerlink" title="Server-No2"></a>Server-No2</h3><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><p>同Server-No1</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648271.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”。</p>
-<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p>“将新域添加到现有林”-“更改”。</p>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><p>“将新域添加到现有林”-“更改”。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648782.png" alt=""></p>
 <p>输入<strong>父域的</strong>账号密码</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648442.png" alt=""></p>
@@ -345,8 +345,8 @@
 <p>点击”Active Directory域和信任关系”</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649962.png" alt=""></p>
 <p>在Server-No2中查看也是同样的结果，符合预期，配置完成。</p>
-<h2 id="Server-No3"><a href="#Server-No3" class="headerlink" title="Server-No3"></a>Server-No3</h2><h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><p>略</p>
-<h3 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h3><p>这次我们先修改DNS</p>
+<h3 id="Server-No3"><a href="#Server-No3" class="headerlink" title="Server-No3"></a>Server-No3</h3><h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><p>略</p>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p>这次我们先修改DNS</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649422.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”后出现配置向导。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649671.png" alt=""></p>
@@ -373,7 +373,7 @@
 <p>查看一下xuwp05191643.com的属性。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649631.png" alt=""></p>
 <p>配置完成。</p>
-<h2 id="一次尝试：使用Windows-Admin-Center配置AD"><a href="#一次尝试：使用Windows-Admin-Center配置AD" class="headerlink" title="一次尝试：使用Windows Admin Center配置AD"></a>一次尝试：使用Windows Admin Center配置AD</h2><p>Microsoft于2018年推出了Windows Admin<br>Center，这款正在开发的程序正在成为主流的服务器管理方式。</p>
+<h3 id="一次尝试：使用Windows-Admin-Center配置AD"><a href="#一次尝试：使用Windows-Admin-Center配置AD" class="headerlink" title="一次尝试：使用Windows Admin Center配置AD"></a>一次尝试：使用Windows Admin Center配置AD</h3><p>Microsoft于2018年推出了Windows Admin<br>Center，这款正在开发的程序正在成为主流的服务器管理方式。</p>
 <p>最初我尝试着使用这款全新的工具，按照Microsoft的推荐在Server-No2和Server-No3上安装了无GUI的Windows<br>Server。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649177.png" alt=""></p>
 <p>安装完成后可以发现无GUI的Windows Server<br>2022只有一个PowerShell窗口，该版本开机后会自动进入SConfig程序，如下图。</p>
@@ -387,7 +387,7 @@
 <p>但遗憾的是这个插件目前只能在作为域控制器的服务器上查看。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650073.png" alt=""></p>
 <p>因为AD配置功能仍在开发，Windows Admin Center目前还没有像Windows Server<br>Manager一样强大的功能，但我相信这样的集大成者在不久后定会成为主流，不负安装系统时的推荐二字。</p>
-<h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><p>先试一下Desktop版添加用户的方式，打开本地用户和组。</p>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>先试一下Desktop版添加用户的方式，打开本地用户和组。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650751.png" alt=""></p>
 <p>行不通，按它说的在”Active Directory用户和计算机”中添加试试。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650323.png" alt=""></p>
@@ -404,7 +404,7 @@
 <p>同样的步骤，在Server-No2和Server-No3中操作一遍，有：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650752.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650422.png" alt=""></p>
-<h1 id="登录客户机"><a href="#登录客户机" class="headerlink" title="登录客户机"></a>登录客户机</h1><h2 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h2><p>首先要将客户机加入到我们创建的AD林中。</p>
+<h2 id="登录客户机"><a href="#登录客户机" class="headerlink" title="登录客户机"></a>登录客户机</h2><h3 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h3><p>首先要将客户机加入到我们创建的AD林中。</p>
 <p>首先改DNS</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650902.png" alt=""></p>
 <p>在”系统属性”中加入域即可。</p>
@@ -416,18 +416,18 @@
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650622.png" alt=""></p>
 <p>重启后查看”系统属性”。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650661.png" alt=""></p>
-<h2 id="登录xuwp-No1"><a href="#登录xuwp-No1" class="headerlink" title="登录xuwp-No1"></a>登录xuwp-No1</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650221.png" alt=""></p>
+<h3 id="登录xuwp-No1"><a href="#登录xuwp-No1" class="headerlink" title="登录xuwp-No1"></a>登录xuwp-No1</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650221.png" alt=""></p>
 <p>因为我们之前勾选了”用户下次登录时须更改密码”，所以这里系统要求我们更改密码后进入。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650441.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650941.png" alt=""></p>
 <p>使用新密码登录系统后，出现和初始化系统相同的界面。</p>
 <p>最后，使用whoami命令确定域和用户。</p>
 <p><img src="C:/Users/XuWanpeng/Desktop/docx_to_markdown-main/images/05191643-%E8%AE%B8%E4%B8%87%E9%B9%8F-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8-%E4%BD%9C%E4%B8%9A%E4%B8%809efe51b1-6c2b-4f90-9733-a3f839a299d1/media/image61.png" alt=""></p>
-<h2 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt=""></p>
+<h3 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt=""></p>
 <p>根据下面”如何登录到其他域？”的提示，我们使用域名\域用户名的格式登录。（这实际上是Windows<br>2000以前版本的登录方式，目前应该使用域用户名\@域名）。</p>
 <p>这里不需要更改密码，等待初始化系统后使用whoami确定域和用户。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650360.png" alt=""></p>
-<h2 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt=""></p>
+<h3 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt=""></p>
 <p>发现登录不上，我们ping一下Server-No3试试。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650872.png" alt=""></p>
 <p>发现DNS无法解析，那就对xuwp05191643.com设置一个xuwp05191643.org的IP转发。</p>
@@ -444,11 +444,11 @@
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651933.png" alt=""></p>
 <p>这次可以登录成功了，使用whoami确定域和用户。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651653.png" alt=""></p>
-<h1 id="共享资源"><a href="#共享资源" class="headerlink" title="共享资源"></a>共享资源</h1><p>共享资源有几种方式，但都差不太多。</p>
-<h2 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h2><h3 id="高级共享"><a href="#高级共享" class="headerlink" title="高级共享"></a>高级共享</h3><p>右击想要共享的文件夹-“属性”-“共享”-“高级共享”-“共享此文件夹”-“权限”-允许读取/更改-“确定”。</p>
+<h2 id="共享资源"><a href="#共享资源" class="headerlink" title="共享资源"></a>共享资源</h2><p>共享资源有几种方式，但都差不太多。</p>
+<h3 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h3><h4 id="高级共享"><a href="#高级共享" class="headerlink" title="高级共享"></a>高级共享</h4><p>右击想要共享的文件夹-“属性”-“共享”-“高级共享”-“共享此文件夹”-“权限”-允许读取/更改-“确定”。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651156.png" alt=""></p>
 <p>注意这种方式是共享给”Everyone”的，林中的所有用户都可以发现共享文件夹。</p>
-<h3 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h3><p>右击想要共享的文件夹-“属性”-“共享”-下拉箭头-“查找个人”-“位置”</p>
+<h4 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h4><p>右击想要共享的文件夹-“属性”-“共享”-下拉箭头-“查找个人”-“位置”</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651380.png" alt=""></p>
 <p>选中”整个目录”。</p>
 <p>然后我们就可以搜索我们的3个Administrator和3个XuWanpeng-Nox了。</p>
@@ -460,12 +460,12 @@
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651992.png" alt=""></p>
 <p>最后将他们权限级别全部改为”读取/写入”。</p>
 <p>注：这种方式也可以实现对”Everyone”的共享，这个选项也在下拉菜单中。</p>
-<h3 id="在Active-Directory上发布共享文件夹"><a href="#在Active-Directory上发布共享文件夹" class="headerlink" title="在Active Directory上发布共享文件夹"></a>在Active Directory上发布共享文件夹</h3><p>有的时候我们不希望整个网络的主机都发现我们的共享文件夹，我们现在试着将文件夹发布到自己所在的AD上。</p>
+<h4 id="在Active-Directory上发布共享文件夹"><a href="#在Active-Directory上发布共享文件夹" class="headerlink" title="在Active Directory上发布共享文件夹"></a>在Active Directory上发布共享文件夹</h4><p>有的时候我们不希望整个网络的主机都发现我们的共享文件夹，我们现在试着将文件夹发布到自己所在的AD上。</p>
 <p>首先，使用前两节的方法将其设置为共享文件夹。</p>
 <p>接着，打开”计算机管理”（compmgmt.msc）-“共享文件夹”-“共享”-右击”Server-No1-ADShare”-“属性”。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651672.png" alt=""></p>
 <p>点击”将这个共享在Active<br>Directory中发布”，并为其设置一个关键字即可发布到主机所在AD上，我们在5.2.2节演示怎样使用这些共享文件夹。</p>
-<h2 id="查看共享文件夹"><a href="#查看共享文件夹" class="headerlink" title="查看共享文件夹"></a>查看共享文件夹</h2><h3 id="在网络中发现共享文件"><a href="#在网络中发现共享文件" class="headerlink" title="在网络中发现共享文件"></a>在网络中发现共享文件</h3><p>设置好共享文件夹后，系统会生成一个网络路径，如</p>
+<h3 id="查看共享文件夹"><a href="#查看共享文件夹" class="headerlink" title="查看共享文件夹"></a>查看共享文件夹</h3><h4 id="在网络中发现共享文件"><a href="#在网络中发现共享文件" class="headerlink" title="在网络中发现共享文件"></a>在网络中发现共享文件</h4><p>设置好共享文件夹后，系统会生成一个网络路径，如</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651451.png" alt=""></p>
 <p>林中的计算机使用这个路径后都可以查看共享文件夹。但是我们并不能<strong>发现</strong>它，这要怎么办呢？</p>
 <p>一个朴素的想法就是在”控制面板”-“网络和Internet”-“网络和共享中心”-“高级共享设置”中”启用网络发现”。</p>
@@ -479,7 +479,7 @@
 <p>事实上”启用网络发现”这个选项也是可以打开的，需要用上述方式打开”Function<br>Discovery Resource Publication”服务、”SSDP Discovery”服务、”UPnP Device<br>Host”服务，然后这个选项就永久打开了（推荐这种方式）。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651082.png" alt=""></p>
 <p>至此，我们随便选择3个Administrator和3个xuwp-Nox中的任何1个都可以查看到这些共享文件夹。</p>
-<h3 id="在Active-Directory上查找共享文件夹"><a href="#在Active-Directory上查找共享文件夹" class="headerlink" title="在Active Directory上查找共享文件夹"></a>在Active Directory上查找共享文件夹</h3><p>点击”网络”-“搜索Active Directory”。</p>
+<h4 id="在Active-Directory上查找共享文件夹"><a href="#在Active-Directory上查找共享文件夹" class="headerlink" title="在Active Directory上查找共享文件夹"></a>在Active Directory上查找共享文件夹</h4><p>点击”网络”-“搜索Active Directory”。</p>
 <p>将”查找”处改为”共享文件夹”。</p>
 <p>输入关键字，点击”开始查找”即可找到我们在AD上发布的共享文件夹Server-No1-ADShare。</p>
 <p>这里我使用通配符*，但并没有发现此前那些共享文件夹，说明这里只能搜索到在AD上发布的共享文件夹。</p>
@@ -500,11 +500,11 @@
 <p>回到资源管理器即可发现这个网络驱动器。</p>
 <p>最后附一张位于多个域的共享文件夹查询。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651751.png" alt=""></p>
-<h1 id="作业展示截图"><a href="#作业展示截图" class="headerlink" title="作业展示截图"></a>作业展示截图</h1><h2 id="域和信任关系的展示截图"><a href="#域和信任关系的展示截图" class="headerlink" title="域和信任关系的展示截图"></a>域和信任关系的展示截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651352.png" alt=""></p>
+<h2 id="作业展示截图"><a href="#作业展示截图" class="headerlink" title="作业展示截图"></a>作业展示截图</h2><h3 id="域和信任关系的展示截图"><a href="#域和信任关系的展示截图" class="headerlink" title="域和信任关系的展示截图"></a>域和信任关系的展示截图</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651352.png" alt=""></p>
 <p>Active Directory域和共享关系</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651261.png" alt=""></p>
 <p>xuwp05191643.com属性</p>
-<h2 id="连通性测试截图"><a href="#连通性测试截图" class="headerlink" title="连通性测试截图"></a>连通性测试截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651041.png" alt=""></p>
+<h3 id="连通性测试截图"><a href="#连通性测试截图" class="headerlink" title="连通性测试截图"></a>连通性测试截图</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651041.png" alt=""></p>
 <p>Server-No1 ping Server-No2 和 Server-No3</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651271.png" alt=""></p>
 <p>Server-No2 ping Server-No1 和 Server-No3</p>
@@ -512,13 +512,314 @@
 <p>Server-No3 ping Server-No1 和 Server-No2</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651802.png" alt=""></p>
 <p>Client-No1 ping Server-No1、Server-No2 和 Server-No3</p>
-<h2 id="林中不同域计算机用户登录客户机的截图"><a href="#林中不同域计算机用户登录客户机的截图" class="headerlink" title="林中不同域计算机用户登录客户机的截图"></a>林中不同域计算机用户登录客户机的截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652013.png" alt=""></p>
+<h3 id="林中不同域计算机用户登录客户机的截图"><a href="#林中不同域计算机用户登录客户机的截图" class="headerlink" title="林中不同域计算机用户登录客户机的截图"></a>林中不同域计算机用户登录客户机的截图</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652013.png" alt=""></p>
 <p>点击开始菜单可以看到的已登录用户</p>
-<h2 id="可查询共享资源截图"><a href="#可查询共享资源截图" class="headerlink" title="可查询共享资源截图"></a>可查询共享资源截图</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652091.png" alt=""></p>
+<h3 id="可查询共享资源截图"><a href="#可查询共享资源截图" class="headerlink" title="可查询共享资源截图"></a>可查询共享资源截图</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652091.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652942.png" alt=""></p>
 <p>文件资源管理器的网络选项</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652522.png" alt=""></p>
 <p>在AD上查询共享文件夹</p>
+<h1 id="作业二"><a href="#作业二" class="headerlink" title="作业二"></a>作业二</h1><p>注：本文对图片的说明位于图片上方，因部分图片过大可能造成错页现象。</p>
+<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="准备工作———新建组策略对象"><a href="#准备工作———新建组策略对象" class="headerlink" title="准备工作———新建组策略对象"></a>准备工作———新建组策略对象</h3><p>服务器管理器-工具-组策略管理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image2.png" alt=""></p>
+<p>在域”xuwp05191643.com”上设置组策略。</p>
+<p>域-（右键）xuwp05191643.com-在这个域中创建GPO并在此处链接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image3.png" alt=""></p>
+<p>【为GPO（组策略对象）设置一个名称】-确定</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image4.png" alt=""></p>
+<p>展开xuwp05191643.com即可发现组策略对象”CUMT-IS”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image5.png" alt=""></p>
+<p>（右击）CUMT-IS即可对其进行编辑。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image6.png" alt=""></p>
+<p>组策略管理编辑器是可视化的。</p>
+<h3 id="管理模板"><a href="#管理模板" class="headerlink" title="管理模板"></a>管理模板</h3><h4 id="Internet-Explore禁止更改主页"><a href="#Internet-Explore禁止更改主页" class="headerlink" title="Internet Explore禁止更改主页"></a>Internet Explore禁止更改主页</h4><p>用户策略-策略-管理模板：从本地计算机中检索的策略定义（ADMX文件）-Windows组件-Internet<br>Explore-禁用更改主页设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image7.png" alt=""></p>
+<p>已启用-【输入主页】-确定</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image8.png" alt=""></p>
+<h4 id="禁用控制面板程序control-exe"><a href="#禁用控制面板程序control-exe" class="headerlink" title="禁用控制面板程序control.exe"></a>禁用控制面板程序control.exe</h4><p>注：可禁用的程序可在C:\Windows\System32下找到。</p>
+<p>用户配置-策略-管理模板-系统</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image9.png" alt=""></p>
+<p>（双击/右击+编辑）不运行指定的Windows程序-已启用-显示-【输入control.exe】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image10.png" alt=""></p>
+<h4 id="删除回收站上下文菜单中的”属性”选项"><a href="#删除回收站上下文菜单中的”属性”选项" class="headerlink" title="删除回收站上下文菜单中的”属性”选项"></a>删除回收站上下文菜单中的”属性”选项</h4><p>用户配置-策略-管理模板-桌面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image11.png" alt=""></p>
+<p>（双击）删除”回收站”上下文菜单中的”属性”-已启用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image12.png" alt=""></p>
+<h4 id="关闭自动播放"><a href="#关闭自动播放" class="headerlink" title="关闭自动播放"></a>关闭自动播放</h4><p>用户配置-策略-管理模板-所有设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image13.png" alt=""></p>
+<p>（双击）关闭自动播放-已启用-CD-ROM和可移动媒体驱动器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image14.png" alt=""></p>
+<p>这样的话，插入U盘或其他介质是就不会自动读取内容了，有助于防范计算机病毒。</p>
+<h4 id="下发策略并验证"><a href="#下发策略并验证" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>最后，我们指定CUMT-IS对XuWanpeng-No1生效。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image15.png" alt=""></p>
+<p>使用命令\”gpupdate /force\”进行组策略的下发。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image16.png" alt=""></p>
+<p>使用XuWanpeng-No1登录Client-No1，更新组策略（重启机器、gpupdate、等待后台更新）后进行验证。</p>
+<p>打开IE浏览器，发现主页变为了<a target="_blank" rel="noopener" href="http://cs.cumt.edu.cn/，打开Internet选项，发现主页不可更改，下方提示&quot;某些设置由系统管理员进行管理&quot;。">http://cs.cumt.edu.cn/，打开Internet选项，发现主页不可更改，下方提示&quot;某些设置由系统管理员进行管理&quot;。</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image17.png" alt=""></p>
+<p>尝试打开控制面板，发现</p>
+<p>无法直接打开控制面板</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image18.png" alt=""></p>
+<p>无法通过设置打开控制面板</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image19.png" alt=""></p>
+<p>但事实上，通过Win+Q搜索，仍可以打开控制面板。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image20.png" alt=""></p>
+<p>回去看看设置时的说明，发现该选项<strong>仅阻止用户运行由文件资源管理器进程启动的程序</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image21.png" alt=""></p>
+<p>更改前，（右击）回收站：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image22.png" alt=""></p>
+<p>更改后，（右击）回收站：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image23.png" alt=""></p>
+<p>发现无法再看见属性选项了。</p>
+<p>插入U盘，将其连接到虚拟机，发现没有弹出自动播放界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image24.png" alt=""></p>
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><h4 id="设置启动脚本"><a href="#设置启动脚本" class="headerlink" title="设置启动脚本"></a>设置启动脚本</h4><p>用户配置-策略-Windows设置-脚本（登录/注销）-登录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image25.png" alt=""></p>
+<p>（双击/右击+属性）登录-显示文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image26.png" alt=""></p>
+<p>接着弹出了一个文件夹，其路径为\\xuwp05191643.com\SysVol\xuwp05191643.com\Policies\{CE8870A7-3EC6-40BF-93C8-D67D9458B825}\User\Scripts\Logon</p>
+<p>中间由32个16进制数字组成的字符串为GUID。</p>
+<p>在此处新建一个welcome.vbs，用于弹出msgbox。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image27.png" alt=""></p>
+<p>尝试运行一下，此时获取的是Server-No1的Administrator用户。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image28.png" alt=""></p>
+<p>新建hello.txt和hello.bat，hello.bat用于在登录后打开hello.txt。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image29.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image30.png" alt=""></p>
+<p>完成后</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image31.png" alt=""></p>
+<p>添加-浏览</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image32.png" alt=""></p>
+<p>将vbs和bat脚本添加进来。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image33.png" alt=""></p>
+<h4 id="下发策略并验证-1"><a href="#下发策略并验证-1" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>使用gpupdate /force强制更新组策略。</p>
+<p>在Client-No1上注销XuWanpeng-No1并重新登录，发现两个脚本成功执行，弹出了欢迎窗口和今日任务。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image34.png" alt=""></p>
+<h3 id="文件夹重定向"><a href="#文件夹重定向" class="headerlink" title="文件夹重定向"></a>文件夹重定向</h3><h4 id="设置文件夹重定向"><a href="#设置文件夹重定向" class="headerlink" title="设置文件夹重定向"></a>设置文件夹重定向</h4><p>在Client-No1域控上新建一个文件夹C:\Server-No1-My-Documents-Share</p>
+<p>右击-属性-共享-高级共享</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image35.png" alt=""></p>
+<p>共享此文件夹-权限</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image36.png" alt=""></p>
+<p>将权限设置为读写</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image37.png" alt=""></p>
+<p>用户配置-策略-Windows设置-文件夹重定向-文档</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image38.png" alt=""></p>
+<p>（右击+属性）基本-将每个人的文件夹重定向到同一个位置-【选择根路径为\\CLIENT-NO1\Client-No1-My-Documents-Share】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image39.png" alt=""></p>
+<h4 id="下发策略并验证-2"><a href="#下发策略并验证-2" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>使用gpupdate /force强制更新组策略。</p>
+<p>登录Client-No1，可以在Client-No1的共享文件夹中发现Server-No1共享来的文件夹。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image40.png" alt=""></p>
+<p>可以查看到Server-No1”文档”中的文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image41.png" alt=""></p>
+<p>在Server-No1中查看”文档”的属性，发现位置已重定向到了Client-No1的共享文件夹中。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image42.png" alt=""></p>
+<h3 id="软件分发"><a href="#软件分发" class="headerlink" title="软件分发"></a>软件分发</h3><h4 id="设置软件分发"><a href="#设置软件分发" class="headerlink" title="设置软件分发"></a>设置软件分发</h4><p>创建一个专用于共享软件的文件夹Software-Share，并将要发布的msi安装包放入其中。</p>
+<p>用户策略-策略-软件设置-软件安装</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image43.png" alt=""></p>
+<p>（右击）软件安装-新建-数据包-【键入需要的共享安装程序程序包的完整UNC路径】</p>
+<p>注：不要使用”浏览”按钮访问该位置。确保使用共享安装程序程序包的UNC路径。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image44.png" alt=""></p>
+<h5 id="“已发布”方式"><a href="#“已发布”方式" class="headerlink" title="“已发布”方式"></a>“已发布”方式</h5><p>已发布-确定</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image45.png" alt=""></p>
+<p>程序包会在组策略窗口的右窗格中列出。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image46.png" alt=""></p>
+<h5 id="“已分配”方式"><a href="#“已分配”方式" class="headerlink" title="“已分配”方式"></a>“已分配”方式</h5><p>（右击）属性-部署-【勾选已分配、在登陆时安装此应用程序】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image47.png" alt=""></p>
+<h4 id="下发策略并验证-3"><a href="#下发策略并验证-3" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>域控计算机Server-No1使用gpupdate /force强制更新组策略，需要注销。</p>
+<p>使用xuwp-No1登录客户计算机Client-No1。</p>
+<h5 id="“已发布”方式-1"><a href="#“已发布”方式-1" class="headerlink" title="“已发布”方式"></a>“已发布”方式</h5><p>控制面板-程序-程序和功能-从网络安装程序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image48.png" alt=""></p>
+<p>可以在此处发现我们分发的软件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image49.png" alt=""></p>
+<p>（双击/单机+安装）发现可以正常安装</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image50.png" alt=""></p>
+<h5 id="“已分配”方式-1"><a href="#“已分配”方式-1" class="headerlink" title="“已分配”方式"></a>“已分配”方式</h5><p>gpupdate /force后，域控计算机Server-No1显示”正在安装托管软件”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image51.png" alt=""></p>
+<p>xuwp-No1登录Client-No1时，显示了很久的欢迎界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image52.png" alt=""></p>
+<p>控制面板-程序-程序和功能</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image53.png" alt=""></p>
+<p>发现分配的软件已安装。</p>
+<h3 id="软件限制"><a href="#软件限制" class="headerlink" title="软件限制"></a>软件限制</h3><h4 id="设置软件限制"><a href="#设置软件限制" class="headerlink" title="设置软件限制"></a>设置软件限制</h4><p>用户策略-策略-Windows设置-安全设置-软件限制策略</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image54.png" alt=""></p>
+<p>（右击）软件限制策略-创建软件限制策略</p>
+<p>（右击）其他规则-新建路径规则</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image55.png" alt=""></p>
+<p>【选择限制软件路径】-【选择安全级别为不允许】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image56.png" alt=""></p>
+<p>发现右侧窗格增加了限制软件———控制面板Control.exe</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image57.png" alt=""></p>
+<p>但事实上，仍然可以通过”搜索”面板打开控制面板，这说明软件限制策略也只能限制从资源管理器启动的软件。</p>
+<p>所以对计算器calc.exe新增一条路径限制，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image58.png" alt=""></p>
+<h4 id="下发策略并验证-4"><a href="#下发策略并验证-4" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>域控计算机Server-No1使用gpupdate /force强制更新组策略，需要注销。</p>
+<p>使用xuwp-No1登录客户计算机Client-No1。</p>
+<p>从文件资源管理器打开calc.exe</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image59.png" alt=""></p>
+<p>发现受限，且与此前提示不同。</p>
+<h2 id="基于组策略的安全分析"><a href="#基于组策略的安全分析" class="headerlink" title="基于组策略的安全分析"></a>基于组策略的安全分析</h2><p>【控制台输入mmc】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image60.png" alt=""></p>
+<p>文件-添加/删除管理单元-安全模板-添加、安全配置和分析-添加</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image61.png" alt=""></p>
+<p>（右击）安全模板-新加模板搜索路径-【选择%SystemRoot%\security\templates】</p>
+<p>注：%SystemRoot%默认为C:\Windows</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image62.png" alt=""></p>
+<p>（右击）安全配置和分析-【输入oss（新建一个数据库）】-打开-【选择%SystemRoot%\security\templates中的DC<br>security.inf】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image63.png" alt=""></p>
+<p>（右击）安全配置和分析-立即分析计算机</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image64.png" alt=""></p>
+<p>因为安全配置和分析默认使用的文件夹是”文档”，而我们的文档在上一步已经重定向到了Client-No1，所以这里将oss.log放在桌面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image65.png" alt=""></p>
+<p>接下来系统会根据安全模板分析系统安全机制。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image66.png" alt=""></p>
+<p>分析完成后，我们就可以点击各项节点来查看与模板不一致的条目。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image67.png" alt=""></p>
+<p>因为是新建的数据库，所以数据库没有具体设置模板中的数值。</p>
+<p>我们可以对这些属性的数值进行具体的设置。</p>
+<p>比如：（双击/右击+属性）密码必须符合复杂性要求-在数据库中定义这个策略-已启用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image68.png" alt=""></p>
+<p>接着，我们发现这一条目出现了绿色对勾，这代表”当前配置与基准线符合或较之更好”；而红色错叉代表”当前配置与基准线不符合”。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image69.png" alt=""></p>
+<p>（双击/右击+属性）放宽最小密码长度限制-说明</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image70.png" alt=""></p>
+<p>（双击/右击+属性）最小密码长度审核-说明</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image71.png" alt=""></p>
+<p>我们可以按安全模板中所指示的安全性变化进行配置。</p>
+<p>（右击）安全配置和分析-立即配置计算机</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image72.png" alt=""></p>
+<p>【选择桌面上的oss.log】-确定</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image73.png" alt=""></p>
+<p>即可按安全模板配置计算机安全。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image74.png" alt=""></p>
+<p>最后我们可以将此控制台保存下来，便于此后使用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image75.png" alt=""></p>
+<h2 id="Public-Key-Infrastructure"><a href="#Public-Key-Infrastructure" class="headerlink" title="Public Key Infrastructure"></a>Public Key Infrastructure</h2><h3 id="使用Windows中的PKI"><a href="#使用Windows中的PKI" class="headerlink" title="使用Windows中的PKI"></a>使用Windows中的PKI</h3><h4 id="创建证书颁发机构"><a href="#创建证书颁发机构" class="headerlink" title="创建证书颁发机构"></a>创建证书颁发机构</h4><p>服务器管理器-添加角色和功能</p>
+<p>连续下一步，直到下图页面，【点击Active Diretory证书服务】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image76.png" alt=""></p>
+<p>添加功能</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image77.png" alt=""></p>
+<p>连续下一步，直到下图界面，【勾选证书颁发机构Web注册】，即开启网页注册功能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image78.png" alt=""></p>
+<p>添加功能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image79.png" alt=""></p>
+<p>连续下一步，确认到如下内容后点击安装。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image80.png" alt=""></p>
+<p>接下来配置AD证书服务。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image81.png" alt=""></p>
+<p>下一步，【勾选证书颁发机构*】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image82.png" alt=""></p>
+<p>连续下一步，最后点击配置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image83.png" alt=""></p>
+<p>配置成功后进入下一步。</p>
+<h4 id="用户申请证书"><a href="#用户申请证书" class="headerlink" title="用户申请证书"></a>用户申请证书</h4><p>使用xuwp-No1登录Client-No1，访问<a target="_blank" rel="noopener" href="https://xuwp05191643.com/certsrv">https://xuwp05191643.com/certsrv</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image84.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image85.png" alt=""></p>
+<p>高级证书申请</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image86.png" alt=""></p>
+<p>创建并向此CA提交一个申请</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image87.png" alt=""></p>
+<p>注：必须使用IE内核访问。</p>
+<p>在IIS（inetmgr）中把DefaultWebSite的网站绑定更改为仅https。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image88.png" alt=""></p>
+<p>若无法加载CSP，可将网站加入受信任的站点，或将Internet改为受信任站点的配置（安全级别中，取消启用保护模式的勾选）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image89.png" alt=""></p>
+<p>申请一个EFS恢复代理的证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image90.png" alt=""></p>
+<p>注：该选项需要增加Domin Users并允许注册</p>
+<p>安装此证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image91.png" alt=""></p>
+<p>成功安装证书</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image92.png" alt=""></p>
+<p>【打开控制台（mmc）】-添加或删除管理单元-证书-添加</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image93.png" alt=""></p>
+<p>证书-当前用户-个人-证书</p>
+<p>查看到xuwp-No1成功从Server-No1上申请了一个证书，友好名称（好记的名称）为xuwp-cert。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image94.png" alt=""></p>
+<p>回到Server-No1，在颁发的证书处也能发现该证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image95.png" alt=""></p>
+<p>成功。</p>
+<h4 id="证书的导出和导入"><a href="#证书的导出和导入" class="headerlink" title="证书的导出和导入"></a>证书的导出和导入</h4><h5 id="证书导出"><a href="#证书导出" class="headerlink" title="证书导出"></a>证书导出</h5><p>（右击）证书项-所有任务-导出</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image96.png" alt=""></p>
+<p>这里我选了base64编码。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image97.png" alt=""></p>
+<p>导出证书到桌面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image98.png" alt=""></p>
+<p>最后确认如下，点击完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image99.png" alt=""></p>
+<p>在桌面上发现了我们导出的证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image100.png" alt=""></p>
+<p>使用记事本打开，确实是base64编码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image101.png" alt=""></p>
+<p>注：如果用其他格式导出，记事本无法解析内容。</p>
+<p>打开证书，确认是我们从Server-No1申请的证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image102.png" alt=""></p>
+<h5 id="证书导入"><a href="#证书导入" class="headerlink" title="证书导入"></a>证书导入</h5><p>首先我们把已有的证书删掉。</p>
+<p>（右击）证书项-删除</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image103.png" alt=""></p>
+<p>证书-当前用户-个人-（右击）证书-所有任务-导入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image104.png" alt=""></p>
+<p>最后确认如下，点击完成。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image105.png" alt=""></p>
+<p>成功恢复证书，但发现友好名称没了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image106.png" alt=""></p>
+<h4 id="通过组策略自动注册"><a href="#通过组策略自动注册" class="headerlink" title="通过组策略自动注册"></a>通过组策略自动注册</h4><p>证书颁发机构（本地）-<br>xuwp05191643-SERVER-NO1-CA-证书模板-（右击）空白处-管理</p>
+<p>（右击）代码签名-复制模板</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image107.png" alt=""></p>
+<p>【勾选 在Active Directory中发布证书】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image108.png" alt=""></p>
+<p>安全-【增加Domin Users】-勾选其注册、自动注册</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image109.png" alt=""></p>
+<p>（右击）空白处-新建-要颁发的证书模板-代码签名 的副本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image110.png" alt=""></p>
+<p>计算机配置-策略-Windows设置-安全设置-公钥策略-自动证书申请设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image111.png" alt=""></p>
+<p>（右击）自动证书申请设置-新建-自动证书申请</p>
+<p>选择计算机</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image112.png" alt=""></p>
+<p>完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image113.png" alt=""></p>
+<p>用户配置-策略-Windows设置-安全设置-公钥策略</p>
+<p>（双击/右击+属性）证书服务客户端-自动注册</p>
+<p>配置模式-启用-【勾选 续订…和更新使用…】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image114.png" alt=""></p>
+<p>回到Client-No1，发现新增了两张证书，包括”代码签名 的副本”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image115.png" alt=""></p>
+<p>成功。</p>
+<h4 id="证书的吊销"><a href="#证书的吊销" class="headerlink" title="证书的吊销"></a>证书的吊销</h4><p>证书颁发机构（本地）- xuwp05191643-SERVER-NO1-CA-颁发的证书</p>
+<p>（右击）欲吊销的证书项-所有任务-吊销证书</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image116.png" alt=""></p>
+<h3 id="证书的使用"><a href="#证书的使用" class="headerlink" title="证书的使用"></a>证书的使用</h3><h4 id="用SSL加密IIS的传输"><a href="#用SSL加密IIS的传输" class="headerlink" title="用SSL加密IIS的传输"></a>用SSL加密IIS的传输</h4><p>IIS管理器-（右击）服务器证书-打开功能</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image117.png" alt=""></p>
+<p>创建证书申请</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image118.png" alt=""></p>
+<p>填写证书信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image119.png" alt=""></p>
+<p>默认，下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image120.png" alt=""></p>
+<p>设置一个证书路径，点击完成。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image121.png" alt=""></p>
+<p>查看制作的证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image122.png" alt=""></p>
+<p>以xuwp-No1的身份访问<a target="_blank" rel="noopener" href="https://xuwp05191643.com/certsrv">https://xuwp05191643.com/certsrv</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image123.png" alt=""></p>
+<p>选择使用base64编码的…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image124.png" alt=""></p>
+<p>粘贴制作证书中的base64，选择Web服务器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image125.png" alt=""></p>
+<p>注：该选项需要增加Domin Users并允许注册</p>
+<p>下载证书</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image126.png" alt=""></p>
+<p>IIS管理器-完成证书申请</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image127.png" alt=""></p>
+<p>导入下载的证书文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image128.png" alt=""></p>
+<p>发现新增了一张证书</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image129.png" alt=""></p>
+<p>（右键）该证书项-详细路径-使用者</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image130.png" alt=""></p>
+<p>在Client-No1上访问<strong>https</strong>://xuwp05191643.com/certsrv，查看其证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image131.png" alt=""></p>
+<p>成功。</p>
 
         </div>
 
