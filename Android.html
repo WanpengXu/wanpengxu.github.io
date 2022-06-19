@@ -469,7 +469,183 @@
 </ol>
 <p>使用sendBroadcast()发送的标准广播，所有满足条件的BroadcastReceiver都会执行其onReceive()方法来处理响应</p>
 <p>使用sendOrderedBroadcast()发送的有序广播。会根据BroadcastReceiver注册时IntentFilter的优先级顺序来执行onReceive()方法。优先级在<code>&lt;intent-filter&gt;</code>的android:priority中声明（静态注册），也可以在代码中通过IntentFilter.setPriority()方法设置（动态注册）。数越大优先级别越高。</p>
-<h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><h2 id="界面布局管理器"><a href="#界面布局管理器" class="headerlink" title="界面布局管理器"></a>界面布局管理器</h2><h2 id="数据存储方法"><a href="#数据存储方法" class="headerlink" title="数据存储方法"></a>数据存储方法</h2><h1 id="一些ERROR解决方法"><a href="#一些ERROR解决方法" class="headerlink" title="一些ERROR解决方法"></a>一些ERROR解决方法</h1><p>本文所提供方法仅保证能够work，不一定是最优的。</p>
+<h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><h3 id="什么是Intent"><a href="#什么是Intent" class="headerlink" title="什么是Intent"></a>什么是Intent</h3><p>Intent是对要执行的操作的抽象描述，作为消息传递参数，协调各个组件（如Activity）来完成一项任务。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206191034770.png" alt=""></p>
+<h3 id="Intent的作用"><a href="#Intent的作用" class="headerlink" title="Intent的作用"></a>Intent的作用</h3><h4 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h4><p><code>startActivity(Intent)</code></p>
+<p><code>startActivityForResult(Intent)</code></p>
+<h4 id="启动Service"><a href="#启动Service" class="headerlink" title="启动Service"></a>启动Service</h4><p><code>startService(Intent)</code></p>
+<p><code>bindService(Intent)</code></p>
+<h4 id="发送Broadcast"><a href="#发送Broadcast" class="headerlink" title="发送Broadcast"></a>发送Broadcast</h4><p><code>sendBroadcast(Intent)</code></p>
+<p><code>sendOrderedBroadcast(Intent)</code></p>
+<h3 id="Intent的种类"><a href="#Intent的种类" class="headerlink" title="Intent的种类"></a>Intent的种类</h3><h4 id="显式Intent"><a href="#显式Intent" class="headerlink" title="显式Intent"></a>显式Intent</h4><p>通过指定组件名启动目标组件，原型如下：</p>
+<p><code>public Intent(Context packageContext, Class&lt;?&gt; cls)</code></p>
+<p>如：<code>Intent startIntent = new Intent(this, TestService.class);</code></p>
+<h4 id="隐式Intent"><a href="#隐式Intent" class="headerlink" title="隐式Intent"></a>隐式Intent</h4><p>通过指定Action、Category启动匹配的组件，原型如下：</p>
+<p><code>public Intent(String action)</code></p>
+<p>调用该构造函数时应用会匹配<code>AndroidManifest.xml</code>相关组件的<code>Intent-filter</code>标签中的Action和Category，逐一过滤（匹配）出满足属性的组件。</p>
+<p>当不止一个满足时，会弹出一个让我们选择启动哪个的对话框。（原来如此！）</p>
+<h3 id="Intent的组成"><a href="#Intent的组成" class="headerlink" title="Intent的组成"></a>Intent的组成</h3><p>Intent的组成如下表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>组成</strong></th>
+<th><strong>属性</strong></th>
+<th><strong>设置属性方法</strong></th>
+<th><strong>获取属性方法</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>动作</td>
+<td>Action</td>
+<td><strong>setAction()</strong></td>
+<td>getAction()</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>Data</td>
+<td><strong>setData()</strong></td>
+<td>getData()</td>
+</tr>
+<tr>
+<td>分类</td>
+<td>Category</td>
+<td><strong>addCategory()</strong></td>
+<td>getCategories()</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>Type</td>
+<td>setType()</td>
+<td>getType()</td>
+</tr>
+<tr>
+<td>组件</td>
+<td>Component</td>
+<td>setComponent()  setClass()  setClassName()</td>
+<td>getComponent()</td>
+</tr>
+<tr>
+<td>扩展信息</td>
+<td>Extra</td>
+<td><strong>putExtra()</strong></td>
+<td>getXXXExtra()获取不同数据类型的数据，如int类型则使用getIntExtra()，字符串则使用getStringExtra()  getExtras()获取Bundle包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Action属性"><a href="#Action属性" class="headerlink" title="Action属性"></a>Action属性</h4><p>Intent类定义了一系列Action属性常量，但一般使用自定义的Action。</p>
+<h4 id="Category属性"><a href="#Category属性" class="headerlink" title="Category属性"></a>Category属性</h4><p>Category属性为Action属性提供附加的信息。</p>
+<p>CATEGORY_DEFAULT是最常用的Category属性。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Category属性</th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CATEGORY_DEFAULT</strong></td>
+<td><strong>默认的执行方式，按照普通Activity的执行方式执行</strong></td>
+</tr>
+<tr>
+<td>CATEGORY_HOME</td>
+<td>该组件为Home Activity</td>
+</tr>
+<tr>
+<td>CATEGORY_LAUNCHER</td>
+<td>优先级最高的Activity，通常为入口ACTION_MAIN配合使用</td>
+</tr>
+<tr>
+<td>CATEGORY_BROWSABLE</td>
+<td>可以使用浏览器启动</td>
+</tr>
+<tr>
+<td>CATEGORY_GADGET</td>
+<td>可以内嵌到另外的Activity中</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Data属性"><a href="#Data属性" class="headerlink" title="Data属性"></a>Data属性</h4><p>Data属性是执行动作的URI和MIME类型，配合Action常量使用。</p>
+<p>如Data属性<code>tel://</code>配合Action属性常量<code>ACTION_DIAL</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Uri uri = Uri.parse(<span class="string">&quot;tel:10086&quot;</span>);</span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_DIAL, uri);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Data属性</th>
+<th><strong>说明</strong></th>
+<th><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tel://</td>
+<td>号码数据格式，后跟电话号码</td>
+<td>tel://123</td>
+</tr>
+<tr>
+<td>mailto://</td>
+<td>邮件数据格式，后跟邮件收件人地址</td>
+<td>mailto://dh@163.com</td>
+</tr>
+<tr>
+<td>smsto://</td>
+<td>短息数据格式，后跟短信接收号码</td>
+<td>smsto://123</td>
+</tr>
+<tr>
+<td>content://</td>
+<td>内容数据格式，后跟需要读取的内容</td>
+<td>content://contacts/people/1</td>
+</tr>
+<tr>
+<td>file://</td>
+<td>文件数据格式，后跟文件路径</td>
+<td>file://sdcard/mymusic.mp3</td>
+</tr>
+<tr>
+<td>geo://latitude,longitude</td>
+<td>经纬数据格式，在地图上显示经纬度所指定的位置</td>
+<td>geo://180,65</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Extras属性"><a href="#Extras属性" class="headerlink" title="Extras属性"></a>Extras属性</h4><p>Extras属性用于添加附加信息，是最常用的属性，详见“Activity间数据传递”。</p>
+<h4 id="Flags属性"><a href="#Flags属性" class="headerlink" title="Flags属性"></a>Flags属性</h4><p>Flags属性用于标记来源的启动方式，如FLAG_ACTIVITY_SINGLE_TOP代表SingleTop启动模式。</p>
+<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><h3 id="什么是事件监听"><a href="#什么是事件监听" class="headerlink" title="什么是事件监听"></a>什么是事件监听</h3><p>事件监听全称为基于监听的事件处理，另外还有基于回调的事件处理。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206191110891.jpeg" alt=""></p>
+<p>Step 1:为某个事件源(组件)设置一个监听器,用于监听用户操作</p>
+<p>Step 2:用户的操作,触发了事件源的监听器</p>
+<p>Step 3:生成了对应的事件对象</p>
+<p>Step 4:将这个事件源对象作为参数传给事件监听器</p>
+<p>Step 5:事件监听器对事件对象进行判断,执行对应的事件处理器(对应事件的处理方法)</p>
+<p>首先和Java一样，事件监听有匿名内部类、内部类、lambda、外部类、本类这些方式，Android另外还有一种绑定到layout xml布局文件的方法。</p>
+<h3 id="设置监听器"><a href="#设置监听器" class="headerlink" title="设置监听器"></a>设置监听器</h3><p>Java学过的就直接上代码了</p>
+<h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	   ...</span><br><span class="line">        Button button1 = findViewById(R.id.button_0_1);</span><br><span class="line">        button1.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                待执行的语句块</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h4><p>因为传入的类中只有一个可Override的函数，所以解释器可以推导出要实现的接口和要Override的函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	   ...</span><br><span class="line">        Button button1 = findViewById(R.id.button_0_1);</span><br><span class="line">        button1.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            待执行的语句块</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h4><p>与匿名内部类不同的是，可以重复使用，可以访问外部类的控件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	   ...</span><br><span class="line">        Button button1 = findViewById(R.id.button_0_1);</span><br><span class="line">        button1.setOnClickListener(<span class="keyword">new</span> ButtonOnClickListener());</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ButtonOnClickListener</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                待执行的语句块</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="外部类"><a href="#外部类" class="headerlink" title="外部类"></a>外部类</h4><p>就是把内部类加个public放到新的java文件里，不能访问控件。</p>
+<p><code>ButtonOnClickListener.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.openexampreview;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ButtonOnClickListener</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        待执行的语句块</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>MainActivity.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	   ...</span><br><span class="line">        Button button1 = findViewById(R.id.button_0_1);</span><br><span class="line">        button1.setOnClickListener(<span class="keyword">new</span> ButtonOnClickListener());</span><br><span class="line">	   ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="本类"><a href="#本类" class="headerlink" title="本类"></a>本类</h4><p>这种方法可以把各事件的处理代码放到一起，比较聚合。</p>
+<p><strong>要对本类实现事件处理接口！然后在同一事件中使用switch(view.getId())区分不同事件源的处理代码。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	   ...</span><br><span class="line">        Button startServiceButton = (Button) findViewById(R.id.start_service);</span><br><span class="line">        Button stopServiceButton = (Button) findViewById(R.id.stop_service);</span><br><span class="line">	   ...</span><br><span class="line">        Button bindServiceButton = (Button) findViewById(R.id.bind_service);</span><br><span class="line">        Button unbindServiceButton = (Button) findViewById(R.id.unbind_service);</span><br><span class="line">	   ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (v.getId()) &#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.start_service:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                待执行的语句块</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.stop_service:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                待执行的语句块</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.bind_service:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                待执行的语句块</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.unbind_service:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                待执行的语句块</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="绑定layout"><a href="#绑定layout" class="headerlink" title="绑定layout"></a>绑定layout</h4><p>这个方法挺有意思，在Activity中添加一个事件处理函数，然后在Activity对应的Layout的<strong>事件源</strong>中增加一行属性<strong>绑定事件处理函数</strong>即可进行事件监听。</p>
+<p><code>MainActivity.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.main_layout);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">button_0_1_Click</span><span class="params">(View source)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        待执行的语句块</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>activity_main.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/button_0_1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;Button 0 1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:onClick</span>=<span class="string">&quot;button_0_1_Click&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="界面布局管理器"><a href="#界面布局管理器" class="headerlink" title="界面布局管理器"></a>界面布局管理器</h2><h2 id="数据存储方法"><a href="#数据存储方法" class="headerlink" title="数据存储方法"></a>数据存储方法</h2><h1 id="一些ERROR解决方法"><a href="#一些ERROR解决方法" class="headerlink" title="一些ERROR解决方法"></a>一些ERROR解决方法</h1><p>本文所提供方法仅保证能够work，不一定是最优的。</p>
 <h2 id="gradle下载依赖缓慢、timeout"><a href="#gradle下载依赖缓慢、timeout" class="headerlink" title="gradle下载依赖缓慢、timeout"></a>gradle下载依赖缓慢、timeout</h2><p>方法一：在项目的settings.gradle中的repositories中添加国内镜像源，并<strong>允许使用不安全的仓库</strong>。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202203121212175.png" alt=""></p>
 <p>方法二：连接至世界互联网，不多说了。</p>
