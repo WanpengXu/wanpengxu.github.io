@@ -13,7 +13,7 @@
 
 
 
-<title>《操作系统安全》作业 | 须臾所学之野</title>
+<title>操作系统安全/信息系统安全 | 须臾所学之野</title>
 
 
 
@@ -231,7 +231,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">《操作系统安全》作业</h1>
+            <h1 class="post-title">操作系统安全/信息系统安全</h1>
             
                 <div class="post-meta">
                     
@@ -1030,6 +1030,210 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p>尝试使用CIFS对应的服务</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081726543.png" alt=""></p>
 <p>成功</p>
+<h1 id="作业四"><a href="#作业四" class="headerlink" title="作业四"></a>作业四</h1><h2 id="EFS"><a href="#EFS" class="headerlink" title="EFS"></a>EFS</h2><h3 id="文件加解密"><a href="#文件加解密" class="headerlink" title="文件加解密"></a>文件加解密</h3><p>使用xuwp-No1登录Client-No1，加密Client-No1中的一个文件夹”Client-No1-机密文件夹”。</p>
+<p>（右击）文件夹-属性-高级-加密内容以便保护数据</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291247639.png" alt=""></p>
+<p>可以看到文件夹下的所有文件都增加了锁标志</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291247206.png" alt=""></p>
+<p>使用xuwp-No2登录Client-No1，访问文件夹”Client-No1-机密文件夹”，打开文件，提示”你没有权限打开该文件”。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291310593.png" alt=""></p>
+<h3 id="故障恢复代理"><a href="#故障恢复代理" class="headerlink" title="故障恢复代理"></a>故障恢复代理</h3><p>在Server-No1上打开</p>
+<p>服务器管理器-工具-注册表编辑器-（右击）CUMT-IS-编辑</p>
+<p>计算机配置-策略-Windows设置-安全设置-公钥策略-（右击）加密文件系统-创建数据恢复代理程序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041121315.png" alt=""></p>
+<p>（右击）证书-所有任务-导出</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291425391.png" alt=""></p>
+<p>是，导出私钥</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291426976.png" alt=""></p>
+<p>设置密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291427621.png" alt=""></p>
+<p>设置文件名</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291429507.png" alt=""></p>
+<p>使用gpupdate /force下发组策略</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291431149.png" alt=""></p>
+<p>新建文件”机密文件3”，可以发现存在我们刚定义的恢复证书。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291435455.png" alt=""></p>
+<p>使用Administrator\@xuwp05191643.com登录Client-No1，导入xuwp_efs_recover.pfx</p>
+<p>选择”本地计算机”-下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291441146.png" alt=""></p>
+<p>输入密码-连续下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291442208.png" alt=""></p>
+<p>登录XUWP05191643\Administrator即可访问。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291534983.png" alt=""></p>
+<h3 id="模拟证书丢失时的恢复"><a href="#模拟证书丢失时的恢复" class="headerlink" title="模拟证书丢失时的恢复"></a>模拟证书丢失时的恢复</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291537075.png" alt=""></p>
+<p>可以看到这里有一个用于加密文件系统的证书，如果这个证书丢失，那么将无法证明文件由你加密，便不可访问。</p>
+<p>我们先把它导出一下，导出的步骤同此前证书导出。</p>
+<p>然后将其删除（模拟丢失的情况）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041123548.png" alt=""></p>
+<p>注销该用户后重新登录，发现再次无法访问。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291548260.png" alt=""></p>
+<p>重新导入pfx，这时即可打开文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122107.png" alt=""></p>
+<h3 id="多用户共享"><a href="#多用户共享" class="headerlink" title="多用户共享"></a>多用户共享</h3><p>（右击）”机密文件3”-属性-高级-详细信息-添加</p>
+<p>在这里加入一个其他用户，我加入了计算机Client-No1中的Xuwanpeng，当然也可以加域XUWP05191643里的xuwp-No2（我这里没登录这个用户）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122789.png" alt=""></p>
+<p>登录用户Client-No1\XuWanpeng（或XUWP05191643\xuwp-No2），即可访问”机密文件3”。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291600451.png" alt=""></p>
+<h2 id="软RAID"><a href="#软RAID" class="headerlink" title="软RAID"></a>软RAID</h2><h3 id="跨区卷"><a href="#跨区卷" class="headerlink" title="跨区卷"></a>跨区卷</h3><p>在VMware中为Client-No1插入两块新硬盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291609350.png" alt=""></p>
+<p>（右击）此电脑-管理-磁盘管理-初始化磁盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291610002.png" alt=""></p>
+<p>跨区卷的定义是将多个磁盘的未分配空间合并到一个逻辑卷，那么我们首先给每个硬盘分配一个简单卷</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291616159.png" alt=""></p>
+<p>（右击）未分配区域-新建跨区卷-选中磁盘1和磁盘2-下一步</p>
+<p>这里的两块空间大小可以不同。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291617109.png" alt=""></p>
+<p>点击”是”以将两块磁盘转换为动态磁盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291618920.png" alt=""></p>
+<p>可以发现两块跨磁盘的空间属于同一个卷，即跨区卷。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291619227.png" alt=""></p>
+<p>为了使用这两块磁盘进行下一步实验，将这三个卷删除。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291623413.png" alt=""></p>
+<h3 id="带区卷（RAID-0）"><a href="#带区卷（RAID-0）" class="headerlink" title="带区卷（RAID-0）"></a>带区卷（RAID-0）</h3><p>（右击）未分配区域-新建带区卷-选中磁盘1和磁盘2-下一步</p>
+<p>此时可以发现这两个卷的大小必须相同，这也是带区卷的定义。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291626301.png" alt=""></p>
+<p>转换为动态磁盘</p>
+<p>可以发现两块跨磁盘的空间属于同一个卷且大小相同，即跨区卷。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291625258.png" alt=""></p>
+<h3 id="镜像卷（RAID-1）"><a href="#镜像卷（RAID-1）" class="headerlink" title="镜像卷（RAID-1）"></a>镜像卷（RAID-1）</h3><p>（右击）未分配区域-新建镜像卷-选中磁盘1和磁盘2-下一步</p>
+<p>这里的两块空间大小也必须相同。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291631922.png" alt=""></p>
+<p>转换为动态磁盘</p>
+<p>可以发现两块跨磁盘的空间属于同一个卷且大小相同。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291632254.png" alt=""></p>
+<p>这时我们尝试向该卷写入一些文件，看看是否两块磁盘上都有同样大小的数据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291642758.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291643616.png" alt=""></p>
+<p>发现两块磁盘的大小相同，即数据内容相同，这便是镜像卷。</p>
+<h3 id="RAID-5"><a href="#RAID-5" class="headerlink" title="RAID-5"></a>RAID-5</h3><p>磁盘结构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291654759.png" alt=""></p>
+<p>（右击）未分配区域-新建镜像卷-选中磁盘0、磁盘1和磁盘2-下一步</p>
+<p>这些空间的大小也必须相同。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291653749.png" alt=""></p>
+<p>转换为动态磁盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291655182.png" alt=""></p>
+<p>注意这里的卷空间不再是某一个磁盘的大小，而是两个磁盘的大小（即2*1008MB=1.96GB），剩下的一个磁盘用于奇偶校验，当某个磁盘损坏时，利用剩下两个磁盘的数据自动恢复数据，具有很强的抗干扰性，这便是RAID-5卷。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291657993.png" alt=""></p>
+<h2 id="差分隐私"><a href="#差分隐私" class="headerlink" title="差分隐私"></a>差分隐私</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>差分隐私（differential privacy）是密码学中的一种手段，旨在提供一种当从统计数据库查询时，最大化数据查询的准确性，同时最大限度减少识别其记录的机会。</p>
+<p>为了防止攻击者利用减法思维实施差分攻击获取到个人隐私，提出了差分隐私保护技术。</p>
+<p>当对有限数据集$D$进行一组查询函数操作$F = { f<em>{1},\ f</em>{2},\ldots,f_{n}}$（如计数、求和、平均值、中位数或其他范围查询）所得到的查询结果$F(D)$，算法$M$对查询结果进行处理，使之满足隐私保护条件，此过程称为隐私保护机制。</p>
+<p>隐私保护条件：数据集$D$中增加或减少一条记录形成的数据集记作$D’$。$D$和$D’$称为邻近数据集，对任意两个邻近数据集$D$和$D’$，其差分隐私处理后的输出结果几乎相同。</p>
+<p>若$M$为差分隐私算法，设$V$为算法的输出结果，即$M(D) = V$，则$M$必须满足以下概率不等式：</p>
+<script type="math/tex; mode=display">
+e^{- \varepsilon} \leq \frac{P(M(D) = V)}{P(M\left( D^{'} \right) = V)} \leq e^{\varepsilon}</script><p>当$\varepsilon$较小时，取$e^{\varepsilon}$泰勒级数的低次项，即$e^{\varepsilon} \approx 1 + \varepsilon$。</p>
+<p>此时可得$\varepsilon$-差分隐私：</p>
+<script type="math/tex; mode=display">
+1 - \varepsilon \leq \frac{P(M(D) = V)}{P(M\left( D^{'} \right) = V)} \leq 1 + \varepsilon</script><p>$\varepsilon$被称为隐私保护预算，用于控制隐私保护算法$M$在邻近数据集上获得相同输出的概率比值。$\varepsilon$越小，隐私泄露的风险越小，但引入的噪声越大，当$\varepsilon = 0$时，不可能泄露任何隐私，但也失去了研究价值。</p>
+<h3 id="对隐私保护预算-mathbf-varepsilon-的测试"><a href="#对隐私保护预算-mathbf-varepsilon-的测试" class="headerlink" title="对隐私保护预算$\mathbf{\varepsilon}$的测试"></a>对隐私保护预算$\mathbf{\varepsilon}$的测试</h3><p>以如下代码为例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_noisy</span>(<span class="params">GSf, epsilon</span>):</span></span><br><span class="line">    beta = GSf / epsilon</span><br><span class="line">    u = np.random.random() - <span class="number">0.5</span></span><br><span class="line">    noisy_digit = <span class="number">0.0</span> - beta * np.sign(u) * np.log(<span class="number">1.0</span> - <span class="number">2</span> * np.<span class="built_in">abs</span>(u))</span><br><span class="line">    <span class="keyword">return</span> np.rint(noisy_digit)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    GSf = <span class="number">50</span>                                        <span class="comment"># 假设公司最高和最矮的两个人的身高差为50CM</span></span><br><span class="line">    epsilon = <span class="number">0.001</span></span><br><span class="line">    real_height = np.random.normal(<span class="number">170</span>, <span class="number">4</span>, <span class="number">100</span>)     <span class="comment"># 随机生成100个符合正态分布的身高</span></span><br><span class="line">    pseudo_height = []                              <span class="comment"># 添加噪声后的身高</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        pseudo_height.append(real_height[i] + get_noisy(GSf, epsilon))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;平均身高=&quot;</span>, np.average(real_height))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;添加噪声后的平均身高=&quot;</span>, np.average(pseudo_height))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;前三位的真实身高：&quot;</span>, real_height[:<span class="number">3</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;前三位干扰后的身高：&quot;</span>, pseudo_height[:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<p>当$\varepsilon = 1$时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041123326.png" alt="image38"></p>
+<p>当$\varepsilon = 5$时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124477.png" alt="image39"></p>
+<p>当$\varepsilon = 10$时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124406.png" alt="image40"></p>
+<p>可见：</p>
+<p>$\varepsilon$越大，引入的噪声越小，隐私泄露的风险越大。</p>
+<p>$\varepsilon$越小，引入的噪声越大，隐私泄露的风险越小。</p>
+<p>特别地，当$\varepsilon = 0$时（这里我令epsilon = 0.001）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124071.png" alt="image41"></p>
+<p>引入的噪声足够大，但平均身高和干扰后的身高都不合实际，失去了隐私保护的意义。</p>
+<h2 id="主机对主机的IPSEC"><a href="#主机对主机的IPSEC" class="headerlink" title="主机对主机的IPSEC"></a>主机对主机的IPSEC</h2><p>先设置Windows Server No1的IP安全规则</p>
+<p>组策略管理编辑器-Windows设置-IP安全策略，在Active<br>Directory（XUWP05191643）-（右击）空白处-创建IP安全策略</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291702180.png" alt=""></p>
+<h3 id="添加新的IP安全规则"><a href="#添加新的IP安全规则" class="headerlink" title="添加新的IP安全规则"></a>添加新的IP安全规则</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291704984.png" alt=""></p>
+<h4 id="添加新的IP筛选器列表"><a href="#添加新的IP筛选器列表" class="headerlink" title="添加新的IP筛选器列表"></a>添加新的IP筛选器列表</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291706054.png" alt=""></p>
+<p>源地址改为”我的IP地址”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707697.png" alt=""></p>
+<p>目标地址改为”任何IP地址”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707829.png" alt=""></p>
+<p>协议类型改为ICMP</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707453.png" alt=""></p>
+<p>选择我们刚刚添加的IP筛选器列表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291708020.png" alt=""></p>
+<h4 id="添加新的筛选器操作"><a href="#添加新的筛选器操作" class="headerlink" title="添加新的筛选器操作"></a>添加新的筛选器操作</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291709504.png" alt=""></p>
+<p>选择”协商安全”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711970.png" alt=""></p>
+<p>选择”完整性和加密”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711558.png" alt=""></p>
+<p>选择我们刚刚创建的筛选器操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711459.png" alt=""></p>
+<h4 id="设置预共享密钥"><a href="#设置预共享密钥" class="headerlink" title="设置预共享密钥"></a>设置预共享密钥</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291712430.png" alt=""></p>
+<h3 id="分配IP安全规则"><a href="#分配IP安全规则" class="headerlink" title="分配IP安全规则"></a>分配IP安全规则</h3><p><img src="image-20220629171306977" alt=""></p>
+<p>对Windows 10 Client-No1以相同步骤添加新的IP安全规则。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>注意：Client-No1需要移出域XUWP05191643，并使用Client-No1的本地账号登录。</p>
+<p>当某端的IP安全规则未分配时，两侧均无法ping通。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291745056.png" alt=""></p>
+<p>当两侧的IP安全规则均分配时，可以互相ping通。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291746848.png" alt=""></p>
+<h2 id="站点对站点的VPN"><a href="#站点对站点的VPN" class="headerlink" title="站点对站点的VPN"></a>站点对站点的VPN</h2><h3 id="配置网卡"><a href="#配置网卡" class="headerlink" title="配置网卡"></a>配置网卡</h3><p>VMnet1：</p>
+<p>SubNet：192.168.1.0/24</p>
+<p>VMnet8：</p>
+<p>SubNet：172.168.1.0/24</p>
+<p>Gateway：172.168.1.2</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302050562.png" alt=""></p>
+<h3 id="配置服务器和客户机"><a href="#配置服务器和客户机" class="headerlink" title="配置服务器和客户机"></a>配置服务器和客户机</h3><p>内网服务器：</p>
+<p>主机名：Windows Server No1</p>
+<p>内网IP：192.168.1.100</p>
+<p>VPN服务器：</p>
+<p>主机名：Windows Server No2</p>
+<p>内网IP：192.168.1.1</p>
+<p>外网IP：172.168.1.100</p>
+<p>客户机：</p>
+<p>主机名：Windows Client No1</p>
+<p>外网IP：172.168.1.101</p>
+<h3 id="配置VPN服务器"><a href="#配置VPN服务器" class="headerlink" title="配置VPN服务器"></a>配置VPN服务器</h3><p>添加角色”网络策略和访问服务”和”远程访问”。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302126885.png" alt=""></p>
+<p>添加服务”DirectAccess”和”路由”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302127019.png" alt=""></p>
+<p>服务器管理器-工具-路由和远程访问</p>
+<p>（右击）Server-No2-配置并启用路由和远程访问</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302157580.png" alt=""></p>
+<p>选择”远程访问（拨号或VPN）”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302200491.png" alt=""></p>
+<p>选择”VPN”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124577.png" alt=""></p>
+<p>选择外网网卡”Ethernet1”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302200403.png" alt=""></p>
+<p>因欲连接VPN的Client-No1是静态IP，所以选择”来自一个指定的地址范围”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302201557.png" alt=""></p>
+<p>配置整个后8位的地址</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302201116.png" alt=""></p>
+<p>选择”是，设置此服务器与RADIUS服务器一起工作”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302202942.png" alt=""></p>
+<p>设置共享机密为：05191643</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302203850.png" alt=""></p>
+<p>（右击）Server-No2-属性-安全</p>
+<p>设置预共享密钥为：05191643</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302204271.png" alt=""></p>
+<h3 id="配置域控服务器"><a href="#配置域控服务器" class="headerlink" title="配置域控服务器"></a>配置域控服务器</h3><p>添加角色”网络策略和访问服务”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302205252.png" alt=""></p>
+<p>服务器管理器-工具-网络策略服务器-（右击）NPS（本地）-在Active<br>Diretory中注册服务器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302208662.png" alt=""></p>
+<p>（右击）RADIUS服务器-新建</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302209080.png" alt=""></p>
+<p>为RADIUS设置友好名称和地址，输入此前设置的共享机密。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302210840.png" alt=""></p>
+<p>服务器管理器-工具-Active Directory用户和计算机-Client<br>User-（右击）XuWanpeng-No1-属性-拨入-允许访问</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302211816.png" alt=""></p>
+<p>控制面板-网络和Internet-网络和共享中心-设置新的连接或网络-连接到工作区</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302217462.png" alt=""></p>
+<p>使用我的Internet连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041125673.png" alt=""></p>
+<p>输入VPN服务器的内网地址</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302219766.png" alt=""></p>
+<p>（右击）VPN连接-属性</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302221886.png" alt=""></p>
+<p>安全-按下图更改</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302243009.png" alt=""></p>
+<p>高级设置-选择”使用预共享的密钥作身份验证”-输入预共享密钥</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302221301.png" alt=""></p>
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>（右击）VPN连接-连接/断开连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302226469.png" alt=""></p>
+<p>输入允许访问的域用户的用户名、密码、域名（大概如下图）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302248416.png" alt=""></p>
+<p>当连接变为蓝色时即代表连接成功。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302259193.png" alt=""></p>
 
         </div>
 
@@ -1044,7 +1248,7 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://xuwp.top/SOS-Homework.html">http://xuwp.top/SOS-Homework.html</a></span>
+                        <span><a href="http://xuwp.top/Operating-System-Security.html">http://xuwp.top/Operating-System-Security.html</a></span>
                     </p>
                 
                 
