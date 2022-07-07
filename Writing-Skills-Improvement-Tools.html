@@ -271,6 +271,62 @@ markdown也是一种语法，但它十分轻量，以至于本科生都可以轻
 
 其他能解析文字的语法也有很多，比如HTML，但应该没有人会使用它撰写文章。
 -->
+<h1 id="Word目录格式修改"><a href="#Word目录格式修改" class="headerlink" title="Word目录格式修改"></a>Word目录格式修改</h1><p>点击目录左上角三个点选中目录</p>
+<p>引用-目录-自定义目录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080117291.png" alt=""></p>
+<p>这里就和实现多级标题和实现样式差不多了，可以先看后文的这两节。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080119401.png" alt=""></p>
+<p>我校毕业论文目录要求：</p>
+<p>中文：</p>
+<ol>
+<li>一级标题：<strong>宋体</strong> <strong>小四</strong>号<strong>加粗</strong>，<strong>段前0.5行</strong>，<strong>段后0.5行</strong>，<strong>单倍行距</strong></li>
+<li>二级标题：<strong>宋体</strong> <strong>小四</strong>，行距<strong>固定值20磅</strong></li>
+</ol>
+<p>英文：</p>
+<ol>
+<li><p>一级标题：<strong>Times New Roman</strong>  <strong>小四</strong>号字<strong>加粗</strong>，<strong>段前0.5行</strong>，<strong>段后0.5行</strong>，<strong>单倍行距</strong></p>
+</li>
+<li><p>二级标题：<strong>Times New Roman</strong>  <strong>小四</strong>号字，行距<strong>固定值20磅</strong></p>
+</li>
+</ol>
+<p>目录要求写到二级标题</p>
+<p>平时作业和报告没有那么严格，大概是这样：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080124230.png" alt=""></p>
+<h1 id="Word三节式页码"><a href="#Word三节式页码" class="headerlink" title="Word三节式页码"></a>Word三节式页码</h1><p>依照我校毕业论文要求，paper需要三种不同的页码</p>
+<ol>
+<li>标题：无页码</li>
+<li>摘要及目录：罗马字符页码</li>
+<li>正文：阿拉伯数字页码</li>
+</ol>
+<p>在Word中通过分节实现这个要求。</p>
+<p>以一次作业为例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080050647.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080051770.png" alt=""></p>
+<p>首先，将整个paper分为3节，通过<strong>“分节符”</strong>实现，使用位于此处的“分节符”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080053189.png" alt=""></p>
+<p>分别在想要断开页码的页的末尾添加，即这两个位置。</p>
+<p>待分的第一节后、第二节前：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080055572.png" alt=""></p>
+<p>待分的第二节后、第三节前：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080055677.png" alt=""></p>
+<p>这时整个word已经分成了三节，三份页码也是断开的：1、1 2、1 2 3…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080103787.png" alt=""></p>
+<p>这时可以分别修改各节页脚的格式和内容</p>
+<p>将第一节页码删去</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080106944.png" alt=""></p>
+<p>将第二节修改为罗马字符页码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080104465.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080105429.png" alt=""></p>
+<p>此时：（无）、I II、1 2 3…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080107609.png" alt=""></p>
+<p>可以在第三节加上总页数而不影响前两节，即：即（无）、I II、1/34 2/34 3/34…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080108828.png" alt=""></p>
+<p>如果要让三节的页码内容相同，可以进入第i+1节的页眉和页脚工具，然后点击“链接到前一条页眉”，这时第i节和第i+1节就建立了联系（至于是哪链接到了页眉，我不太明白）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080110977.png" alt=""></p>
+<p>全部完成后会删除现有页脚，并出现“与上一节相同”字样</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080111136.png" alt=""></p>
+<p>此时按刚刚的方法重新添加页脚，然后再修改某节的内容，发现有页脚的节同时被修改了，即（无）、I/34 II/34、1/34 2/34 3/34…：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207080115406.png" alt=""></p>
 <h1 id="Word段前分页"><a href="#Word段前分页" class="headerlink" title="Word段前分页"></a>Word段前分页</h1><p>有时发现这样的情况，某页没有分页符但是不和下一页连着。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206261821605.png" alt=""></p>
 <p>这是“段前分页”的功能。</p>
