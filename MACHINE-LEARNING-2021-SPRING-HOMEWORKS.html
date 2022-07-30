@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>MACHINE LEARNING 2021 SPRING(HUNG-YI LEE) HW | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">MACHINE LEARNING 2021 SPRING(HUNG-YI LEE) HW</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 30, 2022&nbsp;&nbsp;19:17:05</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AI/">AI</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>李宏毅教授2021年机器学习课程的作业，详见<a target="_blank" rel="noopener" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php">ML 2021 Spring</a></p>
+<p>感觉NTU学生的英语都很好啊hh，所以这也是本人第一次练习使用双语书写注释及内容</p>
+<h1 id="Homework-1-COVID-19-Cases-Prediction-Regression"><a href="#Homework-1-COVID-19-Cases-Prediction-Regression" class="headerlink" title="Homework 1: COVID-19 Cases Prediction (Regression)"></a><strong>Homework 1: COVID-19 Cases Prediction (Regression)</strong></h1><h2 id="Simple-Baseline"><a href="#Simple-Baseline" class="headerlink" title="Simple Baseline"></a><strong>Simple Baseline</strong></h2><p>只要跑通助教的代码就可以，经注释后的代码如下。</p>
+<h3 id="Download-Data"><a href="#Download-Data" class="headerlink" title="Download Data"></a><strong>Download Data</strong></h3><p>If the Google drive links are dead, you can download data from <a target="_blank" rel="noopener" href="https://www.kaggle.com/c/ml2021spring-hw1/data">kaggle</a>, and upload data manually to the workspace.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tr_path = <span class="string">&#x27;covid.train.csv&#x27;</span>   <span class="comment"># path to training data</span></span><br><span class="line">tt_path = <span class="string">&#x27;covid.test.csv&#x27;</span>    <span class="comment"># path to testing data</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Google Colab special command</span></span><br><span class="line">!gdown --<span class="built_in">id</span> <span class="string">&#x27;19CCyCgJrUxtvgZF53vnctJiOJ23T5mqF&#x27;</span> --output covid.train.csv</span><br><span class="line">!gdown --<span class="built_in">id</span> <span class="string">&#x27;1CE240jLm2npU-tdz81-oVKEF3T2yfT1O&#x27;</span> --output covid.test.csv</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/lib/python3.7/dist-packages/gdown/cli.py:131: FutureWarning: Option `--id` was deprecated in version 4.3.1 and will be removed in 5.0. You don&#x27;t need to pass it anymore to use a file ID.</span><br><span class="line">  category=FutureWarning,</span><br><span class="line">Downloading...</span><br><span class="line">From: https://drive.google.com/uc?id=19CCyCgJrUxtvgZF53vnctJiOJ23T5mqF</span><br><span class="line">To: /content/covid.train.csv</span><br><span class="line">100% 2.00M/2.00M [00:00&lt;00:00, 202MB/s]</span><br><span class="line">/usr/local/lib/python3.7/dist-packages/gdown/cli.py:131: FutureWarning: Option `--id` was deprecated in version 4.3.1 and will be removed in 5.0. You don&#x27;t need to pass it anymore to use a file ID.</span><br><span class="line">  category=FutureWarning,</span><br><span class="line">Downloading...</span><br><span class="line">From: https://drive.google.com/uc?id=1CE240jLm2npU-tdz81-oVKEF3T2yfT1O</span><br><span class="line">To: /content/covid.test.csv</span><br><span class="line">100% 651k/651k [00:00&lt;00:00, 129MB/s]</span><br></pre></td></tr></table></figure>
+<h3 id="Import-Some-Packages"><a href="#Import-Some-Packages" class="headerlink" title="Import Some Packages"></a><strong>Import Some Packages</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PyTorch</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader</span><br><span class="line"></span><br><span class="line"><span class="comment"># For data preprocess</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># For plotting</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> figure</span><br><span class="line"></span><br><span class="line"><span class="comment"># set a random seed for reproducibility（可重复性）</span></span><br><span class="line">myseed = <span class="number">42069</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if True, causes cuDNN to only use deterministic convolution algorithms.(确定性卷积算法)</span></span><br><span class="line"><span class="comment"># 确定性卷积算法 is, algorithms which, given the same input, and when run on the same software and hardware, always produce the same output</span></span><br><span class="line"><span class="comment"># Performance： nondeterministic algorithms &gt; deterministic algorithms (In most cases)</span></span><br><span class="line">torch.backends.cudnn.deterministic = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if True, causes cuDNN to benchmark multiple convolution algorithms and select the fastest.</span></span><br><span class="line"><span class="comment"># 如果卷积网络结构不是动态变化的，即网络的输入 (batch size，图像的大小，输入的通道) 是固定的，设置为True。由于HW1并未涉及卷积运算，所以设置为False</span></span><br><span class="line">torch.backends.cudnn.benchmark = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set the random seed for numpy, torch, torch.cuda</span></span><br><span class="line">np.random.seed(myseed)</span><br><span class="line">torch.manual_seed(myseed)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    torch.cuda.manual_seed_all(myseed)</span><br></pre></td></tr></table></figure>
+<h3 id="Some-Utilities"><a href="#Some-Utilities" class="headerlink" title="Some Utilities"></a><strong>Some Utilities</strong></h3><p>You do not need to modify this part.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_device</span>():</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Get device (if GPU is available, use GPU) &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;cuda&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_learning_curve</span>(<span class="params">loss_record, title=<span class="string">&#x27;&#x27;</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Plot learning curve of your DNN (train &amp; dev loss) &#x27;&#x27;&#x27;</span></span><br><span class="line">    total_steps = <span class="built_in">len</span>(loss_record[<span class="string">&#x27;train&#x27;</span>])</span><br><span class="line">    x_1 = <span class="built_in">range</span>(total_steps)</span><br><span class="line">    x_2 = x_1[::<span class="built_in">len</span>(loss_record[<span class="string">&#x27;train&#x27;</span>]) // <span class="built_in">len</span>(loss_record[<span class="string">&#x27;dev&#x27;</span>])]</span><br><span class="line">    figure(figsize=(<span class="number">6</span>, <span class="number">4</span>))              <span class="comment"># Set the weight, height of the figure(in feet英尺)</span></span><br><span class="line">    plt.plot(x_1, loss_record[<span class="string">&#x27;train&#x27;</span>], c=<span class="string">&#x27;tab:red&#x27;</span>, label=<span class="string">&#x27;train&#x27;</span>)</span><br><span class="line">    plt.plot(x_2, loss_record[<span class="string">&#x27;dev&#x27;</span>], c=<span class="string">&#x27;tab:cyan&#x27;</span>, label=<span class="string">&#x27;dev&#x27;</span>)</span><br><span class="line">    plt.ylim(<span class="number">0.0</span>, <span class="number">5.</span>)                   <span class="comment"># Limit the y-axis range to 0.0~5.0</span></span><br><span class="line">    plt.xlabel(<span class="string">&#x27;Training steps&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;MSE loss&#x27;</span>)</span><br><span class="line">    plt.title(<span class="string">&#x27;Learning curve of &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(title))</span><br><span class="line">    plt.legend()                        <span class="comment"># Place a legend（图例，就是每种线代表什么） on the Axes.</span></span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_pred</span>(<span class="params">dv_set, model, device, lim=<span class="number">35.</span>, preds=<span class="literal">None</span>, targets=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Plot prediction of your DNN &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> preds <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> targets <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        model.<span class="built_in">eval</span>()                    <span class="comment"># Sets the module in evaluation mode.</span></span><br><span class="line">        preds, targets = [], []</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> dv_set:</span><br><span class="line">            x, y = x.to(device), y.to(device)</span><br><span class="line">            <span class="keyword">with</span> torch.no_grad():       <span class="comment"># Context-manager that disabled gradient calculation.（无视梯度上下文，直接requires_grad=False，加速用）</span></span><br><span class="line">                pred = model(x)</span><br><span class="line">                preds.append(pred.detach().cpu())   <span class="comment"># Tensor.detach(): Returns a new Tensor, detached from the current graph. Tensor.cpu(): Returns a copy of this object in CPU memory.</span></span><br><span class="line">                targets.append(y.detach().cpu())</span><br><span class="line">        preds = torch.cat(preds, dim=<span class="number">0</span>).numpy()     <span class="comment"># Concatenates the given sequence of seq tensors in the given dimension. （和cpp中cat类似，这里就是list-&gt;Tensor-&gt;ndarray）</span></span><br><span class="line">        targets = torch.cat(targets, dim=<span class="number">0</span>).numpy()</span><br><span class="line"></span><br><span class="line">    figure(figsize=(<span class="number">5</span>, <span class="number">5</span>))</span><br><span class="line">    plt.scatter(targets, preds, c=<span class="string">&#x27;r&#x27;</span>, alpha=<span class="number">0.5</span>)   <span class="comment"># 散点图</span></span><br><span class="line">    plt.plot([-<span class="number">0.2</span>, lim], [-<span class="number">0.2</span>, lim], c=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">    plt.xlim(-<span class="number">0.2</span>, lim)</span><br><span class="line">    plt.ylim(-<span class="number">0.2</span>, lim)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;ground truth value&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;predicted value&#x27;</span>)</span><br><span class="line">    plt.title(<span class="string">&#x27;Ground Truth v.s. Prediction&#x27;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="Preprocess"><a href="#Preprocess" class="headerlink" title="Preprocess"></a><strong>Preprocess</strong></h3><p>We have three kinds of datasets:</p>
+<ul>
+<li><code>train</code>: for training</li>
+<li><code>dev</code>: for validation</li>
+<li><code>test</code>: for testing (w/o target value)</li>
+</ul>
+<h4 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a><strong>Dataset</strong></h4><p>The <code>COVID19Dataset</code> below does:</p>
+<ul>
+<li>read <code>.csv</code> files</li>
+<li>extract features</li>
+<li>split <code>covid.train.csv</code> into train/dev sets</li>
+<li>normalize features</li>
+</ul>
+<p>Finishing <code>TODO</code> below might make you pass medium baseline.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">COVID19Dataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Dataset for loading and preprocessing the COVID19 dataset &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,</span></span></span><br><span class="line"><span class="params"><span class="function">                 path,</span></span></span><br><span class="line"><span class="params"><span class="function">                 mode=<span class="string">&#x27;train&#x27;</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 target_only=<span class="literal">False</span></span>):</span></span><br><span class="line">        self.mode = mode</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Read data into numpy arrays</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">            data = <span class="built_in">list</span>(csv.reader(fp))</span><br><span class="line">            data = np.array(data[<span class="number">1</span>:])[:, <span class="number">1</span>:].astype(<span class="built_in">float</span>)    <span class="comment"># Remove the 0th row and 0th column 获取数值数据</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 默认情况，选取除最后一列的全部列（0~92）作为train data</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> target_only:</span><br><span class="line">            feats = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">93</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># <span class="doctag">TODO:</span> Using 40 states &amp; 2 tested_positive features (indices = 57 &amp; 75)</span></span><br><span class="line">            <span class="comment"># feats = list(range(40)) + [57] + [75]</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 最后一列数据不同，训练集有最后一列（93th），测试集没有93th column</span></span><br><span class="line">        <span class="keyword">if</span> mode == <span class="string">&#x27;test&#x27;</span>:</span><br><span class="line">            <span class="comment"># Testing data</span></span><br><span class="line">            <span class="comment"># data: 893 x 93 (40 states + day 1 (18) + day 2 (18) + day 3 (17))</span></span><br><span class="line">            <span class="comment"># 测试集不含lable，只需操作data</span></span><br><span class="line">            data = data[:, feats]       <span class="comment"># all rows，&lt;feats&gt; columns</span></span><br><span class="line">            self.data = torch.FloatTensor(data)   <span class="comment"># ndarray -&gt; Tensor(Float32)</span></span><br><span class="line">        <span class="keyword">elif</span> mode <span class="keyword">in</span> [<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;dev&#x27;</span>]:</span><br><span class="line">            <span class="comment"># Training data (train/dev sets)</span></span><br><span class="line">            <span class="comment"># data: 2700 x 94 (40 states + day 1 (18) + day 2 (18) + day 3 (18))</span></span><br><span class="line">            target = data[:, -<span class="number">1</span>]        <span class="comment"># all rows, 94th column</span></span><br><span class="line">            data = data[:, feats]       <span class="comment"># all rows, &lt;feats(default: 0th~93th)&gt; columns</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Splitting training data into train &amp; dev sets</span></span><br><span class="line">            <span class="comment"># len(train sets):len(dev sets) = 9:1 （每10个中9个作为train，1个作为dev）</span></span><br><span class="line">            <span class="keyword">if</span> mode == <span class="string">&#x27;train&#x27;</span>:</span><br><span class="line">                indices = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)) <span class="keyword">if</span> i % <span class="number">10</span> != <span class="number">0</span>]</span><br><span class="line">            <span class="keyword">elif</span> mode == <span class="string">&#x27;dev&#x27;</span>:</span><br><span class="line">                indices = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)) <span class="keyword">if</span> i % <span class="number">10</span> == <span class="number">0</span>]</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Convert data into PyTorch tensors</span></span><br><span class="line">            self.data = torch.FloatTensor(data[indices])</span><br><span class="line">            self.target = torch.FloatTensor(target[indices])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Normalize features (you may remove this part to see what will happen)</span></span><br><span class="line">        <span class="comment"># 归一化特征（通常添加后可以提升模型训练的效果）</span></span><br><span class="line">        <span class="comment"># （第i维数据 - 第i维数据的平均值）/（第i维数据的标准差）</span></span><br><span class="line">        self.data[:, <span class="number">40</span>:] = \</span><br><span class="line">            (self.data[:, <span class="number">40</span>:] - self.data[:, <span class="number">40</span>:].mean(dim=<span class="number">0</span>, keepdim=<span class="literal">True</span>)) \</span><br><span class="line">            / self.data[:, <span class="number">40</span>:].std(dim=<span class="number">0</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        self.dim = self.data.shape[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Finished reading the &#123;&#125; set of COVID19 Dataset (&#123;&#125; samples found, each dim = &#123;&#125;)&#x27;</span></span><br><span class="line">              .<span class="built_in">format</span>(mode, <span class="built_in">len</span>(self.data), self.dim))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, index</span>):</span></span><br><span class="line">        <span class="comment"># Returns one sample at a time</span></span><br><span class="line">        <span class="keyword">if</span> self.mode <span class="keyword">in</span> [<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;dev&#x27;</span>]:</span><br><span class="line">            <span class="comment"># For training</span></span><br><span class="line">            <span class="keyword">return</span> self.data[index], self.target[index]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># For testing (no target)</span></span><br><span class="line">            <span class="keyword">return</span> self.data[index]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># Returns the size of the dataset</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.data)</span><br></pre></td></tr></table></figure>
+<h4 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a><strong>DataLoader</strong></h4><p>A <code>DataLoader</code> loads data from a given <code>Dataset</code> into batches.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prep_dataloader</span>(<span class="params">path, mode, batch_size, n_jobs=<span class="number">0</span>, target_only=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Generates a dataset, then is put into a dataloader. &#x27;&#x27;&#x27;</span></span><br><span class="line">    dataset = COVID19Dataset(path, mode=mode, target_only=target_only)  <span class="comment"># Construct dataset</span></span><br><span class="line">    <span class="comment"># num_workers (int, optional) – how many subprocesses to use for data loading. 0 means that the data will be loaded in the main process. (default: 0)</span></span><br><span class="line">    <span class="comment"># pin_memory (bool, optional) – If True, the data loader will copy Tensors into device/CUDA pinned memory before returning them.</span></span><br><span class="line">    dataloader = DataLoader(</span><br><span class="line">        dataset, batch_size,</span><br><span class="line">        shuffle=(mode == <span class="string">&#x27;train&#x27;</span>), drop_last=<span class="literal">False</span>,</span><br><span class="line">        num_workers=n_jobs, pin_memory=<span class="literal">True</span>)                            <span class="comment"># Construct dataloader</span></span><br><span class="line">    <span class="keyword">return</span> dataloader</span><br></pre></td></tr></table></figure>
+<h3 id="Deep-Neural-Network"><a href="#Deep-Neural-Network" class="headerlink" title="Deep Neural Network"></a><strong>Deep Neural Network</strong></h3><p><code>NeuralNet</code> is an <code>nn.Module</code> designed for regression.<br>The DNN consists of 2 fully-connected layers with ReLU activation.<br>This module also included a function <code>cal_loss</code> for calculating loss.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NeuralNet</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; A simple fully-connected deep neural network &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_dim</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(NeuralNet, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Define your neural network here</span></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> How to modify this model to achieve better performance?</span></span><br><span class="line">        <span class="comment"># A sequential container.（顺序容器） Modules will be added to it in the order they are passed in the constructor. </span></span><br><span class="line">        self.net = nn.Sequential(</span><br><span class="line">            nn.Linear(input_dim, <span class="number">64</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">64</span>, <span class="number">1</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Mean squared error loss</span></span><br><span class="line">        <span class="comment"># reduction (string, optional) – Specifies the reduction to apply to the output: &#x27;none&#x27; | &#x27;mean&#x27; | &#x27;sum&#x27;.</span></span><br><span class="line">        <span class="comment"># &#x27;none&#x27;: no reduction will be applied, </span></span><br><span class="line">        <span class="comment"># &#x27;mean&#x27;: the sum of the output will be divided by the number of elements in the output, </span></span><br><span class="line">        <span class="comment"># &#x27;sum&#x27;: the output will be summed. (Default)</span></span><br><span class="line">        self.criterion = nn.MSELoss(reduction=<span class="string">&#x27;mean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27; Given input of size (batch_size x input_dim), compute output of the network &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># Returns a tensor with all the dimensions of input of size 1 removed.</span></span><br><span class="line">        <span class="keyword">return</span> self.net(x).squeeze(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cal_loss</span>(<span class="params">self, pred, target</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27; Calculate loss &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> you may implement L1/L2 regularization here</span></span><br><span class="line">        <span class="keyword">return</span> self.criterion(pred, target)</span><br></pre></td></tr></table></figure>
+<h3 id="Train-Dev-Test"><a href="#Train-Dev-Test" class="headerlink" title="Train/Dev/Test"></a><strong>Train/Dev/Test</strong></h3><h4 id="Training"><a href="#Training" class="headerlink" title="Training"></a><strong>Training</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">tr_set, dv_set, model, config, device</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; DNN training &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    n_epochs = config[<span class="string">&#x27;n_epochs&#x27;</span>]  <span class="comment"># Maximum number of epochs</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Setup optimizer</span></span><br><span class="line">    optimizer = <span class="built_in">getattr</span>(torch.optim, config[<span class="string">&#x27;optimizer&#x27;</span>])(</span><br><span class="line">        model.parameters(), **config[<span class="string">&#x27;optim_hparas&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    min_mse = <span class="number">1000.</span></span><br><span class="line">    loss_record = &#123;<span class="string">&#x27;train&#x27;</span>: [], <span class="string">&#x27;dev&#x27;</span>: []&#125;      <span class="comment"># for recording training loss</span></span><br><span class="line">    early_stop_cnt = <span class="number">0</span></span><br><span class="line">    epoch = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> epoch &lt; n_epochs:</span><br><span class="line">        model.train()                           <span class="comment"># set model to training mode</span></span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> tr_set:                     <span class="comment"># iterate through the dataloader</span></span><br><span class="line">            optimizer.zero_grad()               <span class="comment"># set gradient to zero</span></span><br><span class="line">            x, y = x.to(device), y.to(device)   <span class="comment"># move data to device (cpu/cuda)</span></span><br><span class="line">            pred = model(x)                     <span class="comment"># forward pass (compute output)</span></span><br><span class="line">            mse_loss = model.cal_loss(pred, y)  <span class="comment"># compute loss</span></span><br><span class="line">            mse_loss.backward()                 <span class="comment"># compute gradient (backpropagation)</span></span><br><span class="line">            optimizer.step()                    <span class="comment"># update model with optimizer</span></span><br><span class="line">            loss_record[<span class="string">&#x27;train&#x27;</span>].append(mse_loss.detach().cpu().item())</span><br><span class="line"></span><br><span class="line">        <span class="comment"># After each epoch, test your model on the validation (development) set.</span></span><br><span class="line">        dev_mse = dev(dv_set, model, device)</span><br><span class="line">        <span class="keyword">if</span> dev_mse &lt; min_mse:</span><br><span class="line">            <span class="comment"># Save model if your model improved</span></span><br><span class="line">            min_mse = dev_mse</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;Saving model (epoch = <span class="subst">&#123;epoch + <span class="number">1</span> : 4d&#125;</span>, loss = <span class="subst">&#123;min_mse : <span class="number">.4</span>f&#125;</span>)&#x27;</span>)</span><br><span class="line">            <span class="comment"># model.state_dict(): Returns a dictionary containing a whole state of the module.</span></span><br><span class="line">            torch.save(model.state_dict(), config[<span class="string">&#x27;save_path&#x27;</span>])  <span class="comment"># Save model to specified path &lt;config[&#x27;save_path&#x27;]&gt;</span></span><br><span class="line">            early_stop_cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            early_stop_cnt += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        epoch += <span class="number">1</span></span><br><span class="line">        loss_record[<span class="string">&#x27;dev&#x27;</span>].append(dev_mse)</span><br><span class="line">        <span class="keyword">if</span> early_stop_cnt &gt; config[<span class="string">&#x27;early_stop&#x27;</span>]:</span><br><span class="line">            <span class="comment"># Stop training if your model stops improving for &quot;config[&#x27;early_stop&#x27;]&quot; epochs. 早停</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Finished training after &#123;&#125; epochs&#x27;</span>.<span class="built_in">format</span>(epoch))</span><br><span class="line">    <span class="keyword">return</span> min_mse, loss_record</span><br></pre></td></tr></table></figure>
+<h4 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a><strong>Validation</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dev</span>(<span class="params">dv_set, model, device</span>):</span></span><br><span class="line">    model.<span class="built_in">eval</span>()                                <span class="comment"># set model to evalutation mode</span></span><br><span class="line">    total_loss = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x, y <span class="keyword">in</span> dv_set:                         <span class="comment"># iterate through the dataloader</span></span><br><span class="line">        x, y = x.to(device), y.to(device)       <span class="comment"># move data to device (cpu/cuda)</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():                   <span class="comment"># disable gradient calculation</span></span><br><span class="line">            pred = model(x)                     <span class="comment"># forward pass (compute output)</span></span><br><span class="line">            mse_loss = model.cal_loss(pred, y)  <span class="comment"># compute loss</span></span><br><span class="line">        total_loss += mse_loss.detach().cpu().item() * <span class="built_in">len</span>(x)  <span class="comment"># accumulate loss</span></span><br><span class="line">    total_loss = total_loss / <span class="built_in">len</span>(dv_set.dataset)              <span class="comment"># compute averaged loss</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> total_loss</span><br></pre></td></tr></table></figure>
+<h4 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a><strong>Testing</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">tt_set, model, device</span>):</span></span><br><span class="line">    model.<span class="built_in">eval</span>()                                <span class="comment"># set model to evalutation mode</span></span><br><span class="line">    preds = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> tt_set:                            <span class="comment"># iterate through the dataloader</span></span><br><span class="line">        x = x.to(device)                        <span class="comment"># move data to device (cpu/cuda)</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():                   <span class="comment"># disable gradient calculation</span></span><br><span class="line">            pred = model(x)                     <span class="comment"># forward pass (compute output)</span></span><br><span class="line">            preds.append(pred.detach().cpu())   <span class="comment"># collect prediction 记录预测值</span></span><br><span class="line">    preds = torch.cat(preds, dim=<span class="number">0</span>).numpy()     <span class="comment"># concatenate all predictions and convert to a numpy array (list-&gt;tensor-&gt;ndarray) </span></span><br><span class="line">    <span class="keyword">return</span> preds</span><br></pre></td></tr></table></figure>
+<h3 id="Setup-Hyper-parameters"><a href="#Setup-Hyper-parameters" class="headerlink" title="Setup Hyper-parameters"></a><strong>Setup Hyper-parameters</strong></h3><p><code>config</code> contains hyper-parameters for training and the path to save your model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">device = get_device()                 <span class="comment"># get the current available device (&#x27;cpu&#x27; or &#x27;cuda&#x27;)</span></span><br><span class="line">os.makedirs(<span class="string">&#x27;models&#x27;</span>, exist_ok=<span class="literal">True</span>)  <span class="comment"># The trained model will be saved to ./models/, exist_ok：只有在目录不存在时创建目录</span></span><br><span class="line">target_only = <span class="literal">False</span>                   <span class="comment"># <span class="doctag">TODO:</span> Using 40 states &amp; 2 tested_positive features</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># <span class="doctag">TODO:</span> How to tune these hyper-parameters to improve your model&#x27;s performance?</span></span><br><span class="line">config = &#123;</span><br><span class="line">    <span class="string">&#x27;n_epochs&#x27;</span>: <span class="number">3000</span>,                <span class="comment"># maximum number of epochs</span></span><br><span class="line">    <span class="string">&#x27;batch_size&#x27;</span>: <span class="number">270</span>,               <span class="comment"># mini-batch size for dataloader</span></span><br><span class="line">    <span class="string">&#x27;optimizer&#x27;</span>: <span class="string">&#x27;SGD&#x27;</span>,              <span class="comment"># optimization algorithm (optimizer in torch.optim)</span></span><br><span class="line">    <span class="string">&#x27;optim_hparas&#x27;</span>: &#123;                <span class="comment"># hyper-parameters for the optimizer (depends on which optimizer you are using)</span></span><br><span class="line">        <span class="string">&#x27;lr&#x27;</span>: <span class="number">0.001</span>,                 <span class="comment"># learning rate of SGD</span></span><br><span class="line">        <span class="string">&#x27;momentum&#x27;</span>: <span class="number">0.9</span>              <span class="comment"># momentum for SGD</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;early_stop&#x27;</span>: <span class="number">200</span>,               <span class="comment"># early stopping epochs (the number epochs since your model&#x27;s last improvement)</span></span><br><span class="line">    <span class="string">&#x27;save_path&#x27;</span>: <span class="string">&#x27;models/model.pth&#x27;</span>  <span class="comment"># your model will be saved here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Load-data-and-model"><a href="#Load-data-and-model" class="headerlink" title="Load data and model"></a><strong>Load data and model</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tr_set = prep_dataloader(tr_path, <span class="string">&#x27;train&#x27;</span>, config[<span class="string">&#x27;batch_size&#x27;</span>], target_only=target_only)</span><br><span class="line">dv_set = prep_dataloader(tr_path, <span class="string">&#x27;dev&#x27;</span>, config[<span class="string">&#x27;batch_size&#x27;</span>], target_only=target_only)</span><br><span class="line">tt_set = prep_dataloader(tt_path, <span class="string">&#x27;test&#x27;</span>, config[<span class="string">&#x27;batch_size&#x27;</span>], target_only=target_only)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Finished reading the train set of COVID19 Dataset (2430 samples found, each dim = 93)</span><br><span class="line">Finished reading the dev set of COVID19 Dataset (270 samples found, each dim = 93)</span><br><span class="line">Finished reading the test set of COVID19 Dataset (893 samples found, each dim = 93)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = NeuralNet(tr_set.dataset.dim).to(device)  # Construct model and move to device</span><br></pre></td></tr></table></figure>
+<h3 id="Start-Training"><a href="#Start-Training" class="headerlink" title="Start Training!"></a><strong>Start Training!</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model_loss, model_loss_record = train(tr_set, dv_set, model, config, device)</span><br></pre></td></tr></table></figure>
+<pre><code>Saving model (epoch =    1, loss =  78.8524)
+Saving model (epoch =    2, loss =  37.6170)
+Saving model (epoch =    3, loss =  26.1203)
+Saving model (epoch =    4, loss =  16.1862)
+Saving model (epoch =    5, loss =  9.7153)
+Saving model (epoch =    6, loss =  6.3701)
+Saving model (epoch =    7, loss =  5.1802)
+Saving model (epoch =    8, loss =  4.4255)
+Saving model (epoch =    9, loss =  3.8009)
+Saving model (epoch =   10, loss =  3.3691)
+Saving model (epoch =   11, loss =  3.0943)
+Saving model (epoch =   12, loss =  2.8176)
+Saving model (epoch =   13, loss =  2.6274)
+Saving model (epoch =   14, loss =  2.4542)
+Saving model (epoch =   15, loss =  2.3012)
+Saving model (epoch =   16, loss =  2.1766)
+Saving model (epoch =   17, loss =  2.0641)
+Saving model (epoch =   18, loss =  1.9399)
+Saving model (epoch =   19, loss =  1.8978)
+Saving model (epoch =   20, loss =  1.7950)
+Saving model (epoch =   21, loss =  1.7164)
+Saving model (epoch =   22, loss =  1.6455)
+Saving model (epoch =   23, loss =  1.5912)
+Saving model (epoch =   24, loss =  1.5599)
+Saving model (epoch =   25, loss =  1.5197)
+Saving model (epoch =   26, loss =  1.4698)
+Saving model (epoch =   27, loss =  1.4189)
+Saving model (epoch =   28, loss =  1.3992)
+Saving model (epoch =   29, loss =  1.3696)
+Saving model (epoch =   30, loss =  1.3442)
+Saving model (epoch =   31, loss =  1.3231)
+Saving model (epoch =   32, loss =  1.2834)
+Saving model (epoch =   33, loss =  1.2804)
+Saving model (epoch =   34, loss =  1.2471)
+Saving model (epoch =   36, loss =  1.2414)
+Saving model (epoch =   37, loss =  1.2138)
+Saving model (epoch =   38, loss =  1.2083)
+Saving model (epoch =   41, loss =  1.1591)
+Saving model (epoch =   42, loss =  1.1484)
+Saving model (epoch =   44, loss =  1.1209)
+Saving model (epoch =   47, loss =  1.1122)
+Saving model (epoch =   48, loss =  1.0937)
+Saving model (epoch =   50, loss =  1.0842)
+Saving model (epoch =   53, loss =  1.0655)
+Saving model (epoch =   54, loss =  1.0613)
+Saving model (epoch =   57, loss =  1.0524)
+Saving model (epoch =   58, loss =  1.0394)
+Saving model (epoch =   60, loss =  1.0267)
+Saving model (epoch =   63, loss =  1.0248)
+Saving model (epoch =   66, loss =  1.0099)
+Saving model (epoch =   70, loss =  0.9829)
+Saving model (epoch =   72, loss =  0.9817)
+Saving model (epoch =   73, loss =  0.9743)
+Saving model (epoch =   75, loss =  0.9671)
+Saving model (epoch =   78, loss =  0.9643)
+Saving model (epoch =   79, loss =  0.9597)
+Saving model (epoch =   85, loss =  0.9549)
+Saving model (epoch =   86, loss =  0.9535)
+Saving model (epoch =   90, loss =  0.9467)
+Saving model (epoch =   92, loss =  0.9432)
+Saving model (epoch =   93, loss =  0.9231)
+Saving model (epoch =   95, loss =  0.9127)
+Saving model (epoch =  104, loss =  0.9117)
+Saving model (epoch =  107, loss =  0.8994)
+Saving model (epoch =  110, loss =  0.8935)
+Saving model (epoch =  116, loss =  0.8882)
+Saving model (epoch =  124, loss =  0.8872)
+Saving model (epoch =  128, loss =  0.8724)
+Saving model (epoch =  134, loss =  0.8722)
+Saving model (epoch =  139, loss =  0.8677)
+Saving model (epoch =  146, loss =  0.8654)
+Saving model (epoch =  156, loss =  0.8642)
+Saving model (epoch =  159, loss =  0.8528)
+Saving model (epoch =  167, loss =  0.8494)
+Saving model (epoch =  173, loss =  0.8492)
+Saving model (epoch =  176, loss =  0.8461)
+Saving model (epoch =  178, loss =  0.8403)
+Saving model (epoch =  182, loss =  0.8375)
+Saving model (epoch =  199, loss =  0.8295)
+Saving model (epoch =  212, loss =  0.8273)
+Saving model (epoch =  235, loss =  0.8252)
+Saving model (epoch =  238, loss =  0.8233)
+Saving model (epoch =  251, loss =  0.8211)
+Saving model (epoch =  253, loss =  0.8205)
+Saving model (epoch =  258, loss =  0.8175)
+Saving model (epoch =  284, loss =  0.8143)
+Saving model (epoch =  308, loss =  0.8136)
+Saving model (epoch =  312, loss =  0.8075)
+Saving model (epoch =  324, loss =  0.8045)
+Saving model (epoch =  400, loss =  0.8040)
+Saving model (epoch =  404, loss =  0.8010)
+Saving model (epoch =  466, loss =  0.7998)
+Saving model (epoch =  525, loss =  0.7993)
+Saving model (epoch =  561, loss =  0.7945)
+Saving model (epoch =  584, loss =  0.7903)
+Saving model (epoch =  667, loss =  0.7896)
+Saving model (epoch =  717, loss =  0.7823)
+Saving model (epoch =  776, loss =  0.7812)
+Saving model (epoch =  835, loss =  0.7797)
+Saving model (epoch =  866, loss =  0.7771)
+Saving model (epoch =  919, loss =  0.7770)
+Saving model (epoch =  933, loss =  0.7748)
+Saving model (epoch =  965, loss =  0.7705)
+Saving model (epoch =  1027, loss =  0.7674)
+Saving model (epoch =  1119, loss =  0.7647)
+Saving model (epoch =  1140, loss =  0.7643)
+Saving model (epoch =  1196, loss =  0.7620)
+Saving model (epoch =  1234, loss =  0.7616)
+Saving model (epoch =  1243, loss =  0.7582)
+Finished training after 1444 epochs
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(model_loss_record, title=<span class="string">&#x27;deep model&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207301912583.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> model   <span class="comment"># delete model variable</span></span><br><span class="line">model = NeuralNet(tr_set.dataset.dim).to(device)</span><br><span class="line">ckpt = torch.load(config[<span class="string">&#x27;save_path&#x27;</span>], map_location=<span class="string">&#x27;cpu&#x27;</span>)  <span class="comment"># Load your best model</span></span><br><span class="line">model.load_state_dict(ckpt)</span><br><span class="line">plot_pred(dv_set, model, device)  <span class="comment"># Show prediction on the validation set</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207301913401.png" alt="png"></p>
+<h3 id="Testing-1"><a href="#Testing-1" class="headerlink" title="Testing"></a><strong>Testing</strong></h3><p>The predictions of your model on testing set will be stored at <code>pred.csv</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_pred</span>(<span class="params">preds, file</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Save predictions to specified file &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Saving results to &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(file))</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        writer = csv.writer(fp)</span><br><span class="line">        writer.writerow([<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;tested_positive&#x27;</span>])</span><br><span class="line">        <span class="keyword">for</span> i, p <span class="keyword">in</span> <span class="built_in">enumerate</span>(preds):</span><br><span class="line">            writer.writerow([i, p])</span><br><span class="line"></span><br><span class="line">preds = test(tt_set, model, device)  <span class="comment"># predict COVID-19 cases with your model</span></span><br><span class="line">save_pred(preds, <span class="string">&#x27;pred.csv&#x27;</span>)         <span class="comment"># save prediction file to pred.csv</span></span><br></pre></td></tr></table></figure>
+<pre><code>Saving results to pred.csv
+</code></pre><h2 id="Medium-Baseline"><a href="#Medium-Baseline" class="headerlink" title="Medium Baseline"></a><strong>Medium Baseline</strong></h2><p>Simple Baseline Code中标注了一些TODO，TA说只要完成这些TODO也许就可以达到Medium Baseline，TODO一共有这些：</p>
+<ol>
+<li>TODO: Using 40 states &amp; 2 tested_positive features (indices = 57 &amp; 75)</li>
+<li>TODO: How to modify this model to achieve better performance?</li>
+<li>TODO: you may implement L1/L2 regularization here</li>
+<li>TODO: How to tune these hyper-parameters to improve your model’s performance?</li>
+</ol>
+<p>其中最重要的是TODO1，按TA所说修改即可达到Medium Baseline，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">feats = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">40</span>)) + [<span class="number">57</span>] + [<span class="number">75</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="Strong-Baseline"><a href="#Strong-Baseline" class="headerlink" title="Strong Baseline"></a>Strong Baseline</h2><p>TA给了以下提示</p>
+<ul>
+<li>Feature selection (what other features are useful?)</li>
+<li>DNN architecture (layers? dimension? activation function?)</li>
+<li>Training (mini-batch? optimizer? learning rate?)</li>
+<li>L2 regularization</li>
+<li>There are some mistakes in the sample code, can you find them?</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://xuwp.top/MACHINE-LEARNING-2021-SPRING-HOMEWORKS.html">http://xuwp.top/MACHINE-LEARNING-2021-SPRING-HOMEWORKS.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2022 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"># 深度学习</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/computer-based-Exam.html">Computer-Based Exam</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Stay hungry. Stay foolish.</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
