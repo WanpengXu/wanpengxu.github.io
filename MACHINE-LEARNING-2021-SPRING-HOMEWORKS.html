@@ -457,7 +457,19 @@ L = L(W)+\lambda \sum_{i=1}^{n}\omega_i^2</script><figure class="highlight pytho
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> torch.sqrt(self.criterion(pred, target))</span><br></pre></td></tr></table></figure>
 <p>最后过了public的strong baseline，private差0.00x</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207310211151.png" alt=""></p>
-<h1 id="Homework-2-TIMIT-framewise-phoneme-classification"><a href="#Homework-2-TIMIT-framewise-phoneme-classification" class="headerlink" title="Homework 2: TIMIT framewise phoneme (classification)"></a><strong>Homework 2: TIMIT framewise phoneme (classification)</strong></h1><h1 id="Course中的小知识点"><a href="#Course中的小知识点" class="headerlink" title="Course中的小知识点"></a>Course中的小知识点</h1><h2 id="如何降低loss"><a href="#如何降低loss" class="headerlink" title="如何降低loss"></a>如何降低loss</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311735584.png" alt="image-20220731173535493"></p>
+<h1 id="Homework-2-TIMIT-framewise-phoneme-classification"><a href="#Homework-2-TIMIT-framewise-phoneme-classification" class="headerlink" title="Homework 2: TIMIT framewise phoneme (classification)"></a><strong>Homework 2: TIMIT framewise phoneme (classification)</strong></h1><h2 id="Phoneme-Classification"><a href="#Phoneme-Classification" class="headerlink" title="Phoneme Classification"></a>Phoneme Classification</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010306532.png" alt=""></p>
+<p>首先可以看到Evaluation metric就是acc，所以越高越好。</p>
+<h3 id="Simple-Baseline-1"><a href="#Simple-Baseline-1" class="headerlink" title="Simple Baseline"></a>Simple Baseline</h3><p>跑通TA’s sample code就可以双过simple baseline</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010253944.png" alt=""></p>
+<p>ps：跑一次挺慢的，colab挂上GPU也要15min左右一次。</p>
+<h3 id="Strong-Baseline-1"><a href="#Strong-Baseline-1" class="headerlink" title="Strong Baseline"></a>Strong Baseline</h3><p>TA在PPT里给了一些Hint。</p>
+<ol>
+<li>Model architecture (layers? dimension? activation function?)</li>
+<li>Training (batch size? optimizer? learning rate? epoch?)</li>
+<li>Tips (batch norm? dropout? regularization?)</li>
+</ol>
+<p>基本还是Data、Structure、Optimization。</p>
+<h2 id="Hessian-Matrix"><a href="#Hessian-Matrix" class="headerlink" title="Hessian Matrix"></a>Hessian Matrix</h2><h1 id="Course中的小知识点"><a href="#Course中的小知识点" class="headerlink" title="Course中的小知识点"></a>Course中的小知识点</h1><h2 id="如何降低loss"><a href="#如何降低loss" class="headerlink" title="如何降低loss"></a>如何降低loss</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311735584.png" alt="image-20220731173535493"></p>
 <h2 id="data-Augmentation"><a href="#data-Augmentation" class="headerlink" title="data Augmentation"></a>data Augmentation</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311714111.png" alt=""></p>
 <h2 id="cross-validation"><a href="#cross-validation" class="headerlink" title="cross validation"></a>cross validation</h2><p>避免public testing set和private testing set差距过大</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311729739.png" alt="image-20220731172904653"></p>
