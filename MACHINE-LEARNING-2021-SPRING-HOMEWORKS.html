@@ -457,7 +457,7 @@ L = L(W)+\lambda \sum_{i=1}^{n}\omega_i^2</script><figure class="highlight pytho
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> torch.sqrt(self.criterion(pred, target))</span><br></pre></td></tr></table></figure>
 <p>最后过了public的strong baseline，private差0.00x</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207310211151.png" alt=""></p>
-<h1 id="Course中的小知识点"><a href="#Course中的小知识点" class="headerlink" title="Course中的小知识点"></a>Course中的小知识点</h1><h2 id="如何降低loss"><a href="#如何降低loss" class="headerlink" title="如何降低loss"></a>如何降低loss</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311735584.png" alt="image-20220731173535493"></p>
+<h1 id="Homework-2-TIMIT-framewise-phoneme-classification"><a href="#Homework-2-TIMIT-framewise-phoneme-classification" class="headerlink" title="Homework 2: TIMIT framewise phoneme (classification)"></a><strong>Homework 2: TIMIT framewise phoneme (classification)</strong></h1><h1 id="Course中的小知识点"><a href="#Course中的小知识点" class="headerlink" title="Course中的小知识点"></a>Course中的小知识点</h1><h2 id="如何降低loss"><a href="#如何降低loss" class="headerlink" title="如何降低loss"></a>如何降低loss</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311735584.png" alt="image-20220731173535493"></p>
 <h2 id="data-Augmentation"><a href="#data-Augmentation" class="headerlink" title="data Augmentation"></a>data Augmentation</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311714111.png" alt=""></p>
 <h2 id="cross-validation"><a href="#cross-validation" class="headerlink" title="cross validation"></a>cross validation</h2><p>避免public testing set和private testing set差距过大</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207311729739.png" alt="image-20220731172904653"></p>
@@ -484,6 +484,15 @@ L = L(W)+\lambda \sum_{i=1}^{n}\omega_i^2</script><figure class="highlight pytho
 <p>hylee老师讲的：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010105321.png" alt="image-20220801010502215"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010105713.png" alt="image-20220801010516608"></p>
+<h2 id="Adaptive-Learning-Rate（AdaGrad）"><a href="#Adaptive-Learning-Rate（AdaGrad）" class="headerlink" title="Adaptive Learning Rate（AdaGrad）"></a>Adaptive Learning Rate（AdaGrad）</h2><h3 id="Define"><a href="#Define" class="headerlink" title="Define"></a>Define</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010128994.png" alt="image-20220801012811831"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010128221.png" alt="image-20220801012854116"></p>
+<p>root mean square：均方根</p>
+<h3 id="Scheduling"><a href="#Scheduling" class="headerlink" title="Scheduling"></a>Scheduling</h3><h4 id="Decay"><a href="#Decay" class="headerlink" title="Decay"></a>Decay</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010150725.png" alt="image-20220801015052600"></p>
+<h4 id="warmup"><a href="#warmup" class="headerlink" title="warmup"></a>warmup</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010156758.png" alt="image-20220801015630687"></p>
+<h2 id="learning-rate-adapts-dynamically（RMSProp）"><a href="#learning-rate-adapts-dynamically（RMSProp）" class="headerlink" title="learning rate adapts dynamically（RMSProp）"></a>learning rate adapts dynamically（RMSProp）</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010134196.png" alt="image-20220801013420084"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010134265.png" alt="image-20220801013435158"></p>
+<p>RMSProp：RMS+支点</p>
+<h2 id="RMSProp-Momentum（Adam）"><a href="#RMSProp-Momentum（Adam）" class="headerlink" title="RMSProp + Momentum（Adam）"></a>RMSProp + Momentum（Adam）</h2><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208010158101.png" alt="image-20220801015847962"></p>
 
         </div>
 
