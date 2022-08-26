@@ -256,7 +256,769 @@
         </header>
 
         <div class="post-content">
-            <!--
+            <h1 id="Open-EXAM-Study"><a href="#Open-EXAM-Study" class="headerlink" title="Open EXAM Study"></a>Open EXAM Study</h1><h2 id="Chap2"><a href="#Chap2" class="headerlink" title="Chap2"></a>Chap2</h2><h3 id="PDCA模型"><a href="#PDCA模型" class="headerlink" title="PDCA模型"></a>PDCA模型</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012046574.webp" alt=""></p>
+<p>计划(Plan)： 建立与组织总体战略、 目标和方针保持一致的信息安全管理方针、 策略， 通过风险评估建立控制目标和方式， <strong>制定风险处理计划</strong>。</p>
+<p>执行(Do)： 按照控制目标和方式实施信息安全管理， <strong>开展全员安全培训、 实施安全控制</strong>。</p>
+<p>检查(Check)： 对照信息安全管理体系的方针、 目标， 对信息安全管理进行监视和验证， <strong>评审ISMS的有效性和适当性</strong>。</p>
+<p>处理(Act)： 基于上述对体系的内部审核和管理评价的结果， 采取<strong>纠正和预防</strong>措施， 以<strong>持续改进组织的信息安全管理体系</strong>。</p>
+<h3 id="Active-Directory"><a href="#Active-Directory" class="headerlink" title="Active Directory"></a>Active Directory</h3><p>活动目录(Active Directory, AD)：域环境中提供目录服务的组件。</p>
+<p>特点：</p>
+<p>活动目录不仅<strong>存储网络对象的信息</strong>， 还<strong>提供目录服务</strong>， 使用者能快速准确查找目录中的信息， 而不需要考虑搜索对象的地理位置。</p>
+<p>活动目录提供了完全集成在Windows中的一个分层目录服务。 为企业提供了网络环境中集中式管理机制。</p>
+<p>这种分层的目录结构， 简化了一般的管理任务， 可以使企业网络具有极强的可扩展性。</p>
+<p>完成单域及多域环境下活动目录管理功能的机制：</p>
+<ol>
+<li>单点登录(SSO)</li>
+<li>全局目录(GC) </li>
+<li>多主复制</li>
+<li>组策略</li>
+</ol>
+<h4 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h4><p>单点登录（Single Sign On, SSO）：用户只需要登录一次就可以访问所有相互信任的应用系统。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012142146.png" alt=""></p>
+<p>上图中的SSO基于Kerberos协议，故又称Kerberos SSO。</p>
+<p>当然，也有基于其他协议实现的SSO，如SPNEGO SSO、CAS SSO。</p>
+<h4 id="全局目录"><a href="#全局目录" class="headerlink" title="全局目录"></a>全局目录</h4><p>全局编录/全局目录（Global Catalog, GC）：保存在一个或多个域控制器中的数据库（只读副本，存储对象属性集的）。记录了AD 中所有域对象的部分信息以及架构信息和配置信息的完整副本。</p>
+<p>默认情况下， 全局编录在域森林的初始域控制器上自动创建。 该域控制器就称为全局编录服务器， 后面也可配置其他域控制器为全局编录服务器。</p>
+<p>全局目录的任务：</p>
+<ul>
+<li>登录：向域控制器提供通用组成员信息。<strong>用户登录网络时， 必须存在一台全局编录服务器， 否则只能登录到本地</strong>， 例外是“域管理组中的成员”。</li>
+<li>查询：使得客户机能够方便<strong>快捷地执行跨所有域的搜索</strong>，而不必逐个搜索每个域。只有当查询对象信息不在GC中时， 服务器才会将查询转至对象所在域。</li>
+</ul>
+<p>设置多个GC可以减少用户查询的响应时间，但是会导致网络的复制通信量增加。</p>
+<h4 id="多主复制"><a href="#多主复制" class="headerlink" title="多主复制"></a>多主复制</h4><p>多主复制（Multi-master replication）：通过安装域控制器，就可以在整个网络环境中创建目录的多份副本。网络中任何地方发生的变化都会在整个网络中自动复制。</p>
+<h4 id="组策略"><a href="#组策略" class="headerlink" title="组策略"></a>组策略</h4><p>组策略（Group Policy, GP）：<strong>在初始化时应用于计算机或用户的配置设置</strong>。可在不同层次上定义控制规则。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012307077.png" alt=""></p>
+<p>组策略是<strong>管理员针对于网络中的用户和计算机所作的一系列设置</strong>，可以 设置在站点、 域、 组织单元（如果是工作组计算机则设置在本机上）上， 使管理员可以集中控制程序， 网络资源及系统行为。</p>
+<h5 id="生效时机"><a href="#生效时机" class="headerlink" title="生效时机"></a>生效时机</h5><p>计算机和用户是仅有的接收组策略的活动目录对象类型。</p>
+<p>自动刷新：</p>
+<ul>
+<li>计算机设置生效时间<ul>
+<li>当计算机启动时生效</li>
+<li>计算机已启动， 每隔一段时间会自动应用，域控(5分钟），非域控(90-120)</li>
+</ul>
+</li>
+<li>用户的设置生效时间<ul>
+<li>当用户登陆到计算机时生效</li>
+<li>用户已登录， 每隔90-120分钟会自动应用</li>
+</ul>
+</li>
+</ul>
+<p>强制刷新：</p>
+<p>使用<code>gpupdate /force</code>命令强制刷新组策略，某些策略必须重新启动计算机或重新登录用户。</p>
+<h5 id="设置对象"><a href="#设置对象" class="headerlink" title="设置对象"></a>设置对象</h5><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012314957.png" alt="image-20220701231431852"></p>
+<p>在域中，可以对站点（Site）、域（Domain）、组织单元（OU）设置组策略。可将一个组策略链接到多个Site/Domain/OU，也可以将多个组策略链接到同一Site/Domain/OU。</p>
+<p>在工作组中，使用本地组策略对计算机进行设置。</p>
+<h5 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h5><h6 id="默认处理"><a href="#默认处理" class="headerlink" title="默认处理"></a>默认处理</h6><p>默认处理顺序：纵向处理，其设置顺序为</p>
+<ol>
+<li><strong>本地</strong>组策略对象</li>
+<li>链接在<strong>站点</strong>上的GPO对象</li>
+<li>链接在<strong>域</strong>上的GPO对象</li>
+<li>链接在<strong>OU</strong>上的GPO对象</li>
+</ol>
+<p>排在处理顺序后面的的GPO优先级高（后面的覆盖前面的）。</p>
+<p>工作组成员只处理本地组策略对象。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012322190.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012354067.png" alt=""></p>
+<p>例1</p>
+<p>对于主机“ServerA”，其组策略应用顺序：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012326067.png" alt=""></p>
+<p>对计算机Server A而言，</p>
+<p><strong>本地组策略对象</strong>：A6</p>
+<p>站点组策略对象：A3</p>
+<p>域组策略对象：A1 $\rightarrow$ A2</p>
+<p>OU组策略对象：A4 $\rightarrow$ A5</p>
+<p>所以应用顺序为A6 $\rightarrow$ A3 $\rightarrow$ A1 $\rightarrow$ A2 $\rightarrow$ A4 $\rightarrow$ A5。</p>
+<p>例2</p>
+<p>对于组织单元“教学”和“服务器”，其组策略应用顺序：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020025502.png" alt=""></p>
+<p>例3</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012343705.png" alt=""></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>GPO设置\GPO</th>
+<th>GPO1</th>
+<th>GPO2、GPO3</th>
+<th>GPO4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收藏夹</td>
+<td>显示</td>
+<td>无</td>
+<td><strong>删除</strong></td>
+</tr>
+<tr>
+<td>口令</td>
+<td>无</td>
+<td><strong>不少于11个字符</strong></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows更新图标</td>
+<td>无</td>
+<td>删除</td>
+<td><strong>显示</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="例外处理"><a href="#例外处理" class="headerlink" title="例外处理"></a>例外处理</h6><ol>
+<li>禁止替代，No Override：防止随后处理的GPO覆盖该GPO，当多个GPO均设置为“禁止替代”时，优先采用先处理的GPO。（对后面的GPO：必须、只能用我，我是当继承链的结尾）</li>
+<li>阻止策略继承，Block Policy Inheritance：禁止该GPO继承父组策略（对前面的GPO：我不想用你，我想当继承链的新开头）。<strong>权限小于“禁止替代”</strong>。</li>
+</ol>
+<p>若GPO1为正常GPO，GPO2为禁止替代的GPO，GPO3为阻止策略继承的GPO，GPO4为正常GPO，则：</p>
+<p>GPO1：我是第1个设置，我先设置一遍组策略。（然后就走了）</p>
+<p>GPO2：我是第2个设置，对GPO1：你的设置归我了，我想要的就留着，不想要的就扔了哈。对GPO3及GPO4：后面的都给我滚，别想动我的设置。（站在那把后面的GPO踢走）</p>
+<p>GPO3：我是第3个设置，我想。。把你们的设置扔出去用我的。。。GPO2：给老子滚（GPO3被踢走）</p>
+<p>（如果没有禁止替代的GPO2在，GPO3会把前人的设置全扔掉然后改成自己的，然后走掉）</p>
+<p>GPO4：我是第4个设置，那我还用改点设置吗？？GPO2：你也滚（GPO4被踢走）</p>
+<p>所以最后剩下的设置就是GPO1被GPO2修改后的设置。</p>
+<p>（啊我好傻逼啊。。）</p>
+<h6 id="冲突处理"><a href="#冲突处理" class="headerlink" title="冲突处理"></a>冲突处理</h6><p>用户和计算机拥有不同的组策略。</p>
+<p>默认处理：</p>
+<ol>
+<li>计算机策略</li>
+<li>用户策略</li>
+</ol>
+<p>Lookback环回选项：（让计算机策略更牛逼的选项，词源自计网）</p>
+<ul>
+<li>Replace替换模式：只用计算机策略</li>
+<li>Merge合并模式：先用户策略、再计算机策略（计算机策略的优先级更高了）</li>
+</ul>
+<h2 id="Chap3"><a href="#Chap3" class="headerlink" title="Chap3"></a>Chap3</h2><h3 id="中间人攻击（不考）"><a href="#中间人攻击（不考）" class="headerlink" title="中间人攻击（不考）"></a>中间人攻击（不考）</h3><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020045702.png" alt=""></p>
+<p>问题：Bob没有办法判断收到的公钥是否来自Alice</p>
+<p>解决方法：引入证书</p>
+<p>找到一个可信第三方验证主体</p>
+<p>把公钥和所有者身份绑定到证书中。</p>
+<p>证书不能被伪造（forged）或篡改（tampered）（使用数字签名）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020052164.png" alt=""></p>
+<p>安全通信过程：Alice需要获得可信第三方签名的证书。</p>
+<ol>
+<li>可信第三方给Alice颁发一个带有Alice身份信息和Alice公钥的证书</li>
+<li>Alice将整个证书发送给Bob。</li>
+<li>Bob用可信第三方的公钥验证证书。</li>
+<li>Bob现在知道了公钥的真正主人。</li>
+</ol>
+<p>不就是把公钥放在盒子（证书）里吗。。。那么Malllory因为没有可信第三方的私钥，就不能把自己的公钥伪造成可信第三方签名过的证书了。</p>
+<h3 id="PKI架构"><a href="#PKI架构" class="headerlink" title="PKI架构"></a>PKI架构</h3><p>PKI（Public Key lnfrastruicture）是一个安全基础设施，是一个包括硬件、软件、人员、策略和规程的集合（一组组件和规程）。用来实现基于公钥密码体制的密钥和证书的产生、管理、存储、分发和撤销等功能。</p>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>CA、RA、LDAP、密钥备份及恢复系统、CRL、API</p>
+<p>认证机构（Certification Authority, CA）：是公钥基础设施中的<strong>可信第三方</strong>实体，是信任的起点，<strong>向主体颁发证书，证书吊销列表CRL</strong>，续借和更新证书。有些PKI会把RA的功能融合进CA中。</p>
+<p>注册机构（Registration Authority, RA）：多数情况下，RA主要用于在证书登记过程中<strong>核实证书申请者的身份</strong>，有的架构中，CA也委派给RA一些其他责任，像个人认证，吊销报告、密钥生成、存储密钥对。</p>
+<p>证书库：用于存储已签发的数字证书及公钥，用户可由此获得所需的其他用户的证书及公钥。</p>
+<p>密钥备份及恢复系统： 为应对用户丢失解密密钥的情况，PKI提供了备份与恢复密钥的机制。密钥备份与恢复只能针对解密密钥，签名私钥为确保其唯一性而不能够作备份。</p>
+<p>证书吊销系统：证书在有效期内由于某些原因（如私钥泄露）可能需要废除，即将证书列入CRL（Certificate Revocation List）。</p>
+<p>应用接口：提供良好的应用接口，使各种应用能够与PKI交互。</p>
+<p>数字证书（Digitial Certficate)：把用户身份和密钥绑定起来。</p>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>认证：</p>
+<ul>
+<li>被认证的数据－－－－－－数据源认证</li>
+<li>用户发送的远程认证请求—身份认证</li>
+<li>远程设备生成请求－－－－身份认证</li>
+</ul>
+<p>完整性：利用数字签名即可实现实体认证、也可验证数据完整性</p>
+<p>保密性：用公钥分发秘密密钥， 用秘密密钥加密数据</p>
+<p>不可否认性：数字签名</p>
+<h3 id="数字证书和证书验证"><a href="#数字证书和证书验证" class="headerlink" title="数字证书和证书验证"></a>数字证书和证书验证</h3><p>数字证书是一个经CA数字签名的包含<strong>公钥拥有者</strong>信息以及<strong>公钥</strong>的文件，还包括签名算法和用途。</p>
+<p>证书验证通过CA实现</p>
+<h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><p>基本结构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021325527.png" alt=""></p>
+<p>一般结构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021206552.png" alt=""></p>
+<p>根CA有自签名的证书</p>
+<p>根CA依次给下面的CA进行签名</p>
+<p>层次结构中的叶子节点CA对安全主体进行签名</p>
+<p>对主体而言， 它信任根CA, 中间CA可以不必关心（透明），同时它的证书必须由底层CA签发。</p>
+<p>在CA上要维持这棵树， 每个CA节点需要保存两种证书：</p>
+<ul>
+<li>前向证书： 其他CA发给它的证书</li>
+<li>后向证书： 它发给其他CA的证书。</li>
+</ul>
+<p>层次验证例1 主体A验证主体B的证书</p>
+<ol>
+<li>主体A从该证书的签发CA沿层次树向根找，可以构成一条证书链，直到<strong>找</strong>到该<strong>证书的根证书</strong></li>
+<li><strong>从根证书</strong>开始<strong>向叶验证</strong>（按证书链），直到验证到该证书的签名，如果证书链中所有证书的签名都验证通过（其中，根证书自签名，用自己的公钥进行验证），且主体A信任根CA，则主体A可以信任该证书。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021234465.png" alt=""></p>
+<h4 id="网状结构"><a href="#网状结构" class="headerlink" title="网状结构"></a>网状结构</h4><p>独立的CA双方交叉认证（也就是互相发放证书）， 结果是在对等的CA中产生了信任关系网。 信任仅存在于这两个CA及其下面的子CA之间。</p>
+<p>交叉验证指CA之间互相证明以建立一种横向信任关系， 这是一种对等信任模型．信任可以是单向也可以是双向的。<br>交叉验证为不同PKI实现相互集成提供了方便途径。</p>
+<p>基本结构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021320649.png" alt=""></p>
+<p>一般结构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021321410.png" alt=""></p>
+<h4 id="桥状结构"><a href="#桥状结构" class="headerlink" title="桥状结构"></a>桥状结构</h4><p>加一个CA连接两个CA，使它们成为P2P模式。</p>
+<p>一般结构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021326424.png" alt=""></p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>证书真实性的验证基于<strong>证书链验证机制</strong>，其验证对象：（验证流程见层次验证例1）</p>
+<ol>
+<li>验证真实性。 证书是否为可信任CA认证中心签发？</li>
+<li>验证有效性。 证书是否在证书的有效使用期之内？</li>
+<li>验证可用性。 证书是否已废除？</li>
+<li>验证证书结构中的证书用途。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021329543.png" alt=""></p>
+<p>例1 验证淘宝网站的证书</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021334689.png" alt=""></p>
+<ol>
+<li>检查根CA（GlobalSign Root CA）的证书是否在浏览器的信任CA列表中（自签名的）</li>
+<li>用根CA（GlobalSign Root CA）的<strong>公钥</strong>验证中间CA（GlobalSign Organization Validation CA）的证书</li>
+<li>用中间CA（GlobalSign Organization Validation CA）的公钥验证淘宝网站（*.alibaba.com）的证书</li>
+<li>如果整个证书链的证书均验证成功，则淘宝网站的证书验证通过，信任淘宝网站（*.alibaba.com）</li>
+</ol>
+<h3 id="PKI的安全性"><a href="#PKI的安全性" class="headerlink" title="PKI的安全性"></a>PKI的安全性</h3><p>访问https网站时的认证过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021341323.png" alt=""></p>
+<p>针对认证过程的攻击手段：</p>
+<ol>
+<li>对证书传输过程的攻击（中间人攻击）</li>
+<li>对CA认证过程的攻击</li>
+<li>对CA签名过程的攻击</li>
+<li>对算法的攻击</li>
+<li>对用户确认的攻击</li>
+</ol>
+<p>1 Hacker无法取得CA签发的证书，会创建顶层自签名证书example.com，而该证书不在浏览器信任范围内（不准确），就会导致不可信弹窗（继续前往！）。</p>
+<p>2 Hacker无法取得CA签发的证书，直接发送自己的证书hacker.com，浏览器检查不通过，终止握手协议MITM fails</p>
+<h2 id="Chap4"><a href="#Chap4" class="headerlink" title="Chap4"></a>Chap4</h2><h3 id="基于文本口令认证的安全机制"><a href="#基于文本口令认证的安全机制" class="headerlink" title="基于文本口令认证的安全机制"></a>基于文本口令认证的安全机制</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021358617.png" alt=""></p>
+<p>基于口令的机制允许人们选择自己的口令，并且不需要辅助设备生成或储存， 因此用户名加口令成为应用最广泛的一种身份认证方式。</p>
+<p>基于口令的认证虽然简单便捷、 费用低廉，但安全性上也存在风险。</p>
+<h4 id="攻击手段"><a href="#攻击手段" class="headerlink" title="攻击手段"></a>攻击手段</h4><ol>
+<li><p>字典或穷举攻击（认证端）</p>
+</li>
+<li><p>社交工程窥探、 垃圾收集、 污迹攻击</p>
+</li>
+<li><p>网络数据流窃听：如果口令使用明文传输，则可被非法截获。如Telnet、 FTP、 POP3都使用明文口令，而攻击者只需通过窃听就能分析出口令。</p>
+</li>
+<li><p>截取/重放攻击：利用截获的值， 攻击者可以在新的登录清求中将其提交到同一服务器， 服务器不能区分这个登录谓求是来自合法用户还是攻击者。</p>
+</li>
+</ol>
+<h4 id="防御手段"><a href="#防御手段" class="headerlink" title="防御手段"></a>防御手段</h4><p>认证端：防范字典或猜测攻击、 拖库、 撞库</p>
+<p>用户端：防范社交工程、 窥探、 垃圾收集</p>
+<p>认证过程：防范窃盺、 重放、 中间人攻击</p>
+<h4 id="口令安全"><a href="#口令安全" class="headerlink" title="口令安全"></a>口令安全</h4><p>1)基于单向函数的口令存放：口令Hash散列存储——防离线字典、 穷举攻击</p>
+<p>2)加盐Hash散列存储</p>
+<p>加盐目的：</p>
+<ul>
+<li>防止复制的口令在口令文件中出现。</li>
+<li>显著增加了离线口令字典攻击的难度（随机数长a.则搜索空间增长2^a）</li>
+<li>攻击者<strong>不能发现一个用户在多个系统中使用相同的口令</strong></li>
+</ul>
+<p>3)强口令设置——针对字典、穷举攻击：</p>
+<ul>
+<li>口令设置策略（复杂性要求）</li>
+<li>设置口令允许登录次数——防止在线字典攻击</li>
+<li>设置口令最长使用期限——增大字典、穷举攻击的难度</li>
+</ul>
+<h3 id="基于密码学的认证协议"><a href="#基于密码学的认证协议" class="headerlink" title="基于密码学的认证协议"></a>基于密码学的认证协议</h3><h4 id="基于对称密码的认证机制"><a href="#基于对称密码的认证机制" class="headerlink" title="基于对称密码的认证机制"></a>基于对称密码的认证机制</h4><p>实体A和B在开始具体运行认证机制之前应共享一个公共的秘密密钥$K_{AB}$。</p>
+<p>基于对称密码算法的鉴别机制可以没有第三方， 也可以有可信的第三方——通常称为KDC（Key Distrib-ution Center）用来进行密钥管理。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021726800.png" alt=""></p>
+<p>A：声明方</p>
+<p>B：验证方</p>
+<h5 id="单次传递认证"><a href="#单次传递认证" class="headerlink" title="单次传递认证"></a>单次传递认证</h5><p>$M=TN_A||I_B$, $TN_A$为时间戳, $I_B$为可区分标识符，用于避免反射攻击</p>
+<p>$A\rightarrow B: E<em>{K</em>{AB}}(M) = E<em>{K</em>{AB}}(TN_A||I_B) $</p>
+<h5 id="两次传递认证（挑战响应模式）"><a href="#两次传递认证（挑战响应模式）" class="headerlink" title="两次传递认证（挑战响应模式）"></a>两次传递认证（挑战响应模式）</h5><p>$M=R_B||I_B$</p>
+<p>$B\rightarrow A: R_B $, $R_B$为随机数</p>
+<p>$A\rightarrow B: E<em>{K</em>{AB}}(M) = E<em>{K</em>{AB}}(R_B||I_B) $</p>
+<h4 id="基于非对称密码的认证机制"><a href="#基于非对称密码的认证机制" class="headerlink" title="基于非对称密码的认证机制"></a>基于非对称密码的认证机制</h4><p>三种认证方案</p>
+<p>公钥：Public Key, Pu</p>
+<p>私钥：Private, Pr</p>
+<p>消息：Message, M</p>
+<p>加密算法：Encrypt, E</p>
+<h5 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h5><p>仅提供保密性，不能进行消息认证。</p>
+<p>A使用$PU_B$加密、B使用$PR_B$解密，这样只有B可以可以获取消息M，实现了保密性。但因为任何人都可以使用$PU_B$加密，所以不能保证消息由A发出（因为$PR_B$是公开的），即不能进行消息认证。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021733225.png" alt=""></p>
+<h5 id="私钥加密"><a href="#私钥加密" class="headerlink" title="私钥加密"></a>私钥加密</h5><p>仅提供消息认证的三种安全服务，没有保密性。常用于签名。</p>
+<p>A使用$PR_A$加密，B使用$PU_A$解密，这样可以提供消息认证的三种安全服务（见下文）。但因为$PU_A$是公开的，所以任何人都可以获取消息M，即没有保密性。</p>
+<p>完整性：传输过程中未被篡改，否则格式会发生变化</p>
+<p>认证性：只有A可以发出$E_{PU_A}(M)$（因为$PR_A$是A私有的）</p>
+<p>抗抵赖性：所有人都可以使用PU_A验证M</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021732544.png" alt=""></p>
+<h5 id="私钥-公钥加密"><a href="#私钥-公钥加密" class="headerlink" title="私钥-公钥加密"></a>私钥-公钥加密</h5><p>提供保密性和消息认证的三种服务。</p>
+<p>A先使用$PR_A$加密，再使用$PU_B$加密，B先使用$PR_B$解密，再使用$PU_A$解密。</p>
+<p>保密性：解密用到的$PR_B$为B私有，只有B能获取M</p>
+<p>完整性、认证性、抗抵赖性同上</p>
+<p>（其实我不太明白这种加密怎么实现抗抵赖性，另外先私后公加密可能是不希望密文被解开，解一层也不行）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021734721.png" alt=""></p>
+<h4 id="基于MAC的认证机制"><a href="#基于MAC的认证机制" class="headerlink" title="基于MAC的认证机制"></a>基于MAC的认证机制</h4><p>消息验证码（Message Authentication Code, MAC）：利用共享密钥生成的定长数据块。</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ol>
+<li>固定长度</li>
+<li>由校验算法生成且不可逆，$MAC=F(K_{AB}, M)$</li>
+<li>A、B共享密钥，接受者对输入执行同方向计算，检查生成的MAC是否与接受的MAC匹配</li>
+<li><strong>完整性</strong>和<strong>认证性</strong></li>
+</ol>
+<h5 id="生成方法"><a href="#生成方法" class="headerlink" title="生成方法"></a>生成方法</h5><p>即使用的F</p>
+<ol>
+<li>对称加密</li>
+<li>散列</li>
+<li>HMAC</li>
+</ol>
+<h3 id="统一身份认证"><a href="#统一身份认证" class="headerlink" title="统一身份认证"></a>统一身份认证</h3><p>单点登录、第三方登录</p>
+<h4 id="常见架构"><a href="#常见架构" class="headerlink" title="常见架构"></a>常见架构</h4><ul>
+<li>SSO（baidu公司的网站都可以保持登录状态，强）</li>
+<li>CAS（SSO的一种框架）</li>
+<li>Cookie-Session Auth（客户端-服务器端）（对*.baidu.com实现，只能一类域名实现，不符合域名的要重新登录，弱）</li>
+<li>Token Auth（在url后加上token，通过token完成身份传递）</li>
+<li>OAuth2.0（使用token传递的方式）</li>
+<li>OpenID Connection（基于OAuth2.0）</li>
+<li>JWT（对token使用密码学的方式进行加密保护，json可跨平台）</li>
+</ul>
+<h2 id="Chap5"><a href="#Chap5" class="headerlink" title="Chap5"></a>Chap5</h2><h3 id="常见访问控制策略"><a href="#常见访问控制策略" class="headerlink" title="常见访问控制策略"></a>常见访问控制策略</h3><h4 id="自主访问控制-基于身份的访问控制器（不考细节，复习课27-50）"><a href="#自主访问控制-基于身份的访问控制器（不考细节，复习课27-50）" class="headerlink" title="自主访问控制/基于身份的访问控制器（不考细节，复习课27:50）"></a>自主访问控制/基于身份的访问控制器（不考细节，复习课27:50）</h4><p>自主访问控制（Discretionary access control, DAC）又称基于身份的访问控制器（Identity Based Access Control， IBAC）</p>
+<h5 id="访问控制矩阵"><a href="#访问控制矩阵" class="headerlink" title="访问控制矩阵"></a>访问控制矩阵</h5><p>访问控制策略可以使用访问控制矩阵描述</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>User(s)\Object</th>
+<th>file1</th>
+<th>file2</th>
+<th>file3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alice</td>
+<td>rx</td>
+<td>r</td>
+<td>rwo</td>
+</tr>
+<tr>
+<td>Bob</td>
+<td>rwxo</td>
+<td>r</td>
+<td></td>
+</tr>
+<tr>
+<td>WorkGroup1</td>
+<td>rx</td>
+<td>rwo</td>
+<td>w</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>访问控制矩阵有两种压缩方法：基于列（客体）压缩和基于行（主体）压缩</p>
+<h5 id="基于列压缩——访问控制表ACL"><a href="#基于列压缩——访问控制表ACL" class="headerlink" title="基于列压缩——访问控制表ACL"></a>基于列压缩——访问控制表ACL</h5><p>上述矩阵的ACLs为</p>
+<p>file1: {(Alice, rx), (Bob, rwxo), (WorkGroup1, rx)}</p>
+<p>file2: {(Alice, r), (Bob, r), (WorkGroup1, rwo)}</p>
+<p>file3: {(Alice, rwo), (WorkGroup1, w)}</p>
+<p>例1</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022111157.png" style="zoom:50%;" /></p>
+<p>ntbackup: {…, (Domain Users,  rx), …}</p>
+<p>这种方法常用</p>
+<p>基于列压缩的访问控制还有基于保护位压缩（Linux权限管理，eg. drwxrwxrwx）、基于环压缩。</p>
+<h5 id="基于行压缩——能力表CL"><a href="#基于行压缩——能力表CL" class="headerlink" title="基于行压缩——能力表CL"></a>基于行压缩——能力表CL</h5><p>上述矩阵的CLs为</p>
+<p>Alice: {(file1, rx), (file2, r), (file3, rwo)}</p>
+<p>Bob: {(file1, rwxo), (file2, r)}</p>
+<p>WorkGroup1: {(file1, rx), (file2, rwo), (file3, w)}</p>
+<p>这种方法用的不多</p>
+<p>例2 下图攻击手段能成功实施的原因</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022126100.png" alt=""></p>
+<p>Bob和Evil是计算机上的两个用户，其中Evil用户为hacker创建，未提权至Administrator权限。</p>
+<ol>
+<li><p>Evil对计算机上的一个程序2植入木马后运行程序2，创建木马进程，此时木马进程拥有者为Evil，无机密数据文件的r权限，所以该进程会创建一个暗袋文件，并赋予Bob x权限（因创建者是Evil所以其拥有rx权限）。</p>
+</li>
+<li><p>Bob运行程序2创建木马进程后，木马进程此时因其<strong>拥有者为Bob</strong>，所以拥有机密数据文件的rx权限，又因Bob被赋予了暗袋文件的x权限，所以木马进程可以读取机密数据写入暗袋文件。</p>
+</li>
+</ol>
+<p>原因：资源的拥有者自主管理资源权限</p>
+<p>例3 Windows中的DAC</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022138119.png" alt=""></p>
+<h4 id="强制访问控制-基于规则的访问控制"><a href="#强制访问控制-基于规则的访问控制" class="headerlink" title="强制访问控制/基于规则的访问控制"></a>强制访问控制/基于规则的访问控制</h4><p>强制访问控制（Mandatory Access Control, MAC）又称基于规则的访问控制（Rule Based Access Control, RBAC）</p>
+<p>授权完全由主客体安全属性决定，其由系统控制，用户不能改变主客体的安全属性。</p>
+<h5 id="BLP模型"><a href="#BLP模型" class="headerlink" title="BLP模型"></a>BLP模型</h5><h6 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h6><p>贝拉（Bell-LaPadula）模型，又称<strong>机密性模型</strong></p>
+<p>规则：不上读，不下写</p>
+<p><strong>贝拉机密下毒</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022150099.png" alt=""></p>
+<p>安全级别：绝密（Top Secret, TS）、秘密（Secret, S）、机密（Confidential, C）、非保密（Unclassfied, U）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022201049.png" alt=""></p>
+<p>自主安全特性：类似于安全控制级别的访问控制矩阵</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022205629.png" alt=""></p>
+<h6 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h6><p>简单安全规则（下读）：S的安全级别$\geq$O的安全级别，且S对O有读权限，可以下读。</p>
+<p>*规则（上写）：S的安全级别$\leq$O的安全级别，且S对O有写权限，可以上写。</p>
+<h6 id="安全级别标签"><a href="#安全级别标签" class="headerlink" title="安全级别标签"></a>安全级别标签</h6><p>安全级别标签是一个二元组(Level, Category)，eg. (TS, {财务处})</p>
+<p>支配：对S的安全级别($L_S$, $C_S$)和O的安全级别($L_O$, $C_O$)，当前仅当$L_S \geq L_O\ and\ C_S \supseteq C_O$时，S支配O。</p>
+<p>例1 强制访问控制规则</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (S.L &gt;= O.L &amp;&amp; S.C &gt;= O.C)</span><br><span class="line">    <span class="built_in">Read</span>(S, O) 或 <span class="built_in">eXecute</span>(S, O)	<span class="comment">// 注意没有Write！</span></span><br></pre></td></tr></table></figure>
+<p>例2 防火墙中的BLP模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022217423.png" alt=""></p>
+<p>即将内部网络的Level设为TS，将Internet的Level设为Unclassfied。</p>
+<p>例3 强制访问控制如何防止特洛伊木马的攻击</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022218341.png" alt=""></p>
+<p>数据文件.L &gt;= 暗袋文件.L，信息只能上写，所以无法向暗袋文件写入数据。</p>
+<h5 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h5><h6 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h6><p>又称<strong>完整性模型</strong>。</p>
+<p><strong>比巴完整瞎写</strong></p>
+<h6 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h6><p>简单完整性规则（上读）：S的完整级别$\leq$O的完整级别，可以上读。</p>
+<p>*规则（下写）：S的完整级别$\geq$O的完整级别，可以下写。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022230213.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022230535.png" alt=""></p>
+<p>例1 防火墙中的Biba模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022232011.png" alt=""></p>
+<p>即将内部网络的Level设为TS，将Internet的Level设为Unclassfied。</p>
+<p>后两个不考</p>
+<h4 id="基于角色的访问控制"><a href="#基于角色的访问控制" class="headerlink" title="基于角色的访问控制"></a>基于角色的访问控制</h4><h4 id="基于属性的访问控制"><a href="#基于属性的访问控制" class="headerlink" title="基于属性的访问控制"></a>基于属性的访问控制</h4><h3 id="Windows分布式访问控制"><a href="#Windows分布式访问控制" class="headerlink" title="Windows分布式访问控制"></a>Windows分布式访问控制</h3><h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208192327333.png" alt=""></p>
+<p>身份认证和访问控制可能不在同一节点/域（虚线分隔）</p>
+<p>Subject  Attribute：主体属性</p>
+<p>Request Attribute：请求属性</p>
+<p>1 主体通过认证模块与主体身份及属性信息交互，获得自身的身份信息，缓存在主体的访问点上，当主体访问数据时，访问请求中包含主体身份信息、待访问客体的身份信息、操作的权限信息，向访问控制实施模块发送Requset</p>
+<p>2 访问控制实施模块比对权限，控制对服务的访问。</p>
+<p>服务包含操作，操作需要权限，所以权限策略库要与身份认证节点解耦合、与访问控制实施模块解耦合、与服务解耦合。</p>
+<p>实际系统中用户基数大，不能存储每个User的身份及属性信息，所以需要使用Group进行组织。</p>
+<h4 id="权限授予"><a href="#权限授予" class="headerlink" title="权限授予"></a>权限授予</h4><p>分布式访问控制系统通过将User映射到Group实现跨域身份认证与权限分配，这是分布式访问控制最重要的操作。</p>
+<p><img src="C:/Users/XuWanpeng/Desktop/Snipaste_2022-08-26_17-16-36.jpg" alt=""><br>注：老师给的图有错误，首先U-groups和G-groups写反了，箭头应代表箭头尾是箭头尖的成员，应该是G-groups和U-groups加入到L-group，也画反了。这里已更正。</p>
+<p>G-groups：全局组，用于组织域内用户访问Resource</p>
+<p>U-groups：通用组，用于组织跨域用户访问Resource</p>
+<p>L-group：域本地组，用于分配权限，是连接权限与Resource的中间件</p>
+<h4 id="域组及其权利指派"><a href="#域组及其权利指派" class="headerlink" title="域组及其权利指派"></a>域组及其权利指派</h4><h5 id="全局组（Global-Group）"><a href="#全局组（Global-Group）" class="headerlink" title="全局组（Global Group）"></a>全局组（Global Group）</h5><p>全局组用于组织某个域的用户账户，让这些账户一次获得相同的权限。</p>
+<p>成员：<strong>来自同一个域的</strong></p>
+<ol>
+<li>用户</li>
+<li>全局组</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>可访问任何域中的资源</li>
+<li>存储在创建它的域中，只能在这个域中复制，出现在GC中，但它的成员不出现</li>
+</ol>
+<p>在实际应用中一般会把隶属同一部门的用户组织成全局组，然后再将全局组加入某本地域组中。</p>
+<h5 id="通用组（Universal-Group）"><a href="#通用组（Universal-Group）" class="headerlink" title="通用组（Universal Group）"></a>通用组（Universal Group）</h5><p>通用组用于简化多域的管理，和全局组一样，都可指派森林中的任何资源的权限给用户。</p>
+<p>成员：<strong>来自森林中任何域的</strong></p>
+<ol>
+<li>用户</li>
+<li>全局组</li>
+<li>通用组</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>可访问任何域中的资源</li>
+<li>存储在全局编录GC中。所以登录时如果想获得用户的通用组信息建立令牌，需要GC</li>
+</ol>
+<h5 id="域本地组（Domain-Local-Group）"><a href="#域本地组（Domain-Local-Group）" class="headerlink" title="域本地组（Domain Local Group）"></a>域本地组（Domain Local Group）</h5><p>域本地组用于分配域资源和权限，同时把权限分配给域用户。</p>
+<p>成员：</p>
+<ol>
+<li>来自森林中任何域的用户</li>
+<li>来自森林中任何域的全局组</li>
+<li>来自森林中任何域的通用组</li>
+<li><strong>来自同一个域中的</strong>域本地组</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>仅管理本地域内的资源</li>
+<li>存储在创建它的域中，只能在这个域中复制，不会出现在GC中。</li>
+</ol>
+<p>例1 使用全局组进行单域管理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210010832.png" alt=""></p>
+<p>AGDLP规则：按$A\rightarrow G\rightarrow DL\leftarrow P$进行权限授予。</p>
+<p>A：Account，帐户</p>
+<p>G：Global，全局</p>
+<p>DL：Domain Local，域本地</p>
+<p>P：Permission，权限</p>
+<p>例2 通用组对多域管理的简化</p>
+<p>不使用通用组</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208200118579.png" alt=""></p>
+<p>使用通用组</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208200119579.png" alt=""></p>
+<h5 id="权限指派"><a href="#权限指派" class="headerlink" title="权限指派"></a>权限指派</h5><p>在非GC上可以创建用户、域本地组、全局组。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210030101.png" alt=""></p>
+<p>在GC上可以创建用户、域本地组、全局组、通用组。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210031362.png" alt=""></p>
+<p>粗粒度权限管理：对资源<strong>类型</strong>的权限指派</p>
+<p>细粒度权限管理：对资源<strong>实例</strong>的权限指派</p>
+<p><strong>例1 粗细粒度权限管理对比</strong></p>
+<p>若系统有一个查询用户列表的页面，查询用户列表需要权限。</p>
+<p>张三：开发部主管</p>
+<p>李四：安全部主管</p>
+<p>若进行粗粒度权限管理，则：</p>
+<p>张三和李四都有用户列表这个类型的查询权限，都可以查询任意部门的用户。</p>
+<p>若进行细粒度权限管理，则：</p>
+<p>张三有开发部的用户列表这个实例的查询权限，只可以查询开发部的用户。</p>
+<p>李四有安全部的用户列表这个实例的查询权限，只可以查询安全部的用户。</p>
+<p><strong>例2 分布式访问控制权利指派实例</strong></p>
+<p>files：域本地组，用于管理共享资源，链接网络用户。</p>
+<p>product*：全局组，由files向用户提供访问资源权限和用户登录权利。含product1（位于example.com）、product3（位于a.example.com）、product4（位于abc.org）。</p>
+<p>productall：通用组，由Files向用户提供访问资源权限和用户登录权利。</p>
+<p>以product1单个全局组为例进行一次实际的权限指派与验证。</p>
+<p>Step1  权限指派：</p>
+<p>粗粒度权限管理：在域中指派用户权限</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210055160.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210057635.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210056244.png" alt=""></p>
+<p>将example.com的domain_users删除，即收回example.com上的域用户lisi的登录权利。</p>
+<p>细粒度权限管理：在资源上指派资源访问权限</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210051657.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210051779.png" alt=""></p>
+<p>将temp文件的三项权限赋予域本地组files。</p>
+<p>Step2 组映射：</p>
+<p>将全局组product1加入域本地组files</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210101518.png" alt="image-20220821010114287"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210102297.png" alt=""></p>
+<p>Step3 用户映射</p>
+<p>将用户lisi加入全局组product1</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210103698.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210104420.png" alt=""></p>
+<p>Step4 登录lisi查看权限是否生效</p>
+<p>首先进行细粒度权限指派的验证</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106432.png" alt=""></p>
+<p>未生效时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106735.png" alt=""></p>
+<p>生效时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106815.png" alt=""></p>
+<p>然后进行粗粒度权限指派的验证</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210107255.png" alt=""></p>
+<p>确实无法登陆，成功。</p>
+<p><strong>若有多个全局组如何操作？若再用通用组简化多域管理时如何操作？</strong></p>
+<p>Step1  权限指派</p>
+<p>粗粒度权限管理：在域中指派用户权限</p>
+<p>细粒度权限管理：在资源上指派资源访问权限</p>
+<p>Step2 组映射</p>
+<p>无通用组：将全局组product*加入域本地组files<br>有通用组：将全局组product*加入通用组productall，再将productall加入域本地组files</p>
+<p>Step3 用户映射</p>
+<p>将用户lisi加入全局组product1(域example.com)</p>
+<p>将用户lisi3加入全局组product3(域a.example.com)</p>
+<p>将用户lisi4加入全局组product4(域abc.org)</p>
+<p>Step4 验证</p>
+<p>lisi*登录，访问共享temp文件夹</p>
+<h2 id="Chap6"><a href="#Chap6" class="headerlink" title="Chap6"></a>Chap6</h2><h3 id="透明加解密"><a href="#透明加解密" class="headerlink" title="透明加解密"></a>透明加解密</h3><p>用户态、内核态机理，如何管理</p>
+<p>透明加密：又称静态加密，加解密细节不会被察觉，由存储系统自动完成，文件在内存中为明文形式、在硬盘中为密文形式。当使用环境改变时，会因无法获得自动解密服务而无法打开，从而达到保护文件内容的目的。</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>给定这样的存储系统，透明加解密有两种实现方式。</p>
+<p>该系统的工作原理：</p>
+<ol>
+<li>应用进程发出IO请求</li>
+<li>IO子系统管理器接收IO请求，将其转化为IRP（Input Request Packet），发送给文件系统驱动</li>
+<li>文件系统驱动接收IRP，确定要IO的文件位于磁盘的哪个地址（哪个块），发送给磁盘驱动</li>
+<li>磁盘驱动按照地址进行文件IO。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210128661.png" style="zoom: 50%;" /></p>
+<h5 id="基于用户模式实现"><a href="#基于用户模式实现" class="headerlink" title="基于用户模式实现"></a>基于用户模式实现</h5><p>通过API-HOOK针对进程实现加解密操作。</p>
+<p>首先向进程注入负责HOOK的dll。</p>
+<p>进程打开文件（读操作）时，该事件被HOOK拦截，先将已加密的文件拷贝到临时目录中，并隐藏和解密该文件，然后将解密后的临时文件返回给打开文件的进程。 这样应用程序打开的就是磁盘上的明文文件，用户程序可以进行正常的处理; </p>
+<p>进程关闭文件（写操作）时，该事件被HOOK拦截，将临时文件加密，然后再拷贝回来覆盖掉原文件。</p>
+<p>这种加密实质上是通过临时文件来实现的，必须在每次用户存盘或者系统自动存盘的时候，存在<strong>实现简单、易被绕过</strong>，效率低，安全性不高，兼容性差（PatchGuard随版本变化，注入方式会变化）的特点。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210135003.png" style="zoom:50%;" /></p>
+<h5 id="基于内核模式实现"><a href="#基于内核模式实现" class="headerlink" title="基于内核模式实现"></a>基于内核模式实现</h5><p>方案一：操作系统开发者</p>
+<p>文件粒度：修改文件系统驱动</p>
+<p>磁盘粒度：修改磁盘驱动</p>
+<p>读时解密，写时加密</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212147295.png" style="zoom:50%;" /></p>
+<p>方案二：</p>
+<p>在相应驱动上面写一层过滤程序</p>
+<p>文件粒度：文件过滤驱动程序</p>
+<p>磁盘粒度：设备过滤驱动程序/磁盘过滤驱动程序</p>
+<p>过滤：在不影响上层和下层接口的情况下，在Windows内核中加入新的层，从而不需要修改上层软件或下层的真实驱动程序就加入新的功能。</p>
+<p>文件过滤驱动程序：处理IRP包和文件</p>
+<p>磁盘过滤驱动程序：全盘加密</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212150396.png" alt="image-20220821215052250" style="zoom:50%;" /></p>
+<p>Windows的内核模式透明加解密方案：EFS，Encrypting File System。</p>
+<h4 id="密钥管理"><a href="#密钥管理" class="headerlink" title="密钥管理"></a>密钥管理</h4><h5 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h5><ol>
+<li>应用系统不需要改进</li>
+<li>存储系统改进后适合大规模的推广</li>
+<li>用于结构化数据加密时不能防止DBA泄密，安全性中等</li>
+<li>用于非结构化数据加密时配合权限控制，安全性较好</li>
+</ol>
+<h5 id="存储自管理"><a href="#存储自管理" class="headerlink" title="存储自管理"></a>存储自管理</h5><ol>
+<li>应用系统不需要改进</li>
+<li>存储系统改进后一般自用，不适合大规模的推广</li>
+<li>不能防止DBA泄密，安全性中等</li>
+</ol>
+<h4 id="加密系统"><a href="#加密系统" class="headerlink" title="加密系统"></a>加密系统</h4><p>至少使用两种密钥、两级加密机制。</p>
+<h5 id="数据加密密钥（Data-Encryption-Key-DEK）"><a href="#数据加密密钥（Data-Encryption-Key-DEK）" class="headerlink" title="数据加密密钥（Data Encryption Key, DEK）"></a>数据加密密钥（Data Encryption Key, DEK）</h5><p>使用<strong>对称加密算法</strong>对数据进行加密。</p>
+<p>每个任务或<strong>每个记录</strong>使用不同的DEK（随机生成）。</p>
+<p>DEK在经 KEK公钥 加密后建议随密文数据一起存储，可用于大数据场景。当只有少量DEK且预计不会增长时，才会考虑存储在KMS（不推荐）。</p>
+<h5 id="密钥加密密钥（Key-Encryption-Key-KEK）"><a href="#密钥加密密钥（Key-Encryption-Key-KEK）" class="headerlink" title="密钥加密密钥（Key Encryption Key, KEK）"></a>密钥加密密钥（Key Encryption Key, KEK）</h5><p>使用<strong>非对称加密算法</strong>对DEK进行加密。</p>
+<p>每个应用或<strong>每个用户</strong>使用不同的KEK。</p>
+<p>KEK私钥经加密存储在KMS系统中，不随密文数据一起存储（因为 KEK公私钥对 独立于每个记录）。</p>
+<p><strong>例1 EFS的加解密系统</strong></p>
+<p>加密：</p>
+<p>与上述方案类似，但其拥有两对“KEK”，一个由用户持有，一个由恢复代理（管理员）持有，也会生成两个“DEK”（这里称为FEK）的加密文件，与密文一起存储。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212323707.png" alt=""></p>
+<p>解密：</p>
+<p>同样有两种解密方式</p>
+<p>使用用户的KEK私钥解密DDF得到FEK，使用FEK解密密文得到明文；</p>
+<p>使用恢复代理的KEK私钥解密DRF得到FEK，使用FEK解密密文得到明文。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212324807.png" alt=""></p>
+<h3 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h3><h4 id="备份策略"><a href="#备份策略" class="headerlink" title="备份策略"></a>备份策略</h4><p>首先了解一个属性</p>
+<p><strong>存档属性</strong>：用来标记文件改动，代表<strong>在上一次备份后文件有所改动</strong>。意即：“我需要备份！/<strong>该存档了！</strong>”</p>
+<p>使用Attrib程序可以查看文件属性。其中，存档属性为A。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222149102.png" alt=""></p>
+<p>可以看到我这里的PPT没有进行过备份，所以都有存档标记A。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222151961.png" alt=""></p>
+<h5 id="完全备份"><a href="#完全备份" class="headerlink" title="完全备份"></a>完全备份</h5><p>完全备份（Full Backup）：对某一个时间点上的所有数据进行的一个完全复制。</p>
+<p>在完全备份过程中，备份选中的文件，<strong>清除存档属性</strong>，即将每个文件都被标记为已备份。</p>
+<h5 id="差异备份（偷摸备份）"><a href="#差异备份（偷摸备份）" class="headerlink" title="差异备份（偷摸备份）"></a>差异备份（偷摸备份）</h5><p>差异备份（Differential Backup）：备份自上一次备份后<strong>有存档属性的</strong>文件。（规矩上需要备份）</p>
+<p>在差异备份过程中，备份选中的、<strong>有存档属性的</strong>文件，<strong>不清除存档属性</strong>，即备份后不标记为已备份文件。（有种偷偷备份的感觉）</p>
+<p>在进行恢复时，需使用上次的全备份和<strong>最后一次的</strong>差异备份进行恢复。</p>
+<h5 id="增量备份"><a href="#增量备份" class="headerlink" title="增量备份"></a>增量备份</h5><p>增量备份（Incremental Backup）：备份自上一次备份之后<strong>有变化的</strong>数据。（事实上真的需要备份）</p>
+<p>在增量备份过程中，备份选中的、<strong>有存档属性的</strong>文件，<strong>清除存档属性</strong>。</p>
+<p>在进行恢复时，需使用上次的全备份和<strong>每次的</strong>差异备份进行恢复。</p>
+<p><strong>例1 三种备份的区别</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222203402.png" alt=""></p>
+<p>完全备份：不考虑A，每次全部复制。</p>
+<p>差异备份：把有A的全部复制。</p>
+<p>增量备份：把有A的全部复制，然后清除它们的A。</p>
+<p><strong>例2 使用备份进行数据恢复</strong></p>
+<p>1)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224834.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222223766.png" alt=""></p>
+<p>2)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224969.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222222385.png" alt=""></p>
+<p>3)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222225497.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224596.png" alt=""></p>
+<h4 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h4><p>独立磁盘冗余阵列（Redundant Array ofIndependent Disk，RAID）：将多块磁盘通过一定的技术手段组成一个单一的虚拟磁盘使用。</p>
+<p>软RAID：使用软件连接多块磁盘</p>
+<p>硬RAID：使用硬件连接多块磁盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222235585.png" alt="image-20220822223555425"></p>
+<p>硬RAID有许多冗余实现方式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222242916.png" alt=""></p>
+<p>其中RAID-0、RAID-1、RAID-5及其组合方案最常用。</p>
+<h5 id="RAID-0"><a href="#RAID-0" class="headerlink" title="RAID-0"></a>RAID-0</h5><p>RAID-0：又称条带阵列。将数据分割存储到多块硬盘上，磁盘读写时负载平均分配到多块磁盘。由于多块磁盘可同时读写，所以速度明显提升。</p>
+<p>示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222251794.png" style="zoom:50%;" /></p>
+<p>优点：</p>
+<ol>
+<li><p>读写快</p>
+</li>
+<li><p>利用率高</p>
+</li>
+<li><p>成本低</p>
+</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>无冗余，无校验</li>
+</ol>
+<h5 id="RAID-1（highlight）"><a href="#RAID-1（highlight）" class="headerlink" title="RAID-1（highlight）"></a>RAID-1（highlight）</h5><p>RAID-1：又称<strong>镜像</strong>阵列，至少由2块磁盘实现。将同样的数据写入2块硬盘（互为镜像），一块磁盘发生故障时，另一块硬盘可继续工作，并可在更换硬盘后重新创建镜像。</p>
+<p>示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222245884.png" style="zoom:50%;" /></p>
+<p>优点：</p>
+<ol>
+<li>可靠性高</li>
+<li>读取速率高</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>写入速率低</li>
+<li>利用率低</li>
+</ol>
+<h5 id="RAID-0-1"><a href="#RAID-0-1" class="headerlink" title="RAID-0+1:"></a>RAID-0+1:</h5><p>RAID-1：至少由4块磁盘实现。将RAID-0中的2块磁盘视为虚拟磁盘，再使用RAID-1方案阵列</p>
+<p>示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222257940.jpeg" style="zoom:50%;" /></p>
+<p>优点：</p>
+<ol>
+<li>读写快</li>
+<li>安全</li>
+</ol>
+<h5 id="RAID-5（highlight）"><a href="#RAID-5（highlight）" class="headerlink" title="RAID-5（highlight）"></a>RAID-5（highlight）</h5><p>RAID-5：至少由3块磁盘实现。将数据分布在不同磁盘上，并在所有磁盘上交叉地存取数据及<strong>奇偶校验信息</strong>。</p>
+<p>示意图：</p>
+<p>3块物理磁盘：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222259875.jpeg" style="zoom:50%;" /></p>
+<p>4块物理磁盘：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222257425.png" style="zoom:50%;" /></p>
+<p>RAID-5的结构共有8种，以上均为常规左异步结构的RAID-5，又称“3-2-1连续”，即：</p>
+<ol>
+<li>校验块从最后一块物理盘开始写起，然后依次往前面的物理盘中写入，当写到第一块物理盘后再回到最后一块物理盘，依次循环。</li>
+<li>数据块从第一块物理盘开始写，然后依次往后面的物理盘中写入，即各条带组内的数据块均由低号物理盘向高号物理盘依次写入。</li>
+</ol>
+<p>优点:</p>
+<ol>
+<li>数据安全</li>
+<li>读取速率高</li>
+<li>磁盘利用率高</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>写入速率低</li>
+</ol>
+<p><strong>若一块磁盘失效，可以按奇偶校验码重构数据。</strong>（注意，仅一块）</p>
+<p>原理：</p>
+<script type="math/tex; mode=display">
+a\oplus b = c\\
+a\oplus b \oplus b = c \oplus b\\
+a\oplus 0 = c \oplus b\\
+a = c \oplus b</script><p>即两侧按位异或$b$，左侧$b\oplus b = 0$。</p>
+<p>于是可以得到</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+
+a = b \oplus c\\
+b = a \oplus c\\
+c = a \oplus b\\
+
+\end{aligned}
+\right.</script><p>即任意1块磁盘的数据可用另外2块磁盘的数据按位异或，进行恢复。</p>
+<h3 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h3><p>详见上一节——数据备份</p>
+<p>基于备份的恢复（RAID-1，镜像）：当1块物理磁盘损坏时，将另1块物理磁盘拆卸下来，作为单独的硬盘接在计算机上，即可恢复数据。</p>
+<p>基于非备份的恢复（RAID-5，奇偶校验）：当1块物理磁盘损坏时，使用剩下的n-1块磁盘的数据进行按位异或，即可恢复数据。</p>
+<h3 id="去标识化——匿名化"><a href="#去标识化——匿名化" class="headerlink" title="去标识化——匿名化"></a>去标识化——匿名化</h3><p>去标识化分为两大类：匿名化、假名化。本课程介绍匿名化。</p>
+<h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><p>链接攻击：类似数据库里的自然连接，通过等值的列进行连接，可以获得某个元组更详细的信息。</p>
+<p>所以匿名化的目的就是使公开表之间无法自然连接。</p>
+<p>标识符：即数据库中的只含有一个字段的主键，可以唯一标识一个元组。</p>
+<p>准标识符：有点类似含有一组字段的外键，虽然在单个表中无法唯一标识一个元组，但也许在与其他表进行自然连接/链接攻击后所形成的表中可以唯一标识一个元组。</p>
+<p>敏感属性：可以公开，但不能涉及个人隐私。</p>
+<h4 id="k-匿名性（k-anonymity）"><a href="#k-匿名性（k-anonymity）" class="headerlink" title="k-匿名性（k-anonymity）"></a>k-匿名性（k-anonymity）</h4><p>k-匿名化：将某（些）列属性的具体值替换为泛化值，使其满足k-匿名性的过程，也称泛化过程。</p>
+<p>k-匿名性：当表中的每$1$个元组无法与其他至少$k-1$个元组互相区分，即$|$每个元组所在的等价类$| \geq k$时，称该表满足k-匿名性。</p>
+<p><strong>例1 2-匿名化表</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208242345542.png" alt=""></p>
+<p><strong>例2 4-匿名化表</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208242347840.png" alt=""></p>
+<p>可以看出，k值越大：</p>
+<ol>
+<li>保护强度越大</li>
+<li>丢失信息越多</li>
+<li>可用性越低</li>
+</ol>
+<p>注意：k-匿名性不考虑敏感属性。</p>
+<p>同质化攻击：等价类中的敏感属性取值相同，那么不能起到“无法相互区分”作用，敌手可直接将这个等价类的信息视为等价类中每一个元组的信息（反正从这张表看这些人都一样）。</p>
+<p><strong>例3 同质化攻击</strong></p>
+<p>表同例2</p>
+<p>敌手可知：美国邮区编号（zip code）为130开头的，年龄（age）为30多岁的人，不论什么国籍（nationality），很有可能有癌症（cancer）。</p>
+<h4 id="l-多样性（l-diversity）"><a href="#l-多样性（l-diversity）" class="headerlink" title="l-多样性（l-diversity）"></a>l-多样性（l-diversity）</h4><p>由于k-匿名性不考虑敏感属性，存在同质性攻击，于是有了l-多样性。</p>
+<p>l-多样性：在k-匿名性的基础上，每个划分/等价类中至少有l种敏感属性，即$|$每个等价类的敏感属性列$| \geq l$</p>
+<p><strong>例1 4-匿名性、3-多样性表</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250017434.png" alt=""></p>
+<p>注意：1号那里应为1305*，详见参考文献[1]中的Figure 3. 3-Diverse Inpatient Microdata</p>
+<p>偏斜性攻击：等价类中敏感属性的分布与全体数据的分布相差较大，敌手可以结合语义判断某个元组的敏感属性在那个属性上的区间。</p>
+<p><strong>例2 偏斜性攻击</strong></p>
+<p>敌手已经知道李雷位于下面的2-匿名性表、2-多样性表中，但每一个等价类的敏感属性“工资”的分布与总体分布差别较大，如第一个等价类、第二个等价类、第四个等价类的“工资”较高，第三个等价类的“工资”较低，而总体数据的“工资”有高有低。所以敌手只要判断出受害者在哪个等价类中就可以知道其“工资”的大概情况。</p>
+<p>即敌手可知：李雷，“工资”比较低。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250023040.jpeg" alt=""></p>
+<h4 id="t-邻近性（t-closeness）"><a href="#t-邻近性（t-closeness）" class="headerlink" title="t-邻近性（t-closeness）"></a>t-邻近性（t-closeness）</h4><p>由于l-多样性不考虑等价类与总体的分布差异，于是有了t-邻近性。</p>
+<p>t-邻近性：在每个等价类中，敏感属性的分布与全体属性的分布邻近，且不超过t。</p>
+<p><strong>例1 2-匿名性、2-多样性、t-邻近性表</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250036987.jpeg" alt=""></p>
+<p>这个表是将上节例2中的数据从4-匿名性重新划分至2-匿名性所得，只有2个等价类，每个等价类中的敏感属性“工资”有高有低，所以敌手无法通过判断受害者在哪个等价类来获知其在某个语义上的区间。</p>
+<p>（每个等价类的基数越大，越接近总体的分布，这方面类似深度学习中的batch_size与accuracy的关系）</p>
+<p>注：这一节老师讲的基本来源于</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://personal.utdallas.edu/~mxk055100/courses/privacy08f_files/ldiversity.pdf">l-Diversity: Privacy Beyond k-Anonymity</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3NTQ3ODI0NA==&amp;mid=2247483923&amp;idx=1&amp;sn=bfa6d5efa074d1a93a449d66c2ee1046&amp;chksm=9f6ea798a8192e8e080afba90df416755af2586ff17d3a2c8854f89fd0e19544b5ab2ec8d0c1&amp;mpshare=1&amp;scene=23&amp;srcid=1011LAlQSjdslbo9xk70v6dw#rd">大数据时代下的隐私保护. 孙茗珅, 韦韬. 百度安全实验室. 2017(08)</a></p>
+<h4 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h4><p>例1 使用给定表形成泛化树</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251208581.png" alt=""></p>
+<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><p>聚类：对数据中的不同记录进行分类，每个分类中的数据属性相同或相似。</p>
+<p>使用两条记录之间的距离计算属性相似度。</p>
+<p>距离计算：</p>
+<p>数值型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251206324.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207824.png" alt=""></p>
+<p>语义型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251206634.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207581.png" alt=""></p>
+<p>例1 计算给定表中R1、R2两元组的距离</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251210475.png" alt=""></p>
+<p>$D_{USA-India}$：USA和India的最小公共祖先所形成的树就是整棵树，其深度为3（注意：深度从0起），故其距离为$3/3$</p>
+<p>$D<em>{41-57}=\frac{\abs{41-57}}{range</em>{age}} = \frac{57-41}{57-24}$</p>
+<p>$D<em>{Armed-Tech}$：同$D</em>{USA-India}$</p>
+<h4 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h4><p>分割：将原始数据产生满足l-多样性原则的数据划分，然后把准标识属性和敏感属性分成两个表后直接发布，两者之间通过“组号”（Group-ID）来连接。</p>
+<p><strong>例1 分割给定表</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251221215.png" alt=""></p>
+<p>Step 1：对给定表2-匿名化、2-多样化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251229060.png" alt=""></p>
+<p>Step 2：根据等价类划分Group形成QIT，然后统计各Group中敏感属性的数量形成ST</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251220277.png" alt=""></p>
+<p>[1] <a target="_blank" rel="noopener" href="https://www.vldb.org/conf/2006/p139-xiao.pdf">Anatomy: Simple and Effective Privacy Preservation</a></p>
+<!--
 <embed src="https://xuwp.top/pdf/sosHomework1.pdf" width="100%" height="1150" type="application/pdf">
 -->
 <!-- 
@@ -1105,7 +1867,7 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291642758.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291643616.png" alt=""></p>
 <p>发现两块磁盘的大小相同，即数据内容相同，这便是镜像卷。</p>
-<h3 id="RAID-5"><a href="#RAID-5" class="headerlink" title="RAID-5"></a>RAID-5</h3><p>磁盘结构</p>
+<h3 id="RAID-5卷（RAID-5）"><a href="#RAID-5卷（RAID-5）" class="headerlink" title="RAID-5卷（RAID-5）"></a>RAID-5卷（RAID-5）</h3><p>磁盘结构</p>
 <p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291654759.png" alt=""></p>
 <p>（右击）未分配区域-新建镜像卷-选中磁盘0、磁盘1和磁盘2-下一步</p>
 <p>这些空间的大小也必须相同。</p>
