@@ -664,7 +664,7 @@
 <p>服务包含操作，操作需要权限，所以权限策略库要与身份认证节点解耦合、与访问控制实施模块解耦合、与服务解耦合。</p>
 <p>实际系统中用户基数大，不能存储每个User的身份及属性信息，所以需要使用Group进行组织。</p>
 <h4 id="权限授予"><a href="#权限授予" class="headerlink" title="权限授予"></a>权限授予</h4><p>分布式访问控制系统通过将User映射到Group实现跨域身份认证与权限分配，这是分布式访问控制最重要的操作。</p>
-<p><img src="C:/Users/XuWanpeng/Desktop/Snipaste_2022-08-26_17-16-36.jpg" alt=""><br>注：老师给的图有错误，首先U-groups和G-groups写反了，箭头应代表箭头尾是箭头尖的成员，应该是G-groups和U-groups加入到L-group，也画反了。这里已更正。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208262157368.jpg" alt=""><br>注：老师给的图有错误，首先U-groups和G-groups写反了，箭头应代表箭头尾是箭头尖的成员，应该是G-groups和U-groups加入到L-group，也画反了。这里已更正。</p>
 <p>G-groups：全局组，用于组织域内用户访问Resource</p>
 <p>U-groups：通用组，用于组织跨域用户访问Resource</p>
 <p>L-group：域本地组，用于分配权限，是连接权限与Resource的中间件</p>
