@@ -992,10 +992,17 @@ c = a \oplus b\\
 <p>注：这一节老师讲的基本来源于</p>
 <p>[1] <a target="_blank" rel="noopener" href="https://personal.utdallas.edu/~mxk055100/courses/privacy08f_files/ldiversity.pdf">l-Diversity: Privacy Beyond k-Anonymity</a></p>
 <p>[2] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3NTQ3ODI0NA==&amp;mid=2247483923&amp;idx=1&amp;sn=bfa6d5efa074d1a93a449d66c2ee1046&amp;chksm=9f6ea798a8192e8e080afba90df416755af2586ff17d3a2c8854f89fd0e19544b5ab2ec8d0c1&amp;mpshare=1&amp;scene=23&amp;srcid=1011LAlQSjdslbo9xk70v6dw#rd">大数据时代下的隐私保护. 孙茗珅, 韦韬. 百度安全实验室. 2017(08)</a></p>
-<h4 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h4><p>例1 使用给定表形成泛化树</p>
+<h3 id="实现匿名化的技术"><a href="#实现匿名化的技术" class="headerlink" title="实现匿名化的技术"></a>实现匿名化的技术</h3><p>实现匿名化需要一些原子的方式/手段/技术，例如k-匿名化技术由泛化和隐匿/抑制技术实现。</p>
+<p>Generalization和Suppression可参考文献[1]，Clustering可参考文献[2]，Anatomy可参考文献[3]，关于这些技术的总结，可参考文献[4] 16-18。</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf">Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="http://ijns.jalaxy.com.tw/contents/ijns-v19-n6/ijns-2017-v19-n6-p1062-1071.pdf">Clustering Based K-anonymity Algorithm for Privacy Preservation.</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://www.cse.cuhk.edu.hk/~taoyf/paper/vldb06.pdf">Anatomy: Simple and Effective Privacy Preservation</a></p>
+<p>[4] <a target="_blank" rel="noopener" href="http://cdmd.cnki.com.cn/Article/CDMD-10217-1014133987.htm">基于K-匿名的隐私保护方法研究</a></p>
+<h4 id="泛化（Generalization）"><a href="#泛化（Generalization）" class="headerlink" title="泛化（Generalization）"></a>泛化（Generalization）</h4><p>例1 使用给定表形成泛化树</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251208581.png" alt=""></p>
-<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><p>聚类：对数据中的不同记录进行分类，每个分类中的数据属性相同或相似。</p>
+<h4 id="隐匿-抑制（Suppression）"><a href="#隐匿-抑制（Suppression）" class="headerlink" title="隐匿/抑制（Suppression）"></a>隐匿/抑制（Suppression）</h4><p>去除单元值或一个元组的所有值。</p>
+<h4 id="聚类（Clustering）"><a href="#聚类（Clustering）" class="headerlink" title="聚类（Clustering）"></a>聚类（Clustering）</h4><p>聚类：对数据中的不同记录进行分类，每个分类中的数据属性相同或相似。</p>
 <p>使用两条记录之间的距离计算属性相似度。</p>
 <p>距离计算：</p>
 <p>数值型</p>
@@ -1010,14 +1017,13 @@ c = a \oplus b\\
 <p>$D_{USA-India}$：USA和India的最小公共祖先所形成的树就是整棵树，其深度为3（注意：深度从0起），故其距离为$3/3$</p>
 <p>$D<em>{41-57}=\frac{\abs{41-57}}{range</em>{age}} = \frac{57-41}{57-24}$</p>
 <p>$D<em>{Armed-Tech}$：同$D</em>{USA-India}$</p>
-<h4 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h4><p>分割：将原始数据产生满足l-多样性原则的数据划分，然后把准标识属性和敏感属性分成两个表后直接发布，两者之间通过“组号”（Group-ID）来连接。</p>
+<h4 id="分解（Anatomy）"><a href="#分解（Anatomy）" class="headerlink" title="分解（Anatomy）"></a>分解（Anatomy）</h4><p>分割：将原始数据产生满足l-多样性原则的数据划分，然后把准标识属性和敏感属性分成两个表后直接发布，两者之间通过“组号”（Group-ID）来连接。</p>
 <p><strong>例1 分割给定表</strong></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251221215.png" alt=""></p>
 <p>Step 1：对给定表2-匿名化、2-多样化</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251229060.png" alt=""></p>
 <p>Step 2：根据等价类划分Group形成QIT，然后统计各Group中敏感属性的数量形成ST</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251220277.png" alt=""></p>
-<p>[1] <a target="_blank" rel="noopener" href="https://www.vldb.org/conf/2006/p139-xiao.pdf">Anatomy: Simple and Effective Privacy Preservation</a></p>
 <!--
 <embed src="https://xuwp.top/pdf/sosHomework1.pdf" width="100%" height="1150" type="application/pdf">
 -->
