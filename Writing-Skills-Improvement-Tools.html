@@ -275,6 +275,36 @@ markdown也是一种语法，但它十分轻量，以至于本科生都可以轻
 
 其他能解析文字的语法也有很多，比如HTML，但应该没有人会使用它撰写文章。
 -->
+<h1 id="Excel自然连接"><a href="#Excel自然连接" class="headerlink" title="Excel自然连接"></a>Excel自然连接</h1><p>Excel表也可以看做数据库，如何自然连接？</p>
+<p>场景：学院发的一些文件实现了k-匿名性，另一些则没有。为了获取更多信息，我们需要将其连接，在信息系统安全中称之为“链接攻击”。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Sheet1</th>
+<th>Sheet2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012319408.png" alt=""></td>
+<td><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012320336.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>方法：使用</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VLOOKUP(A2,Sheet2!$A:$B,<span class="number">2</span>,<span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
+<p>原理：</p>
+<p><code>VLOOKUP</code>：用于按行查找内容的函数，原型为</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VLOOKUP（查找值，包含查找值的范围，包含返回值的范围中的列号，近似匹配 (<span class="literal">TRUE</span>) 或精确匹配 (<span class="literal">FALSE</span>)）</span><br></pre></td></tr></table></figure>
+<p><code>A2</code>：在A2单元格查找，即A列作为外键。</p>
+<p><code>Sheet2!$A:$B</code>：将工作表Sheet2中的A列-B列作为主键的查找范围</p>
+<p><code>2</code>：Sheet2中主键的列号</p>
+<p><code>FALSE</code>：精确匹配</p>
+<p>效果：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012323803.png" alt=""></p>
+<p>声明. 教程中出现的信息均已k-匿名化处理，信息取自公开文件。</p>
 <h1 id="Word独立修改某个单元格的网格线"><a href="#Word独立修改某个单元格的网格线" class="headerlink" title="Word独立修改某个单元格的网格线"></a>Word独立修改某个单元格的网格线</h1><p>对于已对齐的网格线（怎样对齐见“Word表格对齐”一节），直接拖动会使所有与其对齐的网格线移动。</p>
 <p>拖动前：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202209131602991.png" alt=""></p>

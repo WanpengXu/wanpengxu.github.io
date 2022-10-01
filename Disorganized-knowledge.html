@@ -253,7 +253,21 @@
         </header>
 
         <div class="post-content">
-            <h1 id="markdown全部标题快速降级"><a href="#markdown全部标题快速降级" class="headerlink" title="markdown全部标题快速降级"></a>markdown全部标题快速降级</h1><p>使用正则表达式，例如将二级标题全部换为三级标题<br>正则表达式：<code>^##</code>，<code>^</code>与<code> </code>用于限制边界，以只匹配二级标题</p>
+            <h1 id="Google-Translate修复：添加proxy规则"><a href="#Google-Translate修复：添加proxy规则" class="headerlink" title="Google Translate修复：添加proxy规则"></a>Google Translate修复：添加proxy规则</h1><p>2022年9月29日，google translate退出大陆，translate.googleapis.cn关闭，访问translate.googleapis.com将绑定至境外IP地址。</p>
+<p>但我挂了Clash还是用不了，因为浏览器内置API不支持扩展配置的socks5代理，所以在网页上通过右键翻译时等同于你没挂Clash访问境外IP。</p>
+<p>那么我们可以添加一条规则，让该API被Clash代理。</p>
+<p>Profiles-你的订阅-Edit rules</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012259158.png" alt=""></p>
+<p>Add-输入Content为translate.googleapis.com-Type选DOMAIN（相当于全字匹配）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012300614.png" alt=""></p>
+<p>Proxy选切换节点时的选项，我最近用的SakuraCat叫“节点选择”-Add-Save</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012305594.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012300787.png" alt=""></p>
+<p>当出现这行时添加成功</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012301541.png" alt=""></p>
+<p>可以继续学习了</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210012303193.png" alt=""></p>
+<h1 id="markdown全部标题快速降级"><a href="#markdown全部标题快速降级" class="headerlink" title="markdown全部标题快速降级"></a>markdown全部标题快速降级</h1><p>使用正则表达式，例如将二级标题全部换为三级标题<br>正则表达式：<code>^##</code>，<code>^</code>与<code> </code>用于限制边界，以只匹配二级标题</p>
 <h1 id="主机与服务器进行文件交互"><a href="#主机与服务器进行文件交互" class="headerlink" title="主机与服务器进行文件交互"></a>主机与服务器进行文件交互</h1><p>全称Secure CoPy，就是cp命令加了个SSH的s</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202204152324170.png" alt=""></p>
 <h1 id="vscode中python的相对路径问题"><a href="#vscode中python的相对路径问题" class="headerlink" title="vscode中python的相对路径问题"></a>vscode中python的相对路径问题</h1><p>vscode的默认路径是项目根目录，我们实际上想让默认路径为py文件所在的目录，针对不同情况，有三种方法：</p>
