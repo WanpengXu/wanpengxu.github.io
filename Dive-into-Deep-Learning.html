@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>Mu Li Dive into Deep Learning | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">Resume</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">Resume</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Mu Li Dive into Deep Learning</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 15, 2022&nbsp;&nbsp;21:16:49</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AI/">AI</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>课程地址：<a target="_blank" rel="noopener" href="https://courses.d2l.ai/zh-v2/">https://courses.d2l.ai/zh-v2/</a></p>
+<p>课程回放：<a target="_blank" rel="noopener" href="https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497">【完结】动手学深度学习 PyTorch版</a></p>
+<p>教材：<a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/">https://zh-v2.d2l.ai/</a></p>
+<p>教材讨论区：<a target="_blank" rel="noopener" href="https://discuss.d2l.ai/">https://discuss.d2l.ai/</a></p>
+</blockquote>
+<h1 id="Preliminaries"><a href="#Preliminaries" class="headerlink" title="Preliminaries"></a>Preliminaries</h1><h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210152058672.png" alt=""></p>
+<p>Frobenius Norm，将矩阵拉成向量，求向量长度。</p>
+<p>其他的一般不用。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210122124918.png" alt=""></p>
+<p>generalizes to：v. 推广为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210122135966.png" alt=""></p>
+<p>矩阵作用于特征向量时，特征向量方向不变。</p>
+<p><strong>按轴求和</strong></p>
+<p>什么是按轴求和、降低维度？</p>
+<p>给你一张染了色的纸，把它竖着或横着挤压成一个棍，这就是降维；它的颜色会变深，这就是求和。</p>
+<p>pytorch中用于按轴求和的方法是<code>torch.Tensor.sum</code>，其调用<code>torch.sum</code>函数</p>
+<p>pytorch docs给出的说明</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132022552.png" alt=""></p>
+<p>返回输入张量input在给定维度dim上每行的和，如果dim是一个维度的列表，把它们全部降低。</p>
+<p>这里的维度是怎么定义的？</p>
+<p>以正常遍历的维度作为维度0，每往里1层，其维度比上一层多1。</p>
+<p>比如这里有一个二维的tensor（三种常见的创建方式）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132035252.png" alt=""></p>
+<p>其正常的遍历<code>for i in A</code>，每个<code>i</code>都是一个一维tensor，这个维度就是dim 0。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132037422.png" alt=""></p>
+<p>在这个维度上求和，即把每个i相加，其大致流程为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132118728.png" alt=""></p>
+<p>类似地，在dim 1上求和</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132118032.png" alt=""></p>
+<p>如果keepdim为True，那么输出tensor和输入tensor具有相同的维度数量（维数），但被降维的那些维度大小为1。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132126351.png" alt="image-20221013212619231"></p>
+<p>保持相同的维数有什么用？</p>
+<p>广播。</p>
+<p>广播就是当两个tensor相加时，如果shape不相同，但<strong>维数相同</strong>且有些维度的数量为1，可以复制这些维度上的小tensor，使其shape在这个维度上的数量与较大者相等。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132131018.png" alt=""></p>
+<h1 id="Linear-networks"><a href="#Linear-networks" class="headerlink" title="Linear-networks"></a>Linear-networks</h1><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>Q：损失为什么要求平均？</p>
+<p>A：除以n的好处是，不论批量多大，梯度的值都差不多（都是平均值），与学习率$\eta$解耦。</p>
+<p>Q：batchsize是否会影响模型结果？</p>
+<p>A：事实上，batchsize越小，模型结果越好，这一点比较反直觉。因为SGD理论上是给模型带来噪音，batchsize越小，噪音越大，但噪音对神经网络是一件好事，因为深度神经网络比较复杂，有噪音可以不容易“跑偏”，更鲁棒，泛化能力更强。</p>
+<p>Q：随机梯度下降中的随机？</p>
+<p>A：随机，指的是元素是随机的，即随机采样。</p>
+<p>Q：为什么机器学习优化算法采用梯度下降这种一阶导算法，而不采用收敛更快的牛顿法等二阶导算法？</p>
+<p>A：首先牛顿法用不了，只能用近似的牛顿法。机器学习中有两个模型，统计模型（Loss）、优化模型（Optim），这两个东西都是错的（可能是想说和现实规则不一样？），所以我们不关心收敛速度，而关心收敛到什么地方，是否泛化能力更强。</p>
+<p>Q：detach的作用？</p>
+<p>A：将其从计算图中剥离，不再计算其梯度，某些pytorch需要先进行这步操作再转为numpy。</p>
+<p>Q：样本大学不是batchsize的整数倍怎么办？</p>
+<p>A：做法一：剩下多少就拿多少，做法二：丢弃，做法三：从下一个epoch补缺少的的过来</p>
+<h2 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h2><p>Softmax回归中exp的作用是将输入域映射到$(0, +\inf)$，其本质上是将预测的值转为概率，分类问题给出的标签本就是一种概率，衡量两个概率间的区别使用交叉熵（CE）</p>
+<p>蓝：$l$</p>
+<p>绿：$l$的似然函数</p>
+<p>橙：$l$的梯度</p>
+<p>L2 Loss</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210151008974.png" alt=""></p>
+<p>L1 Loss</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210151008979.png" alt=""></p>
+<p>当预测值与真实值较远时，梯度永远是常数，权重更新不会太大，更稳定；</p>
+<p>当预测值与真实值较近时，因为sub gradient是[-1, 1]间的任意值，在优化末期时不稳定。</p>
+<p>Huber’s Robust Loss</p>
+<p>L1和L2的缝合形式，避免L1的间断点</p>
+<script type="math/tex; mode=display">
+l(y, y^{\prime}) = \begin{cases}
+\left\vert y - y^{\prime}\right\vert - \frac{1}{2} & if \left\vert y - y^{\prime}\right\vert > 1\\
+\frac{1}{2}\left(y - y^{\prime}\right)^2 & otherwise
+\end{cases}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210151008693.png" alt=""></p>
+<p>Q：soft label？</p>
+<p>A：softmax回归很难用指数逼近0或1这种极端数值，所以将正确的类记为$0.9$，不正确的类记为$\frac{0.1}{n-1}$。</p>
+<p>更多：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/410491474">从<em>Label</em> Smoothing和Knowledge Distillation理解<em>Soft Label</em></a>（陀飞轮）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210152022225.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210152021026.jpeg" alt=""></p>
+<p>Q：batchsize的大小为什么没有影响训练速度？</p>
+<p>A：batchsize不影响计算量，只影响并行度，进而影响执行的效率。不影响的原因可能是模型很小或是在CPU上训练。</p>
+<p>Q：测试时为什么要设net.eval()？</p>
+<p>A：将网络设置为评估模式后，pytorch不会计算梯度，进而不会计算与梯度相关的操作，可以提升效率、不影响训练过程。</p>
+<p>Q：optimizer是怎么获取Model的参数的？</p>
+<p>A：初始化时传递的，<code>optimizer = torch.optim.SGD(net.parameters(), lr=0.1)</code></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://xuwp.top/Dive-into-Deep-Learning.html">http://xuwp.top/Dive-into-Deep-Learning.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2022 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"># 深度学习</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/MACHINE-LEARNING-2021-SPRING-HOMEWORKS.html">Hung-yi Lee Machine Learning 2021 HWs</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Stay hungry. Stay foolish.</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
