@@ -172,6 +172,65 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
 
     
     <article class="post-wrap">
@@ -208,6 +267,19 @@
 <p>教材：<a target="_blank" rel="noopener" href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm">https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm</a></p>
 </blockquote>
 <p>2022年10月10日新开设的课程，内容不多，尽快肝完。</p>
+<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><blockquote>
+<p>科学、技术、工程、应用各解决什么问题？</p>
+</blockquote>
+<p>科学：是什么？为什么？</p>
+<p>技术：怎么做？</p>
+<p>工程：怎么做得多、快、好、省？</p>
+<p>应用：怎么用？</p>
+<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>经典定义：利用经验改善系统自身的性能（T. Mitchell, 1997）</p>
+<p>经验在计算机系统中以数据形式存在，因对数据分析的需求，从而产生了智能数据分析理论和方法。“智能”前缀是为了与数学家、统计学家利用数理统计方法进行数据分析相区别，其强调人工智能学者利用计算机进行数据分析。</p>
+<h2 id="典型的机器学习过程"><a href="#典型的机器学习过程" class="headerlink" title="典型的机器学习过程"></a>典型的机器学习过程</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210170022526.png" alt=""></p>
+<p>在训练数据上，使用学习算法，经训练，得到模型，输入新数据，产生输出。</p>
+<p>从数据中产生的东西，可以认为是一个神经网络，甚至是一条规则，都可以宽泛地统称为“模型”。</p>
+<p>David Hume：适用于全局的叫模型，适用于局部的叫模式。</p>
 
         </div>
 
