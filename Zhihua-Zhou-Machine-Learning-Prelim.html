@@ -279,7 +279,36 @@
 <h2 id="典型的机器学习过程"><a href="#典型的机器学习过程" class="headerlink" title="典型的机器学习过程"></a>典型的机器学习过程</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210170022526.png" alt=""></p>
 <p>在训练数据上，使用学习算法，经训练，得到模型，输入新数据，产生输出。</p>
 <p>从数据中产生的东西，可以认为是一个神经网络，甚至是一条规则，都可以宽泛地统称为“模型”。</p>
-<p>David Hume：适用于全局的叫模型，适用于局部的叫模式。</p>
+<p>David Hume(?)：适用于全局的叫模型，适用于局部的叫模式。</p>
+<h2 id="计算学习理论"><a href="#计算学习理论" class="headerlink" title="计算学习理论"></a>计算学习理论</h2><p>机器学习具有坚实的理论基础：Leslie Valiant建立的计算学习理论（Computational learning theory），其中最重要的模型是PAC（Probably Approximately Correct，概率近似正确）learning model（Leslie Valiant, 1984）。</p>
+<p>其基础表达式：</p>
+<script type="math/tex; mode=display">
+P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 - \delta</script><p>在机器学习中解释为：以很高的概率得到很好的模型。</p>
+<p>Q：为什么要有$\epsilon$和$\delta$，而不是$P\left(\left\vert f(\boldsymbol{x}) - y \right\vert= 0\right)= 1$呢？</p>
+<p>A：从人工智能基本概念的角度，对于确定性的知识，我们可以通过确定性推理方法，在多项式时间内得到确定性结果。机器学习往往处理那些带有不确定性的知识及它们的组合，因为知识带有不确定性，所以我们的结果一定带有可信度，因此需要引入$\epsilon$。</p>
+<p>从计算的角度，机器学习往往处理$NP$问题，如果模型$f(\cdot)$每次都以$P=1$的概率预测出最佳答案$y$，即在多项式时间内解决掉了问题，那么就意味着我们构造性地证明了$P=NP$，因为$P=NP$尚未被证明，因此需要引入$\delta$。</p>
+<h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210171647083.png" alt=""></p>
+<h3 id="输入部分"><a href="#输入部分" class="headerlink" title="输入部分"></a>输入部分</h3><p>数据集：dataset，如图左侧的表</p>
+<p>训练：train，建立模型的过程</p>
+<p>测试：test，向模型传入数据，根据数据的label判断模型的结果正确或错误</p>
+<p>示例：instance，如（青绿，蜷缩，浊响）</p>
+<p>样例：example，如（青绿，蜷缩，浊响，<strong>是</strong>）</p>
+<p>样本：sample，有时指样例，如（青绿，蜷缩，浊响，<strong>是</strong>）；有时指数据集，如图左侧的表</p>
+<p>属性/特征：attribute/feature，如色泽</p>
+<p>属性值：attribute value，如青绿</p>
+<p>属性空间/样本空间/输入空间：attribute space/sample space/input space，由属性所张成的空间，如轴为、青绿、蜷缩、浊响的三维空间</p>
+<p>特征向量：feature vector，示例在属性空间中所形成的向量。</p>
+<h3 id="模型部分"><a href="#模型部分" class="headerlink" title="模型部分"></a>模型部分</h3><p>假设：hypothesis，训练得到的模型，即PAC模型中的$f(\boldsymbol{x})$</p>
+<p>真相：ground-truth，即PAC模型中的$y$</p>
+<p>学习器：learner，在训练数据上使用学习算法经训练产生的东西，可以宽泛地认为是“模型”，如“分类器”</p>
+<h3 id="输出部分"><a href="#输出部分" class="headerlink" title="输出部分"></a>输出部分</h3><p>分类：classification，输出是离散的</p>
+<p>二分类：binary classification，可能输出的基数为2</p>
+<p>多分类：multiclass classification，可能输出的基数大于等于2，可以分解为若干个二分类问题</p>
+<p>回归：regression，输出是连续的</p>
+<p>正类：positive class，对输出进行划分，我们需要的部分定义为正类，如“好瓜”中的是</p>
+<p>负类：negative class，对输出进行划分，我们不需要的部分定义为负类，如“好瓜”中的否</p>
+<h3 id="学习任务"><a href="#学习任务" class="headerlink" title="学习任务"></a>学习任务</h3><p>监督学习：</p>
+<p>无监督学习：</p>
 
         </div>
 
