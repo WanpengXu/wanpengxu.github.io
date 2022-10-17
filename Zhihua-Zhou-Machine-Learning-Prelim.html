@@ -263,7 +263,7 @@
             <blockquote>
 <p>课程地址：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/course/nju0802bt/14363483">https://www.xuetangx.com/course/nju0802bt/14363483</a></p>
 <p>课程回放：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/video/26163005">https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/video/26163005</a></p>
-<p>课程讨论区：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/forum">https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/forum</a></p>
+<p>课程讨论：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/forum">https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/forum</a></p>
 <p>教材：<a target="_blank" rel="noopener" href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm">https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm</a></p>
 </blockquote>
 <p>2022年10月10日新开设的课程，内容不多，尽快肝完。</p>
@@ -296,8 +296,8 @@ P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 -
 <p>样本：sample，有时指样例，如（青绿，蜷缩，浊响，<strong>是</strong>）；有时指数据集，如图左侧的表</p>
 <p>属性/特征：attribute/feature，如色泽</p>
 <p>属性值：attribute value，如青绿</p>
-<p>属性空间/样本空间/输入空间：attribute space/sample space/input space，由属性所张成的空间，如轴为、青绿、蜷缩、浊响的三维空间</p>
-<p>特征向量：feature vector，示例在属性空间中所形成的向量。</p>
+<p>属性空间/样本空间/输入空间：attribute space/sample space/input space，由属性所张成的空间，如轴为青绿、蜷缩、浊响的三维空间</p>
+<p>特征向量：feature vector，示例在属性空间中所形成的向量</p>
 <h3 id="模型部分"><a href="#模型部分" class="headerlink" title="模型部分"></a>模型部分</h3><p>假设：hypothesis，训练得到的模型，即PAC模型中的$f(\boldsymbol{x})$</p>
 <p>真相：ground-truth，即PAC模型中的$y$</p>
 <p>学习器：learner，在训练数据上使用学习算法经训练产生的东西，可以宽泛地认为是“模型”，如“分类器”</p>
@@ -311,9 +311,18 @@ P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 -
 <p>无监督学习：unsupervised learning，样例中不含label的学习任务，主要任务：聚类（离散）、密度估计（连续）</p>
 <h3 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h3><p>未见样本：unseen instance，不在训练数据中的样本</p>
 <p>未知分布：unknown distribution，所有的数据所服从的分布</p>
-<p>独立同分布：i.i.d. (independent and identically distributed)，样本服从同一分布，并且互相独立。只有满足独立同分布才能应用统计学的基本原理，用频率逼近概率。</p>
+<p>独立同分布：i.i.d. (independent and identically distributed)，样本服从同一分布，并且互相独立。只有满足独立同分布才能应用统计学的基本原理（大数定律），用频率逼近概率。</p>
 <p>泛化：generalization，对新数据处理的能力，即PAC模型中的$\epsilon$能做到多小，当$\epsilon &lt; 0.5$（比随机猜测准）时，可以努力去优化模型的性能。</p>
-
+<h2 id="归纳偏好"><a href="#归纳偏好" class="headerlink" title="归纳偏好"></a>归纳偏好</h2><p>归纳偏好/偏置（Inductive Bias）：机器学习算法在学习过程中对某种类型假设的偏好。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210172332601.png" alt=""></p>
+<p>如图，当两种模型（类型假设）都能解释训练数据时，哪种模型更好？此时需要由算法的归纳偏好决定。因此机器学习算法的归纳偏好是否与问题本身匹配，直接决定算法取得的性能。</p>
+<p>奥卡姆剃刀（Occam’s razor）准则：一个典型的归纳偏好，其最流行的表述方式为：“若非必要，勿增实体”，另外还有一种表述为“若有多个假设与观察一致，则选最简单的那个”。</p>
+<p>但因“简单”这个标准比较宽泛，所以如何确定哪个假设更“简单”有很多种不同角度的实现方式。</p>
+<h2 id="NFL定理"><a href="#NFL定理" class="headerlink" title="NFL定理"></a>NFL定理</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210172351307.png" alt=""></p>
+<p>NFL定理（No Free Lunch Theoren）：一个算法$\mathfrak{L}_a$若在某些问题（左图）上比另一个算法$\mathfrak{L}_b$好，必存在另一些问题（右图），$\mathfrak{L}_b$比$\mathfrak{L}_a$好。</p>
+<p>NFL定理的重要前提：所有问题出现的机会相同，或所有问题同等重要。</p>
+<p>因此，机器学习中没有“更好的算法”，只有“<strong>在这个问题上</strong>更好的算法”！</p>
+<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1>
         </div>
 
         
