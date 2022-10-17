@@ -307,8 +307,12 @@ P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 -
 <p>回归：regression，输出是连续的</p>
 <p>正类：positive class，对输出进行划分，我们需要的部分定义为正类，如“好瓜”中的是</p>
 <p>负类：negative class，对输出进行划分，我们不需要的部分定义为负类，如“好瓜”中的否</p>
-<h3 id="学习任务"><a href="#学习任务" class="headerlink" title="学习任务"></a>学习任务</h3><p>监督学习：</p>
-<p>无监督学习：</p>
+<h3 id="学习任务"><a href="#学习任务" class="headerlink" title="学习任务"></a>学习任务</h3><p>监督学习：supervised learning，样例中含有label的学习任务，主要任务：分类、回归</p>
+<p>无监督学习：unsupervised learning，样例中不含label的学习任务，主要任务：聚类（离散）、密度估计（连续）</p>
+<h3 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h3><p>未见样本：unseen instance，不在训练数据中的样本</p>
+<p>未知分布：unknown distribution，所有的数据所服从的分布</p>
+<p>独立同分布：i.i.d. (independent and identically distributed)，样本服从同一分布，并且互相独立。只有满足独立同分布才能应用统计学的基本原理，用频率逼近概率。</p>
+<p>泛化：generalization，对新数据处理的能力，即PAC模型中的$\epsilon$能做到多小，当$\epsilon &lt; 0.5$（比随机猜测准）时，可以努力去优化模型的性能。</p>
 
         </div>
 
