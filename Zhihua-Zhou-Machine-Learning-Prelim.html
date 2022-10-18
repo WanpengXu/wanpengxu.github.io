@@ -315,14 +315,36 @@ P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 -
 <p>泛化：generalization，对新数据处理的能力，即PAC模型中的$\epsilon$能做到多小，当$\epsilon &lt; 0.5$（比随机猜测准）时，可以努力去优化模型的性能。</p>
 <h2 id="归纳偏好"><a href="#归纳偏好" class="headerlink" title="归纳偏好"></a>归纳偏好</h2><p>归纳偏好/偏置（Inductive Bias）：机器学习算法在学习过程中对某种类型假设的偏好。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210172332601.png" alt=""></p>
-<p>如图，当两种模型（类型假设）都能解释训练数据时，哪种模型更好？此时需要由算法的归纳偏好决定。因此机器学习算法的归纳偏好是否与问题本身匹配，直接决定算法取得的性能。</p>
+<p>如图，当两种模型（类型假设）<strong>都能解释训练数据时</strong>，哪种模型更好？此时需要由算法的归纳偏好决定。因此机器学习算法的归纳偏好是否与问题本身匹配，直接决定算法取得的性能。</p>
 <p>奥卡姆剃刀（Occam’s razor）准则：一个典型的归纳偏好，其最流行的表述方式为：“若非必要，勿增实体”，另外还有一种表述为“若有多个假设与观察一致，则选最简单的那个”。</p>
 <p>但因“简单”这个标准比较宽泛，所以如何确定哪个假设更“简单”有很多种不同角度的实现方式。</p>
 <h2 id="NFL定理"><a href="#NFL定理" class="headerlink" title="NFL定理"></a>NFL定理</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210172351307.png" alt=""></p>
 <p>NFL定理（No Free Lunch Theoren）：一个算法$\mathfrak{L}_a$若在某些问题（左图）上比另一个算法$\mathfrak{L}_b$好，必存在另一些问题（右图），$\mathfrak{L}_b$比$\mathfrak{L}_a$好。</p>
 <p>NFL定理的重要前提：所有问题出现的机会相同，或所有问题同等重要。</p>
 <p>因此，机器学习中没有“更好的算法”，只有“<strong>在这个问题上</strong>更好的算法”！</p>
-<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1>
+<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1><h2 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h2><p>错误率低、精度高、召回率高，都可以作为好模型的标准，与NFL定理类似，没有“好标准”，只有“<strong>在这个问题上</strong>的好标准”</p>
+<p>泛化能力（generalization ability）：模型在未见样本上表现<strong>好</strong>。</p>
+<h2 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h2><p>经验误差/训练误差（empirical error/training error）：学习器在训练集上的误差</p>
+<p>泛化误差（generalization error）：学习器在新样本上的误差</p>
+<p>因为过拟合现象的存在，经验误差与泛化误差并不是越小越好。</p>
+<p>过拟合（overfitting）：学习器把训练样本自身的一些特殊性质当做了所有样本都会有的一般性质。</p>
+<p>欠拟合（underfitting）：学习器尚未学好训练样本自身的性质。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181110973.png" alt="过拟合、欠拟合的直观类比"></p>
+<p>所以，对于具体机器学习算法，明白了其用什么方法缓解overfitting，这种方法在什么时候失效，就明白了这个机器学习算法的应用场景。</p>
+<h2 id="三大问题"><a href="#三大问题" class="headerlink" title="三大问题"></a>三大问题</h2><p>如何进行模型选择，有三个关键问题：</p>
+<ul>
+<li>如何获得测试结果？</li>
+<li>如何评估性能优劣？</li>
+<li>如何判断实质差别？</li>
+</ul>
+<p>解决这三个方面的问题，有一些经典的方法/标准，分别为：</p>
+<ul>
+<li>评估方法：对学习器的泛化误差进行量化</li>
+<li>性能度量：衡量模型泛化能力的评价标准</li>
+<li>比较检验：比较模型<strong>在统计意义上</strong>的表现</li>
+</ul>
+<p>三者的工作方式为：对于某个学习器，使用某种评估方法，测得某个性能度量结果，比较检验这些结果。</p>
+<h2 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h2>
         </div>
 
         
