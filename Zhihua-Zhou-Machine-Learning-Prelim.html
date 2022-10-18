@@ -344,7 +344,42 @@ P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 -
 <li>比较检验：比较模型<strong>在统计意义上</strong>的表现</li>
 </ul>
 <p>三者的工作方式为：对于某个学习器，使用某种评估方法，测得某个性能度量结果，比较检验这些结果。</p>
-<h2 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h2>
+<h2 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h2><p>注：这一节提到的“测试集”，用“验证集”表述更好。</p>
+<p>Q：怎么获得测试集？测试集应与训练集“互斥”。</p>
+<p>A：对数据集进行适当的处理，从中产生训练集和测试集。</p>
+<p>常见方法：留出法（hold-out）、交叉验证法（cross validation）、自助法（bootstrap）</p>
+<h3 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h3><p>直接将数据集划分为两个互斥的集合</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181633900.png" alt=""></p>
+<p>注意：</p>
+<ul>
+<li>保持数据分布的一致性，如分布采样（stratified sampling）</li>
+<li>多次重复划分，如100次随机划分</li>
+<li>测试集不能太大、不能太小（$\frac{1}{5}$~$\frac{1}{3}$）</li>
+</ul>
+<p>Q：如果有一些数据，每次重复划分都在训练集里，永远没有被用作测试怎么办？</p>
+<p>A：使用k折交叉验证，可以保证所有数据都成为过测试数据。</p>
+<h3 id="k折交叉验证"><a href="#k折交叉验证" class="headerlink" title="k折交叉验证"></a>k折交叉验证</h3><p>将数据集（共m个样本）划分为k个大小相似的互斥子集，每次用k-1个子集的并集作为训练集，余下的那个子集作为测试集。</p>
+<p>留一法（leave-one-out, LOO）：k=m时的k折交叉验证，即每1个样本都被用作其余m-1个样本的测试数据一次。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181649476.png" alt="10折交叉验证"></p>
+<p>将m个样本划分为k个子集的方式有很多，为了减小因划分方式的不同而引入的差别，通常要重复p次不同的划分方式，最终的评估结果为“p次k折交叉验证”的均值，如“10次10折交叉验证”。</p>
+<p>k折交叉验证中，将k-1个子集训练出的Model，视为用全部数据集训练出的Model进行评估，即$\widetilde{M}<em>k=M</em>{k-1}$。</p>
+<p>Q：有没有什么方法，既可以直接得到$M_k$，又有剩余的数据进行测试呢？</p>
+<p>A：自助法</p>
+<h3 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h3><p>自助法以自助采样法（bootstrap sampling）为基础（Efron and Tibshirani,  1993），其内容为：</p>
+<p>给定数据集D（共m个样本）和数据集$D^{\prime}$（初始共0个样本），重复m次以下操作：从D中随机选中1个样本，<strong>复制</strong>进$D^{\prime}$。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181732638.png" alt=""></p>
+<p>这样就得到了训练集：具有m个样本（可能重复）的数据集$D^{\prime}$，和测试集：未出现在$D^{\prime}$中的样本集合$D-D^{\prime}$。</p>
+<p>Q：某个样本在m次操作中没有被选中的概率是多少？</p>
+<p>A：</p>
+<script type="math/tex; mode=display">
+\lim_{m\rightarrow\infty}{\left(1-\frac{1}{m}\right)^{m}=\frac{1}{e}\approx0.368}</script><p>即每个样本都有36.8%的概率不被选为训练数据，那么根据数学期望可得训练集的大小，即$E(D-D^{\prime})=0.368*\left\vert D\right\vert$</p>
+<p>使用这样的测试集完成的估计，也称作“包外估计”（out-of-bag estimation）</p>
+<p>注意：</p>
+<ul>
+<li><strong>改变了数据分布</strong></li>
+</ul>
+<p>所以，当数据分布不那么重要，或数据集过小时，可以考虑自助法。</p>
+<h2 id="调参与验证集"><a href="#调参与验证集" class="headerlink" title="调参与验证集"></a>调参与验证集</h2>
         </div>
 
         
