@@ -465,7 +465,30 @@ f(\boldsymbol{x})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><p>Q：�
 \begin{aligned}
 \left(w^*, b^*\right) &=\underset{(w, b)}{\arg \min } \sum_{i=1}^m\left(f\left(x_i\right)-y_i\right)^2 \\
 &=\underset{(w, b)}{\arg \min } \sum_{i=1}^m\left(y_i-w x_i-b\right)^2
-\end{aligned}</script><h2 id="最小二乘解"><a href="#最小二乘解" class="headerlink" title="最小二乘解"></a>最小二乘解</h2>
+\end{aligned}</script><p>注. </p>
+<p>$\left(x_1, x_2, …, x_n\right)$代表行向量</p>
+<script type="math/tex; mode=display">
+\left[x_1, x_2, ..., x_n\right]</script><p>$\left(x_1; x_2; …; x_n\right)$代表列向量</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}</script><h2 id="最小二乘解"><a href="#最小二乘解" class="headerlink" title="最小二乘解"></a>最小二乘解</h2><p>上述通过使均方误差最小化得到的解，也叫最小二乘/最小平方（least square method）解。</p>
+<p>最小二乘解是一种解析解/闭式解（Closed-form expression），其解法如下：</p>
+<p>分别对$w$和$b$求导</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\frac{\partial E_{(w, b)}}{\partial w}=2\left(w \sum_{i=1}^m x_i^2-\sum_{i=1}^m\left(y_i-b\right) x_i\right) \\
+&\frac{\partial E_{(w, b)}}{\partial b}=2\left(m b-\sum_{i=1}^m\left(y_i-w x_i\right)\right)
+\end{aligned}</script><p>令导数为 0, 得到解析解:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w&=\frac{\sum\limits_{i=1}^m y_i\left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^m x_i^2-\frac{1}{m}\left(\sum\limits_{i=1}^m x_i\right)^2} \\
+b&=\frac{1}{m} \sum_{i=1}^m\left(y_i-w x_i\right)
+\end{aligned}</script><p>因为$E<em>{(w, b)}$是一个关于$w$和$b$的凸函数，所以其关于$w$和$b$的导数为0时，解得的就是最优解$\left(w^<em>, b^</em>\right)$，对应全局极小点$\left(w^<em>, b^</em>; E</em>{min}\right)$。</p>
+<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2>
         </div>
 
         
