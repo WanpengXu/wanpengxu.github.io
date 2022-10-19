@@ -541,6 +541,18 @@ E_{\hat{\boldsymbol{w}}}=(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\math
 <li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$为满秩矩阵或正定矩阵，则可以解得唯一$\hat{\boldsymbol{w}}^* = \left(\mathbf{X}^{\mathrm{T}}\mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}}\boldsymbol{y}$</li>
 <li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$不为满秩矩阵，则$\hat{\boldsymbol{w}}$不唯一，此时由算法的归纳偏好选择一个解</li>
 </ul>
+<h2 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h2><p>在$f(\boldsymbol{x})$预测出$y$后，我们还可以预测$y$的“衍生物”（以$y$为自变量的其他函数），即</p>
+<script type="math/tex; mode=display">
+g(y) = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><p>其中$g(\cdot)$称为“联系函数”（link function），其单调可微、连续且充分光滑。</p>
+<p>其等价于</p>
+<script type="math/tex; mode=display">
+y = g^{-1}(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b)</script><p>即我们用线性模型，逼近/预测了标记的“衍生物”，这样得到的模型称为“广义线性模型”（generalized linear model）。</p>
+<p>当$g(\cdot) = ln(\cdot)$时，即得到“对数线性模型”（log-linear model）</p>
+<script type="math/tex; mode=display">
+ln(y) = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><script type="math/tex; mode=display">
+y = \exp(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b)</script><p>首先预处理标记，然后以线性回归求解线性模型的参数，最后得到标记真实的模型——指数模型。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210192108509.png" alt=""></p>
+<p>注. 广义线性模型的参数估计常通过加权最小二乘法或极大似然法进行。</p>
 
         </div>
 
