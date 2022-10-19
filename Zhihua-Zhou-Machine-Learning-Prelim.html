@@ -488,7 +488,60 @@ x_n
 w&=\frac{\sum\limits_{i=1}^m y_i\left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^m x_i^2-\frac{1}{m}\left(\sum\limits_{i=1}^m x_i\right)^2} \\
 b&=\frac{1}{m} \sum_{i=1}^m\left(y_i-w x_i\right)
 \end{aligned}</script><p>因为<script type="math/tex">E_{(w, b)}</script>是一个关于$w$和$b$的凸函数，所以其关于$w$和$b$的导数为0时，解得的就是最优解<script type="math/tex">\left(w^*, b^*\right)</script>，对应全局极小点<script type="math/tex">\left(w^*, b^*; E_{min}\right)</script>。</p>
-<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2>
+<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>如第一节中所述，线性回归的一般形式是</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x_i})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b\\
+s.t.\quad  f(\boldsymbol{x_i}) \simeq y_i</script><p>其中$\boldsymbol{x<em>i}=\left(x</em>{i1}; x<em>{i2}; …; x</em>{id}\right)$，样本共有$d$个属性。</p>
+<p>这便是“多元线性回归”（multivariate linear regression）。</p>
+<p>类似地，我们仍可以利用最小二乘法得到其最优参数。但为了方便解，我们首先对一般形式进行调整。</p>
+<p>令</p>
+<script type="math/tex; mode=display">
+\cases{
+\begin{align*}
+    \hat{\boldsymbol{w}} &= (\boldsymbol{w}; b) \\
+    \hat{\boldsymbol{x}}_i &= (\boldsymbol{x_i}; 1)
+\end{align*}
+}</script><p>即</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{w}}^{\mathrm{T}} \hat{\boldsymbol{x}}_i = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b</script><p>那么，数据集即为</p>
+<script type="math/tex; mode=display">
+\mathbf{X}=\left(
+\begin{array}{ccccc}
+x_{11} & x_{12} & \cdots & x_{1 d} & 1 \\
+x_{21} & x_{22} & \cdots & x_{2 d} & 1 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+x_{m 1} & x_{m 2} & \cdots & x_{m d} & 1
+\end{array}
+\right)
+=\left(
+\begin{array}{cc}
+\boldsymbol{x}_1^{\mathrm{T}} & 1 \\
+\boldsymbol{x}_2^{\mathrm{T}} & 1 \\
+\vdots & \vdots \\
+\boldsymbol{x}_m^{\mathrm{T}} & 1
+\end{array}\right)
+\quad
+\boldsymbol{y}=\begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_m
+\end{pmatrix}</script><p>类似地，令均方误差最小</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\hat{\boldsymbol{w}}^*=\underset{\hat{\boldsymbol{w}}}{\arg \min }(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})\\
+\end{aligned}</script><p>设</p>
+<script type="math/tex; mode=display">
+E_{\hat{\boldsymbol{w}}}=(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})</script><p> 对$\hat{\boldsymbol{w}} $求导，得</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_{\hat{\boldsymbol{w}}}}{\partial \hat{\boldsymbol{w}}}=2 \mathbf{X}^{\mathrm{T}}(\mathbf{X} \hat{\boldsymbol{w}}-\boldsymbol{y})</script><p>令其为零即可得$\hat{\boldsymbol{w}}$</p>
+<p>但，若想解出$\hat{\boldsymbol{w}}$，需要对$\mathbf{X}$求逆！</p>
+<p>所以，若：</p>
+<ul>
+<li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$为满秩矩阵或正定矩阵，则可以解得唯一$\hat{\boldsymbol{w}}^* = \left(\mathbf{X}^{\mathrm{T}}\mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}}\boldsymbol{y}$</li>
+<li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$不为满秩矩阵，则$\hat{\boldsymbol{w}}$不唯一，此时由算法的归纳偏好选择一个解</li>
+</ul>
+
         </div>
 
         
