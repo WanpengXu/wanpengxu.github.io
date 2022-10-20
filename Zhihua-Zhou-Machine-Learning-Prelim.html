@@ -530,7 +530,8 @@ y_m
 <script type="math/tex; mode=display">
 \begin{aligned}
 &\hat{\boldsymbol{w}}^*=\underset{\hat{\boldsymbol{w}}}{\arg \min }(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})\\
-\end{aligned}</script><p>设</p>
+\end{aligned}</script><p>注. 需要推导</p>
+<p>设</p>
 <script type="math/tex; mode=display">
 E_{\hat{\boldsymbol{w}}}=(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})</script><p> 对$\hat{\boldsymbol{w}} $求导，得</p>
 <script type="math/tex; mode=display">
@@ -583,9 +584,10 @@ y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\r
 <ul>
 <li>无需事先假设数据分布（直接对原始的“类别”可能性建模，即将$\mathbb{R}$压缩到(0, 1)）</li>
 <li>可得到“类别”的<strong>近似概率</strong>预测</li>
-<li>可直接应用现有数值优化方法求取最优解（模型/目标函数是任意阶可导的<strong>凸函数</strong>）</li>
+<li>可直接应用现有数值优化方法求取最优解（模型/目标函数<strong>的对数似然函数</strong>是任意阶可导的<strong>凸函数</strong>）</li>
 </ul>
 <h2 id="对率回归求解-极大似然解？"><a href="#对率回归求解-极大似然解？" class="headerlink" title="对率回归求解/极大似然解？"></a>对率回归求解/极大似然解？</h2><p>Note. $P(A\mid B)$, is usually read as “the conditional probability of <em>A</em> <strong>given</strong> <em>B</em>“.</p>
+<p>事实上，$y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)\right)}}$是非凸的，所以不能用最小二乘法确定模型。</p>
 
         </div>
 
