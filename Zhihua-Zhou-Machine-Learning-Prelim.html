@@ -475,7 +475,7 @@ x_1 \\
 x_2 \\
 \vdots \\
 x_n
-\end{bmatrix}</script><h2 id="最小二乘解"><a href="#最小二乘解" class="headerlink" title="最小二乘解"></a>最小二乘解</h2><p>上述通过使均方误差最小化得到的解，也叫最小二乘/最小平方（least square method）解。</p>
+\end{bmatrix}</script><h2 id="线性回归求解（最小二乘解）"><a href="#线性回归求解（最小二乘解）" class="headerlink" title="线性回归求解（最小二乘解）"></a>线性回归求解（最小二乘解）</h2><p>上述通过使均方误差最小化得到的解，也叫最小二乘/最小平方（least square method）解。</p>
 <p>最小二乘解是一种解析解/闭式解（Closed-form expression），其解法如下：</p>
 <p>分别对$w$和$b$求导</p>
 <script type="math/tex; mode=display">
@@ -556,7 +556,7 @@ y = \exp(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b)</script><p>首先预处�
 <p>注. 广义线性模型的参数估计常通过加权最小二乘法或极大似然法进行。</p>
 <h2 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h2><p>使用线性模型和广义线性模型进行回归分析，可以解决回归任务。</p>
 <p>那么对于分类任务，事实上是在更进一步地，将线性模型的连续预测值$z$映射到离散的真实标记$y$。</p>
-<p>以二分类任务为例，设其输出标记$y \in \left{0, 1\right}$，其线性回归模型及其预测值$z=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b$。</p>
+<p>以二分类任务为例，设其输出标记 $y \in {0, 1} $，其线性回归模型及其预测值$z=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b$。</p>
 <p>那么为了将$z$映射到$y$，有一个最理想的函数“单位阶跃函数”（unit-step function）</p>
 <script type="math/tex; mode=display">
 y=\left\{
@@ -586,8 +586,31 @@ y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\r
 <li>可得到“类别”的<strong>近似概率</strong>预测</li>
 <li>可直接应用现有数值优化方法求取最优解（模型/目标函数<strong>的对数似然函数</strong>是任意阶可导的<strong>凸函数</strong>）</li>
 </ul>
-<h2 id="对率回归求解-极大似然解？"><a href="#对率回归求解-极大似然解？" class="headerlink" title="对率回归求解/极大似然解？"></a>对率回归求解/极大似然解？</h2><p>Note. $P(A\mid B)$, is usually read as “the conditional probability of <em>A</em> <strong>given</strong> <em>B</em>“.</p>
-<p>事实上，$y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)\right)}}$是非凸的，所以不能用最小二乘法确定模型。</p>
+<h2 id="对数几率回归求解"><a href="#对数几率回归求解" class="headerlink" title="对数几率回归求解"></a>对数几率回归求解</h2><p>Note. $P(A\mid B)$, is usually read as “the conditional probability of <em>A</em> <strong>given</strong> <em>B</em>“.</p>
+<p>事实上， $y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)\right)}}$ 是非凸的，所以不能用最小二乘法确定模型。</p>
+<p>既然原函数是非凸的，我们可以考虑其“对数似然函数”（log-likelihood function）。</p>
+<p>似然，是指当已知结果时，对其参数的推测。（也很类似从“表现型”得到“基因型”）</p>
+<p>例如在二分类问题中，似然函数就是</p>
+<script type="math/tex; mode=display">
+\ell=\sum_{i} \left(P(实际y_i为正类)P(预测y_i为正类)+P(实际y_i为负类)P(预测y_i为负类)\right)</script><p>当其最大时所对应的参数就最接近原函数的解。</p>
+<p>在计算机处理较小数的乘法时可能会发生数值下溢，所以使用对数似然，即对似然函数取对数。</p>
+<p>当线性模型参数$\boldsymbol{w}$和$b$确定时，可得$y$的后验概率估计$p(y_i \mid \boldsymbol{x})$</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+\ln \frac{p(y=1\mid \boldsymbol{x})}{p(y=0\mid \boldsymbol{x})} = \boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b\\
+{p(y=1\mid \boldsymbol{x})} + {p(y=0\mid \boldsymbol{x})} = 1
+\end{array}
+\right.</script><p>解得</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+p(y=1\mid \boldsymbol{x}) = \frac{\exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
+p(y=0\mid \boldsymbol{x}) = \frac{1}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
+\end{array}
+\right.</script><p>…</p>
+<p>Q：为什么更偏向使用梯度下降法？</p>
+<p>A：因为梯度下降法的更新公式$w = w + \Delta w$是迭代的，更适合计算机采用并行处理，速度更快。</p>
 
         </div>
 
