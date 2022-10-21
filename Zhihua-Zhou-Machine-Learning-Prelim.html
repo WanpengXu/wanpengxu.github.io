@@ -650,10 +650,10 @@ $$
 
 <p>最大似然法的最大化式等价于</p>
 <script type="math/tex; mode=display">
-min \quad -\ell(\boldsymbol{\beta})</script><p>即</p>
+\min \quad -\ell(\boldsymbol{\beta})</script><p>即</p>
 
 $$
-min \quad \sum_{i=1}^{m}\ln \frac{{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}}{{y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}}
+\min \quad \sum_{i=1}^{m}\ln \frac{{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}}{{y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}}
 $$
 
 <p>是一种<strong>无约束优化问题</strong>。</p>
@@ -674,7 +674,28 @@ $$
 <p>Q：为什么更偏向使用梯度下降法？</p>
 <p>A：因为梯度下降法的更新公式$w = w + \Delta w$是迭代的，更适合计算机采用并行处理，速度快。牛顿法每次迭代时需要求解Hessian矩阵的逆矩阵，计算量通常较大，速度慢。</p>
 <p>Q：为什么不用一阶导方法了？</p>
-<p>A：回来再写</p>
+<p>A：当输入是向量时，需要涉及到矩阵的逆矩阵（对应标量计算中的除法），如多元线性回归中的最优解$\hat{\boldsymbol{w}}^* = \left(\mathbf{X}^{\mathrm{T}}\mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}}\boldsymbol{y}$，而输入矩阵很可能不存在逆矩阵。</p>
+<h2 id="类别不平衡"><a href="#类别不平衡" class="headerlink" title="类别不平衡"></a>类别不平衡</h2><p>类别不平衡（class-imbalance）：分类任务中不同类别的样例数目差别很大的情况。</p>
+<p>以二分类问题为例，通常的分类思想是，线性模型预测出的$y$（或者说$\hat{y}$）大于某个阈值（threshold）时，将其判为正例，最朴素的阈值是0.5，即</p>
+<script type="math/tex; mode=display">
+y > 0.5</script><p>或用odds表示</p>
+<script type="math/tex; mode=display">
+\frac{y}{1-y} > 1</script><p>假如样本中正例过少，而正例又很重要时（不能预测错了），那么我们必须要解决类别不平衡问题。</p>
+<p>设$m^+$表示训练集中的正例数目，$m^-$表示训练集中的负例数目。</p>
+<p>那么，一种自然的想法就是按照比例降低阈值，提高将样本判断为正例的可能性</p>
+<script type="math/tex; mode=display">
+y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
+<script type="math/tex; mode=display">
+\frac{y}{1-y} > \frac{m^+}{m^-}</script><p>那么，即可设$y^{\prime}$，使其满足</p>
+<script type="math/tex; mode=display">
+\frac{y^{\prime}}{1-y^{\prime}} = \frac{y}{1-y} \times \frac{m^-}{m^+} > \frac{m^+}{m^-} \times \frac{m^-}{m^+} = 1</script><p>这就是解决类别不平衡的一个基本策略——“再缩放”/“再平衡”（rescaling/rebalance）。</p>
+<p>但因为训练集和真实情况的分布往往不同（即不是“无偏采样”），训练集中正例少，不一定说明gt正例少，所以不一定准确。</p>
+<p>实际上，现在针对类别不平衡实现的做法有：</p>
+<ul>
+<li>欠采样/下采样（undersampling/downsampling）：去除一些反例，使正、反例数目接近。如EasyEnsemble算法（划分反例、集成）</li>
+<li>过采样/上采样（oversampling/upsampling）：增加一些正例，使正、反例数目接近。如SMOTE算法（插值）</li>
+<li>阈值移动（threshold-moving）：使用原始训练集训练，预测时使用$y^{\prime}$进行决策。</li>
+</ul>
 
         </div>
 
