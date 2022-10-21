@@ -696,8 +696,9 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <li>过采样/上采样（oversampling/upsampling）：增加一些正例，使正、反例数目接近。如SMOTE算法（插值）</li>
 <li>阈值移动（threshold-moving）：使用原始训练集训练，预测时使用$y^{\prime}$进行决策。</li>
 </ul>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210212130810.png" alt=""></p>
-<p>可能是要单调</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210212130810.png" alt=""></p>
+<p>A经化简，为$g(y) = \frac{e^y}{1 +e^y} = \boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b$，与B、C同样为单调函数；而D是非单调函数。</p>
+<p>因$g(\cdot)$是单调、可微、连续、充分光滑的，所以答案是D。</p>
 
         </div>
 
