@@ -608,7 +608,32 @@ y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\r
 p(y=1\mid \boldsymbol{x}) = \frac{\exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
 p(y=0\mid \boldsymbol{x}) = \frac{1}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
 \end{array}
-\right.</script><p>…</p>
+\right.</script><p>现在确定线性模型参数$\boldsymbol{w}$和$b$（将它们设为$\beta$），令</p>
+<script type="math/tex; mode=display">
+\cases{
+\begin{align*}
+    \beta &= (\boldsymbol{w}; b) \\
+    \hat{\boldsymbol{x}}_i &= (\boldsymbol{x_i}; 1)
+\end{align*}
+}</script><p>即</p>
+<script type="math/tex; mode=display">
+\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b</script><p>注. 设为$\beta$是因为最优化中二阶导方法喜欢用这个符号。</p>
+<p>令</p>
+<script type="math/tex; mode=display">
+p_1(\hat{\boldsymbol{x}}_i; \beta) = p(y=1 \mid \hat{\boldsymbol{x}}_i; \beta) =\frac{\exp\left(\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}{1 + \exp\left(\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\
+p_0(\hat{\boldsymbol{x}}_i; \beta) = p(y=0 \mid \hat{\boldsymbol{x}}_i; \beta) =\frac{1}{1 + \exp\left(\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\</script><p>那么，每个似然项表达式为</p>
+<script type="math/tex; mode=display">
+p(y_i \mid \hat{\boldsymbol{x}}_i; \beta) = y_ip_1(\hat{\boldsymbol{x}}_i; \beta) + (1-y_i)p_0(\hat{\boldsymbol{x}}_i; \beta)</script><p>对数似然函数为</p>
+<script type="math/tex; mode=display">
+\ell(\beta)=\sum_{i=1}^{m}\ln p(y_i \mid \hat{\boldsymbol{x}}_i; \beta)</script><p>用最优化形式表达最大似然法</p>
+<script type="math/tex; mode=display">
+\max \quad \ell(\beta)</script><p>化简$\ell(\beta)$</p>
+<p>…</p>
+<p>转为min</p>
+<p>…</p>
+<p>证明高阶连续可导凸函数</p>
+<p>…</p>
+<p>（下午再写）</p>
 <p>Q：为什么更偏向使用梯度下降法？</p>
 <p>A：因为梯度下降法的更新公式$w = w + \Delta w$是迭代的，更适合计算机采用并行处理，速度更快。</p>
 
