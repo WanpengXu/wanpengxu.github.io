@@ -475,7 +475,7 @@ x_1 \\
 x_2 \\
 \vdots \\
 x_n
-\end{bmatrix}</script><h2 id="线性回归求解（最小二乘解）"><a href="#线性回归求解（最小二乘解）" class="headerlink" title="线性回归求解（最小二乘解）"></a>线性回归求解（最小二乘解）</h2><p>上述通过使均方误差最小化得到的解，也叫最小二乘/最小平方（least square method）解。</p>
+\end{bmatrix}</script><h2 id="线性回归求解析解（最小二乘解）"><a href="#线性回归求解析解（最小二乘解）" class="headerlink" title="线性回归求解析解（最小二乘解）"></a>线性回归求解析解（最小二乘解）</h2><p>上述通过使均方误差最小化得到的解，也叫最小二乘/最小平方（least square method）解。</p>
 <p>最小二乘解是一种解析解/闭式解（Closed-form expression），其解法如下：</p>
 <p>分别对$w$和$b$求导</p>
 <script type="math/tex; mode=display">
@@ -586,7 +586,7 @@ y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\r
 <li>可得到“类别”的<strong>近似概率</strong>预测</li>
 <li>可直接应用现有数值优化方法求取最优解（模型/目标函数<strong>的对数似然函数</strong>是任意阶可导的<strong>凸函数</strong>）</li>
 </ul>
-<h2 id="对数几率回归求解"><a href="#对数几率回归求解" class="headerlink" title="对数几率回归求解"></a>对数几率回归求解</h2><p>Note. $P(A\mid B)$, is usually read as “the conditional probability of <em>A</em> <strong>given</strong> <em>B</em>“.</p>
+<h2 id="对数几率回归求近似解"><a href="#对数几率回归求近似解" class="headerlink" title="对数几率回归求近似解"></a>对数几率回归求近似解</h2><p>Note. $P(A\mid B)$, is usually read as “the conditional probability of <em>A</em> <strong>given</strong> <em>B</em>“.</p>
 <p>事实上， $y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)\right)}}$ 是非凸的，所以不能用最小二乘法确定模型。</p>
 <p>既然原函数是非凸的，我们可以考虑其“对数似然函数”（log-likelihood function）。</p>
 <p>似然，是指当已知结果时，对其参数的推测。（也很类似从“表现型”得到“基因型”）</p>
@@ -608,34 +608,73 @@ y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\r
 p(y=1\mid \boldsymbol{x}) = \frac{\exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
 p(y=0\mid \boldsymbol{x}) = \frac{1}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
 \end{array}
-\right.</script><p>现在确定线性模型参数$\boldsymbol{w}$和$b$（将它们设为$\beta$），令</p>
+\right.</script><p>现在确定线性模型参数$\boldsymbol{w}$和$b$（将它们设为$\boldsymbol{\beta}$），令</p>
 <script type="math/tex; mode=display">
 \cases{
 \begin{align*}
-    \beta &= (\boldsymbol{w}; b) \\
+    \boldsymbol{\beta} &= (\boldsymbol{w}; b) \\
     \hat{\boldsymbol{x}}_i &= (\boldsymbol{x_i}; 1)
 \end{align*}
 }</script><p>即</p>
 <script type="math/tex; mode=display">
-\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b</script><p>注. 设为$\beta$是因为最优化中二阶导方法喜欢用这个符号。</p>
+\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b</script><p>注. 设为$\boldsymbol{\beta}$是因为最优化中二阶导方法喜欢用这个符号。</p>
 <p>令</p>
 <script type="math/tex; mode=display">
-p_1(\hat{\boldsymbol{x}}_i; \beta) = p(y=1 \mid \hat{\boldsymbol{x}}_i; \beta) =\frac{\exp\left(\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}{1 + \exp\left(\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\
-p_0(\hat{\boldsymbol{x}}_i; \beta) = p(y=0 \mid \hat{\boldsymbol{x}}_i; \beta) =\frac{1}{1 + \exp\left(\beta^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\</script><p>那么，每个似然项表达式为</p>
+p_1(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = p(y=1 \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) =\frac{\exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\
+p_0(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = p(y=0 \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) =\frac{1}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\</script><p>那么，每个似然项表达式为</p>
 <script type="math/tex; mode=display">
-p(y_i \mid \hat{\boldsymbol{x}}_i; \beta) = y_ip_1(\hat{\boldsymbol{x}}_i; \beta) + (1-y_i)p_0(\hat{\boldsymbol{x}}_i; \beta)</script><p>对数似然函数为</p>
+p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = y_ip_1(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) + (1-y_i)p_0(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta})</script><p>对数似然函数为</p>
 <script type="math/tex; mode=display">
-\ell(\beta)=\sum_{i=1}^{m}\ln p(y_i \mid \hat{\boldsymbol{x}}_i; \beta)</script><p>用最优化形式表达最大似然法</p>
+\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\ln p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta})</script><p>用最优化形式表达最大似然法</p>
 <script type="math/tex; mode=display">
-\max \quad \ell(\beta)</script><p>化简$\ell(\beta)$</p>
-<p>…</p>
-<p>转为min</p>
-<p>…</p>
-<p>证明高阶连续可导凸函数</p>
-<p>…</p>
-<p>（下午再写）</p>
+\max \quad \ell(\boldsymbol{\beta})</script><p>化简似然项$p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta})$</p>
+<script type="math/tex; mode=display">
+p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = \left\{
+\begin{array}{cc}
+\frac{\exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} & ,y_i=1\\
+\frac{1}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} & ,y_i=0
+\end{array}
+\right.</script><p>即</p>
+<script type="math/tex; mode=display">
+p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = \frac{\exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)^{y_i}}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}</script><p>注. 我觉得这里我的化简方法比西瓜书和南瓜书更简单。</p>
+<p>其对数似然</p>
+
+$$
+\begin{aligned}
+\ln p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) 
+&= {y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}-\ln\left({1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}\right)\\
+&= \ln \exp \left({y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}\right) - \ln\left({1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}\right)\\
+&= \ln \frac{{y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}}{{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}}
+\end{aligned}
+$$
+
+<p>最大似然法的最大化式等价于</p>
+<script type="math/tex; mode=display">
+min \quad -\ell(\boldsymbol{\beta})</script><p>即</p>
+
+$$
+min \quad \sum_{i=1}^{m}\ln \frac{{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}}{{y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}}
+$$
+
+<p>是一种<strong>无约束优化问题</strong>。</p>
+<p>此时的求和项，是一个关于$\boldsymbol{\beta}$高阶可导的、连续的凸函数，证明先贴南瓜书，等我啃完西瓜书再回来重写。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210211705035.png" alt=""></p>
+<p>所以我们可以采用梯度下降法、牛顿法等二阶导最优化方法求得其近似最优解$\boldsymbol{\beta}^*$</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\beta}^*=\underset{\boldsymbol{\beta}}{\arg \min } \ell(\boldsymbol{\beta})</script><p>若使用牛顿法，其第$t+1$轮迭代解的更新公式为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\beta}^{t+1}=\boldsymbol{\beta}^t-\left(\frac{\partial^2 \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta} \partial \boldsymbol{\beta}^T}\right)^{-1} \frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}</script><p>其中，关于$\boldsymbol{\beta}$的一阶、二阶导数分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}&=-\sum_{i=1}^m \hat{\boldsymbol{x}}_i\left(y_i-p_1\left(\hat{\boldsymbol{x}}_i ; \boldsymbol{\beta}\right)\right)\\
+\frac{\partial^2 \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta} \partial \boldsymbol{\beta}^{\mathrm{T}}}&=\sum_{i=1}^m \hat{\boldsymbol{x}}_i \hat{\boldsymbol{x}}_i^{\mathrm{T}} p_1\left(\hat{\boldsymbol{x}}_i ; \boldsymbol{\beta}\right)\left(1-p_1\left(\hat{\boldsymbol{x}}_i ; \boldsymbol{\beta}\right)\right)
+\end{aligned}</script><p>但我们还是偏向使用梯度下降法解决问题。</p>
+<p>Q：为什么是近似最优解？</p>
+<p>A：梯度下降法和牛顿法，二者的迭代终止条件均为$\left|f\left(\boldsymbol{x}^{t+1}\right)-f\left(\boldsymbol{x}^t\right)\right|&lt;\epsilon$，且牛顿法的迭代公式通过<strong>必要条件</strong>推导而来，不保证是极小值点。</p>
 <p>Q：为什么更偏向使用梯度下降法？</p>
-<p>A：因为梯度下降法的更新公式$w = w + \Delta w$是迭代的，更适合计算机采用并行处理，速度更快。</p>
+<p>A：因为梯度下降法的更新公式$w = w + \Delta w$是迭代的，更适合计算机采用并行处理，速度快。牛顿法每次迭代时需要求解Hessian矩阵的逆矩阵，计算量通常较大，速度慢。</p>
+<p>Q：为什么不用一阶导方法了？</p>
+<p>A：回来再写</p>
 
         </div>
 
