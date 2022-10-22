@@ -488,6 +488,9 @@ x_n
 w&=\frac{\sum\limits_{i=1}^m y_i\left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^m x_i^2-\frac{1}{m}\left(\sum\limits_{i=1}^m x_i\right)^2} \\
 b&=\frac{1}{m} \sum_{i=1}^m\left(y_i-w x_i\right)
 \end{aligned}</script><p>因为<script type="math/tex">E_{(w, b)}</script>是一个关于$w$和$b$的凸函数，所以其关于$w$和$b$的导数为0时，解得的就是最优解<script type="math/tex">\left(w^*, b^*\right)</script>，对应全局极小点<script type="math/tex">\left(w^*, b^*; E_{min}\right)</script>。</p>
+<p>推导过程：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222226628.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222238324.png" alt=""></p>
 <h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>如第一节中所述，线性回归的一般形式是</p>
 <script type="math/tex; mode=display">
 f(\boldsymbol{x_i})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b\\
@@ -540,7 +543,7 @@ E_{\hat{\boldsymbol{w}}}=(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\math
 <p>所以，若：</p>
 <ul>
 <li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$为满秩矩阵或正定矩阵，则可以解得唯一$\hat{\boldsymbol{w}}^* = \left(\mathbf{X}^{\mathrm{T}}\mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}}\boldsymbol{y}$</li>
-<li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$不为满秩矩阵，则$\hat{\boldsymbol{w}}$不唯一，此时由算法的归纳偏好选择一个解</li>
+<li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$不为满秩矩阵，则$\hat{\boldsymbol{w}}$不唯一，此时需要引入归纳偏好/正则化使其可解</li>
 </ul>
 <h2 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h2><p>在$f(\boldsymbol{x})$预测出$y$后，我们还可以预测$y$的“衍生物”（以$y$为自变量的其他函数），即</p>
 <script type="math/tex; mode=display">
@@ -696,10 +699,36 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <li>过采样/上采样（oversampling/upsampling）：增加一些正例，使正、反例数目接近。如SMOTE算法（插值）</li>
 <li>阈值移动（threshold-moving）：使用原始训练集训练，预测时使用$y^{\prime}$进行决策。</li>
 </ul>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210212130810.png" alt=""></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>这一章的测试开始有计算了。</p>
+<p><strong>题6</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210212130810.png" alt=""></p>
 <p>A经化简，为$g(y) = \frac{e^y}{1 +e^y} = \boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b$，与B、C同样为单调函数；而D是非单调函数。</p>
 <p>因$g(\cdot)$是单调、可微、连续、充分光滑的，所以答案是D。</p>
-
+<p><strong>题7</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222257942.png" alt=""></p>
+<p>多元线性回归使用正则化的原因：</p>
+<ul>
+<li>计算机数值精度有限</li>
+<li>样例维度大于样例数</li>
+<li>存在大量线性相关的样例</li>
+</ul>
+<p>注. 不明白为什么，我只知道正则化可以防止过拟合。</p>
+<p><strong>题9</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222121726.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222239198.png" alt=""></p>
+<p><strong>题10</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222240105.png" alt=""></p>
+<p>这个损失函数带着$\sum$推导很难受，只是为了做题的话可以直接代入。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222253045.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222251868.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222249514.png" alt=""></p>
+<p>Q：为啥答案里没有负的那个？</p>
+<p>A：也许负的那个不是最小值点。</p>
+<p><strong>题12</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222310757.png" alt=""></p>
+<p>OvR，One vs. Rest，一对其余。</p>
+<p>类别均衡的10分类问题，所以正反例的样本数目之比为$m^+:m^- = 1:9$，$y &gt; \frac{m^+}{m^+ + m^-} = \frac{1}{10} = 0.100$。</p>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="决策树基本流程"><a href="#决策树基本流程" class="headerlink" title="决策树基本流程"></a>决策树基本流程</h2>
         </div>
 
         
