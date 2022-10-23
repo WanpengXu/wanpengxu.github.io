@@ -728,7 +728,22 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222310757.png" alt=""></p>
 <p>OvR，One vs. Rest，一对其余。</p>
 <p>类别均衡的10分类问题，所以正反例的样本数目之比为$m^+:m^- = 1:9$，$y &gt; \frac{m^+}{m^+ + m^-} = \frac{1}{10} = 0.100$。</p>
-<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="决策树基本流程"><a href="#决策树基本流程" class="headerlink" title="决策树基本流程"></a>决策树基本流程</h2>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="决策树基本流程"><a href="#决策树基本流程" class="headerlink" title="决策树基本流程"></a>决策树基本流程</h2><p>决策树（decision tree）是一种特殊的树，其包含：</p>
+<ul>
+<li>一个根结点</li>
+<li>若干个内部结点（非根/叶结点）</li>
+<li>若干个叶结点</li>
+</ul>
+<p>其中，每个结点都包含“样本集合”。根节点对应“样本全集”，内部结点对应“属性测试的结果”，叶结点对应“决策结果”。从根结点到叶结点的路径对应“判定测试序列”。</p>
+<p>决策树学习，目的是生成一棵泛化能力强的决策树，其算法遵循简单直观的“分治”策略：</p>
+<ul>
+<li>当前结点包含的样本全属于同一类别，无需划分</li>
+<li>当前属性集为空, 或是所有样本在所有属性上取值相同，无法划分</li>
+<li>当前结点包含的样本集合为空，不能划分</li>
+</ul>
+<p>（下午回来改成自己的描述）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210231203416.png" alt=""></p>
+
         </div>
 
         
