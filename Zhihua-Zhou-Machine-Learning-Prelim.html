@@ -757,10 +757,10 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <p>注. <code>\operatorname</code>就是切换成直立体，和<code>\log</code>类似。</p>
 <p>接下来再来看第8步</p>
 <blockquote>
-<p>训练集 $D=\left{\left(x_1, y_1\right),\left(x_2, y_2\right), \ldots,\left(x_m, y_m\right)\right}$;<br>属性集 $A=\left{a_1, a_2, \ldots, a_d\right}$.</p>
+<p>训练集 <script type="math/tex">D=\left\{\left(x_1, y_1\right),\left(x_2, y_2\right), \ldots,\left(x_m, y_m\right)\right\}</script>;<br>属性集 <script type="math/tex">A=\left\{a_1, a_2, \ldots, a_d\right\}</script>.</p>
 <p>8: 从$A$中选择最优划分属性$a_*$;</p>
 </blockquote>
-<p>对于属性$a_i$，假设其有$V$个属性值$\left{a_i^1, a_i^2, \ldots, a_i^v, \ldots, a_i^V\right}$。</p>
+<p>对于属性$a_i$，假设其有$V$个属性值<script type="math/tex">\left\{a_i^1, a_i^2, \ldots, a_i^v, \ldots, a_i^V\right\}</script>。</p>
 <p>那么，使用属性$a_i$划分时会产生$V$个分支结点。其中，第$v$个分支结点包含$D$中的、在属性$a_i$上取值为$a_i^v$的样本，记为$D^v$。则使用属性$a_i$分割$D$所获得的“信息增益”（information gain）定义为</p>
 <script type="math/tex; mode=display">
 \operatorname{Gain}(D, a) = \operatorname{Ent}(D) - \sum_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)</script><p>其中$\frac{|D^v|}{|D|}$为分支结点的权重，样本数越多的分支结点，影响越大。</p>
