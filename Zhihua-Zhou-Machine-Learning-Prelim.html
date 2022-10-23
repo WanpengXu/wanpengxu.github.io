@@ -735,14 +735,35 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <li>若干个叶结点</li>
 </ul>
 <p>其中，每个结点都包含“样本集合”。根节点对应“样本全集”，内部结点对应“属性测试的结果”，叶结点对应“决策结果”。从根结点到叶结点的路径对应“判定测试序列”。</p>
-<p>决策树学习，目的是生成一棵泛化能力强的决策树，其算法遵循简单直观的“分治”策略：</p>
+<p>决策树学习，目的是生成一棵泛化能力强的决策树，其算法遵循简单直观的“分而治之”（divide-and-conquer, 分治）策略：</p>
+<p>自根至叶递归</p>
+<p>在每个内部结点寻找一个“划分”（split or test）属性</p>
+<p>三种停止条件：</p>
 <ul>
-<li>当前结点包含的样本全属于同一类别，无需划分</li>
+<li>当前结点包含的样本均属于同一类别，无需划分</li>
 <li>当前属性集为空, 或是所有样本在所有属性上取值相同，无法划分</li>
-<li>当前结点包含的样本集合为空，不能划分</li>
+<li>当前结点包含的样本集合为空，无法划分</li>
 </ul>
-<p>（下午回来改成自己的描述）</p>
+<p>算法描述：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210231203416.png" alt=""></p>
+<p>（关于情形3，直接返回了的话，后面的属性值怎么办？）</p>
+<h2 id="信息增益划分"><a href="#信息增益划分" class="headerlink" title="信息增益划分"></a>信息增益划分</h2><p>许多机器学习算法都受到了信息论的启发，决策树也不例外。</p>
+<p>按上一节中的决策树学习策略，我们可以看出，随着划分过程的不断进行，算法希望分支结点所包含的样本尽可能属于同一类别，即结点的“纯度”（purity）越来越高。</p>
+<p>“纯度”越高，“不确定度”就越低，所以我们可以用描述不确定度的“信息熵”来作为纯度指标。</p>
+<p>信息熵（information entropy）：描述信息源$X$中各可能事件$x$发生的不确定性。是随机变量$X$的自信息$-\log\ p(⁡x)$（概率越大，信息量/不确定度越小）的数学期望。</p>
+<p>若样本集合$D$中第$k$类样本所占的比例为$p_k(k = 1, 2, \ldots, |\mathcal{Y}|)$，则$D$的信息熵定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Ent}(D)=-\sum_{k=1}^{|\mathcal{Y}|} p_k \log _2 p_k</script><p>即$\operatorname{Ent}(D)$越小，$D$的纯度越高。</p>
+<p>注. <code>\operatorname</code>就是切换成直立体，和<code>\log</code>类似。</p>
+<p>接下来再来看第8步</p>
+<blockquote>
+<p>训练集 $D=\left{\left(x_1, y_1\right),\left(x_2, y_2\right), \ldots,\left(x_m, y_m\right)\right}$;<br>属性集 $A=\left{a_1, a_2, \ldots, a_d\right}$.</p>
+<p>8: 从$A$中选择最优划分属性$a_*$;</p>
+</blockquote>
+<p>对于属性$a_i$，假设其有$V$个属性值$\left{a_i^1, a_i^2, \ldots, a_i^v, \ldots, a_i^V\right}$。</p>
+<p>那么，使用属性$a_i$划分时会产生$V$个分支结点。其中，第$v$个分支结点包含$D$中的、在属性$a_i$上取值为$a_i^v$的样本，记为$D^v$。则使用属性$a_i$分割$D$所获得的“信息增益”（information gain）定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain}(D, a) = \operatorname{Ent}(D) - \sum_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)</script><p>其中$\frac{|D^v|}{|D|}$为分支结点的权重，样本数越多的分支结点，影响越大。</p>
 
         </div>
 
