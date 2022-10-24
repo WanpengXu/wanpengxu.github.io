@@ -754,8 +754,8 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <p>若样本集合$D$中第$k$类样本所占的比例为$p_k(k = 1, 2, \ldots, |\mathcal{Y}|)$，则$D$的信息熵定义为</p>
 <script type="math/tex; mode=display">
 \operatorname{Ent}(D)=-\sum_{k=1}^{|\mathcal{Y}|} p_k \log _2 p_k</script><p>即$\operatorname{Ent}(D)$越小，$D$的纯度越高。</p>
-<p>当$D$中只有一类样本时，$\operatorname{Ent}(D)$最小，$p<em>1 = 1$，$\operatorname{Ent}(D)</em>{min} = -1 \cdot \log_2 1 = 0$</p>
-<p>当$D$中的样本类别均衡（均分）时，$\operatorname{Ent}(D)$最大，$p<em>k = \frac{1}{|\mathcal{Y}|}$，$\operatorname{Ent}(D)</em>{max} = -|\mathcal{Y}|\cdot\frac{1}{|\mathcal{Y}|} \cdot \log_2 \frac{1}{|\mathcal{Y}|} = \log_2 |\mathcal{Y}|$</p>
+<p>当$D$中只有一类样本时，$\operatorname{Ent}(D)$最小，<script type="math/tex">p_1 = 1</script>，<script type="math/tex">\operatorname{Ent}(D)_{min} = -1 \cdot \log_2 1 = 0</script></p>
+<p>当$D$中的样本类别均衡（均分）时，$\operatorname{Ent}(D)$最大，<script type="math/tex">p_k = \frac{1}{|\mathcal{Y}|}</script>，<script type="math/tex">\operatorname{Ent}(D)_{max} = -|\mathcal{Y}|\cdot\frac{1}{|\mathcal{Y}|} \cdot \log_2 \frac{1}{|\mathcal{Y}|} = \log_2 |\mathcal{Y}|</script></p>
 <p>注. <code>\operatorname</code>就是切换成直立体，和<code>\log</code>类似。</p>
 <p>接下来再来看第8步</p>
 <blockquote>
@@ -842,18 +842,18 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 <p>继续递归，直到算法结束，得到训练好的决策树。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232121606.png" alt=""></p>
 <h2 id="其他属性划分准则"><a href="#其他属性划分准则" class="headerlink" title="其他属性划分准则"></a>其他属性划分准则</h2><p>事实上，信息增益$\operatorname{Gain}$划分准则有其归纳偏好：偏好按属性值多的属性划分。</p>
-<p>例如，按属性“编号”（“编号”是训练集中属性值最多的属性）划分$D$，所产生的分支结点们的“加权信息熵”为0，即$\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)=0$，纯度最大，所获得的信息增益最大。但按“编号”划分，所产生的这棵“纯度最高的”决策树不具有泛化能力。因为“编号”与“好瓜”没有相关性，不能说前8个采集的西瓜一定是好瓜，9~17个采集的西瓜一定不是好瓜，后面采集的西瓜不知道是不是好瓜，这是荒谬的。</p>
+<p>例如，按属性“编号”（“编号”是训练集中属性值最多的属性）划分$D$，所产生的分支结点们的“加权信息熵”为0，即<script type="math/tex">\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)=0</script>，纯度最大，所获得的信息增益最大。但按“编号”划分，所产生的这棵“纯度最高的”决策树不具有泛化能力。因为“编号”与“好瓜”没有相关性，不能说前8个采集的西瓜一定是好瓜，9~17个采集的西瓜一定不是好瓜，后面采集的西瓜不知道是不是好瓜，这是荒谬的。</p>
 <h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><p>Quinlan在他的决策树生成算法C4.5中使用了“增益率”（gain ratio）作为纯度指标，其定义为</p>
 <script type="math/tex; mode=display">
 \operatorname{Gain\_ratio}(D, a_i) = \frac{\operatorname{Gain}(D, a_i)}{\operatorname{IV}(a_i)}</script><p>其中，</p>
 <script type="math/tex; mode=display">
 \operatorname{IV}=-\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>称为属性$a_i$的“固有值”（intrinsic value）。</p>
 <p>Q：为什么定义固有值为这种形式呢？</p>
-<p>A（<strong>猜想</strong>）：首先，属性值越多，每个属性值的样本越少，其的权重$\frac{|D^v|}{|D|}$越小。令$\operatorname{IV}=\sum\limits<em>{v=1}^{V}\frac{|D^v|}{|D|} = 1$作为分母，作者希望属性值越少（权重越大），$\operatorname{IV}$越小，增益率越大，需要乘一个与权重成反比的函数。又因为权重$\frac{|D^v|}{|D|}\in[0, 1]$，所以引入负对数函数$-\log_2\frac{|D^v|}{|D|}$（如图），形成$\operatorname{IV}=\sum\limits</em>{v=1}^{V}\frac{|D^v|}{|D|}\cdot -\log_2\frac{|D^v|}{|D|}$。</p>
+<p>A（<strong>猜想</strong>）：首先，属性值越多，每个属性值的样本越少，其的权重$\frac{|D^v|}{|D|}$越小。令<script type="math/tex">\operatorname{IV}=\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|} = 1</script>作为分母，作者希望属性值越少（权重越大），$\operatorname{IV}$越小，增益率越大，需要乘一个与权重成反比的函数。又因为权重<script type="math/tex">\frac{|D^v|}{|D|}\in[0, 1]</script>，所以引入负对数函数<script type="math/tex">-\log_2\frac{|D^v|}{|D|}</script>（如图），形成<script type="math/tex">\operatorname{IV}=\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\cdot -\log_2\frac{|D^v|}{|D|}</script>。</p>
 <p>但事实上，$-x\log_2x$不是单调递减的，而是先增后减。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210241929626.png" alt=""></p>
-<p>那么现在我们知道，$\operatorname{Gain_ratio}$划分准则的归纳偏好：偏好按属性值少的属性划分。</p>
-<p>所以C4.5生成算法加入了启发式：先用$\operatorname{Gain}$划分准则找出$\operatorname{Gain}$高于平均水平的属性，接着再用$\operatorname{Gain_ratio}$划分准则选择$\operatorname{Gain_ratio}$最高的。即希望从更纯净的划分属性中找属性值少的划分属性。</p>
+<p>那么现在我们知道，<script type="math/tex">\operatorname{Gain\_ratio}</script>划分准则的归纳偏好：偏好按属性值少的属性划分。</p>
+<p>所以C4.5生成算法加入了启发式：先用$\operatorname{Gain}$划分准则找出$\operatorname{Gain}$高于平均水平的属性，接着再用<script type="math/tex">\operatorname{Gain\_ratio}</script>划分准则选择<script type="math/tex">\operatorname{Gain\_ratio}</script>最高的。即希望从更纯净的划分属性中找属性值少的划分属性。</p>
 <h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>Quinlan在他的决策树生成算法CART（Classification and Regression Tree）中使用了“基尼指数”（Gini index）作为纯度指标，其定义为</p>
 <script type="math/tex; mode=display">
 \operatorname{Gini\_index}(D, a_i) = \sum_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Gini}(D^v)</script><p>其中，</p>
