@@ -747,7 +747,7 @@ y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
 <p>算法描述：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210231203416.png" alt=""></p>
 <p>（关于情形3，直接返回了的话，后面的属性值怎么办？）</p>
-<h2 id="信息增益划分"><a href="#信息增益划分" class="headerlink" title="信息增益划分"></a>信息增益划分</h2><p>许多机器学习算法都受到了信息论的启发，决策树也不例外。</p>
+<h2 id="信息增益属性划分准则"><a href="#信息增益属性划分准则" class="headerlink" title="信息增益属性划分准则"></a>信息增益属性划分准则</h2><p>许多机器学习算法都受到了信息论的启发，决策树也不例外。</p>
 <p>按上一节中的决策树学习策略，我们可以看出，随着划分过程的不断进行，算法希望分支结点所包含的样本尽可能属于同一类别，即结点的“纯度”（purity）越来越高。</p>
 <p>“纯度”越高，“不确定度”就越低，所以我们可以用描述不确定度的“信息熵”来作为纯度指标。</p>
 <p>信息熵（information entropy）：描述信息源$X$中各可能事件$x$发生的不确定性。是随机变量$X$的自信息$-\log\ p(⁡x)$（概率越大，信息量/不确定度越小）的数学期望。</p>
@@ -841,7 +841,41 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 \end{aligned}</script><p>按“根蒂”、“脐部”、“触感”划分$D^1$均得到了最大的信息增益，因此应根据归纳偏好（随机也属于一种归纳偏好）选择其中之一作为$D^1$的划分属性。</p>
 <p>继续递归，直到算法结束，得到训练好的决策树。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232121606.png" alt=""></p>
-<h2 id="其他属性划分准则"><a href="#其他属性划分准则" class="headerlink" title="其他属性划分准则"></a>其他属性划分准则</h2>
+<h2 id="其他属性划分准则"><a href="#其他属性划分准则" class="headerlink" title="其他属性划分准则"></a>其他属性划分准则</h2><p>事实上，信息增益$\operatorname{Gain}$划分准则有其归纳偏好：偏好按属性值多的属性划分。</p>
+<p>例如，按属性“编号”（“编号”是训练集中属性值最多的属性）划分$D$，所产生的分支结点们的“加权信息熵”为0，即$\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)=0$，纯度最大，所获得的信息增益最大。但按“编号”划分，所产生的这棵“纯度最高的”决策树不具有泛化能力。因为“编号”与“好瓜”没有相关性，不能说前8个采集的西瓜一定是好瓜，9~17个采集的西瓜一定不是好瓜，后面采集的西瓜不知道是不是好瓜，这是荒谬的。</p>
+<h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><p>Quinlan在他的决策树生成算法C4.5中使用了“增益率”（gain ratio）作为纯度指标，其定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain\_ratio}(D, a_i) = \frac{\operatorname{Gain}(D, a_i)}{\operatorname{IV}(a_i)}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\operatorname{IV}=-\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>称为属性$a_i$的“固有值”（intrinsic value）。</p>
+<p>Q：为什么定义固有值为这种形式呢？</p>
+<p>A（<strong>猜想</strong>）：首先，属性值越多，每个属性值的样本越少，其的权重$\frac{|D^v|}{|D|}$越小。令$\operatorname{IV}=\sum\limits<em>{v=1}^{V}\frac{|D^v|}{|D|} = 1$作为分母，作者希望属性值越少（权重越大），$\operatorname{IV}$越小，增益率越大，需要乘一个与权重成反比的函数。又因为权重$\frac{|D^v|}{|D|}\in[0, 1]$，所以引入负对数函数$-\log_2\frac{|D^v|}{|D|}$（如图），形成$\operatorname{IV}=\sum\limits</em>{v=1}^{V}\frac{|D^v|}{|D|}\cdot -\log_2\frac{|D^v|}{|D|}$。</p>
+<p>但事实上，$-x\log_2x$不是单调递减的，而是先增后减。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210241929626.png" alt=""></p>
+<p>那么现在我们知道，$\operatorname{Gain_ratio}$划分准则的归纳偏好：偏好按属性值少的属性划分。</p>
+<p>所以C4.5生成算法加入了启发式：先用$\operatorname{Gain}$划分准则找出$\operatorname{Gain}$高于平均水平的属性，接着再用$\operatorname{Gain_ratio}$划分准则选择$\operatorname{Gain_ratio}$最高的。即希望从更纯净的划分属性中找属性值少的划分属性。</p>
+<h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>Quinlan在他的决策树生成算法CART（Classification and Regression Tree）中使用了“基尼指数”（Gini index）作为纯度指标，其定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gini\_index}(D, a_i) = \sum_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Gini}(D^v)</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gini}(D) &= \sum_{i=1}^{|\mathcal{Y}|}\sum_{j\neq i}p_ip_j \\
+&= 1-\sum_{i=1}^{|\mathcal{Y}|}p_i^2
+\end{aligned}</script><p>$\operatorname{Gini}(D)$的意义为：可理解为“非同类率”。从D中无放回地、选取所有<strong>两类</strong>样本的组合，如果这些组合乘积的和越小，那么越纯净。或者说从$D$中无放回地（超几何分布，抽出后概率不变）选取到两个同类样本的概率（“同类率”）越大，那么越纯净。</p>
+<p>那么，$\operatorname{Gini_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。</p>
+<p>以基尼指数为属性划分准则，所选取的最优属性$a_*$为</p>
+<script type="math/tex; mode=display">
+a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)</script><p>事实上，研究表明：各种属性划分准则，虽然对决策树的尺寸有较大影响，但<strong>对泛化性能的影响很有限</strong>。</p>
+<h2 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h2><p>更影响决策树泛化性能的手段，是剪枝（pruning）。</p>
+<p>事实上，剪枝是缓解决策树过拟合现象的主要手段。因为当决策树过深时，较深结点的样本集合很小，即决策树学习到了这些少数样本独有的分布，将其剪掉虽然减小了训练性能，但防止了过拟合现象（故意不学习这些特性，不使用这些属性进行划分）。</p>
+<p>决策树剪枝的基本策略有两种：</p>
+<ul>
+<li>“预剪枝”（prepruning）：提前终止某些分支的生长，将其标记为叶节点。</li>
+<li>“后剪枝”（postpruning）：先生成一棵完整的决策树，再自底向上地将内部结点及其子树替换为叶节点。</li>
+</ul>
+<p>只有当能带来泛化性能提升时，剪枝策略才将分支处理为叶节点，那么如何判断新树的泛化性能相对于原来的树有所提升呢？</p>
+<p>（明天再写）</p>
+
         </div>
 
         
