@@ -873,9 +873,56 @@ a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)</script><p
 <li>“预剪枝”（prepruning）：提前终止某些分支的生长，将其标记为叶节点。</li>
 <li>“后剪枝”（postpruning）：先生成一棵完整的决策树，再自底向上地将内部结点及其子树替换为叶节点。</li>
 </ul>
-<p>只有能带来泛化性能提升时，剪枝策略才将分支处理为叶节点，那么如何判断新树的泛化性能相对于原来的树有所提升呢？</p>
-<p>（明天再写）</p>
-
+<p>只有在能带来泛化性能提升时，剪枝策略才将分支处理为叶节点。那么如何判断新树的泛化性能相对于原来的树有所提升呢？</p>
+<p>这时就需要使用“模型评估与选择”中提到的评估方法去量化泛化性能。</p>
+<h2 id="缺失值的处理"><a href="#缺失值的处理" class="headerlink" title="缺失值的处理"></a>缺失值的处理</h2><p>现实任务中，样本通常是不完整的，即样本的某些属性值“缺失”（misssing）。</p>
+<p>如果仅使用无缺失值（null）的样例，会造成极大的数据损失。</p>
+<p>如果使用带缺失值的样例，需要解决两个问题：</p>
+<ul>
+<li>Q1：如何确定划分属性？</li>
+<li>Q2：确定划分属性后，若样本在该属性上为缺失值，如何划分该样本？</li>
+</ul>
+<p>首先，<strong>每个样本$x$都需要有权重$w_x$</strong>，在学习算法开始时所有样本赋权为1。样本“摆烂”（被划分时属性值缺失）次数越多，其“后代”权重越小。</p>
+<p>A1：使用属性$a_i$中无缺失值的样例计算<strong>按$a_i$划分$\tilde{D}$</strong>（$D$的无缺失子集）<strong>所获得的信息增益$\operatorname{Gain}(\tilde{D}, a_i)$</strong>，再通过其去估算<strong>按$a_i$划分$D$所获得的信息增益$\operatorname{Gain}(D, a_i)$</strong>。即</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}(\tilde{D}) &= -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log _2 \tilde{p}_k \\
+\operatorname{Gain}(\tilde{D}, a) &= \operatorname{Ent}(\tilde{D})-\sum_{v=1}^V \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \\
+\operatorname{Gain}(D, a) &=  \rho \times \operatorname{Gain}(\tilde{D}, a)
+\end{aligned}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\rho &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in D} w_{\boldsymbol{x}}} \\
+\tilde{p}_k &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}_k} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant k \leqslant|\mathcal{Y}|), \\
+\tilde{r}_v &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}^v} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant v \leqslant V) .
+\end{aligned}</script><p>A2：将 划分所得的决策树 对 带缺失值样例 的后验概率当做先验概率。即“摆烂划分”：这个属性划分不出来就不在这划分了，按“样本权重”（预测结果的可能性）分配给下一层划分。</p>
+<p><strong>下面以西瓜数据集2.0$\alpha$为例进行带缺失值数据集的划分。</strong></p>
+<script type="math/tex; mode=display">
+西瓜数据集2.0\alpha \\
+\begin{array}{cccccccc}
+\hline
+编号 & 色泽 & 根蒂 & 敲声 & 纹理 & 脐部 & 触感 & 好瓜 \\
+\hline
+1 & - & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+2 & 乌黑 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & - & 是 \\
+3 & 乌黑 & 蜷缩 & - & 清晰 & 凹陷 & 硬滑 & 是 \\
+4 & 青绿 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & 硬滑 & 是 \\
+5 & - & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+6 & 青绿 & 稍蜷 & 浊响 & 清晰 & - & 软粘 & 是 \\
+7 & 乌黑 & 稍蜷 & 浊响 & 稍糊 & 稍凹 & 软粘 & 是 \\
+8 & 乌黑 & 稍蜷 & 浊响 & - & 稍凹 & 硬滑 & 是 \\
+\hline
+9 & 乌黑 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+10 & 青绿 & 硬挺 & 清脆 & - & 平坦 & 软粘 & 否 \\
+11 & 浅白 & 硬挺 & 清脆 & 模糊 & 平坦 & - & 否 \\
+12 & 浅白 & 蜷缩 & - & 模糊 & 平坦 & 软粘 & 否 \\
+13 & - & 稍蜷 & 浊响 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+14 & 浅白 & 稍蜷 & 沉闷 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+15 & 乌黑 & 稍蜷 & 浊响 & 清晰 & - & 软粘 & 否 \\
+16 & 浅白 & 蜷缩 & 浊响 & 模糊 & 平坦 & 硬滑 & 否 \\
+17 & 青绿 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+\hline
+\end{array}</script>
         </div>
 
         
