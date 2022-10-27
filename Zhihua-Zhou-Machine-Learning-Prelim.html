@@ -922,7 +922,38 @@ a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)</script><p
 16 & 浅白 & 蜷缩 & 浊响 & 模糊 & 平坦 & 硬滑 & 否 \\
 17 & 青绿 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
 \hline
-\end{array}</script>
+\end{array}</script><p>根节点无缺失子集$\tilde{D}$的信息熵</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}(\tilde{D}) &=-\sum_{k=1}^2 \tilde{p}_k \log _2 \tilde{p}_k \\
+&=-\left(\frac{6}{14} \log _2 \frac{6}{14}+\frac{8}{14} \log _2 \frac{8}{14}\right)=0.985
+\end{aligned}</script><p>按属性“色泽”对无缺失子集$\tilde{D}$进行划分</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\tilde{D}^1(色泽=青绿) &= \{4, 6,|  10, 17\} &p_1=\frac{2}{4},\quad p_2=\frac{2}{4}\\
+\tilde{D}^2(色泽=乌黑) &= \{2, 3, 7, 8,| 9, 15\} &p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\\
+\tilde{D}^3(色泽=浅白) &= \{| 11, 12, 14, 16\} &p_1=\frac{0}{4},\quad p_2=\frac{4}{4}\\
+\end{aligned}</script><p>划分后，在无缺失子集$\tilde{D}$上，3个分支节点的信息熵分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}\left(\tilde{D}^1\right)&=\log_2|\mathcal{2}|=1.000 \\
+\operatorname{Ent}\left(\tilde{D}^2\right)&=-\left(\frac{4}{6} \log _2 \frac{4}{6}+\frac{2}{6} \log _2 \frac{2}{6}\right)=0.918 \\
+\operatorname{Ent}\left(\tilde{D}^3\right)&=0.000
+\end{aligned}</script><p>在无缺失子集$\tilde{D}$上，属性“色泽”的信息增益为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gain}(\tilde{D}, \text { 色泽 }) &=\operatorname{Ent}(\tilde{D})-\sum_{v=1}^3 \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \\
+&=0.985-\left(\frac{4}{14} \times 1.000+\frac{6}{14} \times 0.918+\frac{4}{14} \times 0.000\right) \\
+&=0.306
+\end{aligned}</script><p>在带缺失训练集$D$上，属性“色泽”的信息增益为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain}(D \text {, 色泽 })=\rho \times \operatorname{Gain}(\tilde{D} \text {, 色泽 })=\frac{14}{17} \times 0.306=0.252</script><p>同理，计算按其他属性划分带缺失训练集$D$所获得的信息增益</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain}(D, 色泽 )=0.252 \qquad \operatorname{Gain}(D, 根蒂 )=0.171 \\
+\operatorname{Gain}(D, 敲声 )=0.145 \qquad \operatorname{Gain}(D, 纹理 )=0.424 \\
+\operatorname{Gain}(D, 脐部 )=0.289 \qquad \operatorname{Gain}(D, 触感 )=0.006</script><p>因此，最优划分属性为“纹理”，按其划分带缺失训练集$D$所形成的一层决策树为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210272307219.png" alt=""></p>
+<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="支持向量机基本型"><a href="#支持向量机基本型" class="headerlink" title="支持向量机基本型"></a>支持向量机基本型</h2>
         </div>
 
         
