@@ -863,90 +863,122 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 &= \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\
 &= 1-\sum_{i=1}^{|\mathcal{Y}|}p_i^2
 \end{aligned}</script><p>$\operatorname{Gini}(D)$的意义为：可理解为“非同类率”。从D中无放回地、选取所有<strong>两类</strong>样本的组合，如果这些组合乘积的和越小，那么越纯净。或者说从$D$中无放回地（超几何分布，抽出后概率不变）选取到两个同类样本的概率（“同类率”）越大，那么越纯净。</p>
-<script type="math/tex; mode=display">\operatorname{Gini}(D) = \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\$$这种形式，源于以$e$为底的信息熵$\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \ln p_i$，对其中的$-\ln p_i$在$p_i = 1$处进行泰勒展开、取高阶项，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。
-
-使用带Peano余项的泰勒公式</script><p>f(x) = f(x_0) + f(x_0)^{\prime}(x-x_0) + R_1(x)</p>
+<p>基尼系数的第二种形式，源于以$e$为底的信息熵<script type="math/tex">\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \ln p_i</script>，对其中的$-\ln p_i$在$p_i = 1$处进行泰勒展开、取高阶项s，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。</p>
+<p>使用带Peano余项的泰勒公式</p>
 <script type="math/tex; mode=display">
-得</script><p>\begin{aligned}<br>-\ln x &amp;= 0 + \left(-1\right)\times\left(x-1\right)+R_1\left(x\right) \<br>&amp;\approx 1-x<br>\end{aligned}</p>
+f(x) = f(x_0) + f(x_0)^{\prime}(x-x_0) + R_1(x)</script><p>得</p>
 <script type="math/tex; mode=display">
-$\operatorname{Gini\_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。
-
-以基尼指数为属性划分准则，所选取的最优属性$a_*$为
-
-
-$$
-a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)
-$$
-
-
-事实上，研究表明：各种属性划分准则，虽然对决策树的尺寸有较大影响，但**对泛化性能的影响很有限**。
-
-## 决策树的剪枝
-
-更影响决策树泛化性能的手段，是剪枝（pruning）。
-
-事实上，剪枝是缓解决策树过拟合现象的主要手段。因为当决策树过深时，较深结点的样本集合很小，即决策树学习到了这些少数样本独有的分布，将其剪掉虽然减小了训练性能，但防止了过拟合现象（故意不学习这些特性，不使用这些属性进行划分）。
-
-决策树剪枝的基本策略有两种：
-
-- “预剪枝”（prepruning）：提前终止某些分支的生长，将其标记为叶节点。
-- “后剪枝”（postpruning）：先生成一棵完整的决策树，再自底向上地将内部结点及其子树替换为叶节点。
-
-只有在能带来泛化性能提升时，剪枝策略才将分支处理为叶节点。那么如何判断新树的泛化性能相对于原来的树有所提升呢？
-
-这时就需要使用“模型评估与选择”中提到的评估方法去量化泛化性能。
-
-## 缺失值的处理
-
-现实任务中，样本通常是不完整的，即样本的某些属性值“缺失”（misssing）。
-
-如果仅使用无缺失值（null）的样例，会造成极大的数据损失。
-
-如果使用带缺失值的样例，需要解决两个问题：
-
-- Q1：如何确定划分属性？
-- Q2：确定划分属性后，若样本在该属性上为缺失值，如何划分该样本？
-
-首先，**每个样本$x$都需要有权重$w_x$**，在学习算法开始时所有样本赋权为1。样本“摆烂”（被划分时属性值缺失）次数越多，其“后代”权重越小。
-
-A1：使用属性$a_i$中无缺失值的样例计算**按$a_i$划分$\tilde{D}$**（$D$的无缺失子集）**所获得的信息增益$\operatorname{Gain}(\tilde{D}, a_i)$**，再通过其去估算**按$a_i$划分$D$所获得的信息增益$\operatorname{Gain}(D, a_i)$**。即</script><p>\begin{aligned}<br>\operatorname{Ent}(\tilde{D}) &amp;= -\sum<em>{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log _2 \tilde{p}_k \<br>\operatorname{Gain}(\tilde{D}, a) &amp;= \operatorname{Ent}(\tilde{D})-\sum</em>{v=1}^V \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \<br>\operatorname{Gain}(D, a) &amp;=  \rho \times \operatorname{Gain}(\tilde{D}, a)<br>\end{aligned}</p>
+\begin{aligned}
+-\ln x &= 0 + \left(-1\right)\times\left(x-1\right)+R_1\left(x\right) \\
+&\approx 1-x
+\end{aligned}</script><p>$\operatorname{Gini_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。</p>
+<p>以基尼指数为属性划分准则，所选取的最优属性$a_*$为</p>
 <script type="math/tex; mode=display">
-其中，</script><p>\begin{aligned}<br>\rho &amp;=\frac{\sum<em>{\boldsymbol{x} \in \tilde{D}} w</em>{\boldsymbol{x}}}{\sum<em>{\boldsymbol{x} \in D} w</em>{\boldsymbol{x}}} \<br>\tilde{p}<em>k &amp;=\frac{\sum</em>{\boldsymbol{x} \in \tilde{D}<em>k} w</em>{\boldsymbol{x}}}{\sum<em>{\boldsymbol{x} \in \tilde{D}} w</em>{\boldsymbol{x}}} \quad(1 \leqslant k \leqslant|\mathcal{Y}|), \<br>\tilde{r}<em>v &amp;=\frac{\sum</em>{\boldsymbol{x} \in \tilde{D}^v} w<em>{\boldsymbol{x}}}{\sum</em>{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant v \leqslant V) .<br>\end{aligned}</p>
+a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)</script><p>事实上，研究表明：各种属性划分准则，虽然对决策树的尺寸有较大影响，但<strong>对泛化性能的影响很有限</strong>。</p>
+<h2 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h2><p>更影响决策树泛化性能的手段，是剪枝（pruning）。</p>
+<p>事实上，剪枝是缓解决策树过拟合现象的主要手段。因为当决策树过深时，较深结点的样本集合很小，即决策树学习到了这些少数样本独有的分布，将其剪掉虽然减小了训练性能，但防止了过拟合现象（故意不学习这些特性，不使用这些属性进行划分）。</p>
+<p>决策树剪枝的基本策略有两种：</p>
+<ul>
+<li>“预剪枝”（prepruning）：提前终止某些分支的生长，将其标记为叶节点。</li>
+<li>“后剪枝”（postpruning）：先生成一棵完整的决策树，再自底向上地将内部结点及其子树替换为叶节点。</li>
+</ul>
+<p>只有在能带来泛化性能提升时，剪枝策略才将分支处理为叶节点。那么如何判断新树的泛化性能相对于原来的树有所提升呢？</p>
+<p>这时就需要使用“模型评估与选择”中提到的评估方法去量化泛化性能。</p>
+<h2 id="缺失值的处理"><a href="#缺失值的处理" class="headerlink" title="缺失值的处理"></a>缺失值的处理</h2><p>现实任务中，样本通常是不完整的，即样本的某些属性值“缺失”（misssing）。</p>
+<p>如果仅使用无缺失值（null）的样例，会造成极大的数据损失。</p>
+<p>如果使用带缺失值的样例，需要解决两个问题：</p>
+<ul>
+<li>Q1：如何确定划分属性？</li>
+<li>Q2：确定划分属性后，若样本在该属性上为缺失值，如何划分该样本？</li>
+</ul>
+<p>首先，<strong>每个样本$x$都需要有权重$w_x$</strong>，在学习算法开始时所有样本赋权为1。样本“摆烂”（被划分时属性值缺失）次数越多，其“后代”权重越小。</p>
+<p>A1：使用属性$a_i$中无缺失值的样例计算<strong>按$a_i$划分$\tilde{D}$</strong>（$D$的无缺失子集）<strong>所获得的信息增益$\operatorname{Gain}(\tilde{D}, a_i)$</strong>，再通过其去估算<strong>按$a_i$划分$D$所获得的信息增益$\operatorname{Gain}(D, a_i)$</strong>。即</p>
 <script type="math/tex; mode=display">
-
-
-A2：将 划分所得的决策树 对 带缺失值样例 的后验概率当做先验概率。即“摆烂划分”：这个属性划分不出来就不在这划分了，按“样本权重”（预测结果的可能性）分配给下一层划分。
-
-**下面以西瓜数据集2.0$\alpha$为例进行带缺失值数据集的划分。**</script><p>西瓜数据集2.0\alpha \<br>\begin{array}{cccccccc}<br>\hline<br>编号 &amp; 色泽 &amp; 根蒂 &amp; 敲声 &amp; 纹理 &amp; 脐部 &amp; 触感 &amp; 好瓜 \<br>\hline<br>1 &amp; - &amp; 蜷缩 &amp; 浊响 &amp; 清晰 &amp; 凹陷 &amp; 硬滑 &amp; 是 \<br>2 &amp; 乌黑 &amp; 蜷缩 &amp; 沉闷 &amp; 清晰 &amp; 凹陷 &amp; - &amp; 是 \<br>3 &amp; 乌黑 &amp; 蜷缩 &amp; - &amp; 清晰 &amp; 凹陷 &amp; 硬滑 &amp; 是 \<br>4 &amp; 青绿 &amp; 蜷缩 &amp; 沉闷 &amp; 清晰 &amp; 凹陷 &amp; 硬滑 &amp; 是 \<br>5 &amp; - &amp; 蜷缩 &amp; 浊响 &amp; 清晰 &amp; 凹陷 &amp; 硬滑 &amp; 是 \<br>6 &amp; 青绿 &amp; 稍蜷 &amp; 浊响 &amp; 清晰 &amp; - &amp; 软粘 &amp; 是 \<br>7 &amp; 乌黑 &amp; 稍蜷 &amp; 浊响 &amp; 稍糊 &amp; 稍凹 &amp; 软粘 &amp; 是 \<br>8 &amp; 乌黑 &amp; 稍蜷 &amp; 浊响 &amp; - &amp; 稍凹 &amp; 硬滑 &amp; 是 \<br>\hline<br>9 &amp; 乌黑 &amp; - &amp; 沉闷 &amp; 稍糊 &amp; 稍凹 &amp; 硬滑 &amp; 否 \<br>10 &amp; 青绿 &amp; 硬挺 &amp; 清脆 &amp; - &amp; 平坦 &amp; 软粘 &amp; 否 \<br>11 &amp; 浅白 &amp; 硬挺 &amp; 清脆 &amp; 模糊 &amp; 平坦 &amp; - &amp; 否 \<br>12 &amp; 浅白 &amp; 蜷缩 &amp; - &amp; 模糊 &amp; 平坦 &amp; 软粘 &amp; 否 \<br>13 &amp; - &amp; 稍蜷 &amp; 浊响 &amp; 稍糊 &amp; 凹陷 &amp; 硬滑 &amp; 否 \<br>14 &amp; 浅白 &amp; 稍蜷 &amp; 沉闷 &amp; 稍糊 &amp; 凹陷 &amp; 硬滑 &amp; 否 \<br>15 &amp; 乌黑 &amp; 稍蜷 &amp; 浊响 &amp; 清晰 &amp; - &amp; 软粘 &amp; 否 \<br>16 &amp; 浅白 &amp; 蜷缩 &amp; 浊响 &amp; 模糊 &amp; 平坦 &amp; 硬滑 &amp; 否 \<br>17 &amp; 青绿 &amp; - &amp; 沉闷 &amp; 稍糊 &amp; 稍凹 &amp; 硬滑 &amp; 否 \<br>\hline<br>\end{array}</p>
+\begin{aligned}
+\operatorname{Ent}(\tilde{D}) &= -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log _2 \tilde{p}_k \\
+\operatorname{Gain}(\tilde{D}, a) &= \operatorname{Ent}(\tilde{D})-\sum_{v=1}^V \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \\
+\operatorname{Gain}(D, a) &=  \rho \times \operatorname{Gain}(\tilde{D}, a)
+\end{aligned}</script><p>其中，</p>
 <script type="math/tex; mode=display">
-
-根节点无缺失子集$\tilde{D}$的信息熵</script><p>\begin{aligned}<br>\operatorname{Ent}(\tilde{D}) &amp;=-\sum_{k=1}^2 \tilde{p}_k \log _2 \tilde{p}_k \<br>&amp;=-\left(\frac{6}{14} \log _2 \frac{6}{14}+\frac{8}{14} \log _2 \frac{8}{14}\right)=0.985<br>\end{aligned}</p>
+\begin{aligned}
+\rho &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in D} w_{\boldsymbol{x}}} \\
+\tilde{p}_k &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}_k} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant k \leqslant|\mathcal{Y}|), \\
+\tilde{r}_v &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}^v} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant v \leqslant V) .
+\end{aligned}</script><p>A2：将 划分所得的决策树 对 带缺失值样例 的后验概率当做先验概率。即“摆烂划分”：这个属性划分不出来就不在这划分了，按“样本权重”（预测结果的可能性）分配给下一层划分。</p>
+<p><strong>下面以西瓜数据集2.0$\alpha$为例进行带缺失值数据集的划分。</strong></p>
 <script type="math/tex; mode=display">
-按属性“色泽”对无缺失子集$\tilde{D}$进行划分</script><p>\begin{aligned}<br>\tilde{D}^1(色泽=青绿) &amp;= {4, 6,|  10, 17} &amp;p_1=\frac{2}{4},\quad p_2=\frac{2}{4}\<br>\tilde{D}^2(色泽=乌黑) &amp;= {2, 3, 7, 8,| 9, 15} &amp;p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\<br>\tilde{D}^3(色泽=浅白) &amp;= {| 11, 12, 14, 16} &amp;p_1=\frac{0}{4},\quad p_2=\frac{4}{4}\<br>\end{aligned}</p>
+西瓜数据集2.0\alpha \\
+\begin{array}{cccccccc}
+\hline
+编号 & 色泽 & 根蒂 & 敲声 & 纹理 & 脐部 & 触感 & 好瓜 \\
+\hline
+1 & - & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+2 & 乌黑 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & - & 是 \\
+3 & 乌黑 & 蜷缩 & - & 清晰 & 凹陷 & 硬滑 & 是 \\
+4 & 青绿 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & 硬滑 & 是 \\
+5 & - & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+6 & 青绿 & 稍蜷 & 浊响 & 清晰 & - & 软粘 & 是 \\
+7 & 乌黑 & 稍蜷 & 浊响 & 稍糊 & 稍凹 & 软粘 & 是 \\
+8 & 乌黑 & 稍蜷 & 浊响 & - & 稍凹 & 硬滑 & 是 \\
+\hline
+9 & 乌黑 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+10 & 青绿 & 硬挺 & 清脆 & - & 平坦 & 软粘 & 否 \\
+11 & 浅白 & 硬挺 & 清脆 & 模糊 & 平坦 & - & 否 \\
+12 & 浅白 & 蜷缩 & - & 模糊 & 平坦 & 软粘 & 否 \\
+13 & - & 稍蜷 & 浊响 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+14 & 浅白 & 稍蜷 & 沉闷 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+15 & 乌黑 & 稍蜷 & 浊响 & 清晰 & - & 软粘 & 否 \\
+16 & 浅白 & 蜷缩 & 浊响 & 模糊 & 平坦 & 硬滑 & 否 \\
+17 & 青绿 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+\hline
+\end{array}</script><p>根节点无缺失子集$\tilde{D}$的信息熵</p>
 <script type="math/tex; mode=display">
-划分后，在无缺失子集$\tilde{D}$上，3个分支节点的信息熵分别为</script><p>\begin{aligned}<br>\operatorname{Ent}\left(\tilde{D}^1\right)&amp;=\log_2|\mathcal{2}|=1.000 \<br>\operatorname{Ent}\left(\tilde{D}^2\right)&amp;=-\left(\frac{4}{6} \log _2 \frac{4}{6}+\frac{2}{6} \log _2 \frac{2}{6}\right)=0.918 \<br>\operatorname{Ent}\left(\tilde{D}^3\right)&amp;=0.000<br>\end{aligned}</p>
+\begin{aligned}
+\operatorname{Ent}(\tilde{D}) &=-\sum_{k=1}^2 \tilde{p}_k \log _2 \tilde{p}_k \\
+&=-\left(\frac{6}{14} \log _2 \frac{6}{14}+\frac{8}{14} \log _2 \frac{8}{14}\right)=0.985
+\end{aligned}</script><p>按属性“色泽”对无缺失子集$\tilde{D}$进行划分</p>
 <script type="math/tex; mode=display">
-在无缺失子集$\tilde{D}$上，属性“色泽”的信息增益为</script><p>\begin{aligned}<br>\operatorname{Gain}(\tilde{D}, \text { 色泽 }) &amp;=\operatorname{Ent}(\tilde{D})-\sum_{v=1}^3 \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \<br>&amp;=0.985-\left(\frac{4}{14} \times 1.000+\frac{6}{14} \times 0.918+\frac{4}{14} \times 0.000\right) \<br>&amp;=0.306<br>\end{aligned}</p>
+\begin{aligned}
+\tilde{D}^1(色泽=青绿) &= \{4, 6,|  10, 17\} &p_1=\frac{2}{4},\quad p_2=\frac{2}{4}\\
+\tilde{D}^2(色泽=乌黑) &= \{2, 3, 7, 8,| 9, 15\} &p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\\
+\tilde{D}^3(色泽=浅白) &= \{| 11, 12, 14, 16\} &p_1=\frac{0}{4},\quad p_2=\frac{4}{4}\\
+\end{aligned}</script><p>划分后，在无缺失子集$\tilde{D}$上，3个分支节点的信息熵分别为</p>
 <script type="math/tex; mode=display">
-在带缺失训练集$D$上，属性“色泽”的信息增益为</script><p>\operatorname{Gain}(D \text {, 色泽 })=\rho \times \operatorname{Gain}(\tilde{D} \text {, 色泽 })=\frac{14}{17} \times 0.306=0.252</p>
+\begin{aligned}
+\operatorname{Ent}\left(\tilde{D}^1\right)&=\log_2|\mathcal{2}|=1.000 \\
+\operatorname{Ent}\left(\tilde{D}^2\right)&=-\left(\frac{4}{6} \log _2 \frac{4}{6}+\frac{2}{6} \log _2 \frac{2}{6}\right)=0.918 \\
+\operatorname{Ent}\left(\tilde{D}^3\right)&=0.000
+\end{aligned}</script><p>在无缺失子集$\tilde{D}$上，属性“色泽”的信息增益为</p>
 <script type="math/tex; mode=display">
-同理，计算按其他属性划分带缺失训练集$D$所获得的信息增益</script><p>\operatorname{Gain}(D, 色泽 )=0.252 \qquad \operatorname{Gain}(D, 根蒂 )=0.171 \<br>\operatorname{Gain}(D, 敲声 )=0.145 \qquad \operatorname{Gain}(D, 纹理 )=0.424 \<br>\operatorname{Gain}(D, 脐部 )=0.289 \qquad \operatorname{Gain}(D, 触感 )=0.006</p>
+\begin{aligned}
+\operatorname{Gain}(\tilde{D}, \text { 色泽 }) &=\operatorname{Ent}(\tilde{D})-\sum_{v=1}^3 \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \\
+&=0.985-\left(\frac{4}{14} \times 1.000+\frac{6}{14} \times 0.918+\frac{4}{14} \times 0.000\right) \\
+&=0.306
+\end{aligned}</script><p>在带缺失训练集$D$上，属性“色泽”的信息增益为</p>
 <script type="math/tex; mode=display">
-因此，最优划分属性为“纹理”，按其划分带缺失训练集$D$所形成的一层决策树为
-
-![](https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210272307219.png)
-
-## 测试
-
-题7
-
-> 对西瓜数据集2.0，属性“色泽”的基尼指数为____（保留2位有效数字）
->
-> 正确答案:[ "0.43" ]</script><p>\begin{aligned}<br>D^1(色泽=青绿) &amp;= {1, 4, 6,|  10, 13, 17} &amp;p_1=\frac{3}{6},\quad p_2=\frac{3}{6}\<br>D^2(色泽=乌黑) &amp;= {2, 3, 7, 8,| 9, 15} &amp;p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\<br>D^3(色泽=浅白) &amp;= {5,| 11, 12, 14, 16} &amp;p_1=\frac{1}{5},\quad p_2=\frac{4}{5}\<br>\end{aligned}</p>
+\operatorname{Gain}(D \text {, 色泽 })=\rho \times \operatorname{Gain}(\tilde{D} \text {, 色泽 })=\frac{14}{17} \times 0.306=0.252</script><p>同理，计算按其他属性划分带缺失训练集$D$所获得的信息增益</p>
 <script type="math/tex; mode=display">
-</script><p>\begin{aligned}<br>\operatorname{Gini}(D^1) &amp;= 1 - \left(\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2\right) = \frac{1}{2} \<br>\operatorname{Gini}(D^2) &amp;= 1 - \left(\left(\frac{2}{3}\right)^2 + \left(\frac{1}{3}\right)^2\right) = \frac{4}{9} \<br>\operatorname{Gini}(D^3) &amp;= 1 - \left(\left(\frac{1}{5}\right)^2 + \left(\frac{4}{5}\right)^2\right) = \frac{8}{25} \<br>\operatorname{Gini_index}(D^3) &amp;= \frac{6}{17} \times \frac{1}{2} + \frac{6}{17} \times \frac{4}{9} + \frac{5}{17} \times \frac{8}{25} \approx 0.43<br>\end{aligned}</p>
-<p>$$</p>
-<p>题10</p>
+\operatorname{Gain}(D, 色泽 )=0.252 \qquad \operatorname{Gain}(D, 根蒂 )=0.171 \\
+\operatorname{Gain}(D, 敲声 )=0.145 \qquad \operatorname{Gain}(D, 纹理 )=0.424 \\
+\operatorname{Gain}(D, 脐部 )=0.289 \qquad \operatorname{Gain}(D, 触感 )=0.006</script><p>因此，最优划分属性为“纹理”，按其划分带缺失训练集$D$所形成的一层决策树为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210272307219.png" alt=""></p>
+<h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><p>题7</p>
+<blockquote>
+<p>对西瓜数据集2.0，属性“色泽”的基尼指数为<em>__</em>（保留2位有效数字）</p>
+<p>正确答案:[ “0.43” ]</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{aligned}
+D^1(色泽=青绿) &= \{1, 4, 6,|  10, 13, 17\} &p_1=\frac{3}{6},\quad p_2=\frac{3}{6}\\
+D^2(色泽=乌黑) &= \{2, 3, 7, 8,| 9, 15\} &p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\\
+D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}{5}\\
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gini}(D^1) &= 1 - \left(\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2\right) = \frac{1}{2} \\
+\operatorname{Gini}(D^2) &= 1 - \left(\left(\frac{2}{3}\right)^2 + \left(\frac{1}{3}\right)^2\right) = \frac{4}{9} \\
+\operatorname{Gini}(D^3) &= 1 - \left(\left(\frac{1}{5}\right)^2 + \left(\frac{4}{5}\right)^2\right) = \frac{8}{25} \\
+\operatorname{Gini\_index}(D^3) &= \frac{6}{17} \times \frac{1}{2} + \frac{6}{17} \times \frac{4}{9} + \frac{5}{17} \times \frac{8}{25} \approx 0.43
+\end{aligned}</script><p>题10</p>
 <blockquote>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280900186.png" alt=""></p>
 </blockquote>
