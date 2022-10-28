@@ -988,7 +988,38 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280900279.png" alt=""></p>
 </blockquote>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280912293.png" alt=""></p>
-<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="支持向量机基本型"><a href="#支持向量机基本型" class="headerlink" title="支持向量机基本型"></a>支持向量机基本型</h2>
+<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="支持向量机基本型"><a href="#支持向量机基本型" class="headerlink" title="支持向量机基本型"></a>支持向量机基本型</h2><p>在“线性模型”一章中，我们提到，对于“分类”问题，需要在样本空间确定一个超平面，用于将不同类别的样本“分开”。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282001404.png" alt=""></p>
+<p>但，确定的超平面可以有很多，哪一个最好呢？</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282002418.png" alt=""></p>
+<p>直觉上，正中间的超平面最好，因为它的鲁棒性最好，泛化能力最强。</p>
+<p>如何找到它呢？</p>
+<p>首先，超平面方程的向量形式为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = 0</script><p>假设划分超平面存在，找到正例距超平面最近的样本，负例中距超平面最近的样本（下图中圈起来的样本）。可以发现，它们直接确定了超平面，我们称这些样本为“支持向量”（support vector）。</p>
+<p>定义一个超平面，其经过正例支持向量，方程为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = 1</script><p>定义一个超平面，其经过负例支持向量，方程为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = -1</script><p>若同时缩放$\boldsymbol{w}\rightarrow k\boldsymbol{w}$和$b\rightarrow kb$，所有超平面的方程都会$*k$，但它们是等价的，所以可以定义经过支持向量的两类超平面距划分超平面的距离为$1$和$-1$。</p>
+<p>样本空间中任意点$\boldsymbol{x}_i$到超平面$\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b$的距离$r$为</p>
+<script type="math/tex; mode=display">
+r=\frac{\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right|}{\|\boldsymbol{w}\|}\\</script><p>由上述假设，可得两异类支持向量到划分超平面的距离之和，将其定义为间隔$\gamma$</p>
+<script type="math/tex; mode=display">
+\gamma = \frac{2}{\|\boldsymbol{w}\|}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282016358.png" alt=""></p>
+<p>所以，确定划分超平面，即确定最大的间隔$\gamma$，使超平面正确划分所有样本。</p>
+<p>使用最优化形式描述目标</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\arg \max } & \quad \frac{2}{\|\boldsymbol{w}\|} \\
+\text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
+\end{aligned}</script><p>其等价描述</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\arg \min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
+\text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
+\end{aligned}</script><p>这就是支持向量机的基本型，是一个凸二次规划问题，可以使用现有工具包求解。但在计算机领域，我们使用拉格朗日乘子法将基本型转换为它的对偶问题，因为它的对偶问题可以使用更高效的算法迭代求解，计算机可以并行处理。</p>
+<h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2>
         </div>
 
         
