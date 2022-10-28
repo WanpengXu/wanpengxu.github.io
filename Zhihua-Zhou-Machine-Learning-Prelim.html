@@ -871,8 +871,14 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 <script type="math/tex; mode=display">
 $\operatorname{Gini\_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。
 
-以基尼指数为属性划分准则，所选取的最优属性$a_*$为</script><p>a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini_index}(D, a_i)</p>
-<script type="math/tex; mode=display">
+以基尼指数为属性划分准则，所选取的最优属性$a_*$为
+
+
+$$
+a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)
+$$
+
+
 事实上，研究表明：各种属性划分准则，虽然对决策树的尺寸有较大影响，但**对泛化性能的影响很有限**。
 
 ## 决策树的剪枝
