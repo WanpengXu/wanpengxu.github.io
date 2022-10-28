@@ -863,7 +863,7 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 &= \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\
 &= 1-\sum_{i=1}^{|\mathcal{Y}|}p_i^2
 \end{aligned}</script><p>$\operatorname{Gini}(D)$的意义为：可理解为“非同类率”。从D中无放回地、选取所有<strong>两类</strong>样本的组合，如果这些组合乘积的和越小，那么越纯净。或者说从$D$中无放回地（超几何分布，抽出后概率不变）选取到两个同类样本的概率（“同类率”）越大，那么越纯净。</p>
-<p>基尼系数的第二种形式，源于以$e$为底的信息熵<script type="math/tex">\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \ln p_i</script>，对其中的$-\ln p_i$在$p_i = 1$处进行泰勒展开、取高阶项s，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。</p>
+<p>基尼系数的第二种形式，源于以$e$为底的信息熵<script type="math/tex">\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \ln p_i</script>，对其中的$-\ln p_i$在$p_i = 1$处进行泰勒展开、取高阶项，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。</p>
 <p>使用带Peano余项的泰勒公式</p>
 <script type="math/tex; mode=display">
 f(x) = f(x_0) + f(x_0)^{\prime}(x-x_0) + R_1(x)</script><p>得</p>
