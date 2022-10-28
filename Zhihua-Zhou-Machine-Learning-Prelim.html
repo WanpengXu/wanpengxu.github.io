@@ -863,9 +863,13 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 &= \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\
 &= 1-\sum_{i=1}^{|\mathcal{Y}|}p_i^2
 \end{aligned}</script><p>$\operatorname{Gini}(D)$的意义为：可理解为“非同类率”。从D中无放回地、选取所有<strong>两类</strong>样本的组合，如果这些组合乘积的和越小，那么越纯净。或者说从$D$中无放回地（超几何分布，抽出后概率不变）选取到两个同类样本的概率（“同类率”）越大，那么越纯净。</p>
-<script type="math/tex; mode=display">\operatorname{Gini}(D) = \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\$$这种形式，源于$\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \log _2 p_i$，对其中的$-\log_2 p_i$进行泰勒展开、取高阶项，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。
+<script type="math/tex; mode=display">\operatorname{Gini}(D) = \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\$$这种形式，源于以$e$为底的信息熵$\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \ln p_i$，对其中的$-\ln p_i$在$p_i = 1$处进行泰勒展开、取高阶项，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。
 
-那么，$\operatorname{Gini\_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。
+使用带Peano余项的泰勒公式</script><p>f(x) = f(x_0) + f(x_0)^{\prime}(x-x_0) + R_1(x)</p>
+<script type="math/tex; mode=display">
+得</script><p>\begin{aligned}<br>-\ln x &amp;= 0 + \left(-1\right)\times\left(x-1\right)+R_1\left(x\right) \<br>&amp;\approx 1-x<br>\end{aligned}</p>
+<script type="math/tex; mode=display">
+$\operatorname{Gini\_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。
 
 以基尼指数为属性划分准则，所选取的最优属性$a_*$为</script><p>a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini_index}(D, a_i)</p>
 <script type="math/tex; mode=display">
@@ -928,12 +932,24 @@ A2：将 划分所得的决策树 对 带缺失值样例 的后验概率当做�
 
 ## 测试
 
+题7
+
 > 对西瓜数据集2.0，属性“色泽”的基尼指数为____（保留2位有效数字）
 >
 > 正确答案:[ "0.43" ]</script><p>\begin{aligned}<br>D^1(色泽=青绿) &amp;= {1, 4, 6,|  10, 13, 17} &amp;p_1=\frac{3}{6},\quad p_2=\frac{3}{6}\<br>D^2(色泽=乌黑) &amp;= {2, 3, 7, 8,| 9, 15} &amp;p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\<br>D^3(色泽=浅白) &amp;= {5,| 11, 12, 14, 16} &amp;p_1=\frac{1}{5},\quad p_2=\frac{4}{5}\<br>\end{aligned}</p>
 <script type="math/tex; mode=display">
 </script><p>\begin{aligned}<br>\operatorname{Gini}(D^1) &amp;= 1 - \left(\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2\right) = \frac{1}{2} \<br>\operatorname{Gini}(D^2) &amp;= 1 - \left(\left(\frac{2}{3}\right)^2 + \left(\frac{1}{3}\right)^2\right) = \frac{4}{9} \<br>\operatorname{Gini}(D^3) &amp;= 1 - \left(\left(\frac{1}{5}\right)^2 + \left(\frac{4}{5}\right)^2\right) = \frac{8}{25} \<br>\operatorname{Gini_index}(D^3) &amp;= \frac{6}{17} \times \frac{1}{2} + \frac{6}{17} \times \frac{4}{9} + \frac{5}{17} \times \frac{8}{25} \approx 0.43<br>\end{aligned}</p>
 <p>$$</p>
+<p>题10</p>
+<blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280900186.png" alt=""></p>
+</blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280912941.png" alt=""></p>
+<p>题11</p>
+<blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280900279.png" alt=""></p>
+</blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280912293.png" alt=""></p>
 <h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="支持向量机基本型"><a href="#支持向量机基本型" class="headerlink" title="支持向量机基本型"></a>支持向量机基本型</h2>
         </div>
 
