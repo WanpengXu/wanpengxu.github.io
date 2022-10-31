@@ -1090,7 +1090,7 @@ y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1 & \geq 0, & \text{f
 \mu_i \left(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1\right) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
 \end{array}
 \right.</script><p>KKT条件包括平稳条件、原问题可行性条件、对偶可行性条件、<strong>互补松弛条件</strong>等</p>
-<p>支持向量机的原问题（基本型）是凸函数，所以KKT条件也是充分条件。</p>
+<p>支持向量机的原问题（基本型）是凸函数，所以KKT条件也是充分条件（强对偶性）。</p>
 <p>通过互补松弛条件知，对于任意训练样本$(\boldsymbol{x}_i, y_i)$，总有$\mu_i = 0$或$y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) = 1$，即如果样本不在约束边界上，那么$\mu_i = 0$，其约束失效，与$\boldsymbol{w}$无关；如果样本在约束边界上，那么$\mu_i \geq 0$，其约束生效，用于确定$\boldsymbol{w}$。</p>
 <p>对于后者这些在约束边界上的样本，被称作<strong>支持向量（support vector）</strong>。</p>
 <p>带着KKT条件解对偶问题（求解方法见下节），解得$\boldsymbol{\mu^*}$，其与原问题的解相对应，所以</p>
