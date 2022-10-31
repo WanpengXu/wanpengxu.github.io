@@ -1026,45 +1026,88 @@ r=\frac{\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right|}{\|\boldsymb
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
 \text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
 \end{aligned}</script><p>这就是支持向量机的基本型，是一个凸二次规划问题，可以使用现有工具包求解。但在计算机领域，我们使用拉格朗日乘子法将基本型转换为它的对偶问题，因为它的对偶问题可以使用更高效的算法迭代求解，计算机可以并行处理。</p>
-<h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2><p> 拉格朗日乘子法（Lagrange multipliers）是一种优化方法，用于寻找多元函数在一组约束下的极值。</p>
-<p>通过引入拉格朗日乘子，可将有$d$个变量与$k$个等式约束条件的最优化问题转化为具有$d+k$个变量的<strong>无约束优化问题</strong>求解。（？）</p>
-<p>支持向量机基本型</p>
+<h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2><p>拉格朗日乘子法（Lagrange multipliers）是一种优化方法，用于寻找多元函数在一组约束下的极值。</p>
+<p>通过引入拉格朗日乘子，可将有$d$个变量与$k$个等式约束条件的最优化问题转化为具有$d+k$个变量的优化问题求解。</p>
+<p>支持向量机<strong>基本型</strong></p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
 \text{s.t.} & \quad 1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \leq 0,\quad i=1,2, \ldots, m
-\end{aligned}</script><p>对每条约束添加拉格朗日乘子$\alpha_i \geq 0$，得到基本型的拉格朗日函数</p>
+\end{aligned}</script><p>对每条约束添加拉格朗日乘子$\mu_i \geq 0$，得到基本型的<strong>拉格朗日函数</strong></p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-L(\boldsymbol{w}, b, \boldsymbol{\alpha}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \sum_{i=1}^{m}\alpha_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right) \\
-&= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \alpha_i-\sum_{i=1}^m \alpha_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \alpha_i y_i b
+L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right) \\
+&= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\sum_{i=1}^m \mu_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \mu_i y_i b
 \end{aligned}</script><p>其中</p>
 <script type="math/tex; mode=display">
-\boldsymbol{\alpha} = (\alpha_1; \alpha_2; \ldots; \alpha_m)</script><p>令<script type="math/tex">L(\boldsymbol{w}, b, \boldsymbol{\alpha})</script>对$w$和$b$的偏导为0，可得</p>
+\boldsymbol{\mu} = (\mu_1; \mu_2; \ldots; \mu_m)</script><p>当约束条件满足时，$L(\boldsymbol{w}, b, \boldsymbol{\mu})  &lt;= f(\boldsymbol{w}, b) = \frac{1}{2}{|\boldsymbol{w}|}^2$，所以支持向量机的基本型等价于</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\frac{\partial L}{\partial \boldsymbol{w}} &= \boldsymbol{w}-\sum_{i=1}^m \alpha_i y_i \boldsymbol{x}_i=0 & & \Longrightarrow \boldsymbol{w}=\sum_{i=1}^m \alpha_i y_i \boldsymbol{x}_i\\
-\frac{\partial L}{\partial b} &= -\sum_{i=1}^m \alpha_i y_i=0 & &\Longrightarrow \sum_{i=1}^m \alpha_i y_i=0
-\end{aligned}</script><p>将其代回拉格朗日函数，有</p>
+\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max}  & \quad L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} & \quad \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>这个$\min\text{-}\max$优化问题称为<strong>主问题（primal problem）</strong>。</p>
+<p>Note. $\boldsymbol{\mu} \succeq  0$意为$\mu_i \geq 0, i = 1, 2, \ldots, m$。</p>
+<p>因主问题关于原变量的优化函数可能非凸，所以我们一般将其转化为关于拉格朗日乘子的凸函数。</p>
+<p>令<script type="math/tex">L(\boldsymbol{w}, b, \boldsymbol{\mu})</script>对$w$和$b$的偏导为0，可得</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-L(\boldsymbol{\alpha}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\alpha}) &= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \alpha_i-\sum_{i=1}^m \alpha_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \alpha_i y_i b \\
-&= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \alpha_i-\boldsymbol{w}^T\sum_{i=1}^m \alpha_i y_i  \boldsymbol{x}_i-b\sum_{i=1}^m \alpha_i y_i \\
-&= \frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \alpha_i y_i  \boldsymbol{x}_i - \boldsymbol{w}^T\sum_{i=1}^m \alpha_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \alpha_i - b\times 0 \\
-&= -\frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \alpha_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \alpha_i \\
-&= -\frac{1}{2} \left(\sum_{i=1}^m \alpha_i y_i \boldsymbol{x}_i\right)^T \left(\sum_{i=1}^m \alpha_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \alpha_i \\
-&= -\frac{1}{2} \left(\sum_{i=1}^m \alpha_i y_i \boldsymbol{x}_i^T\right) \left(\sum_{i=1}^m \alpha_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \alpha_i \\
-&= -\frac{1}{2} \sum_{i=1}^m \left(\alpha_i y_i \boldsymbol{x}_i^T\sum_{j=1}^m \alpha_j y_j \boldsymbol{x}_j\right) + \sum_{i=1}^m \alpha_i \\
-&= -\frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i y_i \boldsymbol{x}_i^T \alpha_j y_j \boldsymbol{x}_j + \sum_{i=1}^m \alpha_i \\
-&= \sum_{i=1}^m \alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{i=1}^m \alpha_i \alpha_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
+\frac{\partial L}{\partial \boldsymbol{w}} &= \boldsymbol{w}-\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i=0 & & \Longrightarrow \boldsymbol{w}=\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\\
+\frac{\partial L}{\partial b} &= -\sum_{i=1}^m \mu_i y_i=0 & &\Longrightarrow \sum_{i=1}^m \mu_i y_i=0
+\end{aligned}</script><p>将其代回拉格朗日函数，有<strong>拉格朗日对偶函数</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\sum_{i=1}^m \mu_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \mu_i y_i b \\
+&= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\boldsymbol{w}^T\sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i-b\sum_{i=1}^m \mu_i y_i \\
+&= \frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i - \boldsymbol{w}^T\sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \mu_i - b\times 0 \\
+&= -\frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right)^T \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i^T\right) \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \sum_{i=1}^m \left(\mu_i y_i \boldsymbol{x}_i^T\sum_{j=1}^m \mu_j y_j \boldsymbol{x}_j\right) + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i y_i \boldsymbol{x}_i^T \mu_j y_j \boldsymbol{x}_j + \sum_{i=1}^m \mu_i \\
+&= \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{i=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
 \end{aligned}</script><p>Note. 用到了很多次向量的乘法分配律。</p>
-<p>考虑$\alpha_i$的约束条件，得到支持向量机的对偶问题（max-min）</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\underset{\boldsymbol \alpha}{\max} \quad & \sum_{i=1}^m \alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{i=1}^m \alpha_i \alpha_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
-\text{s.t.} \quad & \sum_{i=1}^m \alpha_i y_i=0, \\
-\quad & \alpha_i \geq 0,\quad i=1,2, \ldots, m
-\end{aligned}</script>
+\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max} \ L(\boldsymbol{w}, b, \boldsymbol{\mu}) 
+&= \underset{\boldsymbol{w}, b}{\min}\left[\underset{\boldsymbol{\mu}}{\max}\frac{1}{2}{\|\boldsymbol{w}\|}^2 + \underset{\boldsymbol{\mu}}{\max}\sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right)\right] \\
+&令\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right)=0, 有 \\
+&= \underset{\boldsymbol{\mu}}{\max}\left[\underset{\boldsymbol{w}, b}{\min}\frac{1}{2}{\|\boldsymbol{w}\|}^2 + \underset{\boldsymbol{w}, b}{\min}\sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right)\right] & &= \underset{\boldsymbol{\mu}}{\max}\underset{\boldsymbol{w}, b}{\min} \ L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+&= \underset{\boldsymbol{\mu}}{\max}\underset{\boldsymbol{w}, b}{\min}\frac{1}{2}{\|\boldsymbol{w}\|}^2 & &= \underset{\boldsymbol{w}, b}{\min}\frac{1}{2}{\|\boldsymbol{w}\|}^2
+\end{aligned}</script><p>$\underset{\boldsymbol{\mu}}{\max}\underset{\boldsymbol{w}, b}{\min} \ L(\boldsymbol{w}, b, \boldsymbol{\mu})$这个$\max\text{-}\min$问题，即为主问题$\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max} \ L(\boldsymbol{w}, b, \boldsymbol{\mu})$的<strong>对偶问题（dual problem）</strong>，在约束条件下，其解与基本型（原问题）的解相同。</p>
+<p>使用$\inf$表示$\min$，可得到对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{i=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>对偶问题的优化函数是关于拉格朗日乘子的，所以一定是凸函数。</p>
+<p>由上述推导可知，若想要对偶问题的解与主问题甚至原问题的解相同，则需要满足以下必要条件，即KKT条件。</p>
+<script type="math/tex; mode=display">
+K.K.T\left\{
+\begin{array}{llll}
+\sum\limits_{i=1}^m \mu_i y_i & =0, & \text{for all } i  & \text{(Stationarity)} \\
+y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1 & \geq 0, & \text{for all } i &\text{(Primal Feasibility)} \\
+\mu_i & \geq 0, & \text{for all } i &\text{(Dual Feasibility)}\\
+\mu_i \left(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1\right) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
+\end{array}
+\right.</script><p>KKT条件包括平稳条件、原问题可行性条件、对偶可行性条件、<strong>互补松弛条件</strong>等</p>
+<p>支持向量机的原问题（基本型）是凸函数，所以KKT条件也是充分条件。</p>
+<p>通过互补松弛条件知，对于任意训练样本$(\boldsymbol{x}_i, y_i)$，总有$\mu_i = 0$或$y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) = 1$，即如果样本不在约束边界上，那么$\mu_i = 0$，其约束失效，与$\boldsymbol{w}$无关；如果样本在约束边界上，那么$\mu_i \geq 0$，其约束生效，用于确定$\boldsymbol{w}$。</p>
+<p>对于后者这些在约束边界上的样本，被称作<strong>支持向量（support vector）</strong>。</p>
+<p>带着KKT条件解对偶问题（求解方法见下节），解得$\boldsymbol{\mu^*}$，其与原问题的解相对应，所以</p>
+<p>通过</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w^*}=\sum_{i=1}^m \mu_i^* y_i \boldsymbol{x}_i</script><p>即可得到$\boldsymbol{w^*}$</p>
+<p>任意选取一个支持向量$(\tilde{\boldsymbol{x}}, \tilde{y})$，通过</p>
+<script type="math/tex; mode=display">
+b^* = \tilde{y} - {\boldsymbol{w}^*}^{\mathrm{T}}\tilde{\boldsymbol{x}}</script><p>即可得到$b^*$</p>
+<p>综上，得到支持向量机的划分超平面</p>
+<script type="math/tex; mode=display">
+{\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^* = 0</script><p>那么，支持向量机的决策函数即为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(x) &= \operatorname{sgn}\left({\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*\right) \\
+&=\operatorname{sgn}\left(\sum_{i=1}^m \mu_i^* y_i {\left(\boldsymbol{x}_i\right)}^{\mathrm{T}} \boldsymbol{x} + b^*\right)
+\end{aligned}</script><h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2>
         </div>
 
         
