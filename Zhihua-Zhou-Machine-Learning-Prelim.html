@@ -1025,10 +1025,10 @@ r=\frac{\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right|}{\|\boldsymb
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
 \text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
-\end{aligned}</script><p>这就是支持向量机的基本型，是一个凸二次规划问题，可以使用现有工具包求解。但在计算机领域，我们使用拉格朗日乘子法将基本型转换为它的对偶问题，因为它的对偶问题可以使用更高效的算法迭代求解，计算机可以并行处理。</p>
+\end{aligned}</script><p>这就是支持向量机的基本型，即样本在原始样本空间内线性可分，原始样本空间内找到划分超平面。支持向量机的基本型是一个凸二次规划问题，可以使用现有工具包求解。但在计算机领域，我们使用拉格朗日乘子法将基本型转换为它的对偶问题，因为它的对偶问题可以使用更高效的算法迭代求解，计算机可以并行处理。</p>
 <h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2><h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>拉格朗日乘子法（Lagrange multipliers）是一种优化方法，用于寻找多元函数在一组约束下的极值。</p>
 <p>通过引入拉格朗日乘子，可将有$d$个变量与$k$个等式约束条件的最优化问题转化为具有$d+k$个变量的优化问题求解。</p>
-<p>支持向量机<strong>基本型/原问题/主问题（primal problem）</strong></p>
+<p>支持向量机基本型的<strong>原问题/主问题（primal problem）</strong></p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
@@ -1064,7 +1064,7 @@ L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \s
 &= -\frac{1}{2} \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i^T\right) \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \mu_i \\
 &= -\frac{1}{2} \sum_{i=1}^m \left(\mu_i y_i \boldsymbol{x}_i^T\sum_{j=1}^m \mu_j y_j \boldsymbol{x}_j\right) + \sum_{i=1}^m \mu_i \\
 &= -\frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i y_i \boldsymbol{x}_i^T \mu_j y_j \boldsymbol{x}_j + \sum_{i=1}^m \mu_i \\
-&= \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{i=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
+&= \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
 \end{aligned}</script><p>Note. 用到了很多次向量的乘法分配律。</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -1077,7 +1077,7 @@ L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \s
 <p>使用$\inf$表示$\min$，可得到对偶问题</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{i=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
 \text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
 \end{aligned}</script><p>对偶问题的优化函数是关于拉格朗日乘子的，所以一定是凸函数。</p>
 <p>由上述推导可知，若想要对偶问题的解与主问题甚至原问题的解相同，则需要满足以下必要条件，即KKT条件。</p>
@@ -1091,7 +1091,7 @@ y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1 & \geq 0, & \text{f
 \mu_i \left(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1\right) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
 \end{array}
 \right.</script><p>KKT条件包括平稳条件（SVM有两个变量，所以有两个条件）、原问题可行性条件、对偶可行性条件、<strong>互补松弛条件</strong>等</p>
-<p>支持向量机的原问题（基本型）是凸函数，所以KKT条件也是充分条件（强对偶性）。</p>
+<p>支持向量机基本型的原问题是凸函数，所以KKT条件也是充分条件（强对偶性）。</p>
 <p>通过互补松弛条件知，对于任意训练样本$(\boldsymbol{x}_i, y_i)$，总有$\mu_i = 0$或$y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) = 1$，即如果样本不在约束边界上，那么$\mu_i = 0$，其约束失效，与$\boldsymbol{w}$无关；如果样本在约束边界上，那么$\mu_i \geq 0$，其约束生效，用于确定$\boldsymbol{w}$。</p>
 <p>对于后者这些在约束边界上的样本，被称作<strong>支持向量（support vector）</strong>。</p>
 <p>带着KKT条件解对偶问题（求解方法见下节），解得$\boldsymbol{\mu^*}$，其与原问题的解相对应，所以</p>
@@ -1101,6 +1101,10 @@ y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1 & \geq 0, & \text{f
 <p>任意选取一个支持向量$(\tilde{\boldsymbol{x}}, \tilde{y})$，通过</p>
 <script type="math/tex; mode=display">
 b^* = \tilde{y} - {\boldsymbol{w}^*}^{\mathrm{T}}\tilde{\boldsymbol{x}}</script><p>即可得到$b^*$</p>
+<p>也可以选取所有支持向量，计算所有偏移项的均值</p>
+<script type="math/tex; mode=display">
+b^* = \frac{1}{|S|}\sum_{s\in S} \left(y_s - {\boldsymbol{w}^*}^{\mathrm{T}}\boldsymbol{x}_s\right)</script><p>也可得到$b^*$</p>
+<p>Note. 这里用的是邱锡鹏nndl书上的写法，西瓜书中将$y$作为分母也是一样的，反正支持向量的$y$的值为1或-1。</p>
 <p>综上，得到支持向量机的划分超平面</p>
 <script type="math/tex; mode=display">
 {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^* = 0</script><p>那么，支持向量机的决策函数即为</p>
@@ -1135,7 +1139,80 @@ g_i(\boldsymbol{w}, b) & \leq 0, & \text{for all } i &\text{(Primal Feasibility)
 \mu_i g_i(\boldsymbol{w}, b) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
 \end{array}
 \right.</script><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a target="_blank" rel="noopener" href="https://www.datalearner.com/blog/1051551326031522">最优化问题的KKT条件简要解释</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/LIYUAN123ZHOUHUI/article/details/78344357">拉格朗日乘子法及KKT条件</a></p>
-<h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2>
+<h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2><p>对偶问题是一个凸优化问题，但同样地，因为前面多次提到过的原因，我们需要一种迭代解法。</p>
+<p>SMO（Sequential Minimal Optimization）算法就是这样一种代表性算法。</p>
+<p>为与原论文契合，此后使用$\alpha_i$代替$\mu_i$，$\alpha_j$代替$\mu_j$，$K(\boldsymbol{x}_i, \boldsymbol{x}_j)$代替$\boldsymbol{x}_i^T\boldsymbol{x}_j$。</p>
+<p>重写的对偶函数为</p>
+<script type="math/tex; mode=display">
+\Gamma(\boldsymbol{\alpha}) = \sum_{i=1}^m \alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)</script><p>其基本流程为</p>
+<p>每轮重复以下两个步骤直至收敛：</p>
+<ol>
+<li>选取一对需要更新的变量，设本轮为$\alpha_1$和$\alpha_2$</li>
+<li>固定$\alpha_1$和$\alpha_2$以外的参数，求解对偶问题，更新$\alpha_1$和$\alpha_2$</li>
+</ol>
+<p>在仅考虑$\alpha_1$和$\alpha_2$时，对偶函数成为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Gamma(\alpha_1, \alpha_2) 
+&= \left(\alpha_1 + \alpha_2 + \sum_{i=3}^m \alpha_i\right) - \frac{1}{2} \left\{\sum_{j=1}^m \alpha_1 \alpha_j y_1 y_j K(\boldsymbol{x}_1, \boldsymbol{x}_j) + \sum_{j=1}^m \alpha_2 \alpha_j y_2 y_j K(\boldsymbol{x}_2, \boldsymbol{x}_j) + \sum_{i=3}^m\sum_{j=1}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)\right\} \\
+
+&= \left(\alpha_1 + \alpha_2 + \sum_{i=3}^m \alpha_i\right) - \frac{1}{2} \left\{\sum_{j=1}^m \alpha_1 \alpha_j y_1 y_j K(\boldsymbol{x}_1, \boldsymbol{x}_j) + \sum_{j=1}^m \alpha_2 \alpha_j y_2 y_j K(\boldsymbol{x}_2, \boldsymbol{x}_j) + \sum_{i=3}^m\left(\alpha_i \alpha_1 y_i y_1 K(\boldsymbol{x}_i, \boldsymbol{x}_1) + \alpha_i \alpha_2 y_i y_2 K(\boldsymbol{x}_i, \boldsymbol{x}_2) + \sum_{j=3}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)\right)\right\} \\
+
+&= \left(\alpha_1 + \alpha_2 + \sum_{i=3}^m \alpha_i \right) - 
+\frac{1}{2} \left\{
+\left[\alpha_1 \alpha_1 y_1 y_1 K(\boldsymbol{x}_1, \boldsymbol{x}_1) + \alpha_1 \alpha_2 y_1 y_2 K(\boldsymbol{x}_1, \boldsymbol{x}_2) + \sum_{j=3}^m \alpha_1 \alpha_j y_1 y_j K(\boldsymbol{x}_1, \boldsymbol{x}_j)\right] + 
+\left[\alpha_2 \alpha_1 y_2 y_1 K(\boldsymbol{x}_2, \boldsymbol{x}_1) + \alpha_2 \alpha_2 y_2 y_2 K(\boldsymbol{x}_2, \boldsymbol{x}_2) + \sum_{j=3}^m \alpha_2 \alpha_j y_2 y_j K(\boldsymbol{x}_2, \boldsymbol{x}_j)\right] + 
+\left[\sum_{i=3}^m\alpha_i \alpha_1 y_i y_1 K(\boldsymbol{x}_i, \boldsymbol{x}_1) +  \sum_{i=3}^m\alpha_i \alpha_2 y_i y_2 K(\boldsymbol{x}_i, \boldsymbol{x}_2) +  \sum_{i=3}^m\sum_{j=3}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j) \right]
+\right\} \\ 
+
+&= \left(\alpha_1 + \alpha_2 + \text{C}\right) - 
+\frac{1}{2} \left\{
+\left[\alpha_1^2 K_{11} + \alpha_1 \alpha_2 y_1 y_2 K_{12} + \alpha_1 y_1 \sum_{j=3}^m  \alpha_j  y_j K_{1j}\right] + 
+\left[\alpha_2 \alpha_1 y_2 y_1 K_{21} + \alpha_2^2 K_{22} + \alpha_2y_2\sum_{j=3}^m  \alpha_j  y_j K_{2j}\right] +
+\left[\alpha_1y_1\sum_{i=3}^m\alpha_i  y_i  K_{i1} +  \alpha_2y_2\sum_{i=3}^m\alpha_i  y_i  K_{i2} + \text{C} \right]
+\right\} \\ 
+
+&= \left(\alpha_1 + \alpha_2\right) - 
+\frac{1}{2} \left\{
+\alpha_1^2 K_{11} + \alpha_2^2 K_{22} +  2\alpha_1 \alpha_2 y_1 y_2 K_{12} + 2\alpha_1 y_1 \sum_{j=3}^m  \alpha_j  y_j K_{1j} + 2\alpha_2y_2\sum_{j=3}^m  \alpha_j  y_j K_{2j}
+\right\} + \text{C}\\ 
+
+&= \left(\alpha_1 + \alpha_2\right) - \left(
+\frac{1}{2}
+\alpha_1^2 K_{11} + \frac{1}{2} \alpha_2^2 K_{22} +  \alpha_1 \alpha_2 y_1 y_2 K_{12} + \alpha_1 y_1 \sum_{j=3}^m  \alpha_j  y_j K_{1j} + \alpha_2y_2\sum_{j=3}^m  \alpha_j  y_j K_{2j} \right)
+ + \text{C}\\ 
+
+&= \left(\alpha_1 + \alpha_2\right) - \left(
+\frac{1}{2}
+\alpha_1^2 K_{11} + \frac{1}{2} \alpha_2^2 K_{22} +  \alpha_1 \alpha_2 y_1 y_2 K_{12} + \alpha_1 y_1 v_1 + \alpha_2y_2v_2 \right)
+ + \text{C}\\ 
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+K_{ij} &= K(\boldsymbol{x}_i, \boldsymbol{x}_j)\\
+v_i &= \sum_{j=3}^m  \alpha_j  y_j K_{ij}
+\end{aligned}</script><p>由于对偶问题的KKT条件$\sum\limits_{i=1}^m \alpha_i y_i =0$，有</p>
+<script type="math/tex; mode=display">
+\alpha_1y_1 + \alpha_2y_2 = -\sum_{k\neq 1,2}\alpha_ky_k=:c</script><p>因为${y_j}^2 = 1$，所以可将$\alpha_2$用$\alpha_1$表示</p>
+<script type="math/tex; mode=display">
+\alpha_2 = {(c - \alpha_1y_1)}{y_2}</script><p>接着对偶函数成为</p>
+<script type="math/tex; mode=display">
+\Gamma(\alpha_1) = \left(\alpha_1 + {(c - \alpha_1y_1)}{y_2}\right) - \left(
+\frac{1}{2}
+\alpha_1^2 K_{11} + \frac{1}{2} {(c - \alpha_1y_1)}^2 K_{22} +  \alpha_1 {(c - \alpha_1y_1)} y_1 K_{12} + \alpha_1 y_1 v_1 + {(c - \alpha_1y_1)}v_2 \right)
+ + \text{C}\\</script><p>此时的对偶函数已经成为了一个关于$\alpha_1$的凸二次函数，可以直接求导等于0得到构造解（闭式解）了。</p>
+<p>那么如何选取两个变量使得性能更好呢？Platt提出了一种启发式方法。</p>
+<p>Platt选择违反KKT条件的$\alpha_i$作为第一个变量，选择是对偶函数增长最快的$\alpha_j$作为第二个变量。</p>
+<p>Reference</p>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf">Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines</a></p>
+<h2 id="特征空间映射"><a href="#特征空间映射" class="headerlink" title="特征空间映射"></a>特征空间映射</h2><p>前面几节讨论了支持向量机的基本型（样本在原始样本空间内线性可分）、其对偶问题、其对偶问题的解法。</p>
+<p>那么如果样本在原始样本空间内非线性可分，不存在划分超平面，怎么划分样本呢？</p>
+<p>我们可以将样本从原始样本空间映射到一个更高维的特征空间，使得样本在这个特征空间内线性可分。</p>
+<p>如“异或”的四个样本在二维特征空间内非线性可分，在三维特征空间内线性可分。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211012225850.png" alt=""></p>
+<p>事实上，如果原始样本空间是有限维的，那么一定存在某些高维特征空间，使样本在其内线性可分。</p>
+<p>（明天再写）</p>
+
         </div>
 
         
