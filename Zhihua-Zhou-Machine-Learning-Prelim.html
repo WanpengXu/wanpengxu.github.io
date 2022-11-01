@@ -1000,7 +1000,7 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 <p>但，确定的超平面可以有很多，哪一个最好呢？</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282002418.png" alt=""></p>
 <p>直觉上，正中间的超平面最好，因为它的鲁棒性最好，泛化能力最强。</p>
-<p>如何找到它呢？</p>
+<p>使用<strong>支持向量机（Support Vector Machine, SVM）</strong>算法可以确定这个划分超平面，下面推导支持向量机算法中最优化问题的一些形式和它们的解。</p>
 <p>首先，超平面方程的向量形式为</p>
 <script type="math/tex; mode=display">
 \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = 0</script><p>假设划分超平面存在，找到正例距超平面最近的样本，负例中距超平面最近的样本（下图中圈起来的样本）。可以发现，它们直接确定了超平面，我们称这些样本为“支持向量”（support vector）。</p>
@@ -1026,14 +1026,14 @@ r=\frac{\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right|}{\|\boldsymb
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
 \text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
 \end{aligned}</script><p>这就是支持向量机的基本型，是一个凸二次规划问题，可以使用现有工具包求解。但在计算机领域，我们使用拉格朗日乘子法将基本型转换为它的对偶问题，因为它的对偶问题可以使用更高效的算法迭代求解，计算机可以并行处理。</p>
-<h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2><p>拉格朗日乘子法（Lagrange multipliers）是一种优化方法，用于寻找多元函数在一组约束下的极值。</p>
+<h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2><h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>拉格朗日乘子法（Lagrange multipliers）是一种优化方法，用于寻找多元函数在一组约束下的极值。</p>
 <p>通过引入拉格朗日乘子，可将有$d$个变量与$k$个等式约束条件的最优化问题转化为具有$d+k$个变量的优化问题求解。</p>
-<p>支持向量机<strong>基本型（原问题）</strong></p>
+<p>支持向量机<strong>基本型/原问题/主问题（primal problem）</strong></p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
 \text{s.t.} & \quad 1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \leq 0,\quad i=1,2, \ldots, m
-\end{aligned}</script><p>对每条约束添加拉格朗日乘子$\mu_i \geq 0$，得到基本型的<strong>拉格朗日函数</strong></p>
+\end{aligned}</script><p>对每条约束添加拉格朗日乘子$\mu_i \geq 0$，得到基本型的<strong>拉格朗日函数</strong>$L(\boldsymbol{w}, b, \boldsymbol{\mu})$</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right) \\
@@ -1045,18 +1045,18 @@ L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \s
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max}  & \quad L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
 \text{s.t.} & \quad \boldsymbol{\mu} \succeq  0
-\end{aligned}</script><p>这个$\min\text{-}\max$优化问题称为<strong>主问题（primal problem）</strong>。</p>
-<p>Note. $\boldsymbol{\mu} \succeq  0$意为$\mu_i \geq 0, i = 1, 2, \ldots, m$。</p>
+\end{aligned}</script><p>这个$\min\text{-}\max$优化问题称为<strong>主问题的$\min\text{-}\max$形式</strong>。</p>
+<p>Note. $\boldsymbol{\mu} \succeq  0$意为$\mu_i \geq 0, i = 1, 2, \ldots, m$。<strong>下面将$\min\text{-}\max$问题称作主问题，将$\min$问题称作原问题</strong>。</p>
 <p>因主问题关于原变量的优化函数可能非凸，所以我们一般将其转化为关于拉格朗日乘子的凸函数。</p>
 <p>令<script type="math/tex">L(\boldsymbol{w}, b, \boldsymbol{\mu})</script>对$w$和$b$的偏导为0，可得</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \frac{\partial L}{\partial \boldsymbol{w}} &= \boldsymbol{w}-\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i=0 & & \Longrightarrow \boldsymbol{w}=\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\\
 \frac{\partial L}{\partial b} &= -\sum_{i=1}^m \mu_i y_i=0 & &\Longrightarrow \sum_{i=1}^m \mu_i y_i=0
-\end{aligned}</script><p>将其代回拉格朗日函数，有<strong>拉格朗日对偶函数</strong></p>
+\end{aligned}</script><p>将其代回拉格朗日函数，有<strong>拉格朗日对偶函数</strong>$\Gamma(\mu)$</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-L(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\sum_{i=1}^m \mu_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \mu_i y_i b \\
+\Gamma(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\sum_{i=1}^m \mu_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \mu_i y_i b \\
 &= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\boldsymbol{w}^T\sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i-b\sum_{i=1}^m \mu_i y_i \\
 &= \frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i - \boldsymbol{w}^T\sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \mu_i - b\times 0 \\
 &= -\frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \mu_i \\
@@ -1084,12 +1084,13 @@ L(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \b
 <script type="math/tex; mode=display">
 K.K.T\left\{
 \begin{array}{llll}
-\sum\limits_{i=1}^m \mu_i y_i & =0, & \text{for all } i  & \text{(Stationarity)} \\
+\boldsymbol{w}-\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i & =0, & \text{for all } i  & \text{(Stationarity 1)} \\
+\sum\limits_{i=1}^m \mu_i y_i & =0, & \text{for all } i  & \text{(Stationarity 2)} \\
 y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1 & \geq 0, & \text{for all } i &\text{(Primal Feasibility)} \\
 \mu_i & \geq 0, & \text{for all } i &\text{(Dual Feasibility)}\\
 \mu_i \left(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1\right) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
 \end{array}
-\right.</script><p>KKT条件包括平稳条件、原问题可行性条件、对偶可行性条件、<strong>互补松弛条件</strong>等</p>
+\right.</script><p>KKT条件包括平稳条件（SVM有两个变量，所以有两个条件）、原问题可行性条件、对偶可行性条件、<strong>互补松弛条件</strong>等</p>
 <p>支持向量机的原问题（基本型）是凸函数，所以KKT条件也是充分条件（强对偶性）。</p>
 <p>通过互补松弛条件知，对于任意训练样本$(\boldsymbol{x}_i, y_i)$，总有$\mu_i = 0$或$y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) = 1$，即如果样本不在约束边界上，那么$\mu_i = 0$，其约束失效，与$\boldsymbol{w}$无关；如果样本在约束边界上，那么$\mu_i \geq 0$，其约束生效，用于确定$\boldsymbol{w}$。</p>
 <p>对于后者这些在约束边界上的样本，被称作<strong>支持向量（support vector）</strong>。</p>
@@ -1107,7 +1108,34 @@ b^* = \tilde{y} - {\boldsymbol{w}^*}^{\mathrm{T}}\tilde{\boldsymbol{x}}</script>
 \begin{aligned}
 f(x) &= \operatorname{sgn}\left({\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*\right) \\
 &=\operatorname{sgn}\left(\sum_{i=1}^m \mu_i^* y_i {\left(\boldsymbol{x}_i\right)}^{\mathrm{T}} \boldsymbol{x} + b^*\right)
-\end{aligned}</script><h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2>
+\end{aligned}</script><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Note. 上述推导为了$\min\rightarrow\min \text{-}\max\rightarrow\max\text{-}\min$过程的可理解性，将其分为了三个问题，实际上只有两个问题，min-max问题是min问题的另一种形式。</p>
+<p>原问题（基本型）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad f(\boldsymbol{w}, b) \\
+\text{s.t.} & \quad g_i(\boldsymbol{w}, b) \leq 0,\quad i=1,2, \ldots, m
+\end{aligned}</script><p>原问题的min-max形式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max}  & \quad L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} & \quad \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \Gamma(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>当满足KKT条件时，三者解相同，通过解对偶问题得到原问题的解。</p>
+<script type="math/tex; mode=display">
+K.K.T\left\{
+\begin{array}{llll}
+\frac{\partial L}{\partial \boldsymbol{w}} & =0, & \text{for all } i  & \text{(Stationarity 1)} \\
+\frac{\partial L}{\partial \boldsymbol{b}} & =0, & \text{for all } i  & \text{(Stationarity 2)} \\
+g_i(\boldsymbol{w}, b) & \leq 0, & \text{for all } i &\text{(Primal Feasibility)} \\
+\mu_i & \geq 0, & \text{for all } i &\text{(Dual Feasibility)}\\
+\mu_i g_i(\boldsymbol{w}, b) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
+\end{array}
+\right.</script><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a target="_blank" rel="noopener" href="https://www.datalearner.com/blog/1051551326031522">最优化问题的KKT条件简要解释</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/LIYUAN123ZHOUHUI/article/details/78344357">拉格朗日乘子法及KKT条件</a></p>
+<h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2>
         </div>
 
         
