@@ -1210,8 +1210,53 @@ v_i &= \sum_{j=3}^m  \alpha_j  y_j K_{ij}
 <p>我们可以将样本从原始样本空间映射到一个更高维的特征空间，使得样本在这个特征空间内线性可分。</p>
 <p>如“异或”的四个样本在二维特征空间内非线性可分，在三维特征空间内线性可分。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211012225850.png" alt=""></p>
-<p>事实上，如果原始样本空间是有限维的，那么一定存在某些高维特征空间，使样本在其内线性可分。</p>
-<p>（明天再写）</p>
+<p>事实上，如果原始样本空间是有限维的，那么一定存在某些高维特征空间，使样本在其内线性可分。高维特征空间可能是无限维特征空间。</p>
+<p>所以，只需找到合适映射$\phi(\cdot)$，将原样本空间中的所有样本映射到高维特征空间，然后在高维特征空间内解支持向量机的基本型，即可得到划分超平面的表达式。</p>
+<p>映射（坐标变换、升维）</p>
+<script type="math/tex; mode=display">
+\boldsymbol{x} \mapsto \phi(\boldsymbol{x})</script><p>新样本空间内的划分超平面</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x}) = \boldsymbol{w}^{\mathrm{T}}\phi(\boldsymbol{x}) + b</script><p>新样本空间内的支持向量机基本型</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
+\text{s.t.} & \quad y\left(\boldsymbol{w}^{\top} \phi\left(\boldsymbol{x}\right) + b\right) \succeq 1
+\end{aligned}</script><p>新样本空间内的支持向量机基本型的对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \phi(\boldsymbol{x}_i)^T \phi(\boldsymbol{x}_j) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>求解后得到的划分超平面的函数表达式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(\boldsymbol{x})
+&= \boldsymbol{w}^{\mathrm{T}}\phi(\boldsymbol{x}) + b \\
+&= \sum_{i=1}^m \mu_i y_i \phi(\boldsymbol{x}_i)^{\mathrm{T}}\phi(\boldsymbol{x}) + b
+\end{aligned}</script><p>可以发现，求解对偶问题得到$\boldsymbol{\mu}$时、根据$\mu_i$计算$f(\boldsymbol{x})$时，都需要计算两个 映射后的向量 的内积。</p>
+<p>然而，由于映射后的向量维数可能很高、甚至可能是无限维，因此计算上是困难的。所以，我们需要另一个容易计算的，可以替代二者内积的函数。</p>
+<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>我们设计这样一种函数$\kappa\left(\cdot, \cdot\right)$，输入原始样本空间中的低维向量$\boldsymbol{x}_i$和$\boldsymbol{x}_j$，即可得到它们经映射后得到的高维度向量的内积，即</p>
+<script type="math/tex; mode=display">
+\kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_j\right)=\phi\left(\boldsymbol{x}_i\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_j\right)</script><p>我们称这种函数为核函数（kernel function）。</p>
+<p>Note. SMO算法中我们曾使用的记号即为核函数。</p>
+<p>引入核函数后，对偶问题可重写为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_j\right) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>划分超平面的函数表达式可重写为</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x}) = \sum_{i=1}^m \mu_i y_i \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}\right) + b</script><p>这种将表达式通过训练样本的核函数展开的形式，称为“支持向量展式”（support vector expansion）。</p>
+<p>那么怎样得到核函数呢？</p>
+<p>Mercer定理：若一个对称函数所对应的核矩阵半正定，则其就可以作为一个核函数。</p>
+<p>什么是核矩阵？</p>
+<p>首先我们要知道距离矩阵，即在原样本空间内，样本间两两计算距离所排列成的矩阵。</p>
+<p>设数据集$D$有样本$\boldsymbol{x}_1$和$\boldsymbol{x}_2$，则$D$的距离矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+d(\boldsymbol{x}_1, \boldsymbol{x}_1) & d(\boldsymbol{x}_1, \boldsymbol{x}_2) \\
+d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
+\end{bmatrix}</script><p>其中，$d(\boldsymbol{x}_i, \boldsymbol{x}_j)$指两个样本之间的距离。该矩阵是一个对称矩阵，且主对角线元素为0。</p>
+<p>（明天写，关于距离矩阵与半正定矩阵的关系，核矩阵为什么要仿照距离矩阵定义）</p>
 
         </div>
 
