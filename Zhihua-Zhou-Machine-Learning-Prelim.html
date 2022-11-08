@@ -1234,11 +1234,13 @@ f(\boldsymbol{x})
 &= \sum_{i=1}^m \mu_i y_i \phi(\boldsymbol{x}_i)^{\mathrm{T}}\phi(\boldsymbol{x}) + b
 \end{aligned}</script><p>可以发现，求解对偶问题得到$\boldsymbol{\mu}$时、根据$\mu_i$计算$f(\boldsymbol{x})$时，都需要计算两个 映射后的向量 的内积。</p>
 <p>然而，由于映射后的向量维数可能很高、甚至可能是无限维，因此计算上是困难的。所以，我们需要另一个容易计算的，可以替代二者内积的函数。</p>
-<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>我们设计这样一种函数$\kappa\left(\cdot, \cdot\right)$，输入原始样本空间中的低维向量$\boldsymbol{x}_i$和$\boldsymbol{x}_j$，即可得到它们经映射后得到的高维度向量的内积，即</p>
+<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>设计这样一种函数$\kappa\left(\cdot, \cdot\right)$，输入原始样本空间中的低维向量$\boldsymbol{x}_i$和$\boldsymbol{x}_j$，即可得到它们经映射后得到的高维度向量的内积，即</p>
 <script type="math/tex; mode=display">
 \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_j\right)=\phi\left(\boldsymbol{x}_i\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_j\right)</script><p>我们称这种函数为核函数（kernel function）。</p>
-<p>Note. SMO算法中我们曾使用的记号即为核函数。</p>
-<p>引入核函数后，对偶问题可重写为</p>
+<p>Note. </p>
+<p>SMO算法中我们曾使用的记号即为核函数。</p>
+<script type="math/tex; mode=display">
+\phi(x): \mathbf{R}^n \rightarrow \mathcal{H}</script><p>引入核函数后，对偶问题可重写为</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_j\right) \\
@@ -1246,17 +1248,42 @@ f(\boldsymbol{x})
 \end{aligned}</script><p>划分超平面的函数表达式可重写为</p>
 <script type="math/tex; mode=display">
 f(\boldsymbol{x}) = \sum_{i=1}^m \mu_i y_i \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}\right) + b</script><p>这种将表达式通过训练样本的核函数展开的形式，称为“支持向量展式”（support vector expansion）。</p>
-<p>那么怎样得到核函数呢？</p>
-<p>Mercer定理：若一个对称函数所对应的核矩阵半正定，则其就可以作为一个核函数。</p>
-<p>什么是核矩阵？</p>
-<p>首先我们要知道距离矩阵，即在原样本空间内，样本间两两计算距离所排列成的矩阵。</p>
-<p>设数据集$D$有样本$\boldsymbol{x}_1$和$\boldsymbol{x}_2$，则$D$的距离矩阵为</p>
+<p>Q：什么样的函数可以作为一个核函数呢？</p>
+<p>A：满足正定核函数充要条件或Mercer定理的函数可以作为一个核函数。</p>
+<p>Mercer定理：若一个<strong>连续对称函数</strong>所对应的核矩阵半正定，则其就可以作为一个Mercer核函数。</p>
+<p>正定核函数充要条件：若一个<strong>对称函数</strong>所对应的核矩阵半正定，则其就可以作为一个正定核函数。</p>
+<p>正定核比Mercer核更具一般性（李航. 统计学习方法P122）</p>
+<p>由定理或条件得到的核函数的等价定义。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211081734175.png" alt=""></p>
+<p>Q：什么是核矩阵？</p>
+<p>A：首先了解一下距离矩阵、Gram矩阵，再介绍核矩阵。</p>
+<p>设数据集$D=\left{\boldsymbol{x}_1, \boldsymbol{x}_2\right}$。</p>
+<p><strong>距离矩阵</strong>：样本间两两计算距离所排列成的矩阵。</p>
+<p>$D$的距离矩阵为</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
 d(\boldsymbol{x}_1, \boldsymbol{x}_1) & d(\boldsymbol{x}_1, \boldsymbol{x}_2) \\
 d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
 \end{bmatrix}</script><p>其中，$d(\boldsymbol{x}_i, \boldsymbol{x}_j)$指两个样本之间的距离。该矩阵是一个对称矩阵，且主对角线元素为0。</p>
-<p>（明天写，关于距离矩阵与半正定矩阵的关系，核矩阵为什么要仿照距离矩阵定义）</p>
+<p><strong>Gram矩阵</strong>：样本间两两计算内积所排列成的矩阵</p>
+<p>$D$的Gram矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\boldsymbol{x}_1^{\mathrm{T}} \boldsymbol{x}_1 & \boldsymbol{x}_1^{\mathrm{T}} \boldsymbol{x}_2 \\
+\boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{x}_1 & \boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{x}_2
+\end{bmatrix}</script><p>该矩阵是半正定矩阵。</p>
+<p><strong>核矩阵</strong>：希尔伯特空间$\mathcal{H}$中的、$\kappa\left(\cdot, \cdot\right)$所对应的Gram矩阵。</p>
+<p>$D$的核矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\phi\left(\boldsymbol{x}_1\right)^{\mathrm{T}}\phi\left(\boldsymbol{x}_1\right) & \phi\left(\boldsymbol{x}_1\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_2\right) \\
+\phi\left(\boldsymbol{x}_2\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_1\right) & \phi\left(\boldsymbol{x}_2\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_2\right)
+\end{bmatrix}</script><p>即</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\kappa(\boldsymbol{x}_1, \boldsymbol{x}_1) & \kappa(\boldsymbol{x}_1, \boldsymbol{x}_2) \\
+\kappa(\boldsymbol{x}_2, \boldsymbol{x}_1) & \kappa(\boldsymbol{x}_2, \boldsymbol{x}_2)
+\end{bmatrix}</script><p>我猜的：核矩阵其实就是一个度量两样本间的测度，所以extends自距离矩阵、Gram矩阵，所以核矩阵是对称、半正定矩阵。</p>
 
         </div>
 
