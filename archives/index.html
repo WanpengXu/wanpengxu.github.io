@@ -45,50 +45,72 @@
 
 
 
-    
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+
 
 
     
+    
+        <script>
+    MathJax = {
+        tex: {
+            // 行内公式标志
+            inlineMath: [
+                ['$', '$']
+            ],
+            // 块级公式标志
+            displayMath: [
+                ['$$', '$$']
+            ],
+            // 下面两个主要是支持渲染某些公式，可以自己了解
+            processEnvironments: true,
+            processRefs: true,
+        },
+        options: {
+            // 跳过渲染的标签
+            skipHtmlTags: ['noscript', 'style', 'textarea', 'pre', 'code'],
+            // 跳过mathjax处理的元素的类名，任何元素指定一个类 tex2jax_ignore 将被跳过，多个累=类名'class1|class2'
+            ignoreHtmlClass: 'tex2jax_ignore',
+        },
+        // 这里可能是因为我的MathJax2仍有残留，导致行间公式被渲染成了type="math/tex"，所以要用这种2、3版本混合查找方式进行渲染
+        // 这样可能效率低，有机会再改。
+        options: {
+            renderActions: {
+                /* add a new named action not to override the original 'find' action */
+                find_script_mathtex: [10, function (doc) {
+                    for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                        const display = !!node.type.match(/; *mode=display/);
+                        const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                        const text = document.createTextNode('');
+                        node.parentNode.replaceChild(text, node);
+                        math.start = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        math.end = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        doc.math.push(math);
+                    }
+                }, '']
+            }
+        },
+        svg: {
+            fontCache: 'global',
+        },
+    };
+</script>
 
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 
-
+<!-- <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js">
+</script> -->
+    
 
 
 
@@ -190,6 +212,15 @@
         
 
         <article class="archive-item">
+            <a class="archive-item-link" href="/Test.html">MathJax3 Formula Test</a>
+            <span class="archive-item-date">November 9, 2022</span>
+        </article>
+    
+        
+
+        
+
+        <article class="archive-item">
             <a class="archive-item-link" href="/Zhihua-Zhou-Machine-Learning-Prelim.html">周志华. 机器学习初步(2022秋)</a>
             <span class="archive-item-date">October 16, 2022</span>
         </article>
@@ -264,15 +295,6 @@
         <article class="archive-item">
             <a class="archive-item-link" href="/Man-in-the-middle-Attack.html">中间人攻击——DHCP耗尽攻击</a>
             <span class="archive-item-date">March 25, 2022</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/Android.html">Android学习</a>
-            <span class="archive-item-date">March 24, 2022</span>
         </article>
     
     
