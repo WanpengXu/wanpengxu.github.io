@@ -45,25 +45,50 @@
 
 
 
-
-
-
     
     
-        <script>
-    MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        svg: {
-            fontCache: 'global'
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    };
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+
     
+
+
+
 
 
 
@@ -163,21 +188,21 @@
 
             <div class="tag-cloud-tags">
                 
-                    <a href="/tags/Android/">Android<small>(1)</small></a>
-                
                     <a href="/tags/topSecret/">topSecret<small>(1)</small></a>
                 
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习<small>(3)</small></a>
+                    <a href="/tags/Android/">Android<small>(1)</small></a>
                 
                     <a href="/tags/Java/">Java<small>(3)</small></a>
                 
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习<small>(3)</small></a>
+                
                     <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能<small>(1)</small></a>
+                
+                    <a href="/tags/Tools/">Tools<small>(1)</small></a>
                 
                     <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/">中间人攻击<small>(1)</small></a>
                 
                     <a href="/tags/DHCP%E8%80%97%E5%B0%BD%E6%94%BB%E5%87%BB/">DHCP耗尽攻击<small>(1)</small></a>
-                
-                    <a href="/tags/Tools/">Tools<small>(1)</small></a>
                 
                     <a href="/tags/%E7%AE%97%E6%B3%95/">算法<small>(2)</small></a>
                 
