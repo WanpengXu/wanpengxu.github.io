@@ -1343,7 +1343,6 @@ d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
 <p>基本思路与软间隔支持向量机类似，可以容忍超平面一定程度上的错误，认为其回归正确。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211082033122.png" alt=""></p>
 <p>于是，可以将该思路形式化为</p>
-<p>（明天再写，关于SVR的形式化、进而得到的原问题、对偶问题、对偶问题的解。）</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\ell_{\epsilon}(f\left(\boldsymbol{x}_i\right) - y_i) \\
