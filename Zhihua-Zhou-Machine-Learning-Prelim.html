@@ -1359,8 +1359,67 @@ d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
 &\boldsymbol{\xi} \succeq 0 \\
 &\boldsymbol{\hat{\xi}} \succeq 0 \\
 \end{aligned}</script><p>Note. 两个松弛变量，代表样本$\boldsymbol{x}_i$在预测变量（纵轴）上的，距$2\epsilon$间隔带的偏离程度（上方或下方），<strong>间隔带两侧的松弛程度可有所不同</strong>。</p>
-<p>与支持向量机问题类似，引入四个拉格朗日乘子$\mu_i \geqslant 0, \hat{\mu}_i \geqslant 0, \alpha_i \geqslant 0, \hat{\alpha}_i \geqslant 0$，</p>
-
+<p>与支持向量机问题类似，引入四个拉格朗日乘子$\mu_i \geqslant 0, \hat{\mu}_i \geqslant 0, \alpha_i \geqslant 0, \hat{\alpha}_i \geqslant 0$，有拉格朗日函数</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L(\boldsymbol{w}, b, \boldsymbol{\alpha}, \hat{\boldsymbol{\alpha}}, \boldsymbol{\xi}, \hat{\boldsymbol{\xi}}, \boldsymbol{\mu}, \hat{\boldsymbol{\mu}}) = \frac{1}{2}\|\boldsymbol{w}\|^2+C \sum_{i=1}^m\left(\xi_i+\hat{\xi}_i\right)-\sum_{i=1}^m \mu_i \xi_i-\sum_{i=1}^m \hat{\mu}_i \hat{\xi}_i + \sum_{i=1}^m \alpha_i\left(f\left(\boldsymbol{x}_i\right)-y_i-\epsilon-\xi_i\right)+\sum_{i=1}^m \hat{\alpha}_i\left(y_i-f\left(\boldsymbol{x}_i\right)-\epsilon-\hat{\xi}_i\right)
+\end{aligned}</script><p>进而得到对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{\alpha}, \hat{\boldsymbol{\alpha}}}{\max} \quad & \sum_{i=1}^m y_i\left(\hat{\alpha}_i-\alpha_i\right)-\epsilon\left(\hat{\alpha}_i+\alpha_i\right) -\frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m\left(\hat{\alpha}_i-\alpha_i\right)\left(\hat{\alpha}_j-\alpha_j\right) \boldsymbol{x}_i^{\mathrm{T}} \boldsymbol{x}_j \\
+\text {s.t.} \quad & 0 \leqslant \alpha_i, \hat{\alpha}_i \leqslant C
+\end{aligned}</script><p>Note. 大于等于0是$\alpha$的条件，小于等于C是由$\mu$的条件+平稳条件得到的。（也可以写四条对偶问题可行条件）</p>
+<p>平稳条件</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\begin{aligned}
+\boldsymbol{w} &=\sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) \boldsymbol{x}_i \\
+0 &=\sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) \\
+C &=\alpha_i+\mu_i \\
+C &=\hat{\alpha}_i+\hat{\mu}_i
+\end{aligned}
+\end{array}\right.</script><p>原问题可行性条件</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+f\left(\boldsymbol{x}_i\right) - y_i  - \epsilon - \xi_i \leqslant 0 \\
+y_i - f\left(\boldsymbol{x}_i\right) - \epsilon - \xi_i \leqslant 0 \\
+-\xi_i \leqslant 0 \\
+-\hat{\xi_i} \leqslant 0 \\
+\end{array}\right.</script><p>对偶问题可行性条件</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\mu_i \geqslant 0 \\
+\hat{\mu}_i \geqslant 0 \\
+\alpha_i \geqslant 0 \\
+\hat{\alpha}_i \geqslant 0
+\end{array}\right.</script><p><strong>互补松弛条件</strong></p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\alpha_i \left(f\left(\boldsymbol{x}_i\right) - y_i  - \epsilon - \xi_i\right) = 0 \\
+\hat{\alpha}_i \left(y_i - f\left(\boldsymbol{x}_i\right) - \epsilon - \xi_i\right) = 0 \\
+-\mu_i \xi_i = 0 \\
+-\hat{\mu}_i \hat{\xi_i} = 0 \\
+\end{array}\right.</script><p>综上，再将互补松弛条件中的$\mu_i$和$\hat{\mu_i}$用平稳条件中的$\alpha_i$和$\hat{\alpha_i}$代替，再因样本只能处在间隔带的一侧，所以$\alpha_i$和$\hat{\alpha_i}$至少有其一为0，进而$\xi_i$和$\hat{\xi_i}$至少有其一为0，所以KKT条件为</p>
+<script type="math/tex; mode=display">
+K.K.T\left\{\begin{array}{ll}
+\boldsymbol{w} - \sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) \boldsymbol{x}_i &= 0 \\
+\sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) &= 0\\
+\alpha_i\left(f\left(\boldsymbol{x}_i\right)-y_i-\epsilon-\xi_i\right) &= 0 \\
+\hat{\alpha}_i\left(y_i-f\left(\boldsymbol{x}_i\right)-\epsilon-\hat{\xi}_i\right) &= 0 \\
+\alpha_i \hat{\alpha}_i &= 0 \\
+\xi_i \hat{\xi}_i &= 0 \\
+\left(C-\alpha_i\right) \xi_i &= 0 \\
+\left(C-\hat{\alpha}_i\right) \hat{\xi}_i &= 0
+\end{array}\right.</script><p>带着KKT条件解对偶问题，解得$\alpha_i^<em>$和$\hat{\alpha}_i^</em>$，其与原问题的解相对应，所以</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^* = \sum_{i=1}^m\left(\hat{\alpha}_i^*-\alpha_i^*\right) \boldsymbol{x}_i</script><p>与基本型类似地，选取任意一个满足$0\leqslant\alpha_i\leqslant C$的样本$(\boldsymbol{x}_i, y_i)$，有</p>
+<script type="math/tex; mode=display">
+b^* = y_i + \epsilon -\boldsymbol{w}^*\boldsymbol{x}_i</script><p>也可以选取多个取平均值，有</p>
+<script type="math/tex; mode=display">
+b^* = \frac{1}{|S|}\sum_{s\in S}y_s + \epsilon -\boldsymbol{w}^*\boldsymbol{x}_s</script><p>综上，得到SVR问题的回归超平面模型</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script><h2 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h2><script type="math/tex; mode=display">
+\operatorname{dist}(x_1,x_2)=\|\phi(x_1)-\phi(x_2)\|_{\mathcal{H}_k}^2=\sqrt{k(x_1,x_1)-2k(x_1,x_2)+k(x_2,x_2)}</script><h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1>
         </div>
 
         
