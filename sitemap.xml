@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/Machine-Learning.html</loc>
+    <loc>http://xuwp.top/Deep-Learing.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/Deep-Learing.html</loc>
+    <loc>http://xuwp.top/Machine-Learning.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -263,6 +263,15 @@
   </url>
   
   <url>
+    <loc>http://xuwp.top/css/style.css</loc>
+    
+    <lastmod>2022-04-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xuwp.top/css/media.css</loc>
     
     <lastmod>2022-04-10</lastmod>
@@ -273,15 +282,6 @@
   
   <url>
     <loc>http://xuwp.top/css/normalize.css</loc>
-    
-    <lastmod>2022-04-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuwp.top/css/style.css</loc>
     
     <lastmod>2022-04-10</lastmod>
     
@@ -331,14 +331,14 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/tags/Java/</loc>
+    <loc>http://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>http://xuwp.top/tags/Java/</loc>
     <lastmod>2022-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -373,13 +373,6 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://xuwp.top/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-11-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -388,6 +381,13 @@
   
   <url>
     <loc>http://xuwp.top/tags/CSP/</loc>
+    <lastmod>2022-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuwp.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

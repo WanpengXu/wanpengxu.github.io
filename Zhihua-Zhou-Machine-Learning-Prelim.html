@@ -1335,15 +1335,31 @@ d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
 \begin{aligned}
 \underset{\boldsymbol{w}, b, \xi_i}{\min } \quad & \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\xi_i \\
 \text {s.t.} \quad & y_i\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right) \geqslant 1-\xi_i\\
-&\xi_i \succ 0
+&\boldsymbol{\xi} \succeq 0
 \end{aligned}</script><p>该优化问题即支持向量机软间隔型的主问题。</p>
 <p>当然，其也有对偶问题和解的稀疏性，不展开了。</p>
 <h2 id="如何使用SVM"><a href="#如何使用SVM" class="headerlink" title="如何使用SVM"></a>如何使用SVM</h2><p>我们已经知道，在分类问题中，通过解支持向量机基本型的对偶问题，可以得到“最优的”线性模型。</p>
-<p>那么，如何使用SVM解决回归问题呢？这里需要使用“软间隔支持向量机”来寻找该线性模型。</p>
+<p>那么，如何使用SVM解决回归问题，即如何解决SVR（support vector regression）问题呢？这里需要使用“软间隔支持向量机”来寻找该线性模型。</p>
 <p>基本思路与软间隔支持向量机类似，可以容忍超平面一定程度上的错误，认为其回归正确。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211082033122.png" alt=""></p>
 <p>于是，可以将该思路形式化为</p>
 <p>（明天再写，关于SVR的形式化、进而得到的原问题、对偶问题、对偶问题的解。）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\ell_{\epsilon}(f\left(\boldsymbol{x}_i\right) - y_i) \\
+\end{aligned}</script><p>其中，$C$为正则化常数，$\ell_\epsilon$为$\epsilon$-不敏感损失函数。</p>
+<p>$\ell_\epsilon$的表达式，及其与平方损失函数的比较如下：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211101601822.png" alt=""></p>
+<p>引入松弛变量$\xi_i$和$\hat{\xi_i}$，得到SVR问题的原问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b, \xi_i, \hat{\xi_i}}{\min } \quad & \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\left(\xi_i + \hat{\xi_i}\right) \\
+\text {s.t.} \quad & f\left(\boldsymbol{x}_i\right) - y_i \leqslant \epsilon + \xi_i \\
+& y_i - f\left(\boldsymbol{x}_i\right) \leqslant \epsilon + \xi_i \\
+&\boldsymbol{\xi} \succeq 0 \\
+&\boldsymbol{\hat{\xi}} \succeq 0 \\
+\end{aligned}</script><p>Note. 两个松弛变量，代表样本$\boldsymbol{x}_i$在预测变量（纵轴）上的，距$2\epsilon$间隔带的偏离程度（上方或下方），<strong>间隔带两侧的松弛程度可有所不同</strong>。</p>
+<p>与支持向量机问题类似，引入四个拉格朗日乘子$\mu_i \geqslant 0, \hat{\mu}_i \geqslant 0, \alpha_i \geqslant 0, \hat{\alpha}_i \geqslant 0$，</p>
 
         </div>
 
