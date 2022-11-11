@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="baidu-site-verification" content="code-dlFXc2180h" />
+
+
+    <!-- <meta name="google-site-verification" content="qlTU_n7RT-JIFfLGMsgqxNsTEkVlsWnOfvoPzzHzSR0" /> -->
+    <meta name="google-site-verification" content="wNw6ZIFTz_hFtiJ2w108gXZcLcg3e8tLeSGIC36Wn_M" />
+
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>周志华. 机器学习初步(2022秋) | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+
+
+
+    
+    
+        <script>
+    MathJax = {
+        tex: {
+            // 行内公式标志
+            inlineMath: [
+                ['$', '$']
+            ],
+            // 块级公式标志
+            displayMath: [
+                ['$$', '$$']
+            ],
+            // 下面两个主要是支持渲染某些公式，可以自己了解
+            processEnvironments: true,
+            processRefs: true,
+        },
+        options: {
+            // 跳过渲染的标签
+            skipHtmlTags: ['noscript', 'style', 'textarea', 'pre', 'code'],
+            // 跳过mathjax处理的元素的类名，任何元素指定一个类 tex2jax_ignore 将被跳过，多个累=类名'class1|class2'
+            ignoreHtmlClass: 'tex2jax_ignore',
+        },
+        // 这里可能是因为我的MathJax2仍有残留，导致行间公式被渲染成了type="math/tex"，所以要用这种2、3版本混合查找方式进行渲染
+        // 这样可能效率低，有机会再改。
+        options: {
+            renderActions: {
+                /* add a new named action not to override the original 'find' action */
+                find_script_mathtex: [10, function (doc) {
+                    for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                        const display = !!node.type.match(/; *mode=display/);
+                        const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                        const text = document.createTextNode('');
+                        node.parentNode.replaceChild(text, node);
+                        math.start = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        math.end = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        doc.math.push(math);
+                    }
+                }, '']
+            }
+        },
+        svg: {
+            fontCache: 'global',
+        },
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<!-- <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js">
+</script> -->
+    
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">Resume</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">Resume</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">周志华. 机器学习初步(2022秋)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 16, 2022&nbsp;&nbsp;21:11:46</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AI/">AI</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>课程地址：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/course/nju0802bt/14363483">https://www.xuetangx.com/course/nju0802bt/14363483</a></p>
+<p>课程回放：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/video/26163005">https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/video/26163005</a></p>
+<p>课程讨论：<a target="_blank" rel="noopener" href="https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/forum">https://www.xuetangx.com/learn/nju0802bt/nju0802bt/14363483/forum</a></p>
+<p>教材：<a target="_blank" rel="noopener" href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm">https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm</a></p>
+</blockquote>
+<p>2022年10月10日新开设的课程，内容不多，尽快肝完。</p>
+<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><blockquote>
+<p>科学、技术、工程、应用各解决什么问题？</p>
+</blockquote>
+<p>科学：是什么？为什么？</p>
+<p>技术：怎么做？</p>
+<p>工程：怎么做得多、快、好、省？</p>
+<p>应用：怎么用？</p>
+<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>经典定义：利用经验改善系统自身的性能（T. Mitchell, 1997）</p>
+<p>经验在计算机系统中以数据形式存在，因对数据分析的需求，从而产生了智能数据分析理论和方法。“智能”前缀是为了与数学家、统计学家利用数理统计方法进行数据分析相区别，其强调人工智能学者利用计算机进行数据分析。</p>
+<h2 id="典型的机器学习过程"><a href="#典型的机器学习过程" class="headerlink" title="典型的机器学习过程"></a>典型的机器学习过程</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210170022526.png" alt=""></p>
+<p>在训练数据上，使用学习算法，经训练，得到模型，输入新数据，产生输出。</p>
+<p>从数据中产生的东西，可以认为是一个神经网络，甚至是一条规则，都可以宽泛地统称为“模型”。</p>
+<p>David Hume(?)：适用于全局的叫模型，适用于局部的叫模式。</p>
+<h2 id="计算学习理论"><a href="#计算学习理论" class="headerlink" title="计算学习理论"></a>计算学习理论</h2><p>机器学习具有坚实的理论基础：Leslie Valiant建立的计算学习理论（Computational learning theory），其中最重要的模型是PAC（Probably Approximately Correct，概率近似正确）learning model（Leslie Valiant, 1984）。</p>
+<p>其基础表达式：</p>
+<script type="math/tex; mode=display">
+P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 - \delta</script><p>在机器学习中解释为：以很高的概率得到很好的模型。</p>
+<p>Q：为什么要有$\epsilon$和$\delta$，而不是$P\left(\left\vert f(\boldsymbol{x}) - y \right\vert= 0\right)= 1$呢？</p>
+<p>A：从人工智能基本概念的角度，对于确定性的知识，我们可以通过确定性推理方法，在多项式时间内得到确定性结果。机器学习往往处理那些带有不确定性的知识及它们的组合，因为知识带有不确定性，所以我们的结果一定带有可信度，因此需要引入$\epsilon$。</p>
+<p>从计算的角度，机器学习往往处理$NP$问题，如果模型$f(\cdot)$每次都以$P=1$的概率预测出最佳答案$y$，即在多项式时间内解决掉了问题，那么就意味着我们构造性地证明了$P=NP$，因为$P=NP$尚未被证明，因此需要引入$\delta$。</p>
+<h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210171647083.png" alt=""></p>
+<h3 id="输入部分"><a href="#输入部分" class="headerlink" title="输入部分"></a>输入部分</h3><p>数据集：dataset，如图左侧的表</p>
+<p>训练：train，建立模型的过程</p>
+<p>测试：test，向模型传入数据，根据数据的label判断模型的结果正确或错误</p>
+<p>示例：instance，如（青绿，蜷缩，浊响）</p>
+<p>样例：example，如（青绿，蜷缩，浊响，<strong>是</strong>）</p>
+<p>样本：sample，有时指样例，如（青绿，蜷缩，浊响，<strong>是</strong>）；有时指数据集，如图左侧的表</p>
+<p>属性/特征：attribute/feature，如色泽</p>
+<p>属性值：attribute value，如青绿</p>
+<p>属性空间/样本空间/输入空间：attribute space/sample space/input space，由属性所张成的空间，如轴为青绿、蜷缩、浊响的三维空间</p>
+<p>特征向量：feature vector，示例在属性空间中所形成的向量</p>
+<h3 id="模型部分"><a href="#模型部分" class="headerlink" title="模型部分"></a>模型部分</h3><p>假设：hypothesis，训练得到的模型，即PAC模型中的$f(\boldsymbol{x})$</p>
+<p>真相：ground-truth，即PAC模型中的$y$</p>
+<p>学习器：learner，在训练数据上使用学习算法经训练产生的东西，可以宽泛地认为是“模型”，如“分类器”</p>
+<h3 id="输出部分"><a href="#输出部分" class="headerlink" title="输出部分"></a>输出部分</h3><p>分类：classification，输出是离散的</p>
+<p>二分类：binary classification，可能输出的基数为2</p>
+<p>多分类：multiclass classification，可能输出的基数大于等于2，可以分解为若干个二分类问题</p>
+<p>回归：regression，输出是连续的</p>
+<p>正类：positive class，对输出进行划分，我们需要的部分定义为正类，如“好瓜”中的是</p>
+<p>负类：negative class，对输出进行划分，我们不需要的部分定义为负类，如“好瓜”中的否</p>
+<h3 id="学习任务"><a href="#学习任务" class="headerlink" title="学习任务"></a>学习任务</h3><p>监督学习：supervised learning，样例中含有label的学习任务，主要任务：分类、回归</p>
+<p>无监督学习：unsupervised learning，样例中不含label的学习任务，主要任务：聚类（离散）、密度估计（连续）</p>
+<h3 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h3><p>未见样本：unseen instance，不在训练数据中的样本</p>
+<p>未知分布：unknown distribution，所有的数据所服从的分布</p>
+<p>独立同分布：i.i.d. (independent and identically distributed)，样本服从同一分布，并且互相独立。只有满足独立同分布才能应用统计学的基本原理（大数定律），用频率逼近概率。</p>
+<p>泛化：generalization，对新数据处理的能力，即PAC模型中的$\epsilon$能做到多小，当$\epsilon &lt; 0.5$（比随机猜测准）时，可以努力去优化模型的性能。</p>
+<h2 id="归纳偏好"><a href="#归纳偏好" class="headerlink" title="归纳偏好"></a>归纳偏好</h2><p>归纳偏好/偏置（Inductive Bias）：机器学习算法在学习过程中对某种类型假设的偏好。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210172332601.png" alt=""></p>
+<p>如图，当两种模型（类型假设）<strong>都能解释训练数据时</strong>，哪种模型更好？此时需要由算法的归纳偏好决定。因此机器学习算法的归纳偏好是否与问题本身匹配，直接决定算法取得的性能。</p>
+<p>奥卡姆剃刀（Occam’s razor）准则：一个典型的归纳偏好，其最流行的表述方式为：“若非必要，勿增实体”，另外还有一种表述为“若有多个假设与观察一致，则选最简单的那个”。</p>
+<p>但因“简单”这个标准比较宽泛，所以如何确定哪个假设更“简单”有很多种不同角度的实现方式。</p>
+<h2 id="NFL定理"><a href="#NFL定理" class="headerlink" title="NFL定理"></a>NFL定理</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210172351307.png" alt=""></p>
+<p>NFL定理（No Free Lunch Theoren）：一个算法$\mathfrak{L}_a$若在某些问题（左图）上比另一个算法$\mathfrak{L}_b$好，必存在另一些问题（右图），$\mathfrak{L}_b$比$\mathfrak{L}_a$好。</p>
+<p>NFL定理的重要前提：所有问题出现的机会相同，或所有问题同等重要。</p>
+<p>因此，机器学习中没有“更好的算法”，只有“<strong>在这个问题上</strong>更好的算法”！</p>
+<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1><h2 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h2><p>错误率低、精度高、召回率高，都可以作为好模型的标准，与NFL定理类似，没有“好标准”，只有“<strong>在这个问题上</strong>的好标准”</p>
+<p>泛化能力（generalization ability）：模型在未见样本上表现<strong>好</strong>。</p>
+<h2 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h2><p>经验误差/训练误差（empirical error/training error）：学习器在训练集上的误差</p>
+<p>泛化误差（generalization error）：学习器在新样本上的误差</p>
+<p>因为过拟合现象的存在，经验误差与泛化误差并不是越小越好。</p>
+<p>过拟合（overfitting）：学习器把训练样本自身的一些特殊性质当做了所有样本都会有的一般性质。</p>
+<p>欠拟合（underfitting）：学习器尚未学好训练样本自身的性质。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181110973.png" alt="过拟合、欠拟合的直观类比"></p>
+<p>所以，对于具体机器学习算法，明白了其用什么方法缓解overfitting，这种方法在什么时候失效，就明白了这个机器学习算法的应用场景。</p>
+<h2 id="三大问题"><a href="#三大问题" class="headerlink" title="三大问题"></a>三大问题</h2><p>如何进行模型选择，有三个关键问题：</p>
+<ul>
+<li>如何获得测试结果？</li>
+<li>如何评估性能优劣？</li>
+<li>如何判断实质差别？</li>
+</ul>
+<p>解决这三个方面的问题，有一些经典的方法/标准，分别为：</p>
+<ul>
+<li>评估方法：对学习器的泛化误差进行量化</li>
+<li>性能度量：衡量模型泛化能力的评价标准</li>
+<li>比较检验：比较模型<strong>在统计意义上</strong>的表现</li>
+</ul>
+<p>三者的工作方式为：对于某个学习器，使用某种评估方法，测得某个性能度量结果，比较检验这些结果。</p>
+<h2 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h2><p>注：这一节提到的“测试集”，用“验证集”表述更好。</p>
+<p>Q：怎么获得测试集？测试集应与训练集“互斥”。</p>
+<p>A：对数据集进行适当的处理，从中产生训练集和测试集。</p>
+<p>常见方法：留出法（hold-out）、交叉验证法（cross validation）、自助法（bootstrap）</p>
+<h3 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h3><p>直接将数据集划分为两个互斥的集合</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181633900.png" alt=""></p>
+<p>注意：</p>
+<ul>
+<li>保持数据分布的一致性，如分布采样/分层采样（stratified sampling）</li>
+<li>多次重复划分，如100次随机划分</li>
+<li>测试集不能太大、不能太小（$\frac{1}{5}$~$\frac{1}{3}$）</li>
+</ul>
+<p>Q：如果有一些数据，每次重复划分都在训练集里，永远没有被用作测试怎么办？</p>
+<p>A：使用k折交叉验证，可以保证所有数据都成为过测试数据。</p>
+<h3 id="k折交叉验证"><a href="#k折交叉验证" class="headerlink" title="k折交叉验证"></a>k折交叉验证</h3><p>将数据集（共m个样本）划分为k个大小相似的互斥子集，每次用k-1个子集的并集作为训练集，余下的那个子集作为测试集。</p>
+<p>留一法（leave-one-out, LOO）：k=m时的k折交叉验证，即每1个样本都被用作其余m-1个样本的测试数据一次。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181649476.png" alt="10折交叉验证"></p>
+<p>将m个样本划分为k个子集的方式有很多，为了减小因划分方式的不同而引入的差别，通常要重复p次不同的划分方式，最终的评估结果为“p次k折交叉验证”的均值，如“10次10折交叉验证”。</p>
+<p>k折交叉验证中，将k-1个子集训练出的Model，视为用全部数据集训练出的Model进行评估，即$\widetilde{M}<em>k=M</em>{k-1}$。</p>
+<p>Q：有没有什么方法，既可以直接得到$M_k$，又有剩余的数据进行测试呢？</p>
+<p>A：自助法</p>
+<h3 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h3><p>自助法以自助采样法（bootstrap sampling）为基础（Efron and Tibshirani,  1993），其内容为：</p>
+<p>给定数据集D（共m个样本）和数据集$D^{\prime}$（初始共0个样本），重复m次以下操作：从D中随机选中1个样本，<strong>复制</strong>进$D^{\prime}$。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181732638.png" alt=""></p>
+<p>这样就得到了训练集：具有m个样本（可能重复）的数据集$D^{\prime}$，和测试集：未出现在$D^{\prime}$中的样本集合$D-D^{\prime}$。</p>
+<p>Q：某个样本在m次操作中没有被选中的概率是多少？</p>
+<p>A：</p>
+<script type="math/tex; mode=display">
+\lim_{m\rightarrow\infty}{\left(1-\frac{1}{m}\right)^{m}=\frac{1}{e}\approx0.368}</script><p>即每个样本都有36.8%的概率不被选为训练数据，那么根据数学期望可得训练集的大小，即$E(D-D^{\prime})=0.368*\left\vert D\right\vert$</p>
+<p>使用这样的测试集完成的估计，也称作“包外估计”（out-of-bag estimation）</p>
+<p>注意：</p>
+<ul>
+<li><strong>改变了数据分布</strong></li>
+</ul>
+<p>所以，当数据分布不那么重要，或数据集过小时，可以考虑自助法。</p>
+<h2 id="调参与验证集"><a href="#调参与验证集" class="headerlink" title="调参与验证集"></a>调参与验证集</h2><p>算法的参数：一般由人工设定，亦称“超参数”，数目常在10以内。</p>
+<p>模型的参数：一般由学习确定，数目可能极多，深度学习中可达上百亿。</p>
+<p>对算法的参数进行调整，即“参数调节”，简称“调参”（parameter tuning）。</p>
+<p>事实上，前文中提到的，从训练集中划分出的、用于评估模型的数据，常称为“验证集”（validation set）。而真正的测试集是指在实际使用中遇到的、真的没有标签的数据。</p>
+<p>当通过评估确定算法的参数后，因评估过程中仅使用训练集训练模型，所以应该用这些确定的参数对全部数据（训练集+验证集，即D）重新训练出模型，提交给用户。</p>
+<h2 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h2><p>性能度量（performance measure）：对学习器的泛化性能进行评估。</p>
+<h3 id="错误率、精度"><a href="#错误率、精度" class="headerlink" title="错误率、精度"></a>错误率、精度</h3><p>回归任务中：</p>
+<p>均方误差（mean squared error）：</p>
+<script type="math/tex; mode=display">
+E(f ; D)=\frac{1}{m} \sum_{i=1}^m\left(f\left(\boldsymbol{x}_i\right)-y_i\right)^2</script><p>给定数据分布$\mathcal{D}$和概率密度函数$p(\cdot)$的一般形式：</p>
+<script type="math/tex; mode=display">
+E(f ; \mathcal{D})=
+\int_{x\sim \mathcal{D}}p(\boldsymbol{x})\left(f\left(\boldsymbol{x}\right)-y\right)^2d\boldsymbol{x}</script><p>分类任务中：</p>
+<p>错误率：</p>
+<script type="math/tex; mode=display">
+E(f ; D)=\frac{1}{m} \sum_{i=1}^m \mathbb{I}\left(f\left(\boldsymbol{x}_i\right) \neq y_i\right)</script><p>正确率：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+acc(f ; D) &= 1 - E(f ; D) \\
+&= \frac{1}{m} \sum_{i=1}^m \mathbb{I}\left(f\left(\boldsymbol{x}_i\right) = y_i\right)
+\end{align*}</script><p>给定数据分布$\mathcal{D}$和概率密度函数$p(\cdot)$的一般形式：</p>
+<script type="math/tex; mode=display">
+E(f ; \mathcal{D})=
+\int_{x\sim \mathcal{D}}p(\boldsymbol{x})\mathbb{I}\left(f\left(\boldsymbol{x}\right) \neq y\right)d\boldsymbol{x}</script><script type="math/tex; mode=display">
+\begin{align*}
+acc(f ; D) &= 1 - E(f ; \mathcal{D})) \\
+&= \int_{x\sim \mathcal{D}}p(\boldsymbol{x})\mathbb{I}\left(f\left(\boldsymbol{x}\right) = y\right)d\boldsymbol{x}
+\end{align*}</script><h3 id="查准率、查全率"><a href="#查准率、查全率" class="headerlink" title="查准率、查全率"></a>查准率、查全率</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210182021438.png" alt="分类结果混淆矩阵"></p>
+<p>TF：预测对了或错了</p>
+<p>PN：预测结果</p>
+<p>例如FN（假反例）：预测错了，给预测成反例了。</p>
+<p>查准率（precision）：预测结果准确的比率，如“预测出的好瓜里有多少是真的好瓜”</p>
+<script type="math/tex; mode=display">
+P = \frac{TP}{TP + FP}</script><p>查全率（recall）：预测结果全面的比率，如“预测出的好瓜占所有好瓜的多少”</p>
+<script type="math/tex; mode=display">
+R = \frac{TP}{TP + FN}</script><h3 id="F1-、-F-beta"><a href="#F1-、-F-beta" class="headerlink" title="$F1$、$F_\beta$"></a>$F1$、$F_\beta$</h3><p>为了同时考虑查准率与查全率，同时又<strong>不忽视较小值</strong>，我们可以对二者进行调和平均，得到F1度量。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\frac{1}{F1} &= \frac{1}{2} \cdot \left(\frac{1}{P} + \frac{1}{R}\right) \\
+&= \frac{\left\vert D \right\vert + TP - TN}{2 \times TP}
+\end{align*}</script><p>即</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+F1 &= \frac{2 \times P \times R}{P + R}\\
+&=\frac{2 \times TP}{\left\vert D \right\vert + TP - TN}
+\end{align*}</script><p>如果对P和R有偏好，可以对二者进行<strong>加权</strong>调和平均，得到$F_\beta$度量。</p>
+<script type="math/tex; mode=display">
+\frac{1}{F_\beta}=\frac{1}{1+\beta^2} \cdot\left(\frac{1}{P}+\frac{\beta^2}{R}\right)</script><script type="math/tex; mode=display">
+F_\beta=\frac{\left(1+\beta^2\right) \times P \times R}{\left(\beta^2 \times P\right)+R}</script><p>注. 这里的权重$\beta$加在R上，P的权重为1。所以当$\beta &lt; 1$时，P更重要；当$\beta &gt; 1$时，R更重要。</p>
+<h2 id="比较检验"><a href="#比较检验" class="headerlink" title="比较检验"></a>比较检验</h2><p>学习器间的性能比较是一件复杂的事情，因为：</p>
+<ul>
+<li>测试性能不等于泛化性能（验证集不等于测试集）</li>
+<li>测试性能随测试集变化</li>
+<li>很多机器学习算法本身有一定的随机性</li>
+</ul>
+<p>我们可以使用统计假设检验（hypothesis test）<strong>在统计意义上</strong>比较学习器的泛化性能。</p>
+<p>单个学习器假设检验：二项检验（binomial test）、t检验（t-test）</p>
+<p>两个学习器假设检验：交叉验证t检验、McNemar检验</p>
+<p>多个学习器假设检验：Friedman检验、Nemenyi后续检验</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210182132310.png" alt=""></p>
+<p>阈值上升，则预测为正类的样本（P）可能变少，预测为负类的样本（N）可能变多。因R的分子含TP，可能变小，分母恒为真实情况正例数，所以R下降或不变。根据P-R曲线（这不是个经验曲线吗？一定准确？），P上升。</p>
+<h1 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h1><p>人类很难直接思考非线性问题，而在思考线性问题时可以有几何上的直观印象，基于这种直观印象，再加上一些技巧，便可能得到复杂的非线性问题的解决方案，所以线性模型很重要。</p>
+<p>回归（regression）：该词源于生物学，意思是平均而言，子代的表现型比其父代更接近该物种的基因型应该表现出来的样子。所以回归就是根据样本的“表现型”确定其“基因型”。在统计学上，指确定变量之间的关系。</p>
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>线性回归（linear regression）：将变量间的关系建模为线性方程（线性模型）的回归分析。</p>
+<p>线性回归在分类问题中，建模出一个线性方程，用于将不同样本“分开”。</p>
+<p>线性回归在回归问题中，建模出一个线性方程，用于将样本“串起来”。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210191525198.png" alt=""></p>
+<p>以上图为例，即确定</p>
+<script type="math/tex; mode=display">
+f(x_i)=w x_i + b\\
+s.t.\quad  f(x_i) \simeq y_i</script><p>注. $\simeq$是<code>\simeq</code>，“similar equal”，近似相等。</p>
+<p>更一般地，该线性模型的标量形式为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&f(\boldsymbol{x})=w_1 x_1+w_2 x_2+\ldots+w_d x_d+b \\
+\end{aligned}</script><p>向量形式为：</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><p>Q：若某一组输入的属性是离散的，如三值长度属性：{“长”，“中”，“短”}或三值敲声属性：{“浊响”，“清脆”，“沉闷”}，如何回归分析？</p>
+<p>A：可以对输入属性进行处理，若属性值间存在“序”（order）关系，则可将其连续化，成为连续值，如长度属性可转化为${1.0, 0.5, 0.0}$。若属性值间不存在序关系，则可以将其one-hot编码，成为one-hot向量，如敲声属性可转化为${(1, 0, 0), (0, 1, 0), (0, 0, 1)}$</p>
+<p>注. pandas中通过get_dummies（转哑变量）实现one-hot编码。</p>
+<p>Q：线性回归怎么得到线性模型的呢？</p>
+<p>A：通过使均方误差最小化，解出$w^<em>$和$b^</em>$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\left(w^*, b^*\right) &=\underset{(w, b)}{\arg \min } \sum_{i=1}^m\left(f\left(x_i\right)-y_i\right)^2 \\
+&=\underset{(w, b)}{\arg \min } \sum_{i=1}^m\left(y_i-w x_i-b\right)^2
+\end{aligned}</script><p>注. </p>
+<p>$\left(x_1, x_2, …, x_n\right)$代表行向量</p>
+<script type="math/tex; mode=display">
+\left[x_1, x_2, ..., x_n\right]</script><p>$\left(x_1; x_2; …; x_n\right)$代表列向量</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}</script><h2 id="线性回归求解析解（最小二乘解）"><a href="#线性回归求解析解（最小二乘解）" class="headerlink" title="线性回归求解析解（最小二乘解）"></a>线性回归求解析解（最小二乘解）</h2><p>上述通过使均方误差最小化得到的解，也叫最小二乘/最小平方（least square method）解。</p>
+<p>最小二乘解是一种解析解/闭式解（Closed-form expression），其解法如下：</p>
+<p>分别对$w$和$b$求导</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\frac{\partial E_{(w, b)}}{\partial w}=2\left(w \sum_{i=1}^m x_i^2-\sum_{i=1}^m\left(y_i-b\right) x_i\right) \\
+&\frac{\partial E_{(w, b)}}{\partial b}=2\left(m b-\sum_{i=1}^m\left(y_i-w x_i\right)\right)
+\end{aligned}</script><p>令导数为 0, 得到解析解:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w&=\frac{\sum\limits_{i=1}^m y_i\left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^m x_i^2-\frac{1}{m}\left(\sum\limits_{i=1}^m x_i\right)^2} \\
+b&=\frac{1}{m} \sum_{i=1}^m\left(y_i-w x_i\right)
+\end{aligned}</script><p>因为<script type="math/tex">E_{(w, b)}</script>是一个关于$w$和$b$的凸函数，所以其关于$w$和$b$的导数为0时，解得的就是最优解<script type="math/tex">\left(w^*, b^*\right)</script>，对应全局极小点<script type="math/tex">\left(w^*, b^*; E_{min}\right)</script>。</p>
+<p>推导过程：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222226628.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222238324.png" alt=""></p>
+<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>如第一节中所述，线性回归的一般形式是</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x_i})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b\\
+s.t.\quad  f(\boldsymbol{x_i}) \simeq y_i</script><p>其中$\boldsymbol{x<em>i}=\left(x</em>{i1}; x<em>{i2}; …; x</em>{id}\right)$，样本共有$d$个属性。</p>
+<p>这便是“多元线性回归”（multivariate linear regression）。</p>
+<p>类似地，我们仍可以利用最小二乘法得到其最优参数。但为了方便解，我们首先对一般形式进行调整。</p>
+<p>令</p>
+<script type="math/tex; mode=display">
+\cases{
+\begin{align*}
+    \hat{\boldsymbol{w}} &= (\boldsymbol{w}; b) \\
+    \hat{\boldsymbol{x}}_i &= (\boldsymbol{x_i}; 1)
+\end{align*}
+}</script><p>即</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{w}}^{\mathrm{T}} \hat{\boldsymbol{x}}_i = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b</script><p>那么，数据集即为</p>
+<script type="math/tex; mode=display">
+\mathbf{X}=\left(
+\begin{array}{ccccc}
+x_{11} & x_{12} & \cdots & x_{1 d} & 1 \\
+x_{21} & x_{22} & \cdots & x_{2 d} & 1 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+x_{m 1} & x_{m 2} & \cdots & x_{m d} & 1
+\end{array}
+\right)
+=\left(
+\begin{array}{cc}
+\boldsymbol{x}_1^{\mathrm{T}} & 1 \\
+\boldsymbol{x}_2^{\mathrm{T}} & 1 \\
+\vdots & \vdots \\
+\boldsymbol{x}_m^{\mathrm{T}} & 1
+\end{array}\right)
+\quad
+\boldsymbol{y}=\begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_m
+\end{pmatrix}</script><p>类似地，令均方误差最小</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\hat{\boldsymbol{w}}^*=\underset{\hat{\boldsymbol{w}}}{\arg \min }(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})\\
+\end{aligned}</script><p>注. 需要从一般形式推导至向量形式</p>
+<p>设</p>
+<script type="math/tex; mode=display">
+E_{\hat{\boldsymbol{w}}}=(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})</script><p> 对$\hat{\boldsymbol{w}} $求导，得</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_{\hat{\boldsymbol{w}}}}{\partial \hat{\boldsymbol{w}}}=2 \mathbf{X}^{\mathrm{T}}(\mathbf{X} \hat{\boldsymbol{w}}-\boldsymbol{y})</script><p>令其为零即可得$\hat{\boldsymbol{w}}$</p>
+<p>但，若想解出$\hat{\boldsymbol{w}}$，需要对$\mathbf{X}$求逆！</p>
+<p>所以，若：</p>
+<ul>
+<li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$为满秩矩阵或正定矩阵，则可以解得唯一$\hat{\boldsymbol{w}}^* = \left(\mathbf{X}^{\mathrm{T}}\mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}}\boldsymbol{y}$</li>
+<li>$\mathbf{X}^{\mathrm{T}}\mathbf{X}$不为满秩矩阵，则$\hat{\boldsymbol{w}}$不唯一，此时需要引入归纳偏好/正则化使其可解</li>
+</ul>
+<h2 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h2><p>在$f(\boldsymbol{x})$预测出$y$后，我们还可以预测$y$的“衍生物”（以$y$为自变量的其他函数），即</p>
+<script type="math/tex; mode=display">
+g(y) = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><p>其中$g(\cdot)$称为“联系函数”（link function），其单调可微、连续且充分光滑。</p>
+<p>其等价于</p>
+<script type="math/tex; mode=display">
+y = g^{-1}(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b)</script><p>即我们用线性模型，逼近/预测了标记的“衍生物”，这样得到的模型称为“广义线性模型”（generalized linear model）。</p>
+<p>当$g(\cdot) = ln(\cdot)$时，即得到“对数线性模型”（log-linear model）</p>
+<script type="math/tex; mode=display">
+ln(y) = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><script type="math/tex; mode=display">
+y = \exp(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b)</script><p>首先预处理标记，然后以线性回归求解线性模型的参数，最后得到标记真实的模型——指数模型。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210192108509.png" alt=""></p>
+<p>注. 广义线性模型的参数估计常通过加权最小二乘法或极大似然法进行。</p>
+<h2 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h2><p>使用线性模型和广义线性模型进行回归分析，可以解决回归任务。</p>
+<p>那么对于分类任务，事实上是在更进一步地，将线性模型的连续预测值$z$映射到离散的真实标记$y$。</p>
+<p>以二分类任务为例，设其输出标记 $y \in {0, 1} $，其线性回归模型及其预测值$z=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b$。</p>
+<p>那么为了将$z$映射到$y$，有一个最理想的函数“单位阶跃函数”（unit-step function）</p>
+<script type="math/tex; mode=display">
+y=\left\{
+\begin{array}{cc}
+0, & z<0 \\
+0.5, & z=0 \\
+1, & z>0
+\end{array}
+\right.</script><p>其在预测值大于零时判为正例，小于零时判为负例，等于零（临界值）时任意判别，取两标记0和1的平均值0.5。</p>
+<p>但单位阶跃函数性质很差，不连续且不可微，所以需要寻找能在一定程度上近似它的、性质好的“替代函数”（surrogate function）。</p>
+<p>我们常用“对数几率函数”（logistic function）替代单位阶跃函数，其表达式为：</p>
+<script type="math/tex; mode=display">
+y = \frac{1}{1 + \exp{\left(-z\right)}}</script><p>二者的函数图像为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210201222973.png" alt=""></p>
+<p>对数几率（对率）函数是一种代表性的Sigmoid函数（形似“S”的函数），其单调可微、任意阶可导，并且能将$z$映射到<strong>接近0或1</strong>的$y$，且在$z=0$附近很“陡”。</p>
+<p>注. “对数几率”logistic一词源自统计学造词术语logit，其原本的单词为log odds，odds是“事件发生的概率与事件不发生的概率之比”，可译作“几率”或“发生比”。</p>
+<p>将线性模型代入对数几率函数（将对率函数视作$y=g^{-1}(\cdot)$），得到广义线性模型$y=g^{-1}(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b)$</p>
+<script type="math/tex; mode=display">
+y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)\right)}}</script><p>将其转化为线性回归的形式，即</p>
+<script type="math/tex; mode=display">
+\ln\frac{y}{1-y}=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b</script><p>$y$是学习器将样本视作正例的可能性，$1-y$是学习器将样本视作负例的可能性，所以$\frac{y}{1-y}$便是odds，$\ln\frac{y}{1-y}$便是log odds，即logit。所以该模型称作“对数几率模型”。</p>
+<p>虽然对数几率模型是用线性回归方法确定的，也被叫做对数几率回归（logistic regression），但其实际上用于分类任务。</p>
+<p>注. 统计回归方法只用于确定一个模型，模型适用于分类任务还是回归任务，是由模型自身决定的。</p>
+<p>优点：</p>
+<ul>
+<li>无需事先假设数据分布（直接对原始的“类别”可能性建模，即将$\mathbb{R}$压缩到(0, 1)）</li>
+<li>可得到“类别”的<strong>近似概率</strong>预测</li>
+<li>可直接应用现有数值优化方法求取最优解（模型/目标函数<strong>的对数似然函数</strong>是任意阶可导的<strong>凸函数</strong>）</li>
+</ul>
+<h2 id="对数几率回归求近似解"><a href="#对数几率回归求近似解" class="headerlink" title="对数几率回归求近似解"></a>对数几率回归求近似解</h2><p>Note. $P(A\mid B)$, is usually read as “the conditional probability of <em>A</em> <strong>given</strong> <em>B</em>“.</p>
+<p>事实上， $y = \frac{1}{1 + \exp{\left(-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)\right)}}$ 是非凸的，所以不能用最小二乘法确定模型。</p>
+<p>既然原函数是非凸的，我们可以考虑其“对数似然函数”（log-likelihood function）。</p>
+<p>似然，是指当已知结果时，对其参数的推测。（也很类似从“表现型”得到“基因型”）</p>
+<p>例如在二分类问题中，似然函数就是</p>
+<script type="math/tex; mode=display">
+\ell=\sum_{i} \left(P(实际y_i为正类)P(预测y_i为正类)+P(实际y_i为负类)P(预测y_i为负类)\right)</script><p>当其最大时所对应的参数就最接近原函数的解。</p>
+<p>在计算机处理较小数的乘法时可能会发生数值下溢，所以使用对数似然，即对似然函数取对数。</p>
+<p>当线性模型参数$\boldsymbol{w}$和$b$确定时，可得$y$的后验概率估计$p(y_i \mid \boldsymbol{x})$</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+\ln \frac{p(y=1\mid \boldsymbol{x})}{p(y=0\mid \boldsymbol{x})} = \boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b\\
+{p(y=1\mid \boldsymbol{x})} + {p(y=0\mid \boldsymbol{x})} = 1
+\end{array}
+\right.</script><p>解得</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+p(y=1\mid \boldsymbol{x}) = \frac{\exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
+p(y=0\mid \boldsymbol{x}) = \frac{1}{1 + \exp\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x} + b\right)} \\
+\end{array}
+\right.</script><p>现在确定线性模型参数$\boldsymbol{w}$和$b$（将它们设为$\boldsymbol{\beta}$），令</p>
+<script type="math/tex; mode=display">
+\cases{
+\begin{align*}
+    \boldsymbol{\beta} &= (\boldsymbol{w}; b) \\
+    \hat{\boldsymbol{x}}_i &= (\boldsymbol{x_i}; 1)
+\end{align*}
+}</script><p>即</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i = \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b</script><p>注. 设为$\boldsymbol{\beta}$是因为最优化中二阶导方法喜欢用这个符号。</p>
+<p>令</p>
+<script type="math/tex; mode=display">
+p_1(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = p(y=1 \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) =\frac{\exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\
+p_0(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = p(y=0 \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) =\frac{1}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} \\</script><p>那么，每个似然项表达式为</p>
+<script type="math/tex; mode=display">
+p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = y_ip_1(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) + (1-y_i)p_0(\hat{\boldsymbol{x}}_i; \boldsymbol{\beta})</script><p>对数似然函数为</p>
+<script type="math/tex; mode=display">
+\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\ln p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta})</script><p>用最优化形式表达最大似然法</p>
+<script type="math/tex; mode=display">
+\max \quad \ell(\boldsymbol{\beta})</script><p>化简似然项$p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta})$</p>
+<script type="math/tex; mode=display">
+p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = \left\{
+\begin{array}{cc}
+\frac{\exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} & ,y_i=1\\
+\frac{1}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)} & ,y_i=0
+\end{array}
+\right.</script><p>即</p>
+<script type="math/tex; mode=display">
+p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) = \frac{\exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)^{y_i}}{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}</script><p>注. 我觉得这里我的化简方法比西瓜书和南瓜书更简单。</p>
+<p>其对数似然</p>
+
+$$
+\begin{aligned}
+\ln p(y_i \mid \hat{\boldsymbol{x}}_i; \boldsymbol{\beta}) 
+&= {y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}-\ln\left({1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}\right)\\
+&= \ln \exp \left({y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}\right) - \ln\left({1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}\right)\\
+&= \ln \frac{{y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}}{{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}}
+\end{aligned}
+$$
+
+<p>最大似然法的最大化式等价于</p>
+<script type="math/tex; mode=display">
+\min \quad -\ell(\boldsymbol{\beta})</script><p>即</p>
+
+$$
+\min \quad \sum_{i=1}^{m}\ln \frac{{1 + \exp\left(\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i\right)}}{{y_i}{\boldsymbol{\beta}^{\mathrm{T}} \hat{\boldsymbol{x}}_i}}
+$$
+
+<p>是一种<strong>无约束优化问题</strong>。</p>
+<p>此时的求和项，是一个关于$\boldsymbol{\beta}$高阶可导的、连续的凸函数，证明先贴南瓜书，等我啃完西瓜书再回来重写。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210211705035.png" alt=""></p>
+<p>所以我们可以采用梯度下降法、牛顿法等二阶导最优化方法求得其近似最优解$\boldsymbol{\beta}^*$</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\beta}^*=\underset{\boldsymbol{\beta}}{\arg \min } \ell(\boldsymbol{\beta})</script><p>若使用牛顿法，其第$t+1$轮迭代解的更新公式为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\beta}^{t+1}=\boldsymbol{\beta}^t-\left(\frac{\partial^2 \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta} \partial \boldsymbol{\beta}^T}\right)^{-1} \frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}</script><p>其中，关于$\boldsymbol{\beta}$的一阶、二阶导数分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}&=-\sum_{i=1}^m \hat{\boldsymbol{x}}_i\left(y_i-p_1\left(\hat{\boldsymbol{x}}_i ; \boldsymbol{\beta}\right)\right)\\
+\frac{\partial^2 \ell(\boldsymbol{\beta})}{\partial \boldsymbol{\beta} \partial \boldsymbol{\beta}^{\mathrm{T}}}&=\sum_{i=1}^m \hat{\boldsymbol{x}}_i \hat{\boldsymbol{x}}_i^{\mathrm{T}} p_1\left(\hat{\boldsymbol{x}}_i ; \boldsymbol{\beta}\right)\left(1-p_1\left(\hat{\boldsymbol{x}}_i ; \boldsymbol{\beta}\right)\right)
+\end{aligned}</script><p>但我们还是偏向使用梯度下降法解决问题。</p>
+<p>Q：为什么是近似最优解？</p>
+<p>A：梯度下降法和牛顿法，二者的迭代终止条件均为$\left|f\left(\boldsymbol{x}^{t+1}\right)-f\left(\boldsymbol{x}^t\right)\right|&lt;\epsilon$，且牛顿法的迭代公式通过<strong>必要条件</strong>推导而来，不保证是极小值点。</p>
+<p>Q：为什么更偏向使用梯度下降法？</p>
+<p>A：因为梯度下降法的更新公式$w = w + \Delta w$是迭代的，更适合计算机采用并行处理，速度快。牛顿法每次迭代时需要求解Hessian矩阵的逆矩阵，计算量通常较大，速度慢。</p>
+<p>Q：为什么不用一阶导方法了？</p>
+<p>A：当输入是向量时，需要涉及到矩阵的逆矩阵（对应标量计算中的除法），如多元线性回归中的最优解$\hat{\boldsymbol{w}}^* = \left(\mathbf{X}^{\mathrm{T}}\mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}}\boldsymbol{y}$，而输入矩阵很可能不存在逆矩阵。</p>
+<h2 id="类别不平衡"><a href="#类别不平衡" class="headerlink" title="类别不平衡"></a>类别不平衡</h2><p>类别不平衡（class-imbalance）：分类任务中不同类别的样例数目差别很大的情况。</p>
+<p>以二分类问题为例，通常的分类思想是，线性模型预测出的$y$（或者说$\hat{y}$）大于某个阈值（threshold）时，将其判为正例，最朴素的阈值是0.5，即</p>
+<script type="math/tex; mode=display">
+y > 0.5</script><p>或用odds表示</p>
+<script type="math/tex; mode=display">
+\frac{y}{1-y} > 1</script><p>假如样本中正例过少，而正例又很重要时（不能预测错了），那么我们必须要解决类别不平衡问题。</p>
+<p>设$m^+$表示训练集中的正例数目，$m^-$表示训练集中的负例数目。</p>
+<p>那么，一种自然的想法就是按照比例降低阈值，提高将样本判断为正例的可能性</p>
+<script type="math/tex; mode=display">
+y > \frac{m^+}{m^+ + m^-}</script><p>即</p>
+<script type="math/tex; mode=display">
+\frac{y}{1-y} > \frac{m^+}{m^-}</script><p>那么，即可设$y^{\prime}$，使其满足</p>
+<script type="math/tex; mode=display">
+\frac{y^{\prime}}{1-y^{\prime}} = \frac{y}{1-y} \times \frac{m^-}{m^+} > \frac{m^+}{m^-} \times \frac{m^-}{m^+} = 1</script><p>这就是解决类别不平衡的一个基本策略——“再缩放”/“再平衡”（rescaling/rebalance）。</p>
+<p>但因为训练集和真实情况的分布往往不同（即不是“无偏采样”），训练集中正例少，不一定说明gt正例少，所以不一定准确。</p>
+<p>实际上，现在针对类别不平衡实现的做法有：</p>
+<ul>
+<li>欠采样/下采样（undersampling/downsampling）：去除一些反例，使正、反例数目接近。如EasyEnsemble算法（划分反例、集成）</li>
+<li>过采样/上采样（oversampling/upsampling）：增加一些正例，使正、反例数目接近。如SMOTE算法（插值）</li>
+<li>阈值移动（threshold-moving）：使用原始训练集训练，预测时使用$y^{\prime}$进行决策。</li>
+</ul>
+<h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><p>这一章的测试开始有计算了。</p>
+<p><strong>题6</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210212130810.png" alt=""></p>
+<p>A经化简，为$g(y) = \frac{e^y}{1 +e^y} = \boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b$，与B、C同样为单调函数；而D是非单调函数。</p>
+<p>因$g(\cdot)$是单调、可微、连续、充分光滑的，所以答案是D。</p>
+<p><strong>题7</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222257942.png" alt=""></p>
+<p>多元线性回归使用正则化的原因：</p>
+<ul>
+<li>计算机数值精度有限</li>
+<li>样例维度大于样例数</li>
+<li>存在大量线性相关的样例</li>
+</ul>
+<p>注. 不明白为什么，我只知道正则化可以防止过拟合。</p>
+<p><strong>题9</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222121726.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222239198.png" alt=""></p>
+<p><strong>题10</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222240105.png" alt=""></p>
+<p>这个损失函数带着$\sum$推导很难受，只是为了做题的话可以直接代入。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222253045.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222251868.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222249514.png" alt=""></p>
+<p>Q：为啥答案里没有负的那个？</p>
+<p>A：也许负的那个不是最小值点。</p>
+<p><strong>题12</strong></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210222310757.png" alt=""></p>
+<p>OvR，One vs. Rest，一对其余。</p>
+<p>类别均衡的10分类问题，所以正反例的样本数目之比为$m^+:m^- = 1:9$，$y &gt; \frac{m^+}{m^+ + m^-} = \frac{1}{10} = 0.100$。</p>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="决策树基本流程"><a href="#决策树基本流程" class="headerlink" title="决策树基本流程"></a>决策树基本流程</h2><p>决策树（decision tree）是一种特殊的树，其包含：</p>
+<ul>
+<li>一个根结点</li>
+<li>若干个内部结点（非根/叶结点）</li>
+<li>若干个叶结点</li>
+</ul>
+<p>其中，每个结点都包含“样本集合”。根节点对应“样本全集”，内部结点对应“属性测试的结果”，叶结点对应“决策结果”。从根结点到叶结点的路径对应“判定测试序列”。</p>
+<p>决策树学习，目的是生成一棵泛化能力强的决策树，其算法遵循简单直观的“分而治之”（divide-and-conquer, 分治）策略：</p>
+<p>自根至叶递归</p>
+<p>在每个内部结点寻找一个“划分”（split or test）属性</p>
+<p>三种停止条件：</p>
+<ul>
+<li>当前结点包含的样本均属于同一类别，无需划分</li>
+<li>当前属性集为空, 或是所有样本在所有属性上取值相同，无法划分</li>
+<li>当前结点包含的样本集合为空，无法划分</li>
+</ul>
+<p>算法描述：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210231203416.png" alt=""></p>
+<p>（关于情形3，直接返回了的话，后面的属性值怎么办？）</p>
+<h2 id="信息增益属性划分准则"><a href="#信息增益属性划分准则" class="headerlink" title="信息增益属性划分准则"></a>信息增益属性划分准则</h2><p>许多机器学习算法都受到了信息论的启发，决策树也不例外。</p>
+<p>按上一节中的决策树学习策略，我们可以看出，随着划分过程的不断进行，算法希望分支结点所包含的样本尽可能属于同一类别，即结点的“纯度”（purity）越来越高。</p>
+<p>“纯度”越高，“不确定度”就越低，所以我们可以用描述不确定度的“信息熵”来作为纯度指标。</p>
+<p>信息熵（information entropy）：描述信息源$X$中各可能事件$x$发生的不确定性。是随机变量$X$的自信息$-\log\ p(⁡x)$（概率越大，信息量/不确定度越小）的数学期望。</p>
+<p>若样本集合$D$中第$k$类样本所占的比例为$p_k(k = 1, 2, \ldots, |\mathcal{Y}|)$，则$D$的信息熵定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Ent}(D)=-\sum_{k=1}^{|\mathcal{Y}|} p_k \log _2 p_k</script><p>即$\operatorname{Ent}(D)$越小，$D$的纯度越高。</p>
+<p>当$D$中只有一类样本时，$\operatorname{Ent}(D)$最小，<script type="math/tex">p_1 = 1</script>，<script type="math/tex">\operatorname{Ent}(D)_{min} = -1 \cdot \log_2 1 = 0</script></p>
+<p>当$D$中的样本类别均衡（均分）时，$\operatorname{Ent}(D)$最大，<script type="math/tex">p_k = \frac{1}{|\mathcal{Y}|}</script>，<script type="math/tex">\operatorname{Ent}(D)_{max} = -|\mathcal{Y}|\cdot\frac{1}{|\mathcal{Y}|} \cdot \log_2 \frac{1}{|\mathcal{Y}|} = \log_2 |\mathcal{Y}|</script></p>
+<p>注. <code>\operatorname</code>就是切换成直立体，和<code>\log</code>类似。</p>
+<p>接下来再来看第8步</p>
+<blockquote>
+<p>训练集 <script type="math/tex">D=\left\{\left(x_1, y_1\right),\left(x_2, y_2\right), \ldots,\left(x_m, y_m\right)\right\}</script>;<br>属性集 <script type="math/tex">A=\left\{a_1, a_2, \ldots, a_d\right\}</script>.</p>
+<p>8: 从$A$中选择最优划分属性$a_*$;</p>
+</blockquote>
+<p>对于属性$a_i$，假设其有$V$个属性值<script type="math/tex">\left\{a_i^1, a_i^2, \ldots, a_i^v, \ldots, a_i^V\right\}</script>。</p>
+<p>那么，使用属性$a_i$划分时会产生$V$个分支结点。其中，第$v$个分支结点包含$D$中的、在属性$a_i$上取值为$a_i^v$的样本，记为$D^v$。则使用属性$a_i$划分$D$所获得的“信息增益”（information gain）定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain}(D, a_i) = \operatorname{Ent}(D) - \sum_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)</script><p>其中$\frac{|D^v|}{|D|}$为分支结点的权重，样本数越多的分支结点，影响越大。</p>
+<p>$\operatorname{Ent}(D)$是划分前的信息熵，$\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)$是划分后的总信息熵，划分前后的信息熵下降得越大（“纯度提升”越大），所获得的信息增益就越高。</p>
+<p>所以，我们可以用信息增益的大小来选择$a_*$</p>
+<script type="math/tex; mode=display">
+a_* = \underset{a_i \in A}{\arg \max} \operatorname{Gain}(D, a_i)</script><p>注. ID3算法中使用信息增益作为划分准则。</p>
+<p><strong>下面以西瓜数据集2.0为例进行划分。</strong></p>
+<script type="math/tex; mode=display">
+西瓜数据集2.0 \\
+\begin{array}{cccccccc}
+\hline
+编号 & 色泽 & 根蒂 & 敲声 & 纹理 & 脐部 & 触感 & 好瓜 \\
+\hline
+1 & 青绿 & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+2 & 乌黑 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & 硬滑 & 是 \\
+3 & 乌黑 & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+4 & 青绿 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & 硬滑 & 是 \\
+5 & 浅白 & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+6 & 青绿 & 稍蜷 & 浊响 & 清晰 & 稍凹 & 软粘 & 是 \\
+7 & 乌黑 & 稍蜷 & 浊响 & 稍糊 & 稍凹 & 软粘 & 是 \\
+8 & 乌黑 & 稍蜷 & 浊响 & 清晰 & 稍凹 & 硬滑 & 是 \\
+\hline
+9 & 乌黑 & 稍蜷 & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+10 & 青绿 & 硬挺 & 清脆 & 清晰 & 平坦 & 软粘 & 否 \\
+11 & 浅白 & 硬挺 & 清脆 & 模糊 & 平坦 & 硬滑 & 否 \\
+12 & 浅白 & 蜷缩 & 浊响 & 模糊 & 平坦 & 软粘 & 否 \\
+13 & 青绿 & 稍蜷 & 浊响 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+14 & 浅白 & 稍蜷 & 沉闷 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+15 & 乌黑 & 稍蜷 & 浊响 & 清晰 & 稍凹 & 软粘 & 否 \\
+16 & 浅白 & 蜷缩 & 浊响 & 模糊 & 平坦 & 硬滑 & 否 \\
+17 & 青绿 & 蜷缩 & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+\hline
+\end{array}</script><p>该数据集包含17个训练样例，欲训练出一颗决策树，用来判断没切开的瓜是不是好瓜。</p>
+<p>首先可以看出，$\mathcal{Y} = {是， 否}$，$|\mathcal{Y}|=2$。</p>
+<p>其中，正例所占比例为$p_1= \frac{8}{17}$，反例所占比例为$p_2=\frac{9}{17}$。</p>
+<p>那么，根节点的信息熵为</p>
+<script type="math/tex; mode=display">
+\operatorname{Ent}(D) = -\sum_{k=1}^{2}p_k\log_2p_k = -(\frac{8}{17}\log_2\frac{8}{17}+\frac{9}{17}\log_2\frac{9}{17}) = 0.998</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232016622.png" alt=""></p>
+<p>当前属性集合$A = {色泽, 根蒂, 敲声, 纹理, 脐部, 触感}$，现在计算按每个属性划分$D$所带来的的信息增益。</p>
+<p>首先是属性“色泽”，其属性值为${青绿, 乌黑, 浅白}$，分别对$D$进行划分，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+D^1(色泽=青绿) &= \{1, 4, 6,|  10, 13, 17\} &p_1=\frac{3}{6},\quad p_2=\frac{3}{6}\\
+D^2(色泽=乌黑) &= \{2, 3, 7, 8,| 9, 15\} &p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\\
+D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}{5}\\
+\end{aligned}</script><p>划分后，3个分支节点的信息熵分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}(D^1) &= -\left(\frac{1}{2}\log_2\frac{1}{2} + \frac{1}{2}\log_2\frac{1}{2}\right)=1.000 = \log_2 2 \\
+\operatorname{Ent}(D^2) &= -\left(\frac{2}{3}\log_2\frac{2}{3} + \frac{1}{3}\log_2\frac{1}{3}\right)=0.918 \\
+\operatorname{Ent}(D^3) &= -\left(\frac{1}{5}\log_2\frac{1}{5} + \frac{4}{5}\log_2\frac{4}{5}\right)=0.722
+\end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232038020.png" alt=""></p>
+<p>计算按“色泽”划分$D$所带来的信息增益</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gain}(D, 色泽) &= \operatorname{Ent}(D) - \sum_{v=1}^3\frac{|D^v|}{|D|}\operatorname{Ent}(D^v) \\
+&= 0.998 - (\frac{6}{17}\times 1.000 + \frac{6}{17}\times 0.918 + \frac{5}{17}\times 0.722) \\
+&= 0.109
+\end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232042966.png" alt=""></p>
+<p>同理，计算按其他属性划分$D$所带来的信息增益</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gain}(D, 色泽) = 0.109 \qquad \operatorname{Gain}(D, 根蒂) = 0.143 \\
+\operatorname{Gain}(D, 敲声) = 0.141 \qquad \operatorname{Gain}(D, 纹理) = 0.381 \\
+\operatorname{Gain}(D, 脐部) = 0.289 \qquad \operatorname{Gain}(D, 触感) = 0.006 \\
+\end{aligned}</script><p>因此，最优划分属性为“纹理”，按其划分$D$所形成的一层决策树为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232048585.png" alt=""></p>
+<p>继续递归划分，进入第一个分支结点（“纹理=清晰”）。</p>
+<p>该结点所包含的样例集合$D^1={1, 2, 3, 4, 5, 6, 8, 10, 15}$，属性集合$A = {色泽, 根蒂, 敲声, 脐部, 触感}$，计算按每个属性划分$D^1$所带来的的信息增益。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gain}(D^1, 色泽) &= 0.043 \qquad \operatorname{Gain}(D^1, 根蒂) = 0.458 \\
+\operatorname{Gain}(D^1, 敲声) &= 0.331 \qquad \operatorname{Gain}(D^1, 脐部) = 0.458 \\
+\operatorname{Gain}(D^1, 触感) &= 0.458 \\
+\end{aligned}</script><p>按“根蒂”、“脐部”、“触感”划分$D^1$均得到了最大的信息增益，因此应根据归纳偏好（随机也属于一种归纳偏好）选择其中之一作为$D^1$的划分属性。</p>
+<p>继续递归，直到算法结束，得到训练好的决策树。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232121606.png" alt=""></p>
+<h2 id="其他属性划分准则"><a href="#其他属性划分准则" class="headerlink" title="其他属性划分准则"></a>其他属性划分准则</h2><p>事实上，信息增益$\operatorname{Gain}$划分准则有其归纳偏好：偏好按属性值多的属性划分。</p>
+<p>例如，按属性“编号”（“编号”是训练集中属性值最多的属性）划分$D$，所产生的分支结点们的“加权信息熵”为0，即<script type="math/tex">\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Ent}(D^v)=0</script>，纯度最大，所获得的信息增益最大。但按“编号”划分，所产生的这棵“纯度最高的”决策树不具有泛化能力。因为“编号”与“好瓜”没有相关性，不能说前8个采集的西瓜一定是好瓜，9~17个采集的西瓜一定不是好瓜，后面采集的西瓜不知道是不是好瓜，这是荒谬的。</p>
+<h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><p>Quinlan在他的决策树生成算法C4.5中使用了“增益率”（gain ratio）作为纯度指标，其定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain\_ratio}(D, a_i) = \frac{\operatorname{Gain}(D, a_i)}{\operatorname{IV}(a_i)}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\operatorname{IV}=-\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>称为属性$a_i$的“固有值”（intrinsic value）。</p>
+<p>Q：为什么定义固有值为这种形式呢？</p>
+<p>A（<strong>猜想</strong>）：首先，属性值越多，每个属性值的样本越少，其的权重$\frac{|D^v|}{|D|}$越小。令<script type="math/tex">\operatorname{IV}=\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|} = 1</script>作为分母，作者希望属性值越少（权重越大），$\operatorname{IV}$越小，增益率越大，需要乘一个与权重成反比的函数。又因为权重<script type="math/tex">\frac{|D^v|}{|D|}\in[0, 1]</script>，所以引入负对数函数<script type="math/tex">-\log_2\frac{|D^v|}{|D|}</script>（如图），形成<script type="math/tex">\operatorname{IV}=\sum\limits_{v=1}^{V}\frac{|D^v|}{|D|}\cdot -\log_2\frac{|D^v|}{|D|}</script>。</p>
+<p>但事实上，$-x\log_2x$不是单调递减的，而是先增后减。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210241929626.png" alt=""></p>
+<p>那么现在我们知道，<script type="math/tex">\operatorname{Gain\_ratio}</script>划分准则的归纳偏好：偏好按属性值少的属性划分。</p>
+<p>所以C4.5生成算法加入了启发式：先用$\operatorname{Gain}$划分准则找出$\operatorname{Gain}$高于平均水平的属性，接着再用<script type="math/tex">\operatorname{Gain\_ratio}</script>划分准则选择<script type="math/tex">\operatorname{Gain\_ratio}</script>最高的。即希望从更纯净的划分属性中找属性值少的划分属性。</p>
+<h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>Quinlan在他的决策树生成算法CART（Classification and Regression Tree）中使用了“基尼指数”/“基尼不纯度”（Gini index/Gini Impurity）作为纯度指标，其定义为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gini\_index}(D, a_i) = \sum_{v=1}^{V}\frac{|D^v|}{|D|}\operatorname{Gini}(D^v)</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gini}(D) &= \sum_{i=1}^{|\mathcal{Y}|}\sum_{j\neq i}p_ip_j \\
+&= \sum_{i=1}^{|\mathcal{Y}|}p_i(1-p_i) \\
+&= 1-\sum_{i=1}^{|\mathcal{Y}|}p_i^2
+\end{aligned}</script><p>$\operatorname{Gini}(D)$的意义为：可理解为“非同类率”。从D中无放回地、选取所有<strong>两类</strong>样本的组合，如果这些组合乘积的和越小，那么越纯净。或者说从$D$中无放回地（超几何分布，抽出后概率不变）选取到两个同类样本的概率（“同类率”）越大，那么越纯净。</p>
+<p>基尼系数的第二种形式，源于以$e$为底的信息熵<script type="math/tex">\operatorname{Ent}(D)=-\sum\limits_{i=1}^{|\mathcal{Y}|} p_i \ln p_i</script>，对其中的$-\ln p_i$在$p_i = 1$处进行泰勒展开、取高阶项，即可得到$(1-p_i)$。所以，基尼不纯度实际上是信息熵的一个近似值。</p>
+<p>使用带Peano余项的泰勒公式</p>
+<script type="math/tex; mode=display">
+f(x) = f(x_0) + f(x_0)^{\prime}(x-x_0) + R_1(x)</script><p>得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+-\ln x &= 0 + \left(-1\right)\times\left(x-1\right)+R_1\left(x\right) \\
+&\approx 1-x
+\end{aligned}</script><p>$\operatorname{Gini_index}(D, a_i)$越低，即“非同类率”越低，“同类率”越高，划分所得的样本集合越纯净。</p>
+<p>以基尼指数为属性划分准则，所选取的最优属性$a_*$为</p>
+<script type="math/tex; mode=display">
+a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)</script><p>事实上，研究表明：各种属性划分准则，虽然对决策树的尺寸有较大影响，但<strong>对泛化性能的影响很有限</strong>。</p>
+<h2 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h2><p>更影响决策树泛化性能的手段，是剪枝（pruning）。</p>
+<p>事实上，剪枝是缓解决策树过拟合现象的主要手段。因为当决策树过深时，较深结点的样本集合很小，即决策树学习到了这些少数样本独有的分布，将其剪掉虽然减小了训练性能，但防止了过拟合现象（故意不学习这些特性，不使用这些属性进行划分）。</p>
+<p>决策树剪枝的基本策略有两种：</p>
+<ul>
+<li>“预剪枝”（prepruning）：提前终止某些分支的生长，将其标记为叶节点。</li>
+<li>“后剪枝”（postpruning）：先生成一棵完整的决策树，再自底向上地将内部结点及其子树替换为叶节点。</li>
+</ul>
+<p>只有在能带来泛化性能提升时，剪枝策略才将分支处理为叶节点。那么如何判断新树的泛化性能相对于原来的树有所提升呢？</p>
+<p>这时就需要使用“模型评估与选择”中提到的评估方法去量化泛化性能。</p>
+<h2 id="缺失值的处理"><a href="#缺失值的处理" class="headerlink" title="缺失值的处理"></a>缺失值的处理</h2><p>现实任务中，样本通常是不完整的，即样本的某些属性值“缺失”（misssing）。</p>
+<p>如果仅使用无缺失值（null）的样例，会造成极大的数据损失。</p>
+<p>如果使用带缺失值的样例，需要解决两个问题：</p>
+<ul>
+<li>Q1：如何确定划分属性？</li>
+<li>Q2：确定划分属性后，若样本在该属性上为缺失值，如何划分该样本？</li>
+</ul>
+<p>首先，<strong>每个样本$x$都需要有权重$w_x$</strong>，在学习算法开始时所有样本赋权为1。样本“摆烂”（被划分时属性值缺失）次数越多，其“后代”权重越小。</p>
+<p>A1：使用属性$a_i$中无缺失值的样例计算<strong>按$a_i$划分$\tilde{D}$</strong>（$D$的无缺失子集）<strong>所获得的信息增益$\operatorname{Gain}(\tilde{D}, a_i)$</strong>，再通过其去估算<strong>按$a_i$划分$D$所获得的信息增益$\operatorname{Gain}(D, a_i)$</strong>。即</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}(\tilde{D}) &= -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log _2 \tilde{p}_k \\
+\operatorname{Gain}(\tilde{D}, a) &= \operatorname{Ent}(\tilde{D})-\sum_{v=1}^V \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \\
+\operatorname{Gain}(D, a) &=  \rho \times \operatorname{Gain}(\tilde{D}, a)
+\end{aligned}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\rho &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in D} w_{\boldsymbol{x}}} \\
+\tilde{p}_k &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}_k} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant k \leqslant|\mathcal{Y}|), \\
+\tilde{r}_v &=\frac{\sum_{\boldsymbol{x} \in \tilde{D}^v} w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x} \in \tilde{D}} w_{\boldsymbol{x}}} \quad(1 \leqslant v \leqslant V) .
+\end{aligned}</script><p>A2：将 划分所得的决策树 对 带缺失值样例 的后验概率当做先验概率。即“摆烂划分”：这个属性划分不出来就不在这划分了，按“样本权重”（预测结果的可能性）分配给下一层划分。</p>
+<p><strong>下面以西瓜数据集2.0$\alpha$为例进行带缺失值数据集的划分。</strong></p>
+<script type="math/tex; mode=display">
+西瓜数据集2.0\alpha \\
+\begin{array}{cccccccc}
+\hline
+编号 & 色泽 & 根蒂 & 敲声 & 纹理 & 脐部 & 触感 & 好瓜 \\
+\hline
+1 & - & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+2 & 乌黑 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & - & 是 \\
+3 & 乌黑 & 蜷缩 & - & 清晰 & 凹陷 & 硬滑 & 是 \\
+4 & 青绿 & 蜷缩 & 沉闷 & 清晰 & 凹陷 & 硬滑 & 是 \\
+5 & - & 蜷缩 & 浊响 & 清晰 & 凹陷 & 硬滑 & 是 \\
+6 & 青绿 & 稍蜷 & 浊响 & 清晰 & - & 软粘 & 是 \\
+7 & 乌黑 & 稍蜷 & 浊响 & 稍糊 & 稍凹 & 软粘 & 是 \\
+8 & 乌黑 & 稍蜷 & 浊响 & - & 稍凹 & 硬滑 & 是 \\
+\hline
+9 & 乌黑 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+10 & 青绿 & 硬挺 & 清脆 & - & 平坦 & 软粘 & 否 \\
+11 & 浅白 & 硬挺 & 清脆 & 模糊 & 平坦 & - & 否 \\
+12 & 浅白 & 蜷缩 & - & 模糊 & 平坦 & 软粘 & 否 \\
+13 & - & 稍蜷 & 浊响 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+14 & 浅白 & 稍蜷 & 沉闷 & 稍糊 & 凹陷 & 硬滑 & 否 \\
+15 & 乌黑 & 稍蜷 & 浊响 & 清晰 & - & 软粘 & 否 \\
+16 & 浅白 & 蜷缩 & 浊响 & 模糊 & 平坦 & 硬滑 & 否 \\
+17 & 青绿 & - & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
+\hline
+\end{array}</script><p>根节点无缺失子集$\tilde{D}$的信息熵</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}(\tilde{D}) &=-\sum_{k=1}^2 \tilde{p}_k \log _2 \tilde{p}_k \\
+&=-\left(\frac{6}{14} \log _2 \frac{6}{14}+\frac{8}{14} \log _2 \frac{8}{14}\right)=0.985
+\end{aligned}</script><p>按属性“色泽”对无缺失子集$\tilde{D}$进行划分</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\tilde{D}^1(色泽=青绿) &= \{4, 6,|  10, 17\} &p_1=\frac{2}{4},\quad p_2=\frac{2}{4}\\
+\tilde{D}^2(色泽=乌黑) &= \{2, 3, 7, 8,| 9, 15\} &p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\\
+\tilde{D}^3(色泽=浅白) &= \{| 11, 12, 14, 16\} &p_1=\frac{0}{4},\quad p_2=\frac{4}{4}\\
+\end{aligned}</script><p>划分后，在无缺失子集$\tilde{D}$上，3个分支节点的信息熵分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Ent}\left(\tilde{D}^1\right)&=\log_2|\mathcal{2}|=1.000 \\
+\operatorname{Ent}\left(\tilde{D}^2\right)&=-\left(\frac{4}{6} \log _2 \frac{4}{6}+\frac{2}{6} \log _2 \frac{2}{6}\right)=0.918 \\
+\operatorname{Ent}\left(\tilde{D}^3\right)&=0.000
+\end{aligned}</script><p>在无缺失子集$\tilde{D}$上，属性“色泽”的信息增益为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gain}(\tilde{D}, \text { 色泽 }) &=\operatorname{Ent}(\tilde{D})-\sum_{v=1}^3 \tilde{r}_v \operatorname{Ent}\left(\tilde{D}^v\right) \\
+&=0.985-\left(\frac{4}{14} \times 1.000+\frac{6}{14} \times 0.918+\frac{4}{14} \times 0.000\right) \\
+&=0.306
+\end{aligned}</script><p>在带缺失训练集$D$上，属性“色泽”的信息增益为</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain}(D \text {, 色泽 })=\rho \times \operatorname{Gain}(\tilde{D} \text {, 色泽 })=\frac{14}{17} \times 0.306=0.252</script><p>同理，计算按其他属性划分带缺失训练集$D$所获得的信息增益</p>
+<script type="math/tex; mode=display">
+\operatorname{Gain}(D, 色泽 )=0.252 \qquad \operatorname{Gain}(D, 根蒂 )=0.171 \\
+\operatorname{Gain}(D, 敲声 )=0.145 \qquad \operatorname{Gain}(D, 纹理 )=0.424 \\
+\operatorname{Gain}(D, 脐部 )=0.289 \qquad \operatorname{Gain}(D, 触感 )=0.006</script><p>因此，最优划分属性为“纹理”，按其划分带缺失训练集$D$所形成的一层决策树为</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210272307219.png" alt=""></p>
+<h2 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h2><p>题7</p>
+<blockquote>
+<p>对西瓜数据集2.0，属性“色泽”的基尼指数为<em>__</em>（保留2位有效数字）</p>
+<p>正确答案:[ “0.43” ]</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{aligned}
+D^1(色泽=青绿) &= \{1, 4, 6,|  10, 13, 17\} &p_1=\frac{3}{6},\quad p_2=\frac{3}{6}\\
+D^2(色泽=乌黑) &= \{2, 3, 7, 8,| 9, 15\} &p_1=\frac{4}{6},\quad p_2=\frac{2}{6}\\
+D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}{5}\\
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Gini}(D^1) &= 1 - \left(\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2\right) = \frac{1}{2} \\
+\operatorname{Gini}(D^2) &= 1 - \left(\left(\frac{2}{3}\right)^2 + \left(\frac{1}{3}\right)^2\right) = \frac{4}{9} \\
+\operatorname{Gini}(D^3) &= 1 - \left(\left(\frac{1}{5}\right)^2 + \left(\frac{4}{5}\right)^2\right) = \frac{8}{25} \\
+\operatorname{Gini\_index}(D^3) &= \frac{6}{17} \times \frac{1}{2} + \frac{6}{17} \times \frac{4}{9} + \frac{5}{17} \times \frac{8}{25} \approx 0.43
+\end{aligned}</script><p>题10</p>
+<blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280900186.png" alt=""></p>
+</blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280912941.png" alt=""></p>
+<p>题11</p>
+<blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280900279.png" alt=""></p>
+</blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210280912293.png" alt=""></p>
+<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="支持向量机基本型"><a href="#支持向量机基本型" class="headerlink" title="支持向量机基本型"></a>支持向量机基本型</h2><p>在“线性模型”一章中，我们提到，对于“分类”问题，需要在样本空间确定一个超平面，用于将不同类别的样本“分开”。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282001404.png" alt=""></p>
+<p>但，确定的超平面可以有很多，哪一个最好呢？</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282002418.png" alt=""></p>
+<p>直觉上，正中间的超平面最好，因为它的鲁棒性最好，泛化能力最强。</p>
+<p>使用<strong>支持向量机（Support Vector Machine, SVM）</strong>算法可以确定这个划分超平面，下面推导支持向量机算法中最优化问题的一些形式和它们的解。</p>
+<p>首先，超平面方程的向量形式为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = 0</script><p>假设划分超平面存在，找到正例距超平面最近的样本，负例中距超平面最近的样本（下图中圈起来的样本）。可以发现，它们直接确定了超平面，我们称这些样本为“支持向量”（support vector）。</p>
+<p>定义一个超平面，其经过正例支持向量，方程为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = 1</script><p>定义一个超平面，其经过负例支持向量，方程为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b = -1</script><p>若同时缩放$\boldsymbol{w}\rightarrow k\boldsymbol{w}$和$b\rightarrow kb$，所有超平面的方程都会$*k$，但它们是等价的，所以可以定义经过支持向量的两类超平面距划分超平面的距离为$1$和$-1$。</p>
+<p>样本空间中任意点$\boldsymbol{x}_i$到超平面$\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x} + b$的距离$r$为</p>
+<script type="math/tex; mode=display">
+r=\frac{\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right|}{\|\boldsymbol{w}\|}\\</script><p>由上述假设，可得两异类支持向量到划分超平面的距离之和，将其定义为间隔$\gamma$</p>
+<script type="math/tex; mode=display">
+\gamma = \frac{2}{\|\boldsymbol{w}\|}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210282016358.png" alt=""></p>
+<p>所以，确定划分超平面，即确定最大的间隔$\gamma$，使超平面正确划分所有样本。</p>
+<p>使用最优化形式描述目标</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\max } & \quad \frac{2}{\|\boldsymbol{w}\|} \\
+\text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
+\end{aligned}</script><p>其等价描述</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
+\text{s.t.} & \quad y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \geq 1, i=1,2, \ldots, m
+\end{aligned}</script><p>这就是支持向量机的基本型，即样本在原始样本空间内线性可分，原始样本空间内找到划分超平面。支持向量机的基本型是一个凸二次规划问题，可以使用现有工具包求解。但在计算机领域，我们使用拉格朗日乘子法将基本型转换为它的对偶问题，因为它的对偶问题可以使用更高效的算法迭代求解，计算机可以并行处理。</p>
+<h2 id="对偶问题与解的特性"><a href="#对偶问题与解的特性" class="headerlink" title="对偶问题与解的特性"></a>对偶问题与解的特性</h2><h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>拉格朗日乘子法（Lagrange multipliers）是一种优化方法，用于寻找多元函数在一组约束下的极值。</p>
+<p>通过引入拉格朗日乘子，可将有$d$个变量与$k$个等式约束条件的最优化问题转化为具有$d+k$个变量的优化问题求解。</p>
+<p>支持向量机基本型的<strong>原问题/主问题（primal problem）</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
+\text{s.t.} & \quad 1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) \leq 0,\quad i=1,2, \ldots, m
+\end{aligned}</script><p>对每条约束添加拉格朗日乘子$\mu_i \geq 0$，得到基本型的<strong>拉格朗日函数</strong>$L(\boldsymbol{w}, b, \boldsymbol{\mu})$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2}{\|\boldsymbol{w}\|}^2 + \sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right) \\
+&= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\sum_{i=1}^m \mu_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \mu_i y_i b
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\mu} = (\mu_1; \mu_2; \ldots; \mu_m)</script><p>当约束条件满足时，$L(\boldsymbol{w}, b, \boldsymbol{\mu})  &lt;= f(\boldsymbol{w}, b) = \frac{1}{2}{|\boldsymbol{w}|}^2$，所以支持向量机的基本型等价于</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max}  & \quad L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} & \quad \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>这个$\min\text{-}\max$优化问题称为<strong>主问题的$\min\text{-}\max$形式</strong>。</p>
+<p>Note. $\boldsymbol{\mu} \succeq  0$意为$\mu_i \geq 0, i = 1, 2, \ldots, m$。<strong>下面将$\min\text{-}\max$问题称作主问题，将$\min$问题称作原问题</strong>。</p>
+<p>因主问题关于原变量的优化函数可能非凸，所以我们一般将其转化为关于拉格朗日乘子的凸函数。</p>
+<p>令<script type="math/tex">L(\boldsymbol{w}, b, \boldsymbol{\mu})</script>对$w$和$b$的偏导为0，可得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial L}{\partial \boldsymbol{w}} &= \boldsymbol{w}-\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i=0 & & \Longrightarrow \boldsymbol{w}=\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\\
+\frac{\partial L}{\partial b} &= -\sum_{i=1}^m \mu_i y_i=0 & &\Longrightarrow \sum_{i=1}^m \mu_i y_i=0
+\end{aligned}</script><p>将其代回拉格朗日函数，有<strong>拉格朗日对偶函数</strong>$\Gamma(\mu)$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Gamma(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) &= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\sum_{i=1}^m \mu_i y_i \boldsymbol{w}^T \boldsymbol{x}_i-\sum_{i=1}^m \mu_i y_i b \\
+&= \frac{1}{2} \boldsymbol{w}^T \boldsymbol{w}+\sum_{i=1}^m \mu_i-\boldsymbol{w}^T\sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i-b\sum_{i=1}^m \mu_i y_i \\
+&= \frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i - \boldsymbol{w}^T\sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \mu_i - b\times 0 \\
+&= -\frac{1}{2} \boldsymbol{w}^T \sum_{i=1}^m \mu_i y_i  \boldsymbol{x}_i + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right)^T \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i^T\right) \left(\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i\right) + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \sum_{i=1}^m \left(\mu_i y_i \boldsymbol{x}_i^T\sum_{j=1}^m \mu_j y_j \boldsymbol{x}_j\right) + \sum_{i=1}^m \mu_i \\
+&= -\frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i y_i \boldsymbol{x}_i^T \mu_j y_j \boldsymbol{x}_j + \sum_{i=1}^m \mu_i \\
+&= \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
+\end{aligned}</script><p>Note. 用到了很多次向量的乘法分配律。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max} \ L(\boldsymbol{w}, b, \boldsymbol{\mu}) 
+&= \underset{\boldsymbol{w}, b}{\min}\left[\underset{\boldsymbol{\mu}}{\max}\frac{1}{2}{\|\boldsymbol{w}\|}^2 + \underset{\boldsymbol{\mu}}{\max}\sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right)\right] \\
+&令\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right)=0, 有 \\
+&= \underset{\boldsymbol{\mu}}{\max}\left[\underset{\boldsymbol{w}, b}{\min}\frac{1}{2}{\|\boldsymbol{w}\|}^2 + \underset{\boldsymbol{w}, b}{\min}\sum_{i=1}^{m}\mu_i \left(1 - y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right)\right)\right] & &= \underset{\boldsymbol{\mu}}{\max}\underset{\boldsymbol{w}, b}{\min} \ L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+&= \underset{\boldsymbol{\mu}}{\max}\underset{\boldsymbol{w}, b}{\min}\frac{1}{2}{\|\boldsymbol{w}\|}^2 & &= \underset{\boldsymbol{w}, b}{\min}\frac{1}{2}{\|\boldsymbol{w}\|}^2
+\end{aligned}</script><p>$\underset{\boldsymbol{\mu}}{\max}\underset{\boldsymbol{w}, b}{\min} \ L(\boldsymbol{w}, b, \boldsymbol{\mu})$这个$\max\text{-}\min$问题，即为主问题$\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max} \ L(\boldsymbol{w}, b, \boldsymbol{\mu})$的<strong>对偶问题（dual problem）</strong>，在约束条件下，其解与基本型（原问题）的解相同。</p>
+<p>使用$\inf$表示$\min$，可得到对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \boldsymbol{x}_i^T\boldsymbol{x}_j \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>对偶问题的优化函数是关于拉格朗日乘子的，所以一定是凸函数。</p>
+<p>由上述推导可知，若想要对偶问题的解与主问题甚至原问题的解相同，则需要满足以下必要条件，即KKT条件。</p>
+<script type="math/tex; mode=display">
+K.K.T\left\{
+\begin{array}{llll}
+\boldsymbol{w}-\sum_{i=1}^m \mu_i y_i \boldsymbol{x}_i & =0, & \text{for all } i  & \text{(Stationarity 1)} \\
+\sum\limits_{i=1}^m \mu_i y_i & =0, & \text{for all } i  & \text{(Stationarity 2)} \\
+y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1 & \geq 0, & \text{for all } i &\text{(Primal Feasibility)} \\
+\mu_i & \geq 0, & \text{for all } i &\text{(Dual Feasibility)}\\
+\mu_i \left(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1\right) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
+\end{array}
+\right.</script><p>KKT条件包括平稳条件（SVM有两个变量，所以有两个条件）、原问题可行性条件、对偶可行性条件、<strong>互补松弛条件</strong>等</p>
+<p>支持向量机基本型的原问题是凸函数，所以KKT条件也是充分条件（强对偶性）。</p>
+<p>通过互补松弛条件知，对于任意训练样本$(\boldsymbol{x}_i, y_i)$，总有$\mu_i = 0$或$y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) = 1$，即如果样本不在约束边界上，那么$\mu_i = 0$，其约束失效，与$\boldsymbol{w}$无关；如果样本在约束边界上，那么$\mu_i \geq 0$，其约束生效，用于确定$\boldsymbol{w}$。</p>
+<p>对于后者这些在约束边界上的样本，被称作<strong>支持向量（support vector）</strong>。</p>
+<p>带着KKT条件解对偶问题（求解方法见下节），解得$\boldsymbol{\mu^*}$，其与原问题的解相对应，所以</p>
+<p>通过</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w^*}=\sum_{i=1}^m \mu_i^* y_i \boldsymbol{x}_i</script><p>即可得到$\boldsymbol{w^*}$</p>
+<p>任意选取一个支持向量$(\tilde{\boldsymbol{x}}, \tilde{y})$，通过</p>
+<script type="math/tex; mode=display">
+b^* = \tilde{y} - {\boldsymbol{w}^*}^{\mathrm{T}}\tilde{\boldsymbol{x}}</script><p>即可得到$b^*$</p>
+<p>也可以选取所有支持向量，计算所有偏移项的均值</p>
+<script type="math/tex; mode=display">
+b^* = \frac{1}{|S|}\sum_{s\in S} \left(y_s - {\boldsymbol{w}^*}^{\mathrm{T}}\boldsymbol{x}_s\right)</script><p>也可得到$b^*$</p>
+<p>Note. 这里用的是邱锡鹏nndl书上的写法，西瓜书中将$y$作为分母也是一样的，反正支持向量的$y$的值为1或-1。</p>
+<p>综上，得到支持向量机的划分超平面</p>
+<script type="math/tex; mode=display">
+{\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^* = 0</script><p>那么，支持向量机的决策函数即为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(x) &= \operatorname{sgn}\left({\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*\right) \\
+&=\operatorname{sgn}\left(\sum_{i=1}^m \mu_i^* y_i {\left(\boldsymbol{x}_i\right)}^{\mathrm{T}} \boldsymbol{x} + b^*\right)
+\end{aligned}</script><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Note. 上述推导为了$\min\rightarrow\min \text{-}\max\rightarrow\max\text{-}\min$过程的可理解性，将其分为了三个问题，实际上只有两个问题，min-max问题是min问题的另一种形式。</p>
+<p>原问题（基本型）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad f(\boldsymbol{w}, b) \\
+\text{s.t.} & \quad g_i(\boldsymbol{w}, b) \leq 0,\quad i=1,2, \ldots, m
+\end{aligned}</script><p>原问题的min-max形式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min}\underset{\boldsymbol{\mu}}{\max}  & \quad L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} & \quad \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \Gamma(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>当满足KKT条件时，三者解相同，通过解对偶问题得到原问题的解。</p>
+<script type="math/tex; mode=display">
+K.K.T\left\{
+\begin{array}{llll}
+\frac{\partial L}{\partial \boldsymbol{w}} & =0, & \text{for all } i  & \text{(Stationarity 1)} \\
+\frac{\partial L}{\partial \boldsymbol{b}} & =0, & \text{for all } i  & \text{(Stationarity 2)} \\
+g_i(\boldsymbol{w}, b) & \leq 0, & \text{for all } i &\text{(Primal Feasibility)} \\
+\mu_i & \geq 0, & \text{for all } i &\text{(Dual Feasibility)}\\
+\mu_i g_i(\boldsymbol{w}, b) & =0, & \text{for all  } i  & \textbf{(Complementary Slackness)}
+\end{array}
+\right.</script><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a target="_blank" rel="noopener" href="https://www.datalearner.com/blog/1051551326031522">最优化问题的KKT条件简要解释</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/LIYUAN123ZHOUHUI/article/details/78344357">拉格朗日乘子法及KKT条件</a></p>
+<h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2><p>对偶问题是一个凸优化问题，但同样地，因为前面多次提到过的原因，我们需要一种迭代解法。</p>
+<p>SMO（Sequential Minimal Optimization）算法就是这样一种代表性算法。</p>
+<p>为与原论文契合，此后使用$\alpha_i$代替$\mu_i$，$\alpha_j$代替$\mu_j$，$K(\boldsymbol{x}_i, \boldsymbol{x}_j)$代替$\boldsymbol{x}_i^T\boldsymbol{x}_j$。</p>
+<p>重写的对偶函数为</p>
+<script type="math/tex; mode=display">
+\Gamma(\boldsymbol{\alpha}) = \sum_{i=1}^m \alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)</script><p>其基本流程为</p>
+<p>每轮重复以下两个步骤直至收敛：</p>
+<ol>
+<li>选取一对需要更新的变量，设本轮为$\alpha_1$和$\alpha_2$</li>
+<li>固定$\alpha_1$和$\alpha_2$以外的参数，求解对偶问题，更新$\alpha_1$和$\alpha_2$</li>
+</ol>
+<p>在仅考虑$\alpha_1$和$\alpha_2$时，对偶函数成为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Gamma(\alpha_1, \alpha_2) 
+&= \left(\alpha_1 + \alpha_2 + \sum_{i=3}^m \alpha_i\right) - \frac{1}{2} \left\{\sum_{j=1}^m \alpha_1 \alpha_j y_1 y_j K(\boldsymbol{x}_1, \boldsymbol{x}_j) + \sum_{j=1}^m \alpha_2 \alpha_j y_2 y_j K(\boldsymbol{x}_2, \boldsymbol{x}_j) + \sum_{i=3}^m\sum_{j=1}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)\right\} \\
+
+&= \left(\alpha_1 + \alpha_2 + \sum_{i=3}^m \alpha_i\right) - \frac{1}{2} \left\{\sum_{j=1}^m \alpha_1 \alpha_j y_1 y_j K(\boldsymbol{x}_1, \boldsymbol{x}_j) + \sum_{j=1}^m \alpha_2 \alpha_j y_2 y_j K(\boldsymbol{x}_2, \boldsymbol{x}_j) + \sum_{i=3}^m\left(\alpha_i \alpha_1 y_i y_1 K(\boldsymbol{x}_i, \boldsymbol{x}_1) + \alpha_i \alpha_2 y_i y_2 K(\boldsymbol{x}_i, \boldsymbol{x}_2) + \sum_{j=3}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)\right)\right\} \\
+
+&= \left(\alpha_1 + \alpha_2 + \sum_{i=3}^m \alpha_i \right) - 
+\frac{1}{2} \left\{
+\left[\alpha_1 \alpha_1 y_1 y_1 K(\boldsymbol{x}_1, \boldsymbol{x}_1) + \alpha_1 \alpha_2 y_1 y_2 K(\boldsymbol{x}_1, \boldsymbol{x}_2) + \sum_{j=3}^m \alpha_1 \alpha_j y_1 y_j K(\boldsymbol{x}_1, \boldsymbol{x}_j)\right] + 
+\left[\alpha_2 \alpha_1 y_2 y_1 K(\boldsymbol{x}_2, \boldsymbol{x}_1) + \alpha_2 \alpha_2 y_2 y_2 K(\boldsymbol{x}_2, \boldsymbol{x}_2) + \sum_{j=3}^m \alpha_2 \alpha_j y_2 y_j K(\boldsymbol{x}_2, \boldsymbol{x}_j)\right] + 
+\left[\sum_{i=3}^m\alpha_i \alpha_1 y_i y_1 K(\boldsymbol{x}_i, \boldsymbol{x}_1) +  \sum_{i=3}^m\alpha_i \alpha_2 y_i y_2 K(\boldsymbol{x}_i, \boldsymbol{x}_2) +  \sum_{i=3}^m\sum_{j=3}^m \alpha_i \alpha_j y_i y_j K(\boldsymbol{x}_i, \boldsymbol{x}_j) \right]
+\right\} \\ 
+
+&= \left(\alpha_1 + \alpha_2 + \text{C}\right) - 
+\frac{1}{2} \left\{
+\left[\alpha_1^2 K_{11} + \alpha_1 \alpha_2 y_1 y_2 K_{12} + \alpha_1 y_1 \sum_{j=3}^m  \alpha_j  y_j K_{1j}\right] + 
+\left[\alpha_2 \alpha_1 y_2 y_1 K_{21} + \alpha_2^2 K_{22} + \alpha_2y_2\sum_{j=3}^m  \alpha_j  y_j K_{2j}\right] +
+\left[\alpha_1y_1\sum_{i=3}^m\alpha_i  y_i  K_{i1} +  \alpha_2y_2\sum_{i=3}^m\alpha_i  y_i  K_{i2} + \text{C} \right]
+\right\} \\ 
+
+&= \left(\alpha_1 + \alpha_2\right) - 
+\frac{1}{2} \left\{
+\alpha_1^2 K_{11} + \alpha_2^2 K_{22} +  2\alpha_1 \alpha_2 y_1 y_2 K_{12} + 2\alpha_1 y_1 \sum_{j=3}^m  \alpha_j  y_j K_{1j} + 2\alpha_2y_2\sum_{j=3}^m  \alpha_j  y_j K_{2j}
+\right\} + \text{C}\\ 
+
+&= \left(\alpha_1 + \alpha_2\right) - \left(
+\frac{1}{2}
+\alpha_1^2 K_{11} + \frac{1}{2} \alpha_2^2 K_{22} +  \alpha_1 \alpha_2 y_1 y_2 K_{12} + \alpha_1 y_1 \sum_{j=3}^m  \alpha_j  y_j K_{1j} + \alpha_2y_2\sum_{j=3}^m  \alpha_j  y_j K_{2j} \right)
+ + \text{C}\\ 
+
+&= \left(\alpha_1 + \alpha_2\right) - \left(
+\frac{1}{2}
+\alpha_1^2 K_{11} + \frac{1}{2} \alpha_2^2 K_{22} +  \alpha_1 \alpha_2 y_1 y_2 K_{12} + \alpha_1 y_1 v_1 + \alpha_2y_2v_2 \right)
+ + \text{C}\\ 
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+K_{ij} &= K(\boldsymbol{x}_i, \boldsymbol{x}_j)\\
+v_i &= \sum_{j=3}^m  \alpha_j  y_j K_{ij}
+\end{aligned}</script><p>由于对偶问题的KKT条件$\sum\limits_{i=1}^m \alpha_i y_i =0$，有</p>
+<script type="math/tex; mode=display">
+\alpha_1y_1 + \alpha_2y_2 = -\sum_{k\neq 1,2}\alpha_ky_k=:c</script><p>因为${y_j}^2 = 1$，所以可将$\alpha_2$用$\alpha_1$表示</p>
+<script type="math/tex; mode=display">
+\alpha_2 = {(c - \alpha_1y_1)}{y_2}</script><p>接着对偶函数成为</p>
+<script type="math/tex; mode=display">
+\Gamma(\alpha_1) = \left(\alpha_1 + {(c - \alpha_1y_1)}{y_2}\right) - \left(
+\frac{1}{2}
+\alpha_1^2 K_{11} + \frac{1}{2} {(c - \alpha_1y_1)}^2 K_{22} +  \alpha_1 {(c - \alpha_1y_1)} y_1 K_{12} + \alpha_1 y_1 v_1 + {(c - \alpha_1y_1)}v_2 \right)
+ + \text{C}\\</script><p>此时的对偶函数已经成为了一个关于$\alpha_1$的凸二次函数，可以直接求导等于0得到构造解（闭式解）了。</p>
+<p>那么如何选取两个变量使得性能更好呢？Platt提出了一种启发式方法。</p>
+<p>Platt选择违反KKT条件的$\alpha_i$作为第一个变量，选择是对偶函数增长最快的$\alpha_j$作为第二个变量。</p>
+<p>Reference</p>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf">Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines</a></p>
+<h2 id="特征空间映射"><a href="#特征空间映射" class="headerlink" title="特征空间映射"></a>特征空间映射</h2><p>前面几节讨论了支持向量机的基本型（样本在原始样本空间内线性可分）、其对偶问题、其对偶问题的解法。</p>
+<p>那么如果样本在原始样本空间内非线性可分，不存在划分超平面，怎么划分样本呢？</p>
+<p>我们可以将样本从原始样本空间映射到一个更高维的特征空间，使得样本在这个特征空间内线性可分。</p>
+<p>如“异或”的四个样本在二维特征空间内非线性可分，在三维特征空间内线性可分。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211012225850.png" alt=""></p>
+<p>事实上，如果原始样本空间是有限维的，那么一定存在某些高维特征空间，使样本在其内线性可分。高维特征空间可能是无限维特征空间。</p>
+<p>所以，只需找到合适映射$\phi(\cdot)$，将原样本空间中的所有样本映射到高维特征空间，然后在高维特征空间内解支持向量机的基本型，即可得到划分超平面的表达式。</p>
+<p>映射（坐标变换、升维）</p>
+<script type="math/tex; mode=display">
+\boldsymbol{x} \mapsto \phi(\boldsymbol{x})</script><p>新样本空间内的划分超平面</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x}) = \boldsymbol{w}^{\mathrm{T}}\phi(\boldsymbol{x}) + b</script><p>新样本空间内的支持向量机基本型</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2 \\
+\text{s.t.} & \quad y\left(\boldsymbol{w}^{\top} \phi\left(\boldsymbol{x}\right) + b\right) \succeq 1
+\end{aligned}</script><p>新样本空间内的支持向量机基本型的对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \phi(\boldsymbol{x}_i)^T \phi(\boldsymbol{x}_j) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>求解后得到的划分超平面的函数表达式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(\boldsymbol{x})
+&= \boldsymbol{w}^{\mathrm{T}}\phi(\boldsymbol{x}) + b \\
+&= \sum_{i=1}^m \mu_i y_i \phi(\boldsymbol{x}_i)^{\mathrm{T}}\phi(\boldsymbol{x}) + b
+\end{aligned}</script><p>可以发现，求解对偶问题得到$\boldsymbol{\mu}$时、根据$\mu_i$计算$f(\boldsymbol{x})$时，都需要计算两个 映射后的向量 的内积。</p>
+<p>然而，由于映射后的向量维数可能很高、甚至可能是无限维，因此计算上是困难的。所以，我们需要另一个容易计算的，可以替代二者内积的函数。</p>
+<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>设计这样一种函数$\kappa\left(\cdot, \cdot\right)$，输入原始样本空间中的低维向量$\boldsymbol{x}_i$和$\boldsymbol{x}_j$，即可得到它们经映射后得到的高维度向量的内积，即</p>
+<script type="math/tex; mode=display">
+\kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_j\right)=\phi\left(\boldsymbol{x}_i\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_j\right)</script><p>我们称这种函数为核函数（kernel function）。</p>
+<p>Note. </p>
+<p>SMO算法中我们曾使用的记号即为核函数。</p>
+<script type="math/tex; mode=display">
+\phi(x): \mathbf{R}^n \rightarrow \mathcal{H}</script><p>将$\phi(\cdot)$从n维线性空间映射得到的甚高维线性空间称作希尔伯特空间，记作$\mathcal{H}$。</p>
+<p>希尔伯特空间是欧氏空间的一推广，即完备的内积空间（允许无穷维且不限于实数情形）。</p>
+<p>引入核函数后，对偶问题可重写为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \sum_{i=1}^m \mu_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \mu_i \mu_j y_i y_j \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_j\right) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>划分超平面的函数表达式可重写为</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x}) = \sum_{i=1}^m \mu_i y_i \kappa\left(\boldsymbol{x}_i, \boldsymbol{x}\right) + b</script><p>这种将表达式通过训练样本的核函数展开的形式，称为“支持向量展式”（support vector expansion）。</p>
+<p>Q：什么样的函数可以作为一个核函数呢？</p>
+<p>A：满足正定核函数充要条件或Mercer定理的函数可以作为一个核函数。</p>
+<p>Mercer定理：若一个<strong>连续对称函数</strong>所对应的核矩阵半正定，则其就可以作为一个Mercer核函数。</p>
+<p>正定核函数充要条件：若一个<strong>对称函数</strong>所对应的核矩阵半正定，则其就可以作为一个正定核函数。</p>
+<p>正定核比Mercer核更具一般性（李航. 统计学习方法P122）</p>
+<p>由定理或条件得到的核函数的等价定义。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211081734175.png" alt=""></p>
+<p>Q：什么是核矩阵？</p>
+<p>A：首先了解一下距离矩阵、Gram矩阵，再介绍核矩阵。</p>
+<p>设数据集<script type="math/tex">D=\left\{\boldsymbol{x}_1, \boldsymbol{x}_2\right\}</script>。</p>
+<p><strong>距离矩阵</strong>：样本间两两计算距离所排列成的矩阵。</p>
+<p>$D$的距离矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+d(\boldsymbol{x}_1, \boldsymbol{x}_1) & d(\boldsymbol{x}_1, \boldsymbol{x}_2) \\
+d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
+\end{bmatrix}</script><p>其中，$d(\boldsymbol{x}_i, \boldsymbol{x}_j)$指两个样本之间的距离。该矩阵是一个对称矩阵，且主对角线元素为0。</p>
+<p><strong>Gram矩阵</strong>：样本间两两计算内积所排列成的矩阵</p>
+<p>$D$的Gram矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\boldsymbol{x}_1^{\mathrm{T}} \boldsymbol{x}_1 & \boldsymbol{x}_1^{\mathrm{T}} \boldsymbol{x}_2 \\
+\boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{x}_1 & \boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{x}_2
+\end{bmatrix}</script><p>该矩阵是半正定矩阵。</p>
+<p><strong>核矩阵</strong>：希尔伯特空间$\mathcal{H}$中的、$\kappa\left(\cdot, \cdot\right)$所对应的Gram矩阵。</p>
+<p>$D$的核矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\phi\left(\boldsymbol{x}_1\right)^{\mathrm{T}}\phi\left(\boldsymbol{x}_1\right) & \phi\left(\boldsymbol{x}_1\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_2\right) \\
+\phi\left(\boldsymbol{x}_2\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_1\right) & \phi\left(\boldsymbol{x}_2\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_2\right)
+\end{bmatrix}</script><p>即</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\kappa(\boldsymbol{x}_1, \boldsymbol{x}_1) & \kappa(\boldsymbol{x}_1, \boldsymbol{x}_2) \\
+\kappa(\boldsymbol{x}_2, \boldsymbol{x}_1) & \kappa(\boldsymbol{x}_2, \boldsymbol{x}_2)
+\end{bmatrix}</script><p>我猜的：核矩阵其实就是任意两样本间的测度/度量，所以extends自距离矩阵、Gram矩阵，所以核矩阵是对称、半正定矩阵。</p>
+<p>因为对称是定义半正定的前提，所以半正定方阵在实数域一定是对称方阵，即半正定方阵一定是实对称方阵。因此在描述核函数时可以省略核矩阵的对称性。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211081921173.webp" alt=""></p>
+<p>$\phi(\cdot)$所映射的空间是$\mathcal{H}$</p>
+<p>而$\kappa(\cdot, \cdot)$所隐式定义的空间被称作<strong>再生核希尔伯特空间</strong>（RKHS, Reproducing Kernel Hilbert Space）。</p>
+<p>所以，选择合适的$\kappa$，找到其中的$\kappa^*$，其定义的$\operatorname{RHKS}$最接近$\mathcal{H}$，就是我们的目标。</p>
+<p>注：半正定性是RKHS存在的必要条件，证明李航. 统计学习方法P118。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211081947018.png" alt="image-20221108194740952"></p>
+<h2 id="支持向量机软间隔型"><a href="#支持向量机软间隔型" class="headerlink" title="支持向量机软间隔型"></a>支持向量机软间隔型</h2><p>Note. 软间隔支持向量机部分被剪辑掉了，MOOC中并没有，这里简单介绍一下。</p>
+<p>下图为软间隔支持向量机的基本思想：允许超平面划分错误一部分样本（红圈内的样本），这部分样本可以不计入优化目标中。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211082012654.png" alt=""></p>
+<p>具体的实现方式是，为最优化目标施加惩罚项，成为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\ell_{0/1}(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1) \\
+\end{aligned}</script><p>当样本被划分错误时，即$\ell<em>{0/1}$的参数小于0时，$\ell</em>{0/1}$的值为1。</p>
+<p>那么，C即为该错误的“放大系数”，当C无穷大时，不允许超平面划分错误；当C为有限值时，允许超平面在一定程度上划分错误。</p>
+<p>常见的损失函数：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211082025885.png" alt=""></p>
+<p>令这些损失的值为“松弛变量”（slack variables），记作$\xi_i$，则有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b, \xi_i}{\min } \quad & \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\xi_i \\
+\text {s.t.} \quad & y_i\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_i+b\right) \geqslant 1-\xi_i\\
+&\boldsymbol{\xi} \succeq 0
+\end{aligned}</script><p>该优化问题即支持向量机软间隔型的主问题。</p>
+<p>当然，其也有对偶问题和解的稀疏性，不展开了。</p>
+<h2 id="如何使用SVM"><a href="#如何使用SVM" class="headerlink" title="如何使用SVM"></a>如何使用SVM</h2><p>我们已经知道，在分类问题中，通过解支持向量机基本型的对偶问题，可以得到“最优的”线性模型。</p>
+<p>那么，如何使用SVM解决回归问题，即如何解决SVR（support vector regression）问题呢？这里需要使用“软间隔支持向量机”来寻找该线性模型。</p>
+<p>基本思路与软间隔支持向量机类似，可以容忍超平面一定程度上的错误，认为其回归正确。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211082033122.png" alt=""></p>
+<p>于是，可以将该思路形式化为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\ell_{\epsilon}(f\left(\boldsymbol{x}_i\right) - y_i) \\
+\end{aligned}</script><p>其中，$C$为正则化常数，$\ell_\epsilon$为$\epsilon$-不敏感损失函数。</p>
+<p>$\ell_\epsilon$的表达式，及其与平方损失函数的比较如下：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211101601822.png" alt=""></p>
+<p>引入松弛变量$\xi_i$和$\hat{\xi_i}$，得到SVR问题的原问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}, b, \xi_i, \hat{\xi_i}}{\min } \quad & \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\left(\xi_i + \hat{\xi_i}\right) \\
+\text {s.t.} \quad & f\left(\boldsymbol{x}_i\right) - y_i \leqslant \epsilon + \xi_i \\
+& y_i - f\left(\boldsymbol{x}_i\right) \leqslant \epsilon + \xi_i \\
+&\boldsymbol{\xi} \succeq 0 \\
+&\boldsymbol{\hat{\xi}} \succeq 0 \\
+\end{aligned}</script><p>Note. 两个松弛变量，代表样本$\boldsymbol{x}_i$在预测变量（纵轴）上的，距$2\epsilon$间隔带的偏离程度（上方或下方），<strong>间隔带两侧的松弛程度可有所不同</strong>。</p>
+<p>与支持向量机问题类似，引入四个拉格朗日乘子$\mu_i \geqslant 0, \hat{\mu}_i \geqslant 0, \alpha_i \geqslant 0, \hat{\alpha}_i \geqslant 0$，有拉格朗日函数</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L(\boldsymbol{w}, b, \boldsymbol{\alpha}, \hat{\boldsymbol{\alpha}}, \boldsymbol{\xi}, \hat{\boldsymbol{\xi}}, \boldsymbol{\mu}, \hat{\boldsymbol{\mu}}) = \frac{1}{2}\|\boldsymbol{w}\|^2+C \sum_{i=1}^m\left(\xi_i+\hat{\xi}_i\right)-\sum_{i=1}^m \mu_i \xi_i-\sum_{i=1}^m \hat{\mu}_i \hat{\xi}_i + \sum_{i=1}^m \alpha_i\left(f\left(\boldsymbol{x}_i\right)-y_i-\epsilon-\xi_i\right)+\sum_{i=1}^m \hat{\alpha}_i\left(y_i-f\left(\boldsymbol{x}_i\right)-\epsilon-\hat{\xi}_i\right)
+\end{aligned}</script><p>进而得到对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{\alpha}, \hat{\boldsymbol{\alpha}}}{\max} \quad & \sum_{i=1}^m y_i\left(\hat{\alpha}_i-\alpha_i\right)-\epsilon\left(\hat{\alpha}_i+\alpha_i\right) -\frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m\left(\hat{\alpha}_i-\alpha_i\right)\left(\hat{\alpha}_j-\alpha_j\right) \boldsymbol{x}_i^{\mathrm{T}} \boldsymbol{x}_j \\
+\text {s.t.} \quad & 0 \leqslant \alpha_i, \hat{\alpha}_i \leqslant C
+\end{aligned}</script><p>Note. 大于等于0是$\alpha$的条件，小于等于C是由$\mu$的条件+平稳条件得到的。（也可以写四条对偶问题可行条件）</p>
+<p>平稳条件</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\begin{aligned}
+\boldsymbol{w} &=\sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) \boldsymbol{x}_i \\
+0 &=\sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) \\
+C &=\alpha_i+\mu_i \\
+C &=\hat{\alpha}_i+\hat{\mu}_i
+\end{aligned}
+\end{array}\right.</script><p>原问题可行性条件</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+f\left(\boldsymbol{x}_i\right) - y_i  - \epsilon - \xi_i \leqslant 0 \\
+y_i - f\left(\boldsymbol{x}_i\right) - \epsilon - \xi_i \leqslant 0 \\
+-\xi_i \leqslant 0 \\
+-\hat{\xi_i} \leqslant 0 \\
+\end{array}\right.</script><p>对偶问题可行性条件</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\mu_i \geqslant 0 \\
+\hat{\mu}_i \geqslant 0 \\
+\alpha_i \geqslant 0 \\
+\hat{\alpha}_i \geqslant 0
+\end{array}\right.</script><p><strong>互补松弛条件</strong></p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\alpha_i \left(f\left(\boldsymbol{x}_i\right) - y_i  - \epsilon - \xi_i\right) = 0 \\
+\hat{\alpha}_i \left(y_i - f\left(\boldsymbol{x}_i\right) - \epsilon - \xi_i\right) = 0 \\
+-\mu_i \xi_i = 0 \\
+-\hat{\mu}_i \hat{\xi_i} = 0 \\
+\end{array}\right.</script><p>综上，再将互补松弛条件中的$\mu_i$和$\hat{\mu_i}$用平稳条件中的$\alpha_i$和$\hat{\alpha_i}$代替，再因样本只能处在间隔带的一侧，所以$\alpha_i$和$\hat{\alpha_i}$至少有其一为0，进而$\xi_i$和$\hat{\xi_i}$至少有其一为0，所以KKT条件为</p>
+<script type="math/tex; mode=display">
+K.K.T\left\{\begin{array}{ll}
+\boldsymbol{w} - \sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) \boldsymbol{x}_i &= 0 \\
+\sum_{i=1}^m\left(\hat{\alpha}_i-\alpha_i\right) &= 0\\
+\alpha_i\left(f\left(\boldsymbol{x}_i\right)-y_i-\epsilon-\xi_i\right) &= 0 \\
+\hat{\alpha}_i\left(y_i-f\left(\boldsymbol{x}_i\right)-\epsilon-\hat{\xi}_i\right) &= 0 \\
+\alpha_i \hat{\alpha}_i &= 0 \\
+\xi_i \hat{\xi}_i &= 0 \\
+\left(C-\alpha_i\right) \xi_i &= 0 \\
+\left(C-\hat{\alpha}_i\right) \hat{\xi}_i &= 0
+\end{array}\right.</script><p>带着KKT条件解对偶问题，解得$\alpha_i^<em>$和$\hat{\alpha}_i^</em>$，其与原问题的解相对应，所以</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}^* = \sum_{i=1}^m\left(\hat{\alpha}_i^*-\alpha_i^*\right) \boldsymbol{x}_i</script><p>与基本型类似地，选取任意一个满足$0\leqslant\alpha_i\leqslant C$的样本$(\boldsymbol{x}_i, y_i)$，有</p>
+<script type="math/tex; mode=display">
+b^* = y_i + \epsilon -\boldsymbol{w}^*\boldsymbol{x}_i</script><p>也可以选取多个取平均值，有</p>
+<script type="math/tex; mode=display">
+b^* = \frac{1}{|S|}\sum_{s\in S}y_s + \epsilon -\boldsymbol{w}^*\boldsymbol{x}_s</script><p>综上，得到SVR问题的回归超平面模型</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script><h2 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h2><p>题4</p>
+<blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211111041495.png" alt="image-20221111104158469"></p>
+</blockquote>
+<p>题7</p>
+<blockquote>
+<p>支持向量机对偶问题得到的目标函数最优值是原始问题目标函数最优值的<em>__</em>（上界/下界）</p>
+<p>正确答案:[ “下界” ]</p>
+</blockquote>
+<p>题11</p>
+<blockquote>
+<p>对于两个样本点(0,0),(1,1)，若我们将其投影到与高斯核函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=e^{-|x-y|^2}$关联的RKHS中时，则两个样本投影后的点距离为<em>__</em>（保留三位小数）</p>
+<p>正确答案:[ “1.315” ]</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\operatorname{dist}(x_1,x_2)=\|\phi(x_1)-\phi(x_2)\|_{\mathcal{H}_\kappa}^2=\sqrt{\kappa(x_1,x_1)-2\kappa(x_1,x_2)+\kappa(x_2,x_2)}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{dist}\left((0, 0), (1, 1))\right)&=\sqrt{e^{-\|(0, 0)\|^2} - 2e^{-\|(-1, -1)\|^2}+e^{-\|(0, 0)\|^2}} \\
+&= \sqrt{e^0 - 2e^{-{\sqrt 2}^2}+e^0} \\
+&= \sqrt{2(1 - e^{-2})} \\
+&= 1.315
+\end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211111100810.png" alt=""></p>
+<p>题12</p>
+<blockquote>
+<p>试判断定义在$\mathbf{R}^N \times \mathbf{R}^N$上的函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=\left(\boldsymbol{x}^{\mathrm{T}} \boldsymbol{y}+1\right)^2$是否为核函数。（是/否）</p>
+<p>正确答案:[ “是” ]</p>
+</blockquote>
+<p>典型的多项式核函数</p>
+<p>题13</p>
+<blockquote>
+<p>试判断定义在$\mathbf{R}^N \times \mathbf{R}^N$上的函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=\left(\boldsymbol{x}^{\mathrm{T}} \boldsymbol{y}-1\right)^2$是否为核函数。（是/否）</p>
+<p>正确答案:[ “否” ]</p>
+</blockquote>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="神经网络模型"><a href="#神经网络模型" class="headerlink" title="神经网络模型"></a>神经网络模型</h2>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://xuwp.top/Zhihua-Zhou-Machine-Learning-Prelim.html">http://xuwp.top/Zhihua-Zhou-Machine-Learning-Prelim.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2022 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"># 机器学习</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/Test.html">MathJax3 Formula Test</a>
+            
+            
+            <a class="next" rel="next" href="/Dive-into-Deep-Learning.html">Mu Li. Dive into Deep Learning</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Stay hungry. Stay foolish.</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

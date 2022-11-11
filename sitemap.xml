@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://xuwp.top/undefined.html</loc>
+    <loc>http://xuwp.top/Zhihua-Zhou-Machine-Learning-Prelim.html</loc>
     
     <lastmod>2022-11-11</lastmod>
     
@@ -272,7 +272,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/css/normalize.css</loc>
+    <loc>http://xuwp.top/css/style.css</loc>
     
     <lastmod>2022-04-10</lastmod>
     
@@ -281,7 +281,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/css/style.css</loc>
+    <loc>http://xuwp.top/css/normalize.css</loc>
     
     <lastmod>2022-04-10</lastmod>
     
@@ -317,6 +317,13 @@
 
   
   <url>
+    <loc>http://xuwp.top/tags/Android/</loc>
+    <lastmod>2022-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-11-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -325,13 +332,6 @@
   
   <url>
     <loc>http://xuwp.top/tags/topSecret/</loc>
-    <lastmod>2022-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuwp.top/tags/Android/</loc>
     <lastmod>2022-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -396,14 +396,14 @@
 
   
   <url>
-    <loc>http://xuwp.top/categories/AI/</loc>
+    <loc>http://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2022-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
+    <loc>http://xuwp.top/categories/AI/</loc>
     <lastmod>2022-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
