@@ -1417,16 +1417,23 @@ b^* = y_i + \epsilon -\boldsymbol{w}^*\boldsymbol{x}_i</script><p>也可以选�
 <script type="math/tex; mode=display">
 b^* = \frac{1}{|S|}\sum_{s\in S}y_s + \epsilon -\boldsymbol{w}^*\boldsymbol{x}_s</script><p>综上，得到SVR问题的回归超平面模型</p>
 <script type="math/tex; mode=display">
-f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script><h2 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h2><p>题4</p>
+f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script><h2 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h2><p><strong>题4</strong></p>
 <blockquote>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211111041495.png" alt="image-20221111104158469"></p>
 </blockquote>
-<p>题7</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211172009265.png" alt=""></p>
+<p><strong>题7</strong></p>
 <blockquote>
 <p>支持向量机对偶问题得到的目标函数最优值是原始问题目标函数最优值的<em>__</em>（上界/下界）</p>
 <p>正确答案:[ “下界” ]</p>
 </blockquote>
-<p>题11</p>
+<p>支持向量机对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol \mu}{\max} \quad & \Gamma(\boldsymbol{\mu}) = \underset{\boldsymbol{w}, b}{\inf} L(\boldsymbol{w}, b, \boldsymbol{\mu}) \\
+\text{s.t.} \quad & \boldsymbol{\mu} \succeq  0
+\end{aligned}</script><p>读作：最大化（max）$L$的下确界（inf），同时使得$\mu \succeq 0$，求此时$\mu$的最优值$\mu^*$。</p>
+<p><strong>题11</strong></p>
 <blockquote>
 <p>对于两个样本点(0,0),(1,1)，若我们将其投影到与高斯核函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=e^{-|x-y|^2}$关联的RKHS中时，则两个样本投影后的点距离为<em>__</em>（保留三位小数）</p>
 <p>正确答案:[ “1.315” ]</p>
@@ -1439,18 +1446,38 @@ f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script
 &= \sqrt{2(1 - e^{-2})} \\
 &= 1.315
 \end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211111100810.png" alt=""></p>
-<p>题12</p>
+<p><strong>题12</strong></p>
 <blockquote>
 <p>试判断定义在$\mathbf{R}^N \times \mathbf{R}^N$上的函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=\left(\boldsymbol{x}^{\mathrm{T}} \boldsymbol{y}+1\right)^2$是否为核函数。（是/否）</p>
 <p>正确答案:[ “是” ]</p>
 </blockquote>
 <p>典型的多项式核函数</p>
-<p>题13</p>
+<p><strong>题13</strong></p>
 <blockquote>
 <p>试判断定义在$\mathbf{R}^N \times \mathbf{R}^N$上的函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=\left(\boldsymbol{x}^{\mathrm{T}} \boldsymbol{y}-1\right)^2$是否为核函数。（是/否）</p>
 <p>正确答案:[ “否” ]</p>
 </blockquote>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="神经网络模型"><a href="#神经网络模型" class="headerlink" title="神经网络模型"></a>神经网络模型</h2>
+<p>暂时不会</p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>这一章在大三上学期写过博客<a href="https://xuwp.top/Machine-Learning.html">机器学习基础</a>，这里就写的简单一点。</p>
+<h2 id="神经网络模型"><a href="#神经网络模型" class="headerlink" title="神经网络模型"></a>神经网络模型</h2><p>Q：什么是神经网络？</p>
+<p>A：神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物 体所作出的交互反应。[T. Kohonen, 1988]</p>
+<p>M-P神经元模型</p>
+<p>激活函数/挤压函数</p>
+<p>logistic函数/对数几率函数</p>
+<script type="math/tex; mode=display">
+f(x) = \frac{1}{1 + \exp(-x)} \\
+f^{\prime}(x) = f(x)\left(1-f(x)\right)</script><p>其导函数=将样本分为正例的可能性*将样本分为负例的可能性</p>
+<p>几率odds=将样本分为正例的可能性/将样本分为负例的可能性</p>
+<p>多层前馈网络结构</p>
+<p>网络结构+神经元模型=神经网络</p>
+<p>神经网络的层数：一般指含功能神经元的层的数量，“输入层”只是数据，不算层数。</p>
+<h2 id="万有逼近能力"><a href="#万有逼近能力" class="headerlink" title="万有逼近能力"></a>万有逼近能力</h2><p>多层前馈神经网络具有强大的表示能力（万有逼近能力）。</p>
+<p>万有逼近定理（universal approximation theorem）：仅需一个包含足够多神经元的隐层，多层前馈神经网络就能以<br>任意精度逼近任意复杂度的（定义在紧集上的）连续函数[Hornik et al., 1989]。</p>
+<p>推广：任何一个<strong>图灵可计算的（Turing computable）</strong>问题，都可以找到一个神经网络作为它的求解器。</p>
+<p>但如何设置隐层神经元的个数是未决问题（open problem），常采用“试错法”（trial-by-error）调整。</p>
+<p>万有逼近能力是用神经网络解决问题的可行性的前提，而不是“优势”。很多求解方法都有万有逼近能力，如傅里叶变换、泰勒展开、决策树等。我们证明神经网络具有万有逼近能力，是为了证明它具有可解释性，它一定可以找到参数去逼近目标函数。</p>
+<h2 id="BP算法推导"><a href="#BP算法推导" class="headerlink" title="BP算法推导"></a>BP算法推导</h2><p>（这里不想写了，不如看吴恩达）</p>
+
         </div>
 
         
