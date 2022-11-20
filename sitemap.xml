@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/Man-in-the-middle-Attack.html</loc>
+    <loc>http://xuwp.top/Introduction-to-Artificial-Intelligence.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/Introduction-to-Artificial-Intelligence.html</loc>
+    <loc>http://xuwp.top/Man-in-the-middle-Attack.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -324,6 +324,13 @@
   </url>
   
   <url>
+    <loc>http://xuwp.top/tags/Android/</loc>
+    <lastmod>2022-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-11-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -338,7 +345,7 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/tags/Android/</loc>
+    <loc>http://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2022-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <loc>http://xuwp.top/tags/Tools/</loc>
     <lastmod>2022-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuwp.top/tags/Tools/</loc>
+    <loc>http://xuwp.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -386,24 +393,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>http://xuwp.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-11-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>http://xuwp.top/categories/AI/</loc>
+    <loc>http://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2022-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
+    <loc>http://xuwp.top/categories/AI/</loc>
     <lastmod>2022-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
