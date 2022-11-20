@@ -1481,7 +1481,19 @@ f^{\prime}(x) = f(x)\left(1-f(x)\right)</script><p>其导函数=将样本分为�
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211182105438.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211182103360.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211182104800.png" alt=""></p>
-<h2 id="测试-4"><a href="#测试-4" class="headerlink" title="测试"></a>测试</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211182134462.png" alt=""></p>
+<h2 id="测试-4"><a href="#测试-4" class="headerlink" title="测试"></a>测试</h2><p><strong>题6</strong></p>
+<blockquote>
+<p>Sigmoid函数在 x=0.5 处的导数值为<em>__</em>(保留3位小数)。</p>
+<p>正确答案:[ “0.235” ]</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f^{\prime}(x) &= f(x)\left(1 - f(x)\right) \\
+f^{\prime}(0.5) &= \frac{1}{1 + \exp(-0.5)} \cdot \frac{\exp(-0.5)}{1 + \exp(-0.5)} \\
+&= \frac{\exp(0.5)}{\exp(0.5) + 1} \cdot \frac{1}{\exp(0.5) + 1} \\
+&= \frac{\exp(0.5)}{\left(\exp(0.5) + 1\right)^2} \\
+&= 0.235
+\end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211201942933.png" alt=""></p>
 <p><strong>题9</strong></p>
 <blockquote>
 <p>考虑一个有1个输入结点、1个隐层结点、1个输出结点构成的神经网络，该网络输入到隐层的权重与隐层到输出的权重共享，即该神经网络的前馈表达式为$f(x)=\sigma\left(w \sigma\left(w x+b\right)+b\right)$，其中$\sigma(x)$为Sigmoid激活函数。考虑由两个样本组成的数据集$D={(0,0.5),(1,0.25)}$，神经网络初始化参数为$w = -1, b = -1$，使用平方损失作为损失函数 (总损失为所有样本的平方和损失，<strong>不除以2</strong>)。则该神经网络在初始化下的损失为<em>__</em>(保留3位小数)。</p>
