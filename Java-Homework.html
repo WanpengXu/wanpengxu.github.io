@@ -318,7 +318,7 @@
 <p>​        因为$d|a$, $d|b$，所以$\frac{a}{d}-k\frac{b}{d}\in{Z}$</p>
 <p>​        即$\frac{r}{d}\in{Z}$，$d|r$，$d|(a\ mod\ b)$</p>
 <p>​        因为$d|a$,  $d|b$,  $d|(a\ mod\ b)$</p>
-<p>​        所以$d<em>{max}|a$,  $d</em>{max}|b$,  $d_{max}|(a\ mod\ b)$</p>
+<p>​        所以$d_{max}|a$,  $d_{max}|b$,  $d_{max}|(a\ mod\ b)$</p>
 <p>​        即 $gcd(a,b) = gcd(b, a\ mod\ b)$ </p>
 <p>​        $Q.E.D.$</p>
 <p>值得注意的是，我们看似只证明了$a&gt;b$时的辗转相除法，但算法实现时不需要考虑$a&lt;b$的情况，因为如果$a&lt;b$，那么$a\ mod\ b=a$，即 $gcd(a,b) = gcd(b, a\ mod\ b)=gcd(b,a)$ ，仍然是$gcd(较大数, 较小数)$的形式。</p>
@@ -716,14 +716,14 @@
 </div>
 <p>在这里直接对我的正则表达式进行说明即可理解环视。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;^(?![A-Za-z0-9]+$)(?![a-z0-9\\W]+$)(?![A-Za-z\\W]+$)(?![A-Z0-9\\W]+$)[a-zA-Z0-9\\W]&#123;8,16&#125;$&quot;</span></span><br></pre></td></tr></table></figure>
-<p>首先我们知道四种字符，其共有$\sum\limits<em>{i=1}^{4} C</em>{4}^{i}=4+6+4+1=15$种情况，接下来要对除了$C_{4}^{4}$这种全选情况外的情况进行排除。</p>
+<p>首先我们知道四种字符，其共有$\sum\limits_{i=1}^{4} C_{4}^{i}=4+6+4+1=15$种情况，接下来要对除了$C_{4}^{4}$这种全选情况外的情况进行排除。</p>
 <ul>
 <li><code>^</code>正则表达式开始符</li>
-<li><code>(?![0-9A-Za-z]+$)</code>对整个字符串选出零宽字符后没有数字、大写字母、小写字母三者组合（$\sum\limits<em>{i=1}^{3} C</em>{3}^{i}$）的零宽字符</li>
-<li><code>(?![0-9a-z\\W]+$)</code>对整个字符串选出零宽字符后没有数字、小写字母、标点符号三者组合（$\sum\limits<em>{i=1}^{3} C</em>{3}^{i}$）的零宽字符</li>
-<li><code>(?![A-Za-z\\W]+$)</code>对整个字符串选出零宽字符后没有大写字母、小写字母、标点符号三者组合（$\sum\limits<em>{i=1}^{3} C</em>{3}^{i}$）的零宽字符</li>
-<li><code>(?![0-9A-Z\\W]+$)</code>对整个字符串选出零宽字符后没有数字、大写字母、标点符号三者组合（$\sum\limits<em>{i=1}^{3} C</em>{3}^{i}$）的零宽字符</li>
-<li><code>[0-9A-Za-z\\W]&#123;8,16&#125;</code>从选出的零宽字符起，选中含有8~16个数字、大写字母、小写字母、标点符号的字符串。进行到这步时，因为前面几种环视已经排除掉了$\sum\limits<em>{i=1}^{3} C</em>{4}^{i}=14$种情况，所以选中的字符串必是四种符号的全选情况。</li>
+<li><code>(?![0-9A-Za-z]+$)</code>对整个字符串选出零宽字符后没有数字、大写字母、小写字母三者组合（$\sum\limits_{i=1}^{3} C_{3}^{i}$）的零宽字符</li>
+<li><code>(?![0-9a-z\\W]+$)</code>对整个字符串选出零宽字符后没有数字、小写字母、标点符号三者组合（$\sum\limits_{i=1}^{3} C_{3}^{i}$）的零宽字符</li>
+<li><code>(?![A-Za-z\\W]+$)</code>对整个字符串选出零宽字符后没有大写字母、小写字母、标点符号三者组合（$\sum\limits_{i=1}^{3} C_{3}^{i}$）的零宽字符</li>
+<li><code>(?![0-9A-Z\\W]+$)</code>对整个字符串选出零宽字符后没有数字、大写字母、标点符号三者组合（$\sum\limits_{i=1}^{3} C_{3}^{i}$）的零宽字符</li>
+<li><code>[0-9A-Za-z\\W]&#123;8,16&#125;</code>从选出的零宽字符起，选中含有8~16个数字、大写字母、小写字母、标点符号的字符串。进行到这步时，因为前面几种环视已经排除掉了$\sum\limits_{i=1}^{3} C_{4}^{i}=14$种情况，所以选中的字符串必是四种符号的全选情况。</li>
 <li><code>$</code>正则表达式结束符</li>
 </ul>
 <p>这其中<code>\W</code>代表匹配任何非单词字符，当然也可以自己指定允许的标点符号集合（注意这个转义字符包含<code>_</code>）。</p>
@@ -807,7 +807,7 @@
 </table>
 </div>
 <ol>
-<li><p>计算${\displaystyle S=\sum <em>{i=1}^{17}a</em>{i}\cdot W_{i}}$</p>
+<li><p>计算${\displaystyle S=\sum _{i=1}^{17}a_{i}\cdot W_{i}}$</p>
 </li>
 <li><p>${\displaystyle a_{18}=(12-(S\ {\bmod {1}}1)){\bmod {1}}1}$</p>
 </li>

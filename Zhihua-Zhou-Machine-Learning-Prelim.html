@@ -395,7 +395,7 @@ P\left(\left\vert f(\boldsymbol{x}) - y \right\vert\leq \epsilon\right) \geq 1 -
 <p>留一法（leave-one-out, LOO）：k=m时的k折交叉验证，即每1个样本都被用作其余m-1个样本的测试数据一次。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210181649476.png" alt="10折交叉验证"></p>
 <p>将m个样本划分为k个子集的方式有很多，为了减小因划分方式的不同而引入的差别，通常要重复p次不同的划分方式，最终的评估结果为“p次k折交叉验证”的均值，如“10次10折交叉验证”。</p>
-<p>k折交叉验证中，将k-1个子集训练出的Model，视为用全部数据集训练出的Model进行评估，即$\widetilde{M}<em>k=M</em>{k-1}$。</p>
+<p>k折交叉验证中，将k-1个子集训练出的Model，视为用全部数据集训练出的Model进行评估，即$\widetilde{M}_k=M_{k-1}$。</p>
 <p>Q：有没有什么方法，既可以直接得到$M_k$，又有剩余的数据进行测试呢？</p>
 <p>A：自助法</p>
 <h3 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h3><p>自助法以自助采样法（bootstrap sampling）为基础（Efron and Tibshirani,  1993），其内容为：</p>
@@ -490,7 +490,7 @@ s.t.\quad  f(x_i) \simeq y_i</script><p>注. $\simeq$是<code>\simeq</code>，�
 \end{aligned}</script><p>向量形式为：</p>
 <script type="math/tex; mode=display">
 f(\boldsymbol{x})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b</script><p>Q：若某一组输入的属性是离散的，如三值长度属性：{“长”，“中”，“短”}或三值敲声属性：{“浊响”，“清脆”，“沉闷”}，如何回归分析？</p>
-<p>A：可以对输入属性进行处理，若属性值间存在“序”（order）关系，则可将其连续化，成为连续值，如长度属性可转化为${1.0, 0.5, 0.0}$。若属性值间不存在序关系，则可以将其one-hot编码，成为one-hot向量，如敲声属性可转化为${(1, 0, 0), (0, 1, 0), (0, 0, 1)}$</p>
+<p>A：可以对输入属性进行处理，若属性值间存在“序”（order）关系，则可将其连续化，成为连续值，如长度属性可转化为$\{1.0, 0.5, 0.0\}$。若属性值间不存在序关系，则可以将其one-hot编码，成为one-hot向量，如敲声属性可转化为$\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$</p>
 <p>注. pandas中通过get_dummies（转哑变量）实现one-hot编码。</p>
 <p>Q：线性回归怎么得到线性模型的呢？</p>
 <p>A：通过使均方误差最小化，解出$w^<em>$和$b^</em>$</p>
@@ -527,7 +527,7 @@ b&=\frac{1}{m} \sum_{i=1}^m\left(y_i-w x_i\right)
 <h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>如第一节中所述，线性回归的一般形式是</p>
 <script type="math/tex; mode=display">
 f(\boldsymbol{x_i})=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x_i} + b\\
-s.t.\quad  f(\boldsymbol{x_i}) \simeq y_i</script><p>其中$\boldsymbol{x<em>i}=\left(x</em>{i1}; x<em>{i2}; …; x</em>{id}\right)$，样本共有$d$个属性。</p>
+s.t.\quad  f(\boldsymbol{x_i}) \simeq y_i</script><p>其中$\boldsymbol{x_i}=\left(x_{i1}; x_{i2}; …; x_{id}\right)$，样本共有$d$个属性。</p>
 <p>这便是“多元线性回归”（multivariate linear regression）。</p>
 <p>类似地，我们仍可以利用最小二乘法得到其最优参数。但为了方便解，我们首先对一般形式进行调整。</p>
 <p>令</p>
@@ -592,7 +592,7 @@ y = \exp(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b)</script><p>首先预处�
 <p>注. 广义线性模型的参数估计常通过加权最小二乘法或极大似然法进行。</p>
 <h2 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h2><p>使用线性模型和广义线性模型进行回归分析，可以解决回归任务。</p>
 <p>那么对于分类任务，事实上是在更进一步地，将线性模型的连续预测值$z$映射到离散的真实标记$y$。</p>
-<p>以二分类任务为例，设其输出标记 $y \in {0, 1} $，其线性回归模型及其预测值$z=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b$。</p>
+<p>以二分类任务为例，设其输出标记 $y \in \{0, 1\} $，其线性回归模型及其预测值$z=\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b$。</p>
 <p>那么为了将$z$映射到$y$，有一个最理想的函数“单位阶跃函数”（unit-step function）</p>
 <script type="math/tex; mode=display">
 y=\left\{
@@ -830,13 +830,13 @@ a_* = \underset{a_i \in A}{\arg \max} \operatorname{Gain}(D, a_i)</script><p>注
 17 & 青绿 & 蜷缩 & 沉闷 & 稍糊 & 稍凹 & 硬滑 & 否 \\
 \hline
 \end{array}</script><p>该数据集包含17个训练样例，欲训练出一颗决策树，用来判断没切开的瓜是不是好瓜。</p>
-<p>首先可以看出，$\mathcal{Y} = {是， 否}$，$|\mathcal{Y}|=2$。</p>
+<p>首先可以看出，$\mathcal{Y} = \{是， 否\}$，$|\mathcal{Y}|=2$。</p>
 <p>其中，正例所占比例为$p_1= \frac{8}{17}$，反例所占比例为$p_2=\frac{9}{17}$。</p>
 <p>那么，根节点的信息熵为</p>
 <script type="math/tex; mode=display">
 \operatorname{Ent}(D) = -\sum_{k=1}^{2}p_k\log_2p_k = -(\frac{8}{17}\log_2\frac{8}{17}+\frac{9}{17}\log_2\frac{9}{17}) = 0.998</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232016622.png" alt=""></p>
-<p>当前属性集合$A = {色泽, 根蒂, 敲声, 纹理, 脐部, 触感}$，现在计算按每个属性划分$D$所带来的的信息增益。</p>
-<p>首先是属性“色泽”，其属性值为${青绿, 乌黑, 浅白}$，分别对$D$进行划分，有</p>
+<p>当前属性集合$A = \{色泽, 根蒂, 敲声, 纹理, 脐部, 触感\}$，现在计算按每个属性划分$D$所带来的的信息增益。</p>
+<p>首先是属性“色泽”，其属性值为$\{青绿, 乌黑, 浅白\}$，分别对$D$进行划分，有</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 D^1(色泽=青绿) &= \{1, 4, 6,|  10, 13, 17\} &p_1=\frac{3}{6},\quad p_2=\frac{3}{6}\\
@@ -865,7 +865,7 @@ D^3(色泽=浅白) &= \{5,| 11, 12, 14, 16\} &p_1=\frac{1}{5},\quad p_2=\frac{4}
 \end{aligned}</script><p>因此，最优划分属性为“纹理”，按其划分$D$所形成的一层决策树为</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210232048585.png" alt=""></p>
 <p>继续递归划分，进入第一个分支结点（“纹理=清晰”）。</p>
-<p>该结点所包含的样例集合$D^1={1, 2, 3, 4, 5, 6, 8, 10, 15}$，属性集合$A = {色泽, 根蒂, 敲声, 脐部, 触感}$，计算按每个属性划分$D^1$所带来的的信息增益。</p>
+<p>该结点所包含的样例集合$D^1=\{1, 2, 3, 4, 5, 6, 8, 10, 15\}$，属性集合$A = \{色泽, 根蒂, 敲声, 脐部, 触感\}$，计算按每个属性划分$D^1$所带来的的信息增益。</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \operatorname{Gain}(D^1, 色泽) &= 0.043 \qquad \operatorname{Gain}(D^1, 根蒂) = 0.458 \\
@@ -997,7 +997,7 @@ a_*=\underset{a_i \in A}{\arg \min}\operatorname{Gini\_index}(D, a_i)</script><p
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210272307219.png" alt=""></p>
 <h2 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h2><p>题7</p>
 <blockquote>
-<p>对西瓜数据集2.0，属性“色泽”的基尼指数为<em>__</em>（保留2位有效数字）</p>
+<p>对西瓜数据集2.0，属性“色泽”的基尼指数为____（保留2位有效数字）</p>
 <p>正确答案:[ “0.43” ]</p>
 </blockquote>
 <script type="math/tex; mode=display">
@@ -1326,7 +1326,7 @@ d(\boldsymbol{x}_2, \boldsymbol{x}_1) & d(\boldsymbol{x}_2, \boldsymbol{x}_2)
 <script type="math/tex; mode=display">
 \begin{aligned}
 \underset{\boldsymbol{w}, b}{\min } & \quad \frac{1}{2}{\|\boldsymbol{w}\|}^2+C\sum_{i=1}^{m}\ell_{0/1}(y_i\left(\boldsymbol{w}^{\top} \boldsymbol{x}_i+b\right) - 1) \\
-\end{aligned}</script><p>当样本被划分错误时，即$\ell<em>{0/1}$的参数小于0时，$\ell</em>{0/1}$的值为1。</p>
+\end{aligned}</script><p>当样本被划分错误时，即$\ell_{0/1}$的参数小于0时，$\ell_{0/1}$的值为1。</p>
 <p>那么，C即为该错误的“放大系数”，当C无穷大时，不允许超平面划分错误；当C为有限值时，允许超平面在一定程度上划分错误。</p>
 <p>常见的损失函数：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211082025885.png" alt=""></p>
@@ -1424,7 +1424,7 @@ f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211172009265.png" alt=""></p>
 <p><strong>题7</strong></p>
 <blockquote>
-<p>支持向量机对偶问题得到的目标函数最优值是原始问题目标函数最优值的<em>__</em>（上界/下界）</p>
+<p>支持向量机对偶问题得到的目标函数最优值是原始问题目标函数最优值的____（上界/下界）</p>
 <p>正确答案:[ “下界” ]</p>
 </blockquote>
 <p>支持向量机对偶问题</p>
@@ -1435,7 +1435,7 @@ f(\boldsymbol{x}) = {\boldsymbol{w}^*}^{\mathrm{T}} \boldsymbol{x} + b^*</script
 \end{aligned}</script><p>读作：最大化（max）$L$的下确界（inf），同时使得$\mu \succeq 0$，求此时$\mu$的最优值$\mu^*$。</p>
 <p><strong>题11</strong></p>
 <blockquote>
-<p>对于两个样本点(0,0),(1,1)，若我们将其投影到与高斯核函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=e^{-|x-y|^2}$关联的RKHS中时，则两个样本投影后的点距离为<em>__</em>（保留三位小数）</p>
+<p>对于两个样本点(0,0),(1,1)，若我们将其投影到与高斯核函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=e^{-|x-y|^2}$关联的RKHS中时，则两个样本投影后的点距离为____（保留三位小数）</p>
 <p>正确答案:[ “1.315” ]</p>
 </blockquote>
 <script type="math/tex; mode=display">
@@ -1483,7 +1483,7 @@ f^{\prime}(x) = f(x)\left(1-f(x)\right)</script><p>其导函数=将样本分为�
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211182104800.png" alt=""></p>
 <h2 id="测试-4"><a href="#测试-4" class="headerlink" title="测试"></a>测试</h2><p><strong>题6</strong></p>
 <blockquote>
-<p>Sigmoid函数在 x=0.5 处的导数值为<em>__</em>(保留3位小数)。</p>
+<p>Sigmoid函数在 x=0.5 处的导数值为____(保留3位小数)。</p>
 <p>正确答案:[ “0.235” ]</p>
 </blockquote>
 <script type="math/tex; mode=display">
@@ -1496,7 +1496,7 @@ f^{\prime}(0.5) &= \frac{1}{1 + \exp(-0.5)} \cdot \frac{\exp(-0.5)}{1 + \exp(-0.
 \end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211201942933.png" alt=""></p>
 <p><strong>题9</strong></p>
 <blockquote>
-<p>考虑一个有1个输入结点、1个隐层结点、1个输出结点构成的神经网络，该网络输入到隐层的权重与隐层到输出的权重共享，即该神经网络的前馈表达式为$f(x)=\sigma\left(w \sigma\left(w x+b\right)+b\right)$，其中$\sigma(x)$为Sigmoid激活函数。考虑由两个样本组成的数据集$D={(0,0.5),(1,0.25)}$，神经网络初始化参数为$w = -1, b = -1$，使用平方损失作为损失函数 (总损失为所有样本的平方和损失，<strong>不除以2</strong>)。则该神经网络在初始化下的损失为<em>__</em>(保留3位小数)。</p>
+<p>考虑一个有1个输入结点、1个隐层结点、1个输出结点构成的神经网络，该网络输入到隐层的权重与隐层到输出的权重共享，即该神经网络的前馈表达式为$f(x)=\sigma\left(w \sigma\left(w x+b\right)+b\right)$，其中$\sigma(x)$为Sigmoid激活函数。考虑由两个样本组成的数据集$D=\{(0,0.5),(1,0.25)\}$，神经网络初始化参数为$w = -1, b = -1$，使用平方损失作为损失函数 (总损失为所有样本的平方和损失，<strong>不除以2</strong>)。则该神经网络在初始化下的损失为____(保留3位小数)。</p>
 <p>正确答案:[ “0.079” ]</p>
 </blockquote>
 <p>按照前面的记号，将神经网络形式化出来。</p>
@@ -1509,7 +1509,7 @@ f^{\prime}(0.5) &= \frac{1}{1 + \exp(-0.5)} \cdot \frac{\exp(-0.5)}{1 + \exp(-0.
 <p>Note. 我以前做物理实验的时候是多保留两位的，很rigorous，最终分数在全校四千多修这门课的人中排名第一。</p>
 <p><strong>题10</strong></p>
 <blockquote>
-<p>上述损失关于$\omega$的偏导在初始点处的取值为<em>__</em>(保留3位小数)。<br>正确答案:[ “-0.026” ]</p>
+<p>上述损失关于$\omega$的偏导在初始点处的取值为____(保留3位小数)。<br>正确答案:[ “-0.026” ]</p>
 </blockquote>
 <p>Note. 题10和题11，因为参数共享会导致偏导数加法，我建议还是不要用网络结构的链式法则求偏导数，还是把这个神经网络看做普通函数$f$来求偏导数好做。</p>
 <p>这里就只写法二了，法一见题11。</p>
@@ -1518,7 +1518,7 @@ f^{\prime}(0.5) &= \frac{1}{1 + \exp(-0.5)} \cdot \frac{\exp(-0.5)}{1 + \exp(-0.
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211192026738.png" alt=""></p>
 <p><strong>题11</strong></p>
 <blockquote>
-<p>上述损失关于$b$的偏导在初始点处的取值为<em>__</em>(保留3位有效数字)。</p>
+<p>上述损失关于$b$的偏导在初始点处的取值为____(保留3位有效数字)。</p>
 <p>正确答案:[ “-0.078” ]</p>
 </blockquote>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211192029303.png" alt=""></p>
@@ -1527,13 +1527,13 @@ f^{\prime}(0.5) &= \frac{1}{1 + \exp(-0.5)} \cdot \frac{\exp(-0.5)}{1 + \exp(-0.
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211192026999.png" alt=""></p>
 <p><strong>题12</strong></p>
 <blockquote>
-<p>当步长取为0.5时，使用BP算法更新神经网络模型后，模型的损失为<em>__</em> (保留3位小数)。</p>
+<p>当步长取为0.5时，使用BP算法更新神经网络模型后，模型的损失为____ (保留3位小数)。</p>
 <p>正确答案:[ “0.075” ]</p>
 </blockquote>
 <p>Note. 题12和题13，使用<strong>累计误差反向传播算法</strong>，解题code写在一起了。</p>
 <p><strong>题13</strong></p>
 <blockquote>
-<p>当步长取为20时，使用BP算法更新神经网络模型后，模型的损失为<em>__</em> (保留3位小数)。</p>
+<p>当步长取为20时，使用BP算法更新神经网络模型后，模型的损失为____ (保留3位小数)。</p>
 <p>对比上述两种步长值，体会步长选取与振荡现象的关系。</p>
 <p>正确答案:[ “0.112” ]</p>
 </blockquote>
@@ -1545,13 +1545,13 @@ f^{\prime}(0.5) &= \frac{1}{1 + \exp(-0.5)} \cdot \frac{\exp(-0.5)}{1 + \exp(-0.
 <p>记$\lambda_{ij}$为：因将标记为$c_j$的样本错误分类为$c_i$所产生的损失。</p>
 <p>记$P(x)$为：样本$x$被错误分类为$c_i$类的概率。</p>
 <p>记$P_0(x)$为：产生$x$，这个事件发生的概率。</p>
-<p>那么基于后验概率<script type="math/tex">P_0(\lambda_{ij})=P\left(c_j \mid \boldsymbol{x}\right)</script>，可以得到错误分类所产生的损失的期望，即期望损失$E(\Lambda_{ij})$。在决策论中，也称其为在样本$\boldsymbol{x}$上的“条件风险”，记作$R\left(c_i \mid \boldsymbol{x}\right)$。</p>
+<p>那么基于后验概率$P_0(\lambda_{ij})=P\left(c_j \mid \boldsymbol{x}\right)$，可以得到错误分类所产生的损失的期望，即期望损失$E(\Lambda_{ij})$。在决策论中，也称其为在样本$\boldsymbol{x}$上的“条件风险”，记作$R\left(c_i \mid \boldsymbol{x}\right)$。</p>
 <script type="math/tex; mode=display">
-R\left(c_i \mid \boldsymbol{x}\right) =\sum_{j=1}^N \lambda_{i j} P\left(c_j \mid \boldsymbol{x}\right) = E(\Lambda_{ij}) = \sum_{j=1}^N \lambda_{i j} P_0\left(\lambda_{ij}\right)</script><p>Note. <script type="math/tex">P_0(\lambda_{ij})=P\left(c_j \mid \boldsymbol{x}\right)</script>即为：产生$\lambda_{ij}$的概率 和 样本$x$是$c_j$类，被错误分类为$c_i$类的概率，二者意义相同。</p>
+R\left(c_i \mid \boldsymbol{x}\right) =\sum_{j=1}^N \lambda_{i j} P\left(c_j \mid \boldsymbol{x}\right) = E(\Lambda_{ij}) = \sum_{j=1}^N \lambda_{i j} P_0\left(\lambda_{ij}\right)</script><p>Note. $P_0(\lambda_{ij})=P\left(c_j \mid \boldsymbol{x}\right)$即为：产生$\lambda_{ij}$的概率 和 样本$x$是$c_j$类，被错误分类为$c_i$类的概率，二者意义相同。</p>
 <p>对于每个样本$\boldsymbol{x}$，只要找到$c$类，让“将$\boldsymbol{x}$分到$c$类所面对的风险$R\left(c \mid \boldsymbol{x}\right)$”最小，那么$c$类就应该是分类器应该将$\boldsymbol{x}$划分到的类别。</p>
 <p>将上述目标形式化，即可得到贝叶斯判定准则（Bayes decision rule）</p>
 <script type="math/tex; mode=display">
-h^*(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \min }\ R(c \mid \boldsymbol{x})</script><p>其中，<script type="math/tex">h^*(\boldsymbol{x})</script>称为贝叶斯最优分类器（Bayes optimal classifier），用于得到样本$\boldsymbol{x}$的最优分类。与其对应的总体风险<script type="math/tex">R(h^*)</script>称为贝叶斯风险（Bayes risk），进而可用<script type="math/tex">1 - R(h^*)</script>反映分类器所能达到的最好性能。</p>
+h^*(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \min }\ R(c \mid \boldsymbol{x})</script><p>其中，$h^\ast(\boldsymbol{x})$称为贝叶斯最优分类器（Bayes optimal classifier），用于得到样本$\boldsymbol{x}$的最优分类。与其对应的总体风险$R(h^\ast)$称为贝叶斯风险（Bayes risk），进而可用$1 - R(h^\ast)$反映分类器所能达到的最好性能。</p>
 
         </div>
 

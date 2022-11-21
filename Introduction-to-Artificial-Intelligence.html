@@ -631,7 +631,7 @@ K = 1 - \sum_{x\cap y=\varnothing} M_1(x)M_2(y) = \sum_{x\cap y\neq\varnothing} 
 <p>离散：</p>
 <script type="math/tex; mode=display">
 A=\mu_A(x_1)/x_1+\mu_A(x_2)/x_2+ \dots + \mu_A(x_n)/x_n = \sum_{i=1}^{n}\mu_A(x_i)/x_i \\ 
-A = \{\mu_A(x_1)/x_1, \mu_A(x_2)/x_2, \dots ,  \mu_A(x_n)/x_n\}</script><p>\和+/$\sum$分别表示分隔符、模糊集合整体。</p>
+A = \{\mu_A(x_1)/x_1, \mu_A(x_2)/x_2, \dots ,  \mu_A(x_n)/x_n\}</script><p>\\和+/$\sum$分别表示分隔符、模糊集合整体。</p>
 <p>连续：</p>
 <script type="math/tex; mode=display">
 A =\int_{x\in U}\mu_A(x)/x</script><p>$\int$表示模糊集合整体。</p>
@@ -645,13 +645,13 @@ A = [\mu_A(x_1), \mu_A(x_2), \dots ,  \mu_A(x_n)]</script></li>
 </ol>
 <h3 id="模糊集合的运算"><a href="#模糊集合的运算" class="headerlink" title="模糊集合的运算"></a>模糊集合的运算</h3><p>包含：若$\mu_A(x)\geq \mu_B(x)$，则$A\supset B$</p>
 <p>相等：若$\mu_A(x)= \mu_B(x)$，则$A= B$</p>
-<p>交：$\mu_{A\cap B}(x)=min{\mu_A(x), \mu_B(x)}=\mu_A(x)\wedge\mu_B(x)$</p>
-<p>并：$\mu_{A\cup B}(x)=max{\mu_A(x), \mu_B(x)}=\mu_A(x)\vee\mu_B(x)$</p>
+<p>交：$\mu_{A\cap B}(x)=min\{\mu_A(x), \mu_B(x)\}=\mu_A(x)\wedge\mu_B(x)$</p>
+<p>并：$\mu_{A\cup B}(x)=max\{\mu_A(x), \mu_B(x)\}=\mu_A(x)\vee\mu_B(x)$</p>
 <p>补：$\mu_{\overline{A}}(x)=1-\mu_A(x)$</p>
 <p>代数积：$\mu_{A\cdot B}(x)=\mu_A(x)\mu_B(x)$</p>
 <p>代数和：<script type="math/tex">\mu_{A+B}(x)=\mu_A(x)+\mu_B(x)-\mu_{A\cdot B}(x)</script></p>
-<p>有界和：$\mu_{A\oplus B}(x) = min{1,\mu_A(x)+\mu_B(x)}$</p>
-<p>有界积：$\mu_{A\otimes B}(x) = max{0,\mu_A(x)+\mu_B(x)-1}$</p>
+<p>有界和：$\mu_{A\oplus B}(x) = min\{1,\mu_A(x)+\mu_B(x)\}$</p>
+<p>有界积：$\mu_{A\otimes B}(x) = max\{0,\mu_A(x)+\mu_B(x)-1\}$</p>
 <p>注：下方的$\mu$和$R$应为粗体，代表向量和矩阵，我暂时不会打。</p>
 <p>叉积：$R = \mu_{A\times B}(a,b) = \mu_A^\mathrm{T}\circ\mu_B$</p>
 <p>$\circ$为模糊向量最小乘积</p>

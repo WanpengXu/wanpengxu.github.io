@@ -552,10 +552,10 @@
 <p>A：声明方</p>
 <p>B：验证方</p>
 <h5 id="单次传递认证"><a href="#单次传递认证" class="headerlink" title="单次传递认证"></a>单次传递认证</h5><p>$M=TN_A||I_B$, $TN_A$为时间戳, $I_B$为可区分标识符，用于避免反射攻击</p>
-<p>$A\rightarrow B: E<em>{K</em>{AB}}(M) = E<em>{K</em>{AB}}(TN_A||I_B) $</p>
+<p>$A\rightarrow B: E_{K_{AB}}(M) = E_{K_{AB}}(TN_A||I_B) $</p>
 <h5 id="两次传递认证（挑战响应模式）"><a href="#两次传递认证（挑战响应模式）" class="headerlink" title="两次传递认证（挑战响应模式）"></a>两次传递认证（挑战响应模式）</h5><p>$M=R_B||I_B$</p>
 <p>$B\rightarrow A: R_B $, $R_B$为随机数</p>
-<p>$A\rightarrow B: E<em>{K</em>{AB}}(M) = E<em>{K</em>{AB}}(R_B||I_B) $</p>
+<p>$A\rightarrow B: E_{K_{AB}}(M) = E_{K_{AB}}(R_B||I_B) $</p>
 <h4 id="基于非对称密码的认证机制"><a href="#基于非对称密码的认证机制" class="headerlink" title="基于非对称密码的认证机制"></a>基于非对称密码的认证机制</h4><p>三种认证方案</p>
 <p>公钥：Public Key, Pu</p>
 <p>私钥：Private, Pr</p>
@@ -1052,8 +1052,8 @@ c = a \oplus b\\
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251207033.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251210475.png" alt=""></p>
 <p>$D_{USA-India}$：USA和India的最小公共祖先所形成的树就是整棵树，其深度为3（注意：深度从0起），故其距离为$3/3$</p>
-<p>$D<em>{41-57}=\frac{\abs{41-57}}{range</em>{age}} = \frac{57-41}{57-24}$</p>
-<p>$D<em>{Armed-Tech}$：同$D</em>{USA-India}$</p>
+<p>$D_{41-57}=\frac{\abs{41-57}}{range_{age}} = \frac{57-41}{57-24}$</p>
+<p>$D_{Armed-Tech}$：同$D_{USA-India}$</p>
 <h4 id="分解（Anatomy）"><a href="#分解（Anatomy）" class="headerlink" title="分解（Anatomy）"></a>分解（Anatomy）</h4><p>分割：将原始数据产生满足l-多样性原则的数据划分，然后把准标识属性和敏感属性分成两个表后直接发布，两者之间通过“组号”（Group-ID）来连接。</p>
 <p><strong>例1 分割给定表</strong></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202208251221215.png" alt=""></p>
@@ -1229,7 +1229,7 @@ c = a \oplus b\\
 <p>最后，使用whoami命令确定域和用户。</p>
 <p><img src="C:/Users/XuWanpeng/Desktop/docx_to_markdown-main/images/05191643-%E8%AE%B8%E4%B8%87%E9%B9%8F-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8-%E4%BD%9C%E4%B8%9A%E4%B8%809efe51b1-6c2b-4f90-9733-a3f839a299d1/media/image61.png" alt=""></p>
 <h3 id="登录xuwp-No2"><a href="#登录xuwp-No2" class="headerlink" title="登录xuwp-No2"></a>登录xuwp-No2</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650774.png" alt=""></p>
-<p>根据下面”如何登录到其他域？”的提示，我们使用域名\域用户名的格式登录。（这实际上是Windows<br>2000以前版本的登录方式，目前应该使用域用户名\@域名）。</p>
+<p>根据下面”如何登录到其他域？”的提示，我们使用域名\\域用户名的格式登录。（这实际上是Windows<br>2000以前版本的登录方式，目前应该使用域用户名\@域名）。</p>
 <p>这里不需要更改密码，等待初始化系统后使用whoami确定域和用户。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191650360.png" alt=""></p>
 <h3 id="登录xuwp-No3"><a href="#登录xuwp-No3" class="headerlink" title="登录xuwp-No3"></a>登录xuwp-No3</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202205191652672.png" alt=""></p>
@@ -1341,7 +1341,7 @@ c = a \oplus b\\
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image7.png" alt=""></p>
 <p>已启用-【输入主页】-确定</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image8.png" alt=""></p>
-<h4 id="禁用控制面板程序control-exe"><a href="#禁用控制面板程序control-exe" class="headerlink" title="禁用控制面板程序control.exe"></a>禁用控制面板程序control.exe</h4><p>注：可禁用的程序可在C:\Windows\System32下找到。</p>
+<h4 id="禁用控制面板程序control-exe"><a href="#禁用控制面板程序control-exe" class="headerlink" title="禁用控制面板程序control.exe"></a>禁用控制面板程序control.exe</h4><p>注：可禁用的程序可在C:\\Windows\\System32下找到。</p>
 <p>用户配置-策略-管理模板-系统</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image9.png" alt=""></p>
 <p>（双击/右击+编辑）不运行指定的Windows程序-已启用-显示-【输入control.exe】</p>
@@ -1382,7 +1382,7 @@ c = a \oplus b\\
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image25.png" alt=""></p>
 <p>（双击/右击+属性）登录-显示文件</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image26.png" alt=""></p>
-<p>接着弹出了一个文件夹，其路径为\\xuwp05191643.com\SysVol\xuwp05191643.com\Policies\{CE8870A7-3EC6-40BF-93C8-D67D9458B825}\User\Scripts\Logon</p>
+<p>接着弹出了一个文件夹，其路径为\\\\xuwp05191643.com\\SysVol\\xuwp05191643.com\\Policies\\{CE8870A7-3EC6-40BF-93C8-D67D9458B825}\\User\\Scripts\\Logon</p>
 <p>中间由32个16进制数字组成的字符串为GUID。</p>
 <p>在此处新建一个welcome.vbs，用于弹出msgbox。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image27.png" alt=""></p>
@@ -1400,7 +1400,7 @@ c = a \oplus b\\
 <h4 id="下发策略并验证-1"><a href="#下发策略并验证-1" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>使用gpupdate /force强制更新组策略。</p>
 <p>在Client-No1上注销XuWanpeng-No1并重新登录，发现两个脚本成功执行，弹出了欢迎窗口和今日任务。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image34.png" alt=""></p>
-<h3 id="文件夹重定向"><a href="#文件夹重定向" class="headerlink" title="文件夹重定向"></a>文件夹重定向</h3><h4 id="设置文件夹重定向"><a href="#设置文件夹重定向" class="headerlink" title="设置文件夹重定向"></a>设置文件夹重定向</h4><p>在Client-No1域控上新建一个文件夹C:\Server-No1-My-Documents-Share</p>
+<h3 id="文件夹重定向"><a href="#文件夹重定向" class="headerlink" title="文件夹重定向"></a>文件夹重定向</h3><h4 id="设置文件夹重定向"><a href="#设置文件夹重定向" class="headerlink" title="设置文件夹重定向"></a>设置文件夹重定向</h4><p>在Client-No1域控上新建一个文件夹C:\\Server-No1-My-Documents-Share</p>
 <p>右击-属性-共享-高级共享</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image35.png" alt=""></p>
 <p>共享此文件夹-权限</p>
@@ -1409,7 +1409,7 @@ c = a \oplus b\\
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image37.png" alt=""></p>
 <p>用户配置-策略-Windows设置-文件夹重定向-文档</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image38.png" alt=""></p>
-<p>（右击+属性）基本-将每个人的文件夹重定向到同一个位置-【选择根路径为\\CLIENT-NO1\Client-No1-My-Documents-Share】</p>
+<p>（右击+属性）基本-将每个人的文件夹重定向到同一个位置-【选择根路径为\\\\CLIENT-NO1\\Client-No1-My-Documents-Share】</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image39.png" alt=""></p>
 <h4 id="下发策略并验证-2"><a href="#下发策略并验证-2" class="headerlink" title="下发策略并验证"></a>下发策略并验证</h4><p>使用gpupdate /force强制更新组策略。</p>
 <p>登录Client-No1，可以在Client-No1的共享文件夹中发现Server-No1共享来的文件夹。</p>
@@ -1466,10 +1466,10 @@ c = a \oplus b\\
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image60.png" alt=""></p>
 <p>文件-添加/删除管理单元-安全模板-添加、安全配置和分析-添加</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image61.png" alt=""></p>
-<p>（右击）安全模板-新加模板搜索路径-【选择%SystemRoot%\security\templates】</p>
-<p>注：%SystemRoot%默认为C:\Windows</p>
+<p>（右击）安全模板-新加模板搜索路径-【选择%SystemRoot%\\security\\templates】</p>
+<p>注：%SystemRoot%默认为C:\\Windows</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image62.png" alt=""></p>
-<p>（右击）安全配置和分析-【输入oss（新建一个数据库）】-打开-【选择%SystemRoot%\security\templates中的DC<br>security.inf】</p>
+<p>（右击）安全配置和分析-【输入oss（新建一个数据库）】-打开-【选择%SystemRoot%\\security\\templates中的DC<br>security.inf】</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image63.png" alt=""></p>
 <p>（右击）安全配置和分析-立即分析计算机</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/SOS_homework2/image64.png" alt=""></p>
@@ -1863,7 +1863,7 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291441146.png" alt=""></p>
 <p>输入密码-连续下一步</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291442208.png" alt=""></p>
-<p>登录XUWP05191643\Administrator即可访问。</p>
+<p>登录XUWP05191643\\Administrator即可访问。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291534983.png" alt=""></p>
 <h3 id="模拟证书丢失时的恢复"><a href="#模拟证书丢失时的恢复" class="headerlink" title="模拟证书丢失时的恢复"></a>模拟证书丢失时的恢复</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291537075.png" alt=""></p>
 <p>可以看到这里有一个用于加密文件系统的证书，如果这个证书丢失，那么将无法证明文件由你加密，便不可访问。</p>
@@ -1877,7 +1877,7 @@ S \rightarrow C:E_{K_{C,S}}\lbrack\text{TS}_{5} + 1\rbrack</script><h3 id="白�
 <h3 id="多用户共享"><a href="#多用户共享" class="headerlink" title="多用户共享"></a>多用户共享</h3><p>（右击）”机密文件3”-属性-高级-详细信息-添加</p>
 <p>在这里加入一个其他用户，我加入了计算机Client-No1中的Xuwanpeng，当然也可以加域XUWP05191643里的xuwp-No2（我这里没登录这个用户）。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202207041122789.png" alt=""></p>
-<p>登录用户Client-No1\XuWanpeng（或XUWP05191643\xuwp-No2），即可访问”机密文件3”。</p>
+<p>登录用户Client-No1\\XuWanpeng（或XUWP05191643\\xuwp-No2），即可访问”机密文件3”。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291600451.png" alt=""></p>
 <h2 id="软RAID"><a href="#软RAID" class="headerlink" title="软RAID"></a>软RAID</h2><h3 id="跨区卷"><a href="#跨区卷" class="headerlink" title="跨区卷"></a>跨区卷</h3><p>在VMware中为Client-No1插入两块新硬盘</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202206291609350.png" alt=""></p>

@@ -334,7 +334,7 @@ B_i & , & B_{i-1}< B_i
 <p>已知一副图像的灰度矩阵 $A$，试计算其灰度直方图 $h[0],h[1],⋯,h[L−1]$。</p>
 <h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入共 $n+1$ 行。</p>
 <p>输入的第一行包含三个用空格分隔的正整数 $n$、$m$ 和 $L$，含义如前文所述。</p>
-<p>第 $2$ 到第 $n+1$ 行输入矩阵 $A$。<br>第 $i+2$（$0≤i&lt;n$）行包含用空格分隔的 $m$ 个整数，依次为 $A<em>{i0},A</em>{i1},⋯,A_{i(m−1)}$。</p>
+<p>第 $2$ 到第 $n+1$ 行输入矩阵 $A$。<br>第 $i+2$（$0≤i&lt;n$）行包含用空格分隔的 $m$ 个整数，依次为 $A_{i0},A_{i1},⋯,A_{i(m−1)}$。</p>
 <h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出仅一行，包含用空格分隔的 $L$ 个整数 $h[0],h[1],⋯,h[L−1]$，表示输入图像的灰度直方图。</p>
 <h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 4 16</span><br><span class="line">0 1 2 3</span><br><span class="line">4 5 6 7</span><br><span class="line">8 9 10 11</span><br><span class="line">12 13 14 15</span><br></pre></td></tr></table></figure>
 <h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br></pre></td></tr></table></figure>
