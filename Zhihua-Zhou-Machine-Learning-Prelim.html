@@ -1578,7 +1578,52 @@ P\left(c \mid \boldsymbol{x}\right) = \frac{P(c)P(\boldsymbol{x} \mid c)}{P(\bol
 <p>贝叶斯主义有点像我之前的学习方法，想要解决一个2维的问题，我一定要找到一个n维问题的公式，然后代入$n = 2$，再去解。但是人类怎么可能轻易地得到n维下的正确公式呢？我只是想解决2维的问题，推导出一个带有局限性的公式也并不影响我解决问题，对吧？</p>
 <p>再如经典力学与狭义相对论，经典力学是在低速情况下的局限公式，但这并不妨碍我们解决了地球上的问题。当人类要进入太空时，我们再去寻找更加普适的规则——狭义相对论，然后用之前的局限规则做验证，不就可以了吗？</p>
 <p>（下午再整理）</p>
-
+<h2 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h2><h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><h2 id="测试-5"><a href="#测试-5" class="headerlink" title="测试"></a>测试</h2><p><strong>题11、12、13</strong></p>
+<blockquote>
+<script type="math/tex; mode=display">
+数据集\\
+\begin{array}{cccccccccccccccc}
+\hline
+\text { 编号 } & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+\hline
+x_1 & -1 & -1 & -1 & -1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+\hline
+x_2 & B & M & M & B & B & B & M & M & S & S & S & M & M & S & S \\
+\hline
+y & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+\hline
+\end{array}</script><p>考虑以上数据集。其中$x_1$与$x_2$为特征，其取值集合分别为$x_1 = \lbrace-1, 0, 1\rbrace$，$x_2 = \lbrace B, M, S\rbrace$。$y$为类别标记，其取值集合为$y=\lbrace 0, 1 \rbrace$。</p>
+<p>11）使用所给训练数据，学习一个朴素贝叶斯分类器，考虑样本$\boldsymbol{x} = \lbrace 0, B\rbrace$，请计算$P(y=0)P(\boldsymbol{x} \mid y=0)$的值____（保留2位有效数字）。</p>
+<p>12）使用所给训练数据，学习一个朴素贝叶斯分类器，这个分类器会将样本$\boldsymbol{x} = \lbrace 0, B\rbrace$的标记预测为____。</p>
+<p>13）使用所给训练数据，使用“拉普拉斯修正”，学习一个朴素贝叶斯分类器，考虑样本$\boldsymbol{x} = \lbrace 0, B\rbrace$，请计算$\hat{P}(y=1)\hat{P}(\boldsymbol{x} \mid y=1)$的值____（保留2位有效数字）。</p>
+<p>正确答案:[ “0.067”, “0”, “0.041” ]</p>
+</blockquote>
+<p>11）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(y=0)P(\boldsymbol{x} \mid y=0)
+&= P\left(y=0\right) \cdot \left(P\left(x_1 = 0 \mid y=0\right) \cdot P\left(x_2 = B \mid y=0\right) \right) \\
+&= \frac{6}{15}\times\left(\frac{2}{6}\times\frac{3}{6}\right) \\
+&= \frac{1}{15} \\
+&= 0.067
+\end{aligned}</script><p>12）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(y=1)P(\boldsymbol{x} \mid y=1)
+&= P\left(y=1\right) \cdot \left(P\left(x_1 = 0 \mid y=1\right) \cdot P\left(x_2 = B \mid y=1\right) \right) \\
+&= \frac{9}{15}\times\left(\frac{4}{9}\times\frac{1}{9}\right) \\
+&= \frac{1}{15}\times\frac{4}{9} \\
+&= 0.030
+\end{aligned}</script><p>显然有$P(y=0)P(\boldsymbol{x} \mid y=0) &gt; P(y=1)P(\boldsymbol{x} \mid y=1)$，所以$\underset{c \in \mathcal{Y}}{\arg \max } \ P(c) \prod_{i=1}^d P\left(x_i \mid c\right) = 0$</p>
+<p>13）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat{P}(y=1)\hat{P}(\boldsymbol{x} \mid y=1)
+&= \hat{P}\left(y=1\right) \cdot \left(\hat{P}\left(x_1 = 0 \mid y=1\right) \cdot \hat{P}\left(x_2 = B \mid y=1\right) \right) \\
+&= \frac{9 + 1}{15 + 2}\times\left(\frac{4 + 1}{9 + 3}\times\frac{1 + 1}{9 + 3}\right) \\
+&= \frac{10}{17}\times\left(\frac{5}{12}\times\frac{2}{12}\right) \\
+&= 0.041
+\end{aligned}</script><h1 id="集成学习和聚类"><a href="#集成学习和聚类" class="headerlink" title="集成学习和聚类"></a>集成学习和聚类</h1>
         </div>
 
         
