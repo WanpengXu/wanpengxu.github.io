@@ -1570,7 +1570,7 @@ P\left(c \mid \boldsymbol{x}\right) = \frac{P(\boldsymbol{x}, c)}{P(\boldsymbol{
 <script type="math/tex; mode=display">
 P\left(c \mid \boldsymbol{x}\right) = \frac{P(c)P(\boldsymbol{x} \mid c)}{P(\boldsymbol{x})}</script><p>其中，</p>
 <p>$P(c)$，是类“先验”（prior）概率，代表样本空间中$c$类样本所占的比例，可由大数定律、i.i.d.条件由频率估计出概率</p>
-<p>$P(\boldsymbol{x} \mid c)$， 是样本$\boldsymbol{x}$相对于类标记$c$的类条件概率（class-conditional probability），或称为“似然”（likelihood）</p>
+<p>$P(\boldsymbol{x} \mid c)$， 是样本$\boldsymbol{x}$相对于类标记$c$的类条件概率（class-conditional probability），或称为“似然”（likelihood，现代中文译作“可能性”）</p>
 <p>$P(\boldsymbol{x})$，是用于归一化（所有c的分子之和/积分，除以它为1）的“证据”（evidence）因子</p>
 <h2 id="贝叶斯分类器与贝叶斯学习"><a href="#贝叶斯分类器与贝叶斯学习" class="headerlink" title="贝叶斯分类器与贝叶斯学习"></a>贝叶斯分类器与贝叶斯学习</h2><p>统计学分为两大学派：频率主义学派（Frequentist）、贝叶斯主义学派（Bayesian）</p>
 <p>频率学派认为参数是未知的定值，并通过一些统计方法来估计它们的值。</p>
@@ -1580,7 +1580,7 @@ P\left(c \mid \boldsymbol{x}\right) = \frac{P(c)P(\boldsymbol{x} \mid c)}{P(\bol
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211251645723.png" alt=""></p>
 </blockquote>
 <p>贝叶斯主义在无法重复实验的时候是很有效的，但有时也是搞笑的，比如：</p>
-<p>佐治亚理工学院的贝叶斯课程：<a target="_blank" rel="noopener" href="https://www2.isye.gatech.edu/isyebayes/index.html，里面有一页“[Bayesian">https://www2.isye.gatech.edu/isyebayes/index.html，里面有一页“[Bayesian</a> Fun](<a target="_blank" rel="noopener" href="https://www2.isye.gatech.edu/isyebayes/jokes.html)”很有趣，其中一句笑话如下。">https://www2.isye.gatech.edu/isyebayes/jokes.html)”很有趣，其中一句笑话如下。</a></p>
+<p>佐治亚理工学院的贝叶斯课程：<a target="_blank" rel="noopener" href="https://www2.isye.gatech.edu/isyebayes/index.html"><strong>BAYESIAN STATISTICS FOR ENGINEERS</strong></a>，里面有一页“<a target="_blank" rel="noopener" href="https://www2.isye.gatech.edu/isyebayes/jokes.html">Bayesian Fun</a>”很有趣，其中一句笑话如下。</p>
 <blockquote>
 <p>A Bayesian is one who, vaguely expecting a horse, and catching a glimpse of a donkey, strongly believes he has seen a mule.</p>
 <p>贝叶斯学家是这样的人，他大概期待着想看见一匹马，然后他瞥见了一头驴，然后楞说自己看见了一只骡子。</p>
@@ -1594,10 +1594,12 @@ P\left(c \mid \boldsymbol{x}\right) = \frac{P(c)P(\boldsymbol{x} \mid c)}{P(\bol
 <p>L: Let’s try. Detector! Has the sun gone nova?</p>
 <p>L: The <strong>p</strong>robability of this result happening by chance is $\frac{1}{36}=0.027$. Since $p&lt;0.05$, I conclude that the sun has exploded.</p>
 <p>R: Bet you $50 it hasn’t. </p>
+<p>翻译版：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211251613615.webp" alt=""></p>
-<p>那么，因贝叶斯学习中先验分布的选择是困难的，所以在贝叶斯分类器中，先验分布采用了频率主义的估计方法。</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211251739759.png" alt=""></p>
+<p>因为贝叶斯学习中先验分布的选择是困难的，所以在贝叶斯分类器中，先验分布采用了频率主义的估计方法。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211252107504.png" alt=""></p>
 <p>Note. 出自PRML中文版P23。</p>
+<p>即贝叶斯分类器同时使用了统计学习方法和贝叶斯学习方法。不完全属于贝叶斯学习。</p>
 <!-- 贝叶斯主义：相当于找到一个“通式”，解决具体问题时代入问题的背景参数，即可得到进化的公式用于解决问题。
 
 频率主义：相当于只找出当前背景参数下的公式，用它解决问题。
