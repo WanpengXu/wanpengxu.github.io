@@ -1609,7 +1609,64 @@ P\left(c \mid \boldsymbol{x}\right) = \frac{P(c)P(\boldsymbol{x} \mid c)}{P(\bol
 再如经典力学与狭义相对论，经典力学是在低速情况下的局限公式，但这并不妨碍我们解决了地球上的问题。当人类要进入太空时，我们再去寻找更加普适的规则——狭义相对论，然后用之前的局限规则做验证，不就可以了吗？
 
 （下午再整理） -->
-<h2 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h2><h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><h2 id="测试-5"><a href="#测试-5" class="headerlink" title="测试"></a>测试</h2><p><strong>题11、12、13</strong></p>
+<h2 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h2><p>Q：如何估计关于类别$c$的类条件概率$P(\boldsymbol{x} \mid c)$呢？</p>
+<p>A：一种常用的策略是，假定该概率具有确定的概率分布形式（如高斯分布/正态分布），然后基于训练样本对其参数进行估计。</p>
+<p>设$P(\boldsymbol{x} \mid c)$具有确定的形式，且被参数向量$\boldsymbol{\theta}_c$唯一确定。那么，可以将其记为$P(\boldsymbol{x} \mid \boldsymbol{\theta}_c)$，我们的任务是使用训练集$D$估计参数$\boldsymbol{\theta}_c$。</p>
+<p>下面介绍频率学派的极大似然估计（MLE, Maximum Likelihood Estimation），它是根据数据采样（$D$）估计概率分布参数（$\boldsymbol{\theta}_c$）的经典方法。</p>
+<p>记$D_c$为$D$中类别为$c$的样本的集合，假设其i.i.d，则生成的样本类别为$c$是独立随机事件，有</p>
+<script type="math/tex; mode=display">
+P(D_c \mid \boldsymbol{\theta}_c) = \prod_{\boldsymbol{x} \in D_c}P(\boldsymbol{x} \mid \boldsymbol{\theta}_c) =: L(\boldsymbol{\theta}_c)</script><p>Note. 乘积product符号的LaTeX代码<code>\prod</code>。</p>
+<p>对$\boldsymbol{\theta}_c$进行极大似然估计，即</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{\theta}}_c = \underset{\boldsymbol{\theta}_c}{\arg \max}\ L(\boldsymbol{\theta}_c)</script><p>连乘操作在计算机中容易出现数值下溢，所以通常使用“对数似然”（Log-Likelihood）进行估计。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\log P(D_c \mid \boldsymbol{\theta}_c) 
+&= \log \prod_{\boldsymbol{x} \in D_c}P(\boldsymbol{x} \mid \boldsymbol{\theta}_c) \\
+&= \sum_{\boldsymbol{x} \in D_c}\log P(\boldsymbol{x} \mid \boldsymbol{\theta}_c) =: LL(\boldsymbol{\theta}_c)
+\end{aligned}</script><p>此时，对$\boldsymbol{\theta}_c$进行极大似然估计，即</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{\theta}}_c = \underset{\boldsymbol{\theta}_c}{\arg \max}\ LL(\boldsymbol{\theta}_c)</script><p>举例。</p>
+<p>在属性为连续值时，设$p(\boldsymbol{x} \mid c) \sim \mathcal{N}(\boldsymbol{\mu}_c, \boldsymbol{\sigma}_c^2)$，则$\boldsymbol{\theta}_c = (\boldsymbol{\mu}_c, \boldsymbol{\sigma}_c^2)$，其形式为</p>
+<script type="math/tex; mode=display">
+p(\boldsymbol{x} \mid \boldsymbol{\theta}_c) = p(\boldsymbol{x} \mid \boldsymbol{\mu}_c, \boldsymbol{\sigma}_c^2) = \frac{1}{\sqrt{(2\pi)^d |\boldsymbol{\Sigma}_c|}}
+\exp\left(-\frac{1}{2}\left(\boldsymbol{x} - \boldsymbol{\mu}_c\right)^\mathrm{T} \boldsymbol{\Sigma}_c^{-1} \left(\boldsymbol{x} - \boldsymbol{\mu}_c\right)\right)</script><p>其中，$d$表示$x$的dimension；$\boldsymbol{\Sigma}_c = \boldsymbol{\sigma}_c^2$，为对称正定协方差矩阵；$|\boldsymbol{\Sigma}_c|$表示$\boldsymbol{\Sigma}_c$的行列式。</p>
+<p>那么，分布参数们的极大似然估计为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\left(\hat{\boldsymbol{\mu}}_c, \hat{\boldsymbol{\Sigma}}_c\right) 
+&= \underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \max} \ LL\left(\hat{\boldsymbol{\mu}}_c, \hat{\boldsymbol{\Sigma}}_c\right) \\
+&= \underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min} \ -LL\left(\hat{\boldsymbol{\mu}}_c, \hat{\boldsymbol{\Sigma}}_c\right) \\
+&= \underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min} \ -\sum_{\boldsymbol{x} \in D_c}\log p\left(\boldsymbol{x} \mid \boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c\right) \\
+&= \underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min} \ -\sum_{\boldsymbol{x} \in D_c}\log \left(\frac{1}{\sqrt{(2\pi)^d |\boldsymbol{\Sigma}_c|}}
+\exp\left(-\frac{1}{2}\left(\boldsymbol{x} - \boldsymbol{\mu}_c\right)^\mathrm{T} \boldsymbol{\Sigma}_c^{-1} \left(\boldsymbol{x} - \boldsymbol{\mu}_c\right)\right)\right) \\
+\end{aligned}</script><p>以下只是解优化函数的流程，具体推导见南瓜书。</p>
+<p>根据$|D_n| = n$, $\boldsymbol{x}^\mathrm{T}\boldsymbol{A}\boldsymbol{x} = \tr\left(\boldsymbol{A}\boldsymbol{x}\boldsymbol{x}^\mathrm{T}\right)$, $\bar{x} = \frac{1}{n}\sum_{i=1}^{n}\boldsymbol{x}_i$，得最终化简式</p>
+<script type="math/tex; mode=display">
+\left(\hat{\boldsymbol{\mu}}_c, \hat{\boldsymbol{\Sigma}}_c\right)=\underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min } \frac{n}{2} \log \left|\boldsymbol{\Sigma}_c\right|+\frac{1}{2} \operatorname{tr}\left[\boldsymbol{\Sigma}_c^{-1} \sum_{i=1}\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}\right]+\frac{n}{2}\left(\boldsymbol{\mu}_c-\overline{\boldsymbol{x}}\right)^{\mathrm{T}} \boldsymbol{\Sigma}_c^{-1}\left(\boldsymbol{\mu}_c-\overline{\boldsymbol{x}}\right)</script><p>由二次型的性质知，当且仅当$\boldsymbol{\mu}_c-\overline{\boldsymbol{x}} = 0$时，上式最后一项取最小值$0$，因此得</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{\mu}}_c=\overline{\boldsymbol{x}}=\frac{1}{n} \sum_{i=1}^n \boldsymbol{x}_i</script><p>将其代回优化函数，有</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{\Sigma}}_c=\underset{\boldsymbol{\Sigma}_c}{\arg \min }\ \frac{n}{2} \log \left|\boldsymbol{\Sigma}_c\right|+\frac{1}{2} \operatorname{tr}\left[\boldsymbol{\Sigma}_c^{-1} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}\right]</script><p>由一引理（详见南瓜书或张伟平“多元正态分布参数的估计和数据的清洁与变换”slide）知，当且仅当$\boldsymbol{\Sigma}_c=\frac{1}{n} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}$时，优化函数整体取最小值，因此得</p>
+<script type="math/tex; mode=display">
+\hat{\boldsymbol{\Sigma}}_c=\frac{1}{n} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}</script><p>综上，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat{\boldsymbol{\mu}}_c &= \frac{1}{\left|D_c\right|} \sum_{\boldsymbol{x} \in D_c} \boldsymbol{x} \\
+\hat{\boldsymbol{\sigma}}_c^2 &= \frac{1}{\left|D_c\right|} \sum_{\boldsymbol{x} \in D_c}\left(\boldsymbol{x}-\hat{\boldsymbol{\mu}}_c\right)\left(\boldsymbol{x}-\hat{\boldsymbol{\mu}}_c\right)^{\mathrm{T}}
+\end{aligned}</script><p>最后，极大似然估计只估计分布的参数，因此其准确性取决于事先所假设的分布，这需要对具体应用任务的经验。</p>
+<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>但是，类条件概率$P(\boldsymbol{x} \mid c)$是所有属性上的联合概率。在有限的$D$上估计联合概率，会遭遇组合爆炸和样本稀疏问题，即$2^d \gg m$。</p>
+<p>因此，朴素贝叶斯分类器（Naïve Bayes Classifier）采用了“属性条件独立性假设”（attribute conditional independence assumption）：对已知类别，假设所有属性相互独立。即假设每个属性独立地对分类结果产生影响。</p>
+<p>基于此，可将后验概率写作</p>
+<script type="math/tex; mode=display">
+P(c \mid \boldsymbol{x})=\frac{P(c) P(\boldsymbol{x} \mid c)}{P(\boldsymbol{x})}=\frac{P(c)\prod_{i=1}^d P\left(x_i \mid c\right)}{P(\boldsymbol{x})}</script><p>因$P(\boldsymbol{x})$与类别$c$无关，所以最小化分类错误率的朴素贝叶斯分类器为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+h_{nb}^*(\boldsymbol{x})
+&= \underset{c \in \mathcal{Y}}{\arg \max }\ P(c \mid \boldsymbol{x}) \\
+&= \underset{c \in \mathcal{Y}}{\arg \max }\ P(c)\prod_{i=1}^d P\left(x_i \mid c\right) \\
+\end{aligned}</script><p>（明天写）</p>
+<h2 id="测试-5"><a href="#测试-5" class="headerlink" title="测试"></a>测试</h2><p><strong>题11、12、13</strong></p>
 <blockquote>
 <script type="math/tex; mode=display">
 数据集\\
