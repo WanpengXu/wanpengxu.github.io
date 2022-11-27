@@ -1640,14 +1640,14 @@ p(\boldsymbol{x} \mid \boldsymbol{\theta}_c) = p(\boldsymbol{x} \mid \boldsymbol
 &= \underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min} \ -\sum_{\boldsymbol{x} \in D_c}\log p\left(\boldsymbol{x} \mid \boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c\right) \\
 &= \underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min} \ -\sum_{\boldsymbol{x} \in D_c}\log \left(\frac{1}{\sqrt{(2\pi)^d |\boldsymbol{\Sigma}_c|}}
 \exp\left(-\frac{1}{2}\left(\boldsymbol{x} - \boldsymbol{\mu}_c\right)^\mathrm{T} \boldsymbol{\Sigma}_c^{-1} \left(\boldsymbol{x} - \boldsymbol{\mu}_c\right)\right)\right) \\
-\end{aligned}</script><p>以下只是解优化函数的流程，具体推导见南瓜书。</p>
+\end{aligned}</script><p><strong>以下只是解优化函数的流程，具体推导见南瓜书。</strong></p>
 <p>根据$|D_n| = n$, $\boldsymbol{x}^\mathrm{T}\boldsymbol{A}\boldsymbol{x} = \tr\left(\boldsymbol{A}\boldsymbol{x}\boldsymbol{x}^\mathrm{T}\right)$, $\bar{x} = \frac{1}{n}\sum_{i=1}^{n}\boldsymbol{x}_i$，得最终化简式</p>
 <script type="math/tex; mode=display">
 \left(\hat{\boldsymbol{\mu}}_c, \hat{\boldsymbol{\Sigma}}_c\right)=\underset{\boldsymbol{\mu}_c, \boldsymbol{\Sigma}_c}{\arg \min } \frac{n}{2} \log \left|\boldsymbol{\Sigma}_c\right|+\frac{1}{2} \operatorname{tr}\left[\boldsymbol{\Sigma}_c^{-1} \sum_{i=1}\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}\right]+\frac{n}{2}\left(\boldsymbol{\mu}_c-\overline{\boldsymbol{x}}\right)^{\mathrm{T}} \boldsymbol{\Sigma}_c^{-1}\left(\boldsymbol{\mu}_c-\overline{\boldsymbol{x}}\right)</script><p>由二次型的性质知，当且仅当$\boldsymbol{\mu}_c-\overline{\boldsymbol{x}} = 0$时，上式最后一项取最小值$0$，因此得</p>
 <script type="math/tex; mode=display">
 \hat{\boldsymbol{\mu}}_c=\overline{\boldsymbol{x}}=\frac{1}{n} \sum_{i=1}^n \boldsymbol{x}_i</script><p>将其代回优化函数，有</p>
 <script type="math/tex; mode=display">
-\hat{\boldsymbol{\Sigma}}_c=\underset{\boldsymbol{\Sigma}_c}{\arg \min }\ \frac{n}{2} \log \left|\boldsymbol{\Sigma}_c\right|+\frac{1}{2} \operatorname{tr}\left[\boldsymbol{\Sigma}_c^{-1} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}\right]</script><p>由一引理（详见南瓜书或张伟平“多元正态分布参数的估计和数据的清洁与变换”slide）知，当且仅当$\boldsymbol{\Sigma}_c=\frac{1}{n} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}$时，优化函数整体取最小值，因此得</p>
+\hat{\boldsymbol{\Sigma}}_c=\underset{\boldsymbol{\Sigma}_c}{\arg \min }\ \frac{n}{2} \log \left|\boldsymbol{\Sigma}_c\right|+\frac{1}{2} \operatorname{tr}\left[\boldsymbol{\Sigma}_c^{-1} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}\right]</script><p>由一引理（详见南瓜书或张伟平<a target="_blank" rel="noopener" href="http://staff.ustc.edu.cn/~zwp/teach/MVA/Lec5_slides.pdf">《多元正态分布参数的估计和数据的清洁与变换》</a>slide）知，当且仅当$\boldsymbol{\Sigma}_c=\frac{1}{n} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}$时，优化函数整体取最小值，因此得</p>
 <script type="math/tex; mode=display">
 \hat{\boldsymbol{\Sigma}}_c=\frac{1}{n} \sum_{i=1}^n\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_i-\overline{\boldsymbol{x}}\right)^{\mathrm{T}}</script><p>综上，有</p>
 <script type="math/tex; mode=display">
@@ -1665,7 +1665,20 @@ P(c \mid \boldsymbol{x})=\frac{P(c) P(\boldsymbol{x} \mid c)}{P(\boldsymbol{x})}
 h_{nb}^*(\boldsymbol{x})
 &= \underset{c \in \mathcal{Y}}{\arg \max }\ P(c \mid \boldsymbol{x}) \\
 &= \underset{c \in \mathcal{Y}}{\arg \max }\ P(c)\prod_{i=1}^d P\left(x_i \mid c\right) \\
-\end{aligned}</script><p>（明天写）</p>
+\end{aligned}</script><p>记$D_c$为$D$中类别为$c$的样本组成的集合，设该集合i.i.d，有</p>
+<script type="math/tex; mode=display">
+P(c) = \frac{|D_c|}{|D|}</script><p>对于离散属性，记$D_{c, x_i}$为$D_c$中在第$i$个属性上取值为$x_i$的样本组成的集合，有</p>
+<script type="math/tex; mode=display">
+P\left(x_i \mid c\right) = \frac{|D_{c, x_i}|}{|D_c|}</script><p>对于连续属性，仍需假设概率密度函数。如假设$p(x_i \mid c) \sim \mathcal{N}(\mu_{c, i}, \sigma_{c, i}^2)$，与上一节类似，$\mu_{c, i}$和$\sigma_{c, i}^2$分别表示类别为$c$的样本<strong>在第$i$个属性上的取值</strong>的均值和方差，有</p>
+<script type="math/tex; mode=display">
+p\left(x_i \mid c\right)=\frac{1}{\sqrt{2 \pi} \sigma_{c, i}} \exp \left(-\frac{\left(x_i-\mu_{c, i}\right)^2}{2 \sigma_{c, i}^2}\right)</script><p>基于“属性条件独立性假设”，用频率求$P(c \mid \boldsymbol{x})$具有一种问题：如果测试例中出现了某个$x_{i, new}$，它没有在$D$中的任何一个$\boldsymbol{x}$中出现过。那么在测试时，因$P(x_{i, new} \mid c) = 0$，将导致$P(c \mid \boldsymbol{x}) = 0$ 。这样的话，即使其他属性都表示它像类别$c$（其他的$P$很大），但朴素贝叶斯分类器因该值为$0$，不可能达到$\max$，所以不会将其分类为$c$。</p>
+<p>为了修正这种其他属性携带的信息（$P \neq 0$）被训练集中未出现的属性值所带来的信息（$P = 0$）所“抹去”的问题，我们使用“拉普拉斯修正”（Laplacian correction）对估计的概率值进行“平滑”（smoothing）处理。</p>
+<p>记$N$为$D$中可能的类别数；$N_i$为（$D$中）第$i$个属性值可能的取值数。则有拉普拉斯修正概率</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat{P}(c) &=\frac{\left|D_c\right|+1}{|D|+N} \\
+\hat{P}\left(x_i \mid c\right) &=\frac{\left|D_{c, x_i}\right|+1}{\left|D_c\right|+N_i}
+\end{aligned}</script><p>这个式子其实很好理解：分子+1，防止概率估计值为0；分母+类别数量，防止类别变多时偏离实际估计值（从极限角度考虑。例如，假设$D$中样本的类别多到各不相同，则$\hat{P}(c) =\frac{1+1}{N\boldsymbol{+N}}$，分母+类别数后，不会偏离原估计值$P(c) = \frac{1}{N}$）</p>
 <h2 id="测试-5"><a href="#测试-5" class="headerlink" title="测试"></a>测试</h2><p><strong>题11、12、13</strong></p>
 <blockquote>
 <script type="math/tex; mode=display">
@@ -1711,7 +1724,9 @@ P(y=1)P(\boldsymbol{x} \mid y=1)
 &= \frac{9 + 1}{15 + 2}\times\left(\frac{4 + 1}{9 + 3}\times\frac{1 + 1}{9 + 3}\right) \\
 &= \frac{10}{17}\times\left(\frac{5}{12}\times\frac{2}{12}\right) \\
 &= 0.041
-\end{aligned}</script><h1 id="集成学习和聚类"><a href="#集成学习和聚类" class="headerlink" title="集成学习和聚类"></a>集成学习和聚类</h1>
+\end{aligned}</script><p>Note. Thomas Bayes这人很神奇，出生日期不确定，专业是逻辑学和神学（logic and theology），职业是牧师，研究数学是为了证明上帝的存在，获得了类似“英国科学院院士”（英国皇家学会会士）的荣誉称号。他晚年才对概率感兴趣，死后贝叶斯定理才被当做遗产宣读，直到二十世纪才受到重视。现在流传的画像都不确定是不是本人。</p>
+<p>难怪贝叶斯理论中会有信念（beliefs）这样很不“数学”的词汇。我不知道有多少像贝叶斯这样的人，但我知道不论以什么目的、途径，只要有坚定的目标，就有可能做出有意义的研究。</p>
+<h1 id="集成学习和聚类"><a href="#集成学习和聚类" class="headerlink" title="集成学习和聚类"></a>集成学习和聚类</h1><h2 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h2>
         </div>
 
         
