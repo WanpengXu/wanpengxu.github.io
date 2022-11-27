@@ -1727,8 +1727,30 @@ P(y=1)P(\boldsymbol{x} \mid y=1)
 \end{aligned}</script><p>Note. Thomas Bayes这人很神奇，出生日期不确定，专业是逻辑学和神学（logic and theology），职业是牧师，研究数学是为了证明上帝的存在，获得了类似“英国科学院院士”（英国皇家学会会士）的荣誉称号。他晚年才对概率感兴趣，死后贝叶斯定理才被当做遗产宣读，直到二十世纪才受到重视。现在流传的画像都不确定是不是本人。</p>
 <p>难怪贝叶斯理论中会有信念（beliefs）这样很不“数学”的词汇。我不知道有多少像贝叶斯这样的人，但我知道不论以什么目的、途径，只要有坚定的目标，就有可能做出有意义的研究。</p>
 <h1 id="集成学习和聚类"><a href="#集成学习和聚类" class="headerlink" title="集成学习和聚类"></a>集成学习和聚类</h1><h2 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h2><p>集成学习（Ensemble Learning，法语词源，其中Ensemble读作/ɑːnˈsɑːmb(ə)l/）：使用多个学习器解决问题的方法。</p>
+<p>这种方法<strong>十分地类似</strong>现在各高校的<strong>committee制度</strong>，所以也被称作“基于委员会的学习”（committed-base learning）。</p>
 <p>当学习器们的类型相同时，称它们是“同质的”（homo-）集成，个体学习器被称作“基学习器”，它们共同的学习算法称作“基学习算法”。</p>
 <p>当学习器们的类型不同时，称它们是“异质的”（hetero-）集成，个体学习器被称作“组件学习器”。</p>
+<p>（介绍一些使用集成学习获得冠军的案例）</p>
+<blockquote>
+<p>To win? Ensemble!</p>
+<p>想赢？那就集成！</p>
+</blockquote>
+<h2 id="好而不同"><a href="#好而不同" class="headerlink" title="好而不同"></a>好而不同</h2><p>以“多数投票”集成学习为例</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211271700382.png" alt=""></p>
+<p>可以看出：（再写）</p>
+<p>误差-分歧分解（Error-Ambiguity Decomposition）可以用于衡量集成学习的性能。</p>
+<script type="math/tex; mode=display">
+E = \bar{E} - \bar{A}</script><p>其中，</p>
+<p>$E$表示集成学习的错误率；</p>
+<p>$\bar{E}$表示个体学习器的平均错误率；</p>
+<p>$\bar{A}$表示个体学习器的“分歧”（ambiguity），即“多样性”（diversity）。</p>
+<p>这也说明了：个体学习器们越准确，且差异越大，集成学习的性能越好。</p>
+<p>但误差-分歧分解是直觉上的，且不易实现的。原因如下：</p>
+<ol>
+<li>ambiguity是用ground truth在数学上定义的。在没有ground truth时，没有可计算的定义。</li>
+<li>该表达式只适用于以squared loss作为损失函数的回归问题。</li>
+<li>当每个学习器在训练集上的err都很低（acc都很高）时，它们的预测结果高度相似，ambiguity自然也很低。也就是说，$\bar{E}$和$\bar{A}$是正相关的，不太容易找到二者的tradeoff，使集成学习的err最低。</li>
+</ol>
 
         </div>
 
