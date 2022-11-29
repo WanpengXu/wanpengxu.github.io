@@ -1730,14 +1730,17 @@ P(y=1)P(\boldsymbol{x} \mid y=1)
 <p>这种方法<strong>十分地类似</strong>现在各高校的<strong>committee制度</strong>，所以也被称作“基于委员会的学习”（committed-base learning）。</p>
 <p>当学习器们的类型相同时，称它们是“同质的”（homo-）集成，个体学习器被称作“基学习器”，它们共同的学习算法称作“基学习算法”。</p>
 <p>当学习器们的类型不同时，称它们是“异质的”（hetero-）集成，个体学习器被称作“组件学习器”。</p>
-<p>（介绍一些使用集成学习获得冠军的案例）</p>
+<p>如图，KDDCup历年的冠军几乎都使用了集成学习。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211282127545.png" alt=""></p>
+<p>因此，</p>
 <blockquote>
 <p>To win? Ensemble!</p>
 <p>想赢？那就集成！</p>
 </blockquote>
-<h2 id="好而不同"><a href="#好而不同" class="headerlink" title="好而不同"></a>好而不同</h2><p>以“多数投票”集成学习为例</p>
+<h2 id="好而不同"><a href="#好而不同" class="headerlink" title="好而不同"></a>好而不同</h2><p>以“多数投票”集成学习算法为例。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211271700382.png" alt=""></p>
-<p>可以看出：（再写）</p>
+<p>可以看出：当个体学习器们“不坏”且“不同”时，集成学习器的性能可能会比最好的个体学习器还要好；但当个体学习器们“相似”时，集成学习器的性能可能不会有提升；当个体学习器们“不好”时，集成学习器的性能甚至可能会下降。</p>
+<p>因此，集成学习中的个体学习器们要“好而不同”。</p>
 <p>误差-分歧分解（Error-Ambiguity Decomposition）可以用于衡量集成学习的性能。</p>
 <script type="math/tex; mode=display">
 E = \bar{E} - \bar{A}</script><p>其中，</p>
@@ -1751,6 +1754,23 @@ E = \bar{E} - \bar{A}</script><p>其中，</p>
 <li>该表达式只适用于以squared loss作为损失函数的回归问题。</li>
 <li>当每个学习器在训练集上的err都很低（acc都很高）时，它们的预测结果高度相似，ambiguity自然也很低。也就是说，$\bar{E}$和$\bar{A}$是正相关的，不太容易找到二者的tradeoff，使集成学习的err最低。</li>
 </ol>
+<h2 id="两类常用集成学习算法"><a href="#两类常用集成学习算法" class="headerlink" title="两类常用集成学习算法"></a>两类常用集成学习算法</h2><p>根据个体学习器的生成方式，目前的集成学习方法大致可分为两大类：序列化方法、并行化方法。</p>
+<p>序列化方法：个体学习器间存在强依赖关系、必须串行生成的集成学习方法。</p>
+<ul>
+<li><strong>AdaBoost</strong> [Freund &amp; Schapire, JcSS97]（代表性算法）</li>
+<li>GradientBoost [Friedman, AnnStat01]（目前用的最多，竞赛上著名的XGBoost是它的一种工程实现）</li>
+<li>LPBoost [Demiriz, Bennett, Shawe-Taylor, MLJO6]</li>
+<li>…</li>
+</ul>
+<p>并行化方法：个体学习器间不存在强依赖关系、可同时生成的集成学习方法。</p>
+<ul>
+<li><strong>Bagging</strong> [Breiman, MLJ96]（代表性算法）</li>
+<li>Random Forest [Breiman, MLJO1]（目前用的最多）</li>
+<li>Random Subspace [Ho, TPAMI98]</li>
+<li>…</li>
+</ul>
+<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Boosting是<strong>一族</strong>可将弱学习器提升为强学习器的<strong>同质的</strong>集成学习算法。</p>
+<p>采样/带权</p>
 
         </div>
 
