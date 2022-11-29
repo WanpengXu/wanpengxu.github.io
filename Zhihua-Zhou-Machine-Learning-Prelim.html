@@ -1730,7 +1730,7 @@ P(y=1)P(\boldsymbol{x} \mid y=1)
 <p>这种方法<strong>十分地类似</strong>现在各高校的<strong>committee制度</strong>，所以也被称作“基于委员会的学习”（committed-base learning）。</p>
 <p>当学习器们的类型相同时，称它们是“同质的”（homo-）集成，个体学习器被称作“基学习器”，它们共同的学习算法称作“基学习算法”。</p>
 <p>当学习器们的类型不同时，称它们是“异质的”（hetero-）集成，个体学习器被称作“组件学习器”。</p>
-<p>如图，KDDCup历年的冠军几乎都使用了集成学习。</p>
+<p>集成学习往往可以在难以改进单个算法的情况下对具体任务提升准确度。如图，KDDCup历年的冠军几乎都使用了集成学习（蓝字）。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211282127545.png" alt=""></p>
 <p>因此，</p>
 <blockquote>
@@ -1770,7 +1770,21 @@ E = \bar{E} - \bar{A}</script><p>其中，</p>
 <li>…</li>
 </ul>
 <h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Boosting是<strong>一族</strong>可将弱学习器提升为强学习器的<strong>同质的</strong>集成学习算法。</p>
-<p>采样/带权</p>
+<p>Boosting的流程图图例（A flowchart illustration）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211291314995.png" alt=""></p>
+<p>其主要思想即为：让某个学习器<strong>着重</strong>训练其上一个学习器错误预测的那些示例（不含gt的样例，见<a href="#输入部分">基本术语</a>），最后将学习器们<strong>按权重结合</strong>。</p>
+<p>为了着重训练这些示例，有两种思路：采样/带权。</p>
+<p>因此Boosting目前有两类算法。</p>
+<ol>
+<li>重采样法（re-sampling）：在训练的每一轮中，根据样本分布为训练集的每个训练样本重新赋予一个权重。</li>
+<li>重赋权法（re-weighting）：在训练的每一轮中，根据样本分布对训练集重新进行采样。</li>
+</ol>
+<p>通过某种方法形成新训练集后继续进行训练。</p>
+<p>但是，需要注意：</p>
+<ol>
+<li>有些基学习算法无法处理带权重样本，如神经网络。所以，要根据基学习算法选择采样还是带权；</li>
+<li>Boosting算法会检查每一轮生成的基学习器，如果基学习器不满足基本条件，则会结束训练。所以，“重赋权法”可能过早停止训练。但“重采样法”可以用旧训练集重新采样形成新训练集，再继续本轮训练，该方法称为重采样法的“重启动”。</li>
+</ol>
 
         </div>
 
