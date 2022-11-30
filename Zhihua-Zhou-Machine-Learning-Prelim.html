@@ -1851,7 +1851,79 @@ p_2 &= \frac{(a+b)(a+c)+(d+b)(d+c)}{m^2}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211291554033.png" alt=""></p>
 <p>$\kappa$-误差图中将一对分类器作为一个点，其横坐标为它们的$\kappa$值，<strong>纵坐标为它们的平均误差</strong>。因此，数据点云的位置越高，则平均误差越大，准确性越低；数据点云的位置越右，则$\kappa$值越大，多样性越小。</p>
 <p>因此，$\kappa$-误差图中的点云越靠左下，越“好而不同”。</p>
-<h1 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h1><h2 id="聚类任务"><a href="#聚类任务" class="headerlink" title="聚类任务"></a>聚类任务</h2><h2 id="聚类方法概述"><a href="#聚类方法概述" class="headerlink" title="聚类方法概述"></a>聚类方法概述</h2>
+<h2 id="测试-6"><a href="#测试-6" class="headerlink" title="测试"></a>测试</h2><h1 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h1><h2 id="聚类任务"><a href="#聚类任务" class="headerlink" title="聚类任务"></a>聚类任务</h2><p>聚类（Clustering）是无监督学习中的一种典型任务，其任务目标类似于有监督学习中的分类任务。</p>
+<p>另外，有监督学习中的回归任务类似于无监督学习中的密度估计（density estimation）。</p>
+<p>聚类的目标：将数据集中的样本划分为若干个不相交的子集，称为“簇”（cluster）。</p>
+<p>如图，聚类就是将相似的样本们“物以类聚”。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211292015116.png" alt=""></p>
+<p>聚类既可以作为一个单独过程，用于寻找数据内部的分布结构、寻找潜在的概念/类别；也可以作为分类等其他任务的前驱过程，即根据聚类结果将每个“簇”定义为一个“类”，形成有标注/标签数据，然后再基于这些标注数据训练出分类模型，用于判别未见样本。可用于电子商务中对新用户类型的判别。</p>
+<h2 id="聚类方法概述"><a href="#聚类方法概述" class="headerlink" title="聚类方法概述"></a>聚类方法概述</h2><p>首先，聚类的“好坏”不存在绝对标准。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>5簇</th>
+<th>2簇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211292044436.png" alt=""></td>
+<td><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211292044933.jpg" alt=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如上两图，聚类为5簇/2簇都找到了样本潜在的概念：种类/颜色。因此，聚类的“好坏”只取决于用户的看法，对用户是否有帮助。</p>
+<p>所以，聚类算法总能创造出很多新的标准，使旧的算法无法分成这种标准。</p>
+<p>周志华老师写的关于聚类的故事。</p>
+<blockquote>
+<p>老师拿来苹果和梨，让小朋友分成两份。 </p>
+<p>小明把大苹果大梨放一起，小个头的放一起，老师点头，嗯，体量感。</p>
+<p>小芳把红苹果挑出来，剩下的放一起，老师点头，颜色感。 </p>
+<p>小武的结果？不明白。小武掏出眼镜：最新款，能看到水果里有几个籽， 左边这堆单数，右边双数。 </p>
+<p>老师很高兴：新的聚类算法诞生了！</p>
+</blockquote>
+<p>因为实践中的聚类标准太多，很可能没有现成的聚类算法可用，所以我们要了解的是聚类有哪几种典型的思路。</p>
+<p>常见的聚类方法：</p>
+<ul>
+<li>原型聚类（基于原型的聚类，prototype-based clustering）<ul>
+<li>假设：样本内部结构能通过一组原型（有代表性的样本）刻画</li>
+<li>过程：先对原型初始化，然后对原型进行迭代更新求解</li>
+<li>代表：k均值聚类、学习向量量化（LVQ）、高斯混合聚类</li>
+</ul>
+</li>
+<li>密度聚类（基于密度的聚类，density-based clustering）<ul>
+<li>假设：样本内部结构能通过样本分布的紧密程度刻画</li>
+<li>过程：从样本密度的角度来考察样本之间的可连接性，并基于可连接样本不断扩展聚类簇</li>
+<li>代表：DBSCAN、OPTICS、DENCLUE</li>
+</ul>
+</li>
+<li>层次聚类（hierarchical clustering）<ul>
+<li>假设：样本能够产生不同粒度的聚类结果</li>
+<li>过程：在不同层次对数据集进行划分，从而形成树形的聚类结构</li>
+<li>代表：AGNES（自底向上）、DIANA（自顶向下）</li>
+</ul>
+</li>
+</ul>
+<p>原型聚类被研究得最多，且有概率上的良好解释，如高斯混合聚类就可从贝叶斯学习、统计学习角度解释，k均值聚类等都是高斯混合聚类的特殊情况。但原型聚类通常只能找出椭球形的/凸的聚类结构，不太能处理“香肠形”的/非凸的聚类结构。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>生成数据</th>
+<th>聚类结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211292117305.jpeg" alt=""></td>
+<td><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211292117285.jpeg" alt=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="测试-7"><a href="#测试-7" class="headerlink" title="测试"></a>测试</h2>
         </div>
 
         
