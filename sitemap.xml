@@ -4,7 +4,7 @@
   <url>
     <loc>https://xuwp.top/Zhihua-Zhou-Machine-Learning-Prelim.html</loc>
     
-    <lastmod>2022-11-29</lastmod>
+    <lastmod>2022-11-30</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Introduction-to-Artificial-Intelligence.html</loc>
+    <loc>https://xuwp.top/Man-in-the-middle-Attack.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Man-in-the-middle-Attack.html</loc>
+    <loc>https://xuwp.top/Introduction-to-Artificial-Intelligence.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -272,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/css/normalize.css</loc>
+    <loc>https://xuwp.top/css/style.css</loc>
     
     <lastmod>2022-04-10</lastmod>
     
@@ -281,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/css/style.css</loc>
+    <loc>https://xuwp.top/css/normalize.css</loc>
     
     <lastmod>2022-04-10</lastmod>
     
@@ -317,13 +317,6 @@
 
   
   <url>
-    <loc>https://xuwp.top/tags/topSecret/</loc>
-    <lastmod>2022-11-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xuwp.top/tags/Android/</loc>
     <lastmod>2022-11-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -331,7 +324,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/tags/Java/</loc>
+    <loc>https://xuwp.top/tags/topSecret/</loc>
     <lastmod>2022-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -345,7 +338,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <loc>https://xuwp.top/tags/Java/</loc>
     <lastmod>2022-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -360,6 +353,13 @@
   
   <url>
     <loc>https://xuwp.top/tags/DHCP%E8%80%97%E5%B0%BD%E6%94%BB%E5%87%BB/</loc>
+    <lastmod>2022-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2022-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
