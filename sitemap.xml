@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Test.html</loc>
-    
-    <lastmod>2022-11-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xuwp.top/about/index.html</loc>
     
     <lastmod>2022-10-18</lastmod>
@@ -345,6 +336,13 @@
   </url>
   
   <url>
+    <loc>https://xuwp.top/tags/Tools/</loc>
+    <lastmod>2022-12-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -366,7 +364,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/tags/Tools/</loc>
+    <loc>https://xuwp.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -381,13 +379,6 @@
   
   <url>
     <loc>https://xuwp.top/tags/CSP/</loc>
-    <lastmod>2022-12-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xuwp.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -417,14 +408,14 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
+    <loc>https://xuwp.top/categories/%E5%86%99%E4%BD%9C/</loc>
     <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xuwp.top/categories/%E5%86%99%E4%BD%9C/</loc>
+    <loc>https://xuwp.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
