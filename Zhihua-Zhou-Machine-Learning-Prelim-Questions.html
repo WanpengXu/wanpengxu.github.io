@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="baidu-site-verification" content="code-dlFXc2180h" />
+
+
+    <!-- <meta name="google-site-verification" content="qlTU_n7RT-JIFfLGMsgqxNsTEkVlsWnOfvoPzzHzSR0" /> -->
+    <meta name="google-site-verification" content="wNw6ZIFTz_hFtiJ2w108gXZcLcg3e8tLeSGIC36Wn_M" />
+
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>试题集 | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+
+
+
+    
+    
+        <script>
+    MathJax = {
+        tex: {
+            // 行内公式标志
+            inlineMath: [
+                ['$', '$']
+            ],
+            // 块级公式标志
+            displayMath: [
+                ['$$', '$$']
+            ],
+            // 下面两个主要是支持渲染某些公式，可以自己了解
+            processEnvironments: true,
+            processRefs: true,
+        },
+        options: {
+            // 跳过渲染的标签
+            skipHtmlTags: ['noscript', 'style', 'textarea', 'pre', 'code'],
+            // 跳过mathjax处理的元素的类名，任何元素指定一个类 tex2jax_ignore 将被跳过，多个累=类名'class1|class2'
+            ignoreHtmlClass: 'tex2jax_ignore',
+        },
+        // 这里可能是因为我的MathJax2仍有残留，导致行间公式被渲染成了type="math/tex"，所以要用这种2、3版本混合查找方式进行渲染
+        // 这样可能效率低，有机会再改。
+        options: {
+            renderActions: {
+                /* add a new named action not to override the original 'find' action */
+                find_script_mathtex: [10, function (doc) {
+                    for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                        const display = !!node.type.match(/; *mode=display/);
+                        const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                        const text = document.createTextNode('');
+                        node.parentNode.replaceChild(text, node);
+                        math.start = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        math.end = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        doc.math.push(math);
+                    }
+                }, '']
+            }
+        },
+        svg: {
+            fontCache: 'global',
+        },
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<!-- <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js">
+</script> -->
+    
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">Resume</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">Resume</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">试题集</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 2, 2022&nbsp;&nbsp;13:10:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AI/">AI</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>下列有关机器学习基本术语的说法错误的是</p>
+<p>A 从数据中学得模型的过程称为“学习”或“训练”</p>
+<p>B 训练过程中使用的数据称为“训练数据”，每一个样本称为一个“训练样本”，训练样本组成的集合称为“训练集”</p>
+<p>C 学得模型对应了关于数据的某种潜在的规律，称为“假设”</p>
+<p>D 学习过程就是为了找出数据的某种潜在规律，这个规律自身，一般称为“数据特征”</p>
+<p>正确答案: D</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>以下关于机器学习预测任务的说法错误的是（）</p>
+<p>A 一般地，预测任务是希望通过对训练集进行学习，建立一个从输入空间$\mathcal{X}$到输出空间$\mathcal{Y}$的映射$f: \mathcal{X} \rightarrow \mathcal{Y}$</p>
+<p>B 对于二分类任务，一般令$\mathcal{Y}=\lbrace -1,+1 \rbrace$或$\mathcal{Y}=\lbrace 0,1 \rbrace$</p>
+<p>C 对于回归任务，一般$\mathcal{Y}=\mathbb{R}$</p>
+<p>D 预测任务不需要训练样本的的标记信息</p>
+<p>正确答案: D</p>
+<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p>聚类算法是机器学习中一种典型的____学习算法。(监督/无监督)</p>
+<p>正确答案:[ “无监督” ]</p>
+<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p>学出来的模型适用于新样本的能力，称为 ____ 能力。该能力越强，说明学得的模型越能很好地适用于整个样本空间。</p>
+<p>正确答案:[ “泛化” ]</p>
+<h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p>学得模型后，使用其进行预测的过程称为____。</p>
+<p>正确答案:[ “测试” ]</p>
+<h2 id="6"><a href="#6" class="headerlink" title="6"></a>6</h2><p>根据训练数据是否拥有标记信息，我们可以将学习任务分为两大类，监督学习和____。</p>
+<p>正确答案:[ “无监督学习” ]</p>
+<h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><p>分类和回归任务，按照数据是否拥有标记信息来说，属于机器学习中的____。</p>
+<p>正确答案:[ “监督学习” ]</p>
+<h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><p>下列不属于机器学习任务的是（）</p>
+<p>A 人脸识别</p>
+<p>B 网页编写</p>
+<p>C 文本分类</p>
+<p>D 销量预测</p>
+<p>正确答案: B</p>
+<h2 id="9"><a href="#9" class="headerlink" title="9"></a>9</h2><p>下列说法错误的是（）</p>
+<p>A 模型是通过学习算法得到的</p>
+<p>B 机器学习通常解决高度不确定性和复杂性的问题</p>
+<p>C 分类和回归是监督学习的代表</p>
+<p>D 机器学习一定需要类别标记</p>
+<p>正确答案: D</p>
+<h2 id="10"><a href="#10" class="headerlink" title="10"></a>10</h2><p>下列说法错误的是（）</p>
+<p>A “色泽”取值为“青绿”，这里的“青绿”是属性值</p>
+<p>B 输出是离散值的学习任务为分类任务</p>
+<p>C 模型找出的规律一定是正确的</p>
+<p>D 一般假设正类和反类是可交换的</p>
+<p>正确答案: C</p>
+<h2 id="11"><a href="#11" class="headerlink" title="11"></a>11</h2><p>下列说法错误的是（）</p>
+<p>A 学得模型适用于新样本的能力称为“泛化”能力</p>
+<p>B 机器学习一般有“独立同分布”假设</p>
+<p>C 机器学习在只要见过的数据上做好就行了，未见过样本上的性能不重要</p>
+<p>D 一般假设拿到的所有数据都来自一个潜在的分布</p>
+<p>正确答案: C</p>
+<h2 id="12"><a href="#12" class="headerlink" title="12"></a>12</h2><p>把见过的汽车分成若干组，这是一个____（分类/回归/聚类）任务</p>
+<p>正确答案:[ “聚类” ]</p>
+<h2 id="13"><a href="#13" class="headerlink" title="13"></a>13</h2><p>上完机器学习课，小明在50个数据集上用不同算法模型进行训练和测试，发现算法a的效果一直比算法b好，他认为在所有问题上算法a的效果都会比b好。这个结论是____（正确/错误）的。</p>
+<p>正确答案:[ “错误” ]</p>
+<h2 id="14"><a href="#14" class="headerlink" title="14"></a>14</h2><p>奥卡姆剃刀原则中，两个假设哪一个“更简单”，是____（容易/不容易）判断的。</p>
+<p>正确答案:[ “不容易” ]</p>
+<h2 id="15"><a href="#15" class="headerlink" title="15"></a>15</h2><p>下列关于归纳偏好的说法错误的是（）</p>
+<p>A 机器学习算法在学习过程中对某种类型假设的偏好，称为“归纳偏好”，或简称为“偏好”</p>
+<p>B 一般来说，任何一个有效的机器学习算法都有其归纳偏好</p>
+<p>C “奥卡姆剃刀”原则在某些情况下可以指导我们选择偏好</p>
+<p>D 在任何情况下，总有一个最优的学习算法</p>
+<p>正确答案: D</p>
+<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1><h2 id="1-1"><a href="#1-1" class="headerlink" title="1"></a>1</h2><p>在训练集上的误差被称作</p>
+<p>A 泛化误差</p>
+<p>B 经验误差</p>
+<p>C 测试误差</p>
+<p>D 以上三个选项都不对</p>
+<p>正确答案: B</p>
+<h2 id="2-1"><a href="#2-1" class="headerlink" title="2"></a>2</h2><p>当学习任务对数据分布的轻微变化比较鲁棒且数据量较少时，适合使用什么样的数据集划分方式？</p>
+<p>A 留出法</p>
+<p>B 交叉验证法</p>
+<p>C 自助法</p>
+<p>D 以上三个选项都可以</p>
+<p>正确答案: C</p>
+<h2 id="3-1"><a href="#3-1" class="headerlink" title="3"></a>3</h2><p>我们通常将数据集划分为训练集，验证集和测试集进行模型的训练，参数的验证需要在__上进行，参数确定后__重新训练模型。</p>
+<p>A 训练集 需要</p>
+<p>B 训练集 不需要</p>
+<p>C 验证集 需要</p>
+<p>D 验证集 不需要</p>
+<p>正确答案: C</p>
+<h2 id="4-1"><a href="#4-1" class="headerlink" title="4"></a>4</h2><p>当西瓜收购公司去瓜摊收购西瓜时既希望把好瓜都收走又保证收到的瓜中坏瓜尽可能的少，请问他应该考虑什么评价指标？</p>
+<p>A 精度</p>
+<p>B 查全率</p>
+<p>C 查准率 </p>
+<p>D F1度量</p>
+<p>正确答案: D</p>
+<h2 id="5-1"><a href="#5-1" class="headerlink" title="5"></a>5</h2><p>两种算法在某种度量下取得评估结果后不能直接比较以评判优劣的原因中，正确的是</p>
+<p>A 测试性能不等于泛化性能</p>
+<p>B 测试性能随着测试集的变化而变化</p>
+<p>C 很多机器学习算法本身有一定的随机性</p>
+<p>D 以上均正确</p>
+<p>正确答案: D</p>
+<h2 id="6-1"><a href="#6-1" class="headerlink" title="6"></a>6</h2><p>训练模型时，选择经验误差最小的模型会存在什么风险。____（过拟合/欠拟合）</p>
+<p>正确答案:[ “过拟合” ]</p>
+<h2 id="7-1"><a href="#7-1" class="headerlink" title="7"></a>7</h2><p>对于从数据(0,1),(1,0),(1,2),(2,1)通过最小二乘拟合的不带偏置项的线性模型y=x，其训练误差（均方误差）为____ （保留三位小数）</p>
+<p>正确答案:[ “1.000” ]</p>
+<h2 id="8-1"><a href="#8-1" class="headerlink" title="8"></a>8</h2><p>使用留出法对数据集进行划分时，为了保持数据分布的一致性，可以考虑什么采样。____（分层采样/随机采样/有放回采样）</p>
+<p>正确答案:[ “分层采样” ]</p>
+<h2 id="9-1"><a href="#9-1" class="headerlink" title="9"></a>9</h2><p>当我们使用留出法对数据集进行划分后，在训练集上通过两个不同的算法训练出2个模型，并通过测试集上的性能评估得到表现最好的模型，这一模型可以直接推荐给用户。 ____（是/否）</p>
+<p>正确答案:[ “否” ]</p>
+<h2 id="10-1"><a href="#10-1" class="headerlink" title="10"></a>10</h2><p>考虑一个三分类数据集，其由30个西瓜，30个苹果，30个香蕉构成。先有一个学习策略为预测新样本为训练集中样本数目最多类别的分类器（存在多个类别样本数量一样多时则随机选择一个类别预测），请问通过什么评估方式会导致其平均准确率为0。____（留出法/交叉验证，每一折样本数大于1/留一法）</p>
+<p>正确答案:[ “留一法” ]</p>
+<h2 id="11-1"><a href="#11-1" class="headerlink" title="11"></a>11</h2><p>当我们使用留一法进行评估时会出现什么问题。____（训练模型与使用整个数据集训练的模型差异大/经验误差与泛化误差偏差大）</p>
+<p>正确答案:[ “经验误差与泛化误差偏差大” ]</p>
+<h2 id="12-1"><a href="#12-1" class="headerlink" title="12"></a>12</h2><p>考虑如下分类结果混淆矩阵，其F1度量为____（保留3位小数）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/image-20221202133227742.png" alt=""></p>
+<p>正确答案:[ “0.364” ]</p>
+<h2 id="13-1"><a href="#13-1" class="headerlink" title="13"></a>13</h2><p>McNemar检验基于____（成对t检验/卡方检验）</p>
+<p>正确答案:[ “卡方检验” ]</p>
+<h2 id="14-1"><a href="#14-1" class="headerlink" title="14"></a>14</h2><p>假设我们已经建立好了一个二分类模型, 输出是0或1, 初始阈值设置为0.5, 超过0.5概率估计就判别为1, 否则就判别为0 ; 如果我们现在用另一个大于0.5的阈值, 一般来说，下列说法正确的是</p>
+<p>A 查准率会上升或不变，查全率会下降或不变</p>
+<p>B 查准率会下降或不变，查全率会下降或不变</p>
+<p>C 查准率会上升或不变，查全率会上升或不变</p>
+<p>D 查准率会下降或不变，查全率会上升或不变</p>
+<p>正确答案: A</p>
+<h2 id="15-1"><a href="#15-1" class="headerlink" title="15"></a>15</h2><p>对于留出法，下列说法正确的是</p>
+<p>A 测试集小的时候，评估结果的方差较大</p>
+<p>B 训练集小的时候，评估结果的偏差较大</p>
+<p>C 留出法需要对数据集进行多次切分并将结果取平均值</p>
+<p>D 以上说法均正确</p>
+<p>正确答案: D</p>
+<h1 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h1><h2 id="1-2"><a href="#1-2" class="headerlink" title="1"></a>1</h2><p>下列关于对数几率回归的描述中错误的是？</p>
+<p>A 无需事先假设数据分布</p>
+<p>B 使用对数函数作为联系函数</p>
+<p>C 可得到类别的近似概率预测</p>
+<p>D 可直接应用现有数值优化算法求取最优解</p>
+<h2 id="2-2"><a href="#2-2" class="headerlink" title="2"></a>2</h2><p>孙悟空想请你帮他预测下一次妖精会在多久后出现，你会使用下列哪种方法？</p>
+<p>A 使用历史上妖精出现的时间以及八戒每日食量数据，并使用对率回归模型</p>
+<p>B 使用历史上妖精出现的时间以及师父念紧箍咒的时间数据，并使用指数线性回归模型</p>
+<p>C 使用历史上妖精出现的时间以及师徒四人的前进速度数据，并使用多元线性回归模型</p>
+<p>D 使用历史上妖精出现的时间以及沙和尚每日体重数据，并使用对数线性回归模型</p>
+<h2 id="3-2"><a href="#3-2" class="headerlink" title="3"></a>3</h2><p>处理类别不平衡问题时，复制小类样本不是一种好的过采样方法，下列哪个不是其原因？</p>
+<p>A 复制样本效率低下</p>
+<p>B 容易过拟合</p>
+<p>C 受噪声影响大</p>
+<p>D 有过拟合噪声的风险</p>
+<h2 id="4-2"><a href="#4-2" class="headerlink" title="4"></a>4</h2><p>Jerry想通过西瓜的重量、西瓜的颜色、西瓜根蒂的长短来判断一个西瓜是否是好瓜，Jerry记录了一些购买西瓜的记录如下：(5500g,乌黑,长,否), (6000g,青绿,很长,是), (5800g,翠绿,短,是)。如果Jerry想收集更多西瓜数据并利用线性模型判断西瓜好坏，下列哪个选项是上述三个记录的合理表示？</p>
+<p>A (5500,1,2), (6000,2,4), (5800,3,1)</p>
+<p>B (5.5,1,0,0,3), (6,0,0,1,5), (5.8,0,1,0,1)</p>
+<p>C (5500,1,0,0,5), (6000,0,1,0,3), (5800,0,0,1,1)</p>
+<p>D (5.5,1,0,0,3), (6,0,1,0,2), (5.8,0,0,1,1)</p>
+<h2 id="5-2"><a href="#5-2" class="headerlink" title="5"></a>5</h2><p>小明想利用心率数据、运动与用餐时间间隔这两项数据来预测是否会发生低血糖，他利用平时锻炼数据收集了100个未发生低血糖的数据与3个发生低血糖的数据，3个发生低血糖的数据为：(180,比较久), (170,久), (165,非常久)。小明想请你帮他过采样一些低血糖数据，你认为下列哪个数据是合理的过采样数据？</p>
+<p>A (175,比较久)</p>
+<p>B (200,久)</p>
+<p>C (150,非常久)</p>
+<p>D (175,不久)</p>
+<h2 id="6-2"><a href="#6-2" class="headerlink" title="6"></a>6</h2><p>下列哪个模型不是广义线性模型？</p>
+<p>A $y=\ln\left(\frac{wx+b}{1-wx-b}\right)$</p>
+<p>B $y^3=wx+b$</p>
+<p>C $\sqrt{y}=wx+b$</p>
+<p>D $y^2=wx+b$</p>
+<h2 id="7-2"><a href="#7-2" class="headerlink" title="7"></a>7</h2><p>下列哪个选项不是多元线性回归使用正则化的原因？</p>
+<p>A 计算机数值精度有限</p>
+<p>B 样例维度大于样例数</p>
+<p>C 样例的采样过程存在偏差</p>
+<p>D 存在大量线性相关的样例</p>
+<h2 id="8-2"><a href="#8-2" class="headerlink" title="8"></a>8</h2><p>在求解对率回归时，下列哪个选项不是极大似然法的优势？</p>
+<p>A 优化目标是凸函数</p>
+<p>B 具有闭式解</p>
+<p>C 可以使用梯度下降法求解</p>
+<p>D 优化目标连续可微</p>
+<h2 id="9-2"><a href="#9-2" class="headerlink" title="9"></a>9</h2><p>给定数据集$D=\lbrace(-1,0),(0,0),(1,1)\rbrace$，最小二乘法学得的线性模型的斜率为____ (保留3位小数)。</p>
+<h2 id="10-2"><a href="#10-2" class="headerlink" title="10"></a>10</h2><p>给定数据集$D=\left\{\left(x_i, y_i\right)\right\}_{i=1}^m$，最小化数据集到线性模型的欧式距离的平方和学得的线性模型满足$\left(w^<em>, b^</em>\right)=\underset{(w, b)}{\arg \min } \frac{1}{w^2+1} \sum_{i=1}^m\left(w x_i-y_i+b\right)^2$。对于数据集$D=\lbrace(-1,0),(0,0),(1,1)\rbrace$，这一方法学得的线性模型的斜率为____ (保留3位小数)。</p>
+<h2 id="11-2"><a href="#11-2" class="headerlink" title="11"></a>11</h2><p>比较上述两题求得的斜率值，最小二乘法求得的斜率____(大于/等于/小于) 最小化数据集到线性模型欧式距离的平方和求得的斜率。这一结论对一般问题也成立，可尝试证明之。</p>
+<h2 id="12-2"><a href="#12-2" class="headerlink" title="12"></a>12</h2><p>OvR是一种常用的多分类方法，该方法每次将一个类的样例作为正例、所有其他类的样例作为反例。对于类别均衡的10分类问题，若使用OvR以及阈值移动法来训练，则阈值应设为____ (保留3位小数)。</p>
+<h2 id="13-2"><a href="#13-2" class="headerlink" title="13"></a>13</h2><p>对率回归可以得到样例是正类的概率的____(精确值/近似估计)。</p>
+<h2 id="14-2"><a href="#14-2" class="headerlink" title="14"></a>14</h2><p>对率回归____(需要/不需要) 事先假设数据分布。</p>
+<h2 id="15-2"><a href="#15-2" class="headerlink" title="15"></a>15</h2><p>多元线性回归不满秩的情况下____（是/否）可以通过加入归纳偏好来选取较好的解。</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>B C A B A D C B “0.500” “0.535” “小于” “0.100” “近似估计” “不需要” “是”</p>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="1-3"><a href="#1-3" class="headerlink" title="1"></a>1</h2><p>决策树划分时，若当前结点包含的样本集合为空，则应该怎么做？</p>
+<p>A 将结点标记为叶结点，其类别标记为父结点中样本最多的类</p>
+<p>B 将结点标记为叶结点，其类别标记为父结点中样本最少的类</p>
+<p>C 将结点标记为叶结点，其类别标记为父结点中任意一个类</p>
+<p>D 从其他结点获得样本，继续进行划分</p>
+<h2 id="2-3"><a href="#2-3" class="headerlink" title="2"></a>2</h2><p>决策树划分时，当遇到以下哪种情形时，将结点标记为叶节点，其类别标记为当前样本集中样本数最多的类</p>
+<p>A 当前属性集为空，或所有样本在所有属性上取值相同</p>
+<p>B 当前属性集不为空，或所有样本在所有属性上取值相同</p>
+<p>C 当前结点包含的样本集合为空，或当前属性集为空</p>
+<p>D 当前结点包含的样本集合为空，或所有样本在所有属性上取值相同</p>
+<h2 id="3-3"><a href="#3-3" class="headerlink" title="3"></a>3</h2><p>ID3决策树划分时，选择信息增益最____（大/小）的属性作为划分属性</p>
+<h2 id="4-3"><a href="#4-3" class="headerlink" title="4"></a>4</h2><p>若数据集的属性全为离散值，决策树学习时，____（可以/不可以）把用过的属性再作为划分属性。</p>
+<h2 id="5-3"><a href="#5-3" class="headerlink" title="5"></a>5</h2><p>下列说法错误的是（）</p>
+<p>A 信息增益准则对可取值较少的属性有所偏好</p>
+<p>B C4.5算法并不是直接选择增益率最大的候选划分属性</p>
+<p>C 基尼指数反映了从数据集中随机抽取两个样本，其类别标记不一致的概率</p>
+<p>D 基尼指数越小，数据集的纯度越高</p>
+<h2 id="6-3"><a href="#6-3" class="headerlink" title="6"></a>6</h2><p>对西瓜数据集2.0（《机器学习》教材第76页），属性“触感”和“色泽”，____（触感/色泽）的增益率更大</p>
+<h2 id="7-3"><a href="#7-3" class="headerlink" title="7"></a>7</h2><p>对西瓜数据集2.0（《机器学习》教材第76页），属性“色泽”的基尼指数为____（保留2位有效数字）</p>
+<h2 id="8-3"><a href="#8-3" class="headerlink" title="8"></a>8</h2><p>随着决策树学习时的深度增加，会发生什么现象？</p>
+<p>A 位于叶结点的样本越来越少</p>
+<p>B 不会把数据中不该学到的特性学出来</p>
+<p>C 决策树不会过拟合</p>
+<p>D 叶结点一定学到一般规律</p>
+<h2 id="9-3"><a href="#9-3" class="headerlink" title="9"></a>9</h2><p>只学习一颗决策树作为模型时，一般____（要/不要）选择剪枝</p>
+<h2 id="10-3"><a href="#10-3" class="headerlink" title="10"></a>10</h2><script type="math/tex; mode=display">
+表1\ 人造训练集 \\
+\begin{array}{cccc}
+\hline 编号 & 性别 & 喜欢\text{ML}作业 & \text{ML}成绩高 \\
+\hline 1 & 男 & 是 & 是 \\
+2 & 女 & 是 & 是 \\
+3 & 男 & 否 & 否 \\
+4 & 男 & 否 & 否 \\
+5 & 女 & 否 & 是 \\
+\hline
+\end{array}</script><script type="math/tex; mode=display">
+表2\ 人造验证集\\
+\begin{array}{cccc}
+\hline 编号 & 性别 & 喜欢 \text{ML}作业 & \text{ML}成绩高 \\
+\hline 6 & 男 & 是 & 是 \\
+7 & 女 & 是 & 否 \\
+8 & 男 & 否 & 否 \\
+9 & 女 & 否 & 否 \\
+\hline
+\end{array}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/image-20221202134837304.png" style="zoom:50%;" /></p>
+<p>（本题需阅读教材79-83页中剪枝的例子）考虑如图的训练集和验证集，其中“性别”、“喜欢ML作业”是属性，“ML成绩高”是标记。假设已生成如图的决策树，用精度（accuracy）衡量决策树的优劣，<strong>预剪枝</strong>的结果____（是/不是）原本的决策树。</p>
+<h2 id="11-3"><a href="#11-3" class="headerlink" title="11"></a>11</h2><p>（本题需阅读教材79-83页中剪枝的例子）考虑如图的训练集和验证集，其中“性别”、“喜欢ML作业”是属性，“ML成绩高”是标记。假设已生成如图的决策树，用精度（accuracy）衡量决策树的优劣，<strong>后剪枝</strong>的结果____（是/不是）原本的决策树。</p>
+<h2 id="12-3"><a href="#12-3" class="headerlink" title="12"></a>12</h2><p>下列说法正确的是（）</p>
+<p>A 决策树处理缺失值时，仅通过无缺失值的样例来判断划分属性的优劣</p>
+<p>B 若数据中存在缺失值，决策树会仅使用无缺失的样例</p>
+<p>C 若数据维度很高，不容易出现大量缺失值</p>
+<p>D 对决策树，给定划分属性，若样本在该属性上的值缺失，会随机进入一个分支</p>
+<h2 id="13-3"><a href="#13-3" class="headerlink" title="13"></a>13</h2><p>决策树处理有缺失值样本时，一个样本在各子节点中的权重和为____（保留一位小数）</p>
+<h2 id="14-3"><a href="#14-3" class="headerlink" title="14"></a>14</h2><p>关于剪枝，下列说法错误的是（）</p>
+<p>A 对于同一棵树，进行预剪枝和后剪枝得到的决策树是一样的</p>
+<p>B 决策树的剪枝算法可以分为两类，分别称为预剪枝和后剪枝</p>
+<p>C 预剪枝在树的训练过程中通过停止分裂对树的规模进行限制</p>
+<p>D 后剪枝先构造出一棵完整的树，然后通过某种规则消除掉部分节点，用叶子节点替代</p>
+<h2 id="15-3"><a href="#15-3" class="headerlink" title="15"></a>15</h2><p>通常来说，子节点的基尼不纯度与其父节点是什么样的关系？</p>
+<p>A 通常更低</p>
+<p>B 通常更高</p>
+<p>C 永远更高</p>
+<p>D 永远更低</p>
+<h2 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h2><p>A  </p>
+<p>A </p>
+<p>“大” </p>
+<p>“不可以” </p>
+<p>A  </p>
+<p>“色泽” </p>
+<p>“0.43” </p>
+<p>A </p>
+<p>“要” </p>
+<p>“不是” </p>
+<p>“是”</p>
+<p>A </p>
+<p>“1.0”  </p>
+<p>A </p>
+<p>A</p>
+<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="1-4"><a href="#1-4" class="headerlink" title="1"></a>1</h2><p>下列关于支持向量机的用法正确的是？</p>
+<p>A 当数据是线性可分时，可以考虑支持向量机的基本型</p>
+<p>B 当数据是线性不可分时，可以考虑引入核函数的支持向量机</p>
+<p>C 若使用引入核函数的支持向量机，可以通过模型选择等技术挑选较为合适的核函数</p>
+<p>D 以上说法都是正确的</p>
+<h2 id="2-4"><a href="#2-4" class="headerlink" title="2"></a>2</h2><p>下列哪一项是支持向量机基本型对偶问题的KKT条件？</p>
+<p>A $\left\{\begin{array}{l}<br>\alpha_i \geq 0 \\<br>1-y_i f\left(\boldsymbol{x}_i\right) \leq 0 \\<br>\alpha_i\left(1-y_i f\left(\boldsymbol{x}_i\right)\right)=0<br>\end{array}\right.$</p>
+<p>B $\left\{\begin{array}{l}<br>\alpha_i \geq 0 \\<br>1-y_i f\left(\boldsymbol{x}_i\right) \leq 0 \\<br>\alpha_i\left(1-y_i f\left(\boldsymbol{x}_i\right)\right)\geq0<br>\end{array}\right.$</p>
+<p>C $\left\{\begin{array}{l}<br>\alpha_i \geq 0 \\<br>1-y_i f\left(\boldsymbol{x}_i\right) \leq 0 \\<br>\alpha_i\left(1-y_i f\left(\boldsymbol{x}_i\right)\right)\leq0<br>\end{array}\right.$</p>
+<p>D 以上条件均不对</p>
+<h2 id="3-4"><a href="#3-4" class="headerlink" title="3"></a>3</h2><p>下面关于支持向量机的优化错误的是？</p>
+<p>A 可以通过常规的优化计算包求解</p>
+<p>B 可以通过SMO进行高效的求解</p>
+<p>C 在使用SMO时需要先推导出支持向量机的对偶问题</p>
+<p>D SMO需要迭代的进行求解，且每一步迭代的子问题不存在闭式解</p>
+<h2 id="4-4"><a href="#4-4" class="headerlink" title="4"></a>4</h2><p>考虑两个正例样本(0,0),(1,1)和两个负例样本(1,0),(0,1)，这四个样本是线性不可分的，通过下列哪一个映射函数可以让这四个样本线性可分？</p>
+<p>A $(x, y) \rightarrow(x, y, \mathbb{I}(x+y&gt;1))$【注：$\mathbb{I}(x)$为示性函数，当自变量为真时取值为1，否则取值为0】</p>
+<p>B $(x, y) \rightarrow(x, y, \mathbb{I}(x+y\leq 1))$</p>
+<p>C $(x, y) \rightarrow(x, y, \mathbb{I}(x+y=1))$</p>
+<p>D 以上映射函数都满足条件</p>
+<h2 id="5-4"><a href="#5-4" class="headerlink" title="5"></a>5</h2><p>下面关于支持向量回归说法正确的是</p>
+<p>A 当样本距离超平面的距离小于一定程度时，没有损失</p>
+<p>B 解具有稀疏性</p>
+<p>C 当样本距离超平面的距离大于一定程度时，有损失且损失随着距离线性增加</p>
+<p>D 以上说法都是正确的</p>
+<h2 id="6-4"><a href="#6-4" class="headerlink" title="6"></a>6</h2><p>支持向量机的“间隔”定义为两个异类支持向量到超平面的距离之和$\gamma = \frac{2}{|w|}$，支持向量机的核心思想是____（最大化/最小化)间隔。</p>
+<h2 id="7-4"><a href="#7-4" class="headerlink" title="7"></a>7</h2><p>支持向量机对偶问题得到的目标函数最优值是原始问题目标函数最优值的____（上界/下界）</p>
+<h2 id="8-4"><a href="#8-4" class="headerlink" title="8"></a>8</h2><p>考虑正类样本(-1,0),(0,1),(-1,1) 和负类样本(1,0),(0,-1),(1,-1)，若使用支持向量机算法，则其支持向量有____个。</p>
+<h2 id="9-4"><a href="#9-4" class="headerlink" title="9"></a>9</h2><p>支持向量机的解具有什么性质？____（三个字）</p>
+<h2 id="10-4"><a href="#10-4" class="headerlink" title="10"></a>10</h2><p>在求解支持向量机对偶问题时，引入的拉格朗日乘子____（有/没有）约束条件。</p>
+<h2 id="11-4"><a href="#11-4" class="headerlink" title="11"></a>11</h2><p>对于两个样本点(0,0),(1,1)，若我们将其投影到与高斯核函数$k(\boldsymbol{x}, \boldsymbol{y})=e^{-|\boldsymbol{x}-\boldsymbol{y}|^2}$关联的RKHS中时，则两个样本投影后的点距离为____（保留三位小数)</p>
+<h2 id="12-4"><a href="#12-4" class="headerlink" title="12"></a>12</h2><p>试判断定义在$\mathbf{R}^N \times \mathbf{R}^N$上的函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=\left(\boldsymbol{x}^{\top} \boldsymbol{y}+1\right)^2$是否为核函数。____（是/否)</p>
+<h2 id="13-4"><a href="#13-4" class="headerlink" title="13"></a>13</h2><p>试判断定义在$\mathbf{R}^N \times \mathbf{R}^N$上的函数$\kappa(\boldsymbol{x}, \boldsymbol{y})=\left(\boldsymbol{x}^{\top} \boldsymbol{y}-1\right)^2$是否为核函数。____（是/否)</p>
+<h2 id="14-4"><a href="#14-4" class="headerlink" title="14"></a>14</h2><p>对于支持向量机定义的超平面，下列说法错误的是</p>
+<p>A 通过支持向量机求解出的划分超平面是对训练样本局部扰动的“容忍”性最好的划分超平面</p>
+<p>B 对于所有可能的划分超平面，通过支持向量机求解出的划分超平面所产生的分类结果是较鲁棒的，是对未见示例的泛化能力较强的</p>
+<p>C 支持向量机的“间隔”为$|w|$，$\frac{1}{|w|}$表示向量的模</p>
+<p>D 可以通过求解对偶问题的方法来求解支持向量机的最大间隔划分超平面</p>
+<h2 id="15-4"><a href="#15-4" class="headerlink" title="15"></a>15</h2><p>关于支持向量机基本型中间隔、支持向量和超平面$wx+b=0$的说法，下列说法正确的是</p>
+<p>A 对于线性可分的训练样本，存在唯一的超平面将训练样本全部分类正确</p>
+<p>B 对于线性可分的训练样本，支持向量机算法学习得到的能够将训练样本正确分类且具有“最大间隔”的超平面是存在并且唯一的</p>
+<p>C 支持向量机训练完成后，最后的解与所有训练样本都有关</p>
+<p>D 间隔只与$w$有关，与$b$无关</p>
+<h2 id="答案-2"><a href="#答案-2" class="headerlink" title="答案"></a>答案</h2><p>D</p>
+<p>A</p>
+<p>D</p>
+<p>D</p>
+<p>D</p>
+<p>“最大化”</p>
+<p>“下界”</p>
+<p>“4”</p>
+<p>“稀疏性”</p>
+<p>“有”</p>
+<p>“1.315”</p>
+<p>“是”</p>
+<p>“否”</p>
+<p>C</p>
+<p>B</p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="1-5"><a href="#1-5" class="headerlink" title="1"></a>1</h2><p>下列关于BP算法使用小步长优化神经网络的说法中正确的是哪个？</p>
+<p>A 一定能学到最优解</p>
+<p>B 可以较好的避免振荡现象</p>
+<p>C 训练速度快</p>
+<p>D 学得的解比使用大步长具有更小的泛化误差</p>
+<h2 id="2-5"><a href="#2-5" class="headerlink" title="2"></a>2</h2><p>下列关于多层前馈神经网络的描述中错误的是哪个？</p>
+<p>A 可以使用BP算法优化</p>
+<p>B 至少包含一个隐层</p>
+<p>C 神经元之间不存在同层连接</p>
+<p>D 输入层可以直接连接到输出层</p>
+<h2 id="3-5"><a href="#3-5" class="headerlink" title="3"></a>3</h2><p>多层前馈神经网络可以视为线性函数与激活函数的复合，而单隐层前馈神经网络中这种复合的次数有限，因而单隐层前馈神经网络的万有逼近性对激活函数有一定要求。你认为使用下列哪个激活函数的单隐层前馈神经网络能具有万有逼近性质？</p>
+<p>A 双曲正切函数</p>
+<p>B 常值函数</p>
+<p>C 线性函数</p>
+<p>D 三次函数</p>
+<h2 id="4-5"><a href="#4-5" class="headerlink" title="4"></a>4</h2><p>下列哪个选项的步长调整方法是给出的四种方案中最好的？</p>
+<p>A 先使用较大的步长，后使用较小的步长</p>
+<p>B 先使用较小的步长，后使用较大的步长</p>
+<p>C 一直使用较大的步长</p>
+<p>D 一直使用较小的步长</p>
+<h2 id="5-5"><a href="#5-5" class="headerlink" title="5"></a>5</h2><p>下列关于万有逼近描述正确的是哪个选项？</p>
+<p>A 万有逼近是神经网络独有的性质</p>
+<p>B 神经网络的万有逼近性表明可以很容易的找到一个很好的解</p>
+<p>C 具有万有逼近性是将神经网络作为机器学习模型的前提</p>
+<p>D 神经网络的万有逼近性可以指导我们设置隐层神经元数</p>
+<h2 id="6-5"><a href="#6-5" class="headerlink" title="6"></a>6</h2><p>Sigmoid函数在 x=0.5 处的导数值为____(保留3位小数)。</p>
+<h2 id="7-5"><a href="#7-5" class="headerlink" title="7"></a>7</h2><p>具有10个隐层结点的单隐层网络在处理输入维度为6维的三分类任务时 (有3个输出层结点)，网络中共有____ (填写一个整数) 个参数。</p>
+<h2 id="8-5"><a href="#8-5" class="headerlink" title="8"></a>8</h2><p>实际应用中常使用试错法来设置隐层神经元数，当问题较复杂时，通常使用较____(多/少) 隐层神经元。</p>
+<h2 id="9-5"><a href="#9-5" class="headerlink" title="9"></a>9</h2><p>考虑一个有1个输入结点、1个隐层结点、1个输出结点构成的神经网络，该网络输入到隐层的权重与隐层到输出的权重共享，即该神经网络的前馈表达式为$f(x)=\sigma\left(w \sigma\left(w x+b\right)+b\right)$，其中$\sigma(x)$为Sigmoid激活函数。考虑由两个样本组成的数据集$D=\{(0,0.5),(1,0.25)\}$，神经网络初始化参数为$w = -1, b = -1$，使用平方损失作为损失函数 (总损失为所有样本的平方和损失，<strong>不除以2</strong>)。则该神经网络在初始化下的损失为____(保留3位小数)。</p>
+<h2 id="10-5"><a href="#10-5" class="headerlink" title="10"></a>10</h2><p>上述损失关于$\omega$的偏导在初始点处的取值为____(保留3位小数)。</p>
+<h2 id="11-5"><a href="#11-5" class="headerlink" title="11"></a>11</h2><p>上述损失关于$b$的偏导在初始点处的取值为____(保留3位有效数字)。</p>
+<h2 id="12-5"><a href="#12-5" class="headerlink" title="12"></a>12</h2><p>当步长取为0.5时，使用BP算法更新神经网络模型后，模型的损失为____ (保留3位小数)。</p>
+<h2 id="13-5"><a href="#13-5" class="headerlink" title="13"></a>13</h2><p>当步长取为20时，使用BP算法更新神经网络模型后，模型的损失为____ (保留3位小数)。</p>
+<h2 id="14-5"><a href="#14-5" class="headerlink" title="14"></a>14</h2><p>用学习率$\alpha=0.3$进行15次梯度下降迭代，每次迭代后计算损失$J(\theta)$。如果发现损失值$J(\theta)$下降缓慢，并且在15次迭代后仍在下降。基于此，以下哪个结论最可信？</p>
+<p>A $\alpha=0.3$是学习率的有效选择</p>
+<p>B 当前学习率设置偏小</p>
+<p>C 当前学习率设置偏大</p>
+<p>D 无法从当前现象对学习率进行判断</p>
+<h2 id="15-5"><a href="#15-5" class="headerlink" title="15"></a>15</h2><p>下图是某一激活函数的图像，下列哪个选项可能是该激活函数的表达式？</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/1e7fbe5c-bd63-48a1-9f83-b74f08a931df.png" style="zoom:50%;" /></p>
+<p>A $f(x)=\mathrm{e}^{-x^2}$</p>
+<p>B $f(x)=\ln \left(1+\mathrm{e}^x\right)$</p>
+<p>C $f(x)= \begin{cases}\mathrm{e}^x-1, &amp; x&lt;0, \\<br>x, &amp; x \geqslant 0 .\end{cases}$</p>
+<p>D $f(x)=\frac{1}{1+\mathrm{e}^{-x}}$</p>
+<h2 id="答案-3"><a href="#答案-3" class="headerlink" title="答案"></a>答案</h2><p>B</p>
+<p>D</p>
+<p>A</p>
+<p>A</p>
+<p>C</p>
+<p>“0.235”</p>
+<p>“103”</p>
+<p>“多”</p>
+<p>“0.079”</p>
+<p>“-0.026”</p>
+<p>“-0.0785”</p>
+<p>“0.075”</p>
+<p>“0.112”</p>
+<p>B</p>
+<p>B</p>
+<h1 id="贝叶斯分类器"><a href="#贝叶斯分类器" class="headerlink" title="贝叶斯分类器"></a>贝叶斯分类器</h1><h2 id="1-6"><a href="#1-6" class="headerlink" title="1"></a>1</h2><p>贝叶斯最优分类器____（达到了/没达到）了贝叶斯风险。</p>
+<h2 id="2-6"><a href="#2-6" class="headerlink" title="2"></a>2</h2><p>在贝叶斯决策论中，下列说法错误的是（）</p>
+<p>A $1-R\left(h^*\right)$反映了机器学习所能产生的模型精度理论上限</p>
+<p>B 贝叶斯最优分类器在每个样本上选择那个能使条件风险$R(c|x)$最小的类别标记</p>
+<p>C 在实际中，贝叶斯决策论中的$P\left(c_i \mid \boldsymbol{x}\right)$是容易事先知道的</p>
+<p>D 贝叶斯最优分类器对应的总体风险称为贝叶斯风险</p>
+<h2 id="3-6"><a href="#3-6" class="headerlink" title="3"></a>3</h2><p>从贝叶斯决策论的角度看，机器学习要实现的是基于有限的训练样本尽可能准确地估计出后验概率P(c|x) ，这句话是____（正确/错误）</p>
+<h2 id="4-6"><a href="#4-6" class="headerlink" title="4"></a>4</h2><p>下列说法错误的是（）</p>
+<p>A 生成式模型可以理解为在尝试还原数据原来的联合分布</p>
+<p>B SVM是判别式模型</p>
+<p>C 判别式模型直接对后验概率建模</p>
+<p>D 贝叶斯分类器是判别式模型</p>
+<h2 id="5-6"><a href="#5-6" class="headerlink" title="5"></a>5</h2><p>贝叶斯主义一般做____（点/分布）估计</p>
+<h2 id="6-6"><a href="#6-6" class="headerlink" title="6"></a>6</h2><p>下列说法错误的是（）</p>
+<p>A 贝叶斯学习≠贝叶斯分类器</p>
+<p>B SVM属于统计学习</p>
+<p>C 用到了贝叶斯公式就是贝叶斯学习</p>
+<p>D 贝叶斯分类器是生成式模型</p>
+<h2 id="7-6"><a href="#7-6" class="headerlink" title="7"></a>7</h2><p>下列说法错误的是（）</p>
+<p>A 极大似然估计做了独立同分布假设</p>
+<p>B 极大似然估计的任务是利用训练集估计参数</p>
+<p>C 极大似然估计需先假设某种概率分布形式</p>
+<p>D 极大似然估计属于贝叶斯主义</p>
+<h2 id="8-6"><a href="#8-6" class="headerlink" title="8"></a>8</h2><p>极大似然估计中，对数似然的解与原问题____（一致/不一致）</p>
+<h2 id="9-6"><a href="#9-6" class="headerlink" title="9"></a>9</h2><p>下列说法错误的是（）</p>
+<p>A 计算$P(x|c)$主要障碍之一是组合爆炸</p>
+<p>B 计算$P(x|c)$主要障碍之一是样本稀疏</p>
+<p>C 朴素贝叶斯分类器中，计算离散属性的$P(x_i|c)$需要考虑概率密度函数</p>
+<p>D 朴素贝叶斯分类器中的概率密度函数，可以使用高斯分布</p>
+<h2 id="10-6"><a href="#10-6" class="headerlink" title="10"></a>10</h2><p>考虑二分类问题，若数据集中有100个样本，其中负类样本有48个。令$c$表示正类，则$P(c)$的估计值是____（保留2位小数）</p>
+<h2 id="11-6"><a href="#11-6" class="headerlink" title="11"></a>11</h2><script type="math/tex; mode=display">
+数据集\\
+\begin{array}{cccccccccccccccc}
+\hline
+\text { 编号 } & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+\hline
+x_1 & -1 & -1 & -1 & -1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+\hline
+x_2 & B & M & M & B & B & B & M & M & S & S & S & M & M & S & S \\
+\hline
+y & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+\hline
+\end{array}</script><p>考虑以上数据集。其中$x_1$与$x_2$为特征，其取值集合分别为$x_1 = \lbrace-1, 0, 1\rbrace$，$x_2 = \lbrace B, M, S\rbrace$。$y$为类别标记，其取值集合为$y=\lbrace 0, 1 \rbrace$。</p>
+<p>使用所给训练数据，学习一个朴素贝叶斯分类器，考虑样本$\boldsymbol{x} = \lbrace 0, B\rbrace$，请计算$P(y=0)P(\boldsymbol{x} \mid y=0)$的值____（保留2位有效数字）。</p>
+<h2 id="12-6"><a href="#12-6" class="headerlink" title="12"></a>12</h2><p>使用所给训练数据，学习一个朴素贝叶斯分类器，这个分类器会将样本$\boldsymbol{x} = \lbrace 0, B\rbrace$的标记预测为____。</p>
+<h2 id="13-6"><a href="#13-6" class="headerlink" title="13"></a>13</h2><p>使用所给训练数据，使用“拉普拉斯修正”，学习一个朴素贝叶斯分类器，考虑样本$\boldsymbol{x} = \lbrace 0, B\rbrace$，请计算$\hat{P}(y=1)\hat{P}(\boldsymbol{x} \mid y=1)$的值____（保留2位有效数字）。</p>
+<p>注. 实际中估计概率值时，常用“拉普拉斯修正”，相关内容请阅读《机器学习》教材第153-154页。</p>
+<h2 id="14-6"><a href="#14-6" class="headerlink" title="14"></a>14</h2><p>以下哪个选项是生成式模型？</p>
+<p>A 贝叶斯网</p>
+<p>B 对数几率回归</p>
+<p>C 决策树</p>
+<p>D 支持向量机</p>
+<h2 id="15-6"><a href="#15-6" class="headerlink" title="15"></a>15</h2><p>最小化分类错误率的贝叶斯最优分类器为：对每个样本选择能使以下哪个选项最大的类别标记？</p>
+<p>A 后验概率</p>
+<p>B 类条件概率</p>
+<p>C 先验</p>
+<p>D 以上都不是</p>
+<h2 id="答案-4"><a href="#答案-4" class="headerlink" title="答案"></a>答案</h2><p>“达到了”</p>
+<p>C</p>
+<p>“正确”</p>
+<p>D</p>
+<p>“分布”</p>
+<p>C</p>
+<p>D</p>
+<p>“一致”</p>
+<p>C</p>
+<p>“0.52”</p>
+<p>“0.067”</p>
+<p>“0”</p>
+<p>“0.041”</p>
+<p>A</p>
+<p>A</p>
+<h1 id="集成学习和聚类"><a href="#集成学习和聚类" class="headerlink" title="集成学习和聚类"></a>集成学习和聚类</h1><h2 id="1-7"><a href="#1-7" class="headerlink" title="1"></a>1</h2><p>下列关于误差-分歧分解的说法中正确的是哪个？</p>
+<p>A 这一分解表明特定条件下，集成学习的性能与个体学习器多样性正相关</p>
+<p>B 这一分解体现了多样性在回归、分类等机器学习任务中的重要性</p>
+<p>C 这一分解给出了一种可操作的多样性定义</p>
+<p>D 这一分解中的误差可以使用训练误差进行估计</p>
+<h2 id="2-7"><a href="#2-7" class="headerlink" title="2"></a>2</h2><p>下列关于同质集成学习与异质集成学习对比的说法中错误的是哪个？</p>
+<p>A 异质集成学习能获得更多样的个体</p>
+<p>B 同质集成学习在实现上更加简单</p>
+<p>C 同质集成学习能更方便的对比个体的结果</p>
+<p>D 同质集成学习能获得性能更好的个体</p>
+<h2 id="3-7"><a href="#3-7" class="headerlink" title="3"></a>3</h2><p>下列基于两分类器的预测结果连列表定义的表达式中，你认为哪个不适合作为多样性度量？</p>
+<p>A $\frac{(a+d)(b+c)(a d-b c)}{(a+b)(a+c)(b+d)(c+d)}$</p>
+<p>B $\frac{a+d}{a+b+c+d}$</p>
+<p>C $\frac{a d-b c}{a d+b c}$</p>
+<p>D $\frac{b-c}{a+b+c+c}$</p>
+<h2 id="4-7"><a href="#4-7" class="headerlink" title="4"></a>4</h2><p>下列关于集成学习的说法中错误的是？</p>
+<p>A 个体学习器准确率很高后，要增加多样性可以不牺牲准确性</p>
+<p>B 当基分类器的错误率相互独立时，随着个体数目的增大，集成错误率将指数级下降</p>
+<p>C 现实任务中，个体学习器很难做到相互独立</p>
+<p>D 集成学习的核心是如何产生并结合好而不同的个体学习器</p>
+<h2 id="5-7"><a href="#5-7" class="headerlink" title="5"></a>5</h2><p>多样性是集成学习的关键，现实任务中往往会在学习过程中引入随机性来增强个体学习器的多样性，你认为下列哪个做法不是合适的增强多样性的方法？</p>
+<p>A 每个个体学习器使用不同的数据子集</p>
+<p>B 生成大量随机样本放入到数据集中</p>
+<p>C 每个个体学习器使用不同的输入属性子集</p>
+<p>D 当个体学习器有参数可以设置时，对不同个体学习器设置不同的参数</p>
+<h2 id="6-7"><a href="#6-7" class="headerlink" title="6"></a>6</h2><p>AdaBoost算法是一种常用的Boosting算法，该算法的伪代码如图所示，其中$Z_t$用于确保$D_{t+1}$是一个分布。考虑由3个样本组成的训练集，在第1轮中基学习算法将样本1与样本2分类正确，样本3分类错误。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211301943706.png" alt=""></p>
+<p>则在第2轮中，样本1的权重为____(保留3位小数)。</p>
+<h2 id="7-7"><a href="#7-7" class="headerlink" title="7"></a>7</h2><p>在上题第2轮中，样本3的权重为____(保留3位小数)。</p>
+<h2 id="8-7"><a href="#8-7" class="headerlink" title="8"></a>8</h2><p>弱学习器指泛化性能略优于随机猜测的学习器，如二分类问题中指精度略高于0.5的分类器。那么在三分类问题中，弱学习器是指精度略高于____ (保留3位小数) 的学习器。</p>
+<h2 id="9-7"><a href="#9-7" class="headerlink" title="9"></a>9</h2><p>当样本足够多时，使用3个基学习器的Bagging算法用到的训练数据的比例为____(小数形式并保留3位小数)。</p>
+<h2 id="10-7"><a href="#10-7" class="headerlink" title="10"></a>10</h2><p>随机森林是一种典型的Bagging算法。随机森林使用的决策树的每个结点，先从该结点的属性集合中随机选择包含部分属性的属性子集，再从这个子集中选择一个最优的属性用于划分。这样生成的单棵决策树与单棵传统决策树相比，性能往往____ (更高/相同/更低)。</p>
+<h2 id="11-7"><a href="#11-7" class="headerlink" title="11"></a>11</h2><p>随机森林与传统决策树构成的森林相比，多样性往往____(更高/相同/更低)。</p>
+<h2 id="12-7"><a href="#12-7" class="headerlink" title="12"></a>12</h2><p>当我们想将无标记的数据分成若干簇时，应该选用下列什么类型的算法？</p>
+<p>A 分类</p>
+<p>B 回归</p>
+<p>C 以上都可以</p>
+<p>D 聚类</p>
+<h2 id="13-7"><a href="#13-7" class="headerlink" title="13"></a>13</h2><p>下面哪一项是通过样本分布的紧密程度确定聚类结构的聚类算法？</p>
+<p>A 原型聚类</p>
+<p>B 密度聚类</p>
+<p>C 层次聚类</p>
+<p>D 以上都是</p>
+<h2 id="14-7"><a href="#14-7" class="headerlink" title="14"></a>14</h2><p>下图所示聚类结构____（可以/不可以）通过标准型的k均值聚类算法得到。</p>
+<p>注：标准型指不使用核方法。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211302045182.png" style="zoom:33%;" /></p>
+<h2 id="15-7"><a href="#15-7" class="headerlink" title="15"></a>15</h2><p>下图所示聚类结构最可能通过____（原型聚类/密度聚类/层次聚类）得到。 </p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202211302045062.png" style="zoom:33%;" /></p>
+<h2 id="答案-5"><a href="#答案-5" class="headerlink" title="答案"></a>答案</h2><p>A</p>
+<p>D</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>“0.250”</p>
+<p>“0.500”</p>
+<p>“0.333”</p>
+<p>“0.950”</p>
+<p>“更低”</p>
+<p>“更高”</p>
+<p>D</p>
+<p>B</p>
+<p>“不可以”</p>
+<p>“密度聚类”</p>
+<h1 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h1><h2 id="1-8"><a href="#1-8" class="headerlink" title="1"></a>1</h2><p>对于两个样本点(0,0),(1,1)，若我们将其投影到与拉普拉斯核函数$k(\boldsymbol{x}, \boldsymbol{y})=e^{-|\boldsymbol{x}-\boldsymbol{y}|}$关联的RKHS中时，则两个样本投影后的点距离为 1.230（保留三位小数)</p>
+<p>正确答案：<br>填空1 : 1.230</p>
+<h2 id="2-8"><a href="#2-8" class="headerlink" title="2"></a>2</h2><p>聚类算法是机器学习中一种典型的 无监督（监督/无监督）学习算法。</p>
+<p>正确答案：<br>填空1 : 无监督</p>
+<h2 id="3-8"><a href="#3-8" class="headerlink" title="3"></a>3</h2><p>支持向量机原始问题目标函数最优值是对偶问题得到的目标函数最优值的 上界（上界/下界）</p>
+<p>正确答案：<br>填空1 : 上界</p>
+<h2 id="4-8"><a href="#4-8" class="headerlink" title="4"></a>4</h2><p>下列关于集成学习的说法中正确的是哪个？</p>
+<p>A Boosting中所有个体学习器的权重是相等的</p>
+<p>B 个体学习器犯错的样本具有一定差异性是集成学习取得好性能的要求之一</p>
+<p>C Bagging中不同个体学习器的数据是从同一数据集中采样得到的，因而需要其他途径使基学习器具有多样性</p>
+<p>D 已有的多样性定义可以作为优化目标直接优化</p>
+<p>正确答案： B</p>
+<h2 id="5-8"><a href="#5-8" class="headerlink" title="5"></a>5</h2><p>决策树划分时，若其中一个属性为样本的编号（各样本编号不同），若基于该属性进行划分，则信息增益最 大（大/小）</p>
+<p>正确答案：<br>填空1 : 大</p>
+<h2 id="6-8"><a href="#6-8" class="headerlink" title="6"></a>6</h2><p>下列关于类别不平衡问题的描述中正确的是哪个？</p>
+<p>A 当大类和小类一样重要时需要针对不平衡问题做特殊处理</p>
+<p>B 复制小类样本可以高效解决类别不平衡问题</p>
+<p>C 过采样与欠采样都通过构造平衡数据集来处理类别不平衡问题</p>
+<p>D 阈值移动法需要构造平衡数据集来处理类别不平衡问题</p>
+<p>正确答案： C</p>
+<h2 id="7-8"><a href="#7-8" class="headerlink" title="7"></a>7</h2><p>设$n \in \mathbb{N}^{+}$为一正自然数，考虑数据集$D_n=\{(-i,-1),(i, 1)\}_{i=1}^n$。记$w_n$为最小二乘法在数据集$D_n$上学得的线性模型的斜率，则$\lim _{n \rightarrow+\infty} n w_n$的值为 1.500(保留3位小数或填写”不存在”)。</p>
+<p>正确答案：<br>填空1 : 1.500</p>
+<h2 id="8-8"><a href="#8-8" class="headerlink" title="8"></a>8</h2><p>当西瓜收购公司去瓜摊收购西瓜时既希望把好瓜都收走又保证收到的瓜中坏瓜尽可能的少，请问他应该分别考虑什么评价指标？ </p>
+<p>A 查准率 查全率</p>
+<p>B 查全率 查准率</p>
+<p>C 准确率 查全率</p>
+<p>D 查全率 准确率</p>
+<p>正确答案： B</p>
+<h2 id="9-8"><a href="#9-8" class="headerlink" title="9"></a>9</h2><p>如果决策树过拟合训练集，减少决策树最大深度 是（是/否）为一个好主意。</p>
+<p>正确答案：<br>填空1 : 是</p>
+<h2 id="10-8"><a href="#10-8" class="headerlink" title="10"></a>10</h2><p>下列说法错误的是（）</p>
+<p>A $1-R\left(h^*\right)$反映了分类器所能达到的最好性能</p>
+<p>B 如果概率都能拿到真实值，那么根据贝叶斯判定准则做出的决策是理论上最好的决策</p>
+<p>C 贝叶斯决策论是概率框架下实施决策的基本理论</p>
+<p>D 决策树属于生成式模型</p>
+<p>正确答案： D</p>
+<h2 id="11-8"><a href="#11-8" class="headerlink" title="11"></a>11</h2><p>当多隐层神经网络使用线性激活函数时，下列哪个选项是正确的？</p>
+<p>A 经验损失最小化具有唯一解</p>
+<p>B 神经网络的输出是输入的线性函数</p>
+<p>C 神经网络具有万有逼近性</p>
+<p>D 神经网络的输出是权重的线性函数</p>
+<p>正确答案： B</p>
+<h2 id="12-8"><a href="#12-8" class="headerlink" title="12"></a>12</h2><p>下列关于线性模型的描述中正确的是哪个？</p>
+<p>A 线性模型通过投票法或加权平均法可以得到非线性模型</p>
+<p>B 线性模型无法拟合与输入呈指数关系的输出</p>
+<p>C 线性模型既可以处理回归任务，也可以处理分类任务</p>
+<p>D 线性模型的表达能力与神经网络相同</p>
+<p>正确答案： C</p>
+<h2 id="13-8"><a href="#13-8" class="headerlink" title="13"></a>13</h2><p>如果为了同时得到多个聚类簇数的聚类结果（如下图所示），最适合使用 层次聚类（原型聚类/密度聚类/层次聚类）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/image-20221202143456083.png" alt=""></p>
+<p>正确答案：<br>填空1 : 层次聚类</p>
+<h2 id="14-8"><a href="#14-8" class="headerlink" title="14"></a>14</h2><p>下列说法错误的是（）</p>
+<p>A 当样本均匀分布于所有类中时，熵最大</p>
+<p>B 在某些情况下样本特征向量中一些分量没有值，这称为属性缺失</p>
+<p>C CART算法的评价指标是基尼系数</p>
+<p>D ID3算法能解决过拟合问题  </p>
+<p>正确答案： D</p>
+<h2 id="15-8"><a href="#15-8" class="headerlink" title="15"></a>15</h2><p>下列关于神经网络万有逼近性的说法中正确的是哪个？</p>
+<p>A 万有逼近性是神经网络独有的性质</p>
+<p>B 万有逼近性保证了神经网络在现实任务中优异的表现</p>
+<p>C 包含足够多神经元的单隐层神经网络具有万有逼近性</p>
+<p>D 万有逼近性表明任意一个神经网络都可以逼近任意函数</p>
+<p>正确答案： C</p>
+<h2 id="16"><a href="#16" class="headerlink" title="16"></a>16</h2><p>在上题的例子中，每个基分类器的精度都为0.4，因而都是弱分类器，但集成后的精度下降了。这一现象表明在多分类任务中，弱学习器 不能 (能/不能) 保证集成精度不下降。</p>
+<p>正确答案：<br>填空1 : 不能</p>
+<h2 id="17"><a href="#17" class="headerlink" title="17"></a>17</h2><p>朴素贝叶斯分类器采用了（）假设：即对已知类别，假设所有属性相互独立。</p>
+<p>A 属性条件独立性</p>
+<p>B 独依赖</p>
+<p>C 道德图</p>
+<p>D 有向无环图依赖</p>
+<p>正确答案： A</p>
+<h2 id="18"><a href="#18" class="headerlink" title="18"></a>18</h2><p>对于参数估计过程，统计学界的 频率主义（频率主义/贝叶斯主义）学派认为参数虽然未知，但却是客观存在的固定值，因此，可通过优化似然函数等准则来确定参数值。</p>
+<p>正确答案：<br>填空1 : 频率主义</p>
+<h2 id="19"><a href="#19" class="headerlink" title="19"></a>19</h2><p>下列说法错误的是（）</p>
+<p>A 贝叶斯学习等于贝叶斯分类器</p>
+<p>B 极大似然估计需要假设某种概率分布形式</p>
+<p>C 对连续属性，计算条件概率$P\left(x_i \mid c\right)$可考虑概率密度函数</p>
+<p>D 朴素贝叶斯分类器中，对给定类别，模型假设所有属性间相互独立</p>
+<p>正确答案： A</p>
+<h2 id="20"><a href="#20" class="headerlink" title="20"></a>20</h2><p>以下哪种方式通常不能帮助解决决策树过拟合（）。</p>
+<p>A 预剪枝</p>
+<p>B 后剪枝</p>
+<p>C 限制最大树深度</p>
+<p>D 去除训练集一半样本</p>
+<p>正确答案： D</p>
+<h2 id="21"><a href="#21" class="headerlink" title="21"></a>21</h2><p>若任务中数据的属性是连续值，此类任务称为 不确定（分类/回归/不确定）。</p>
+<p>正确答案：<br>填空1 : 不确定</p>
+<h2 id="22"><a href="#22" class="headerlink" title="22"></a>22</h2><p>以下关于聚类的说法，错误的是</p>
+<p>A 聚类好坏存在绝对标准</p>
+<p>B 聚类可以作为其他学习算法的前驱过程</p>
+<p>C 原型聚类得到的每一个簇都是凸的</p>
+<p>D 密度聚类假设聚类结构可以通过样本分布的紧密程度确定</p>
+<p>正确答案： A</p>
+<h2 id="23"><a href="#23" class="headerlink" title="23"></a>23</h2><p>对率回归 是 (是/否) 可以通过极大似然估计求解。</p>
+<p>正确答案：<br>填空1 : 是</p>
+<h2 id="24"><a href="#24" class="headerlink" title="24"></a>24</h2><p>下列哪些函数可以作为核函数？</p>
+<p>A 高斯核</p>
+<p>B 多项式核</p>
+<p>C 线性核</p>
+<p>D 以上函数均可以作为核函数</p>
+<p>正确答案： D</p>
+<h2 id="25"><a href="#25" class="headerlink" title="25"></a>25</h2><p>当查准率和查全率均为1时，F1度量为 1.000。（计算结果保留三位小数）</p>
+<p>正确答案：<br>填空1 : 1.000</p>
+<h2 id="26"><a href="#26" class="headerlink" title="26"></a>26</h2><p>下列关于BP算法的说法中正确的是哪个？</p>
+<p>A 只要模型的损失函数关于模型权重可微，就可以使用BP算法优化</p>
+<p>B 只有使用Sigmoid激活函数的神经网络可以使用BP算法优化</p>
+<p>C BP算法可以找到神经网络的全局极小解</p>
+<p>D BP算法能在多项式时间内收敛</p>
+<p>正确答案： A</p>
+<h2 id="27"><a href="#27" class="headerlink" title="27"></a>27</h2><p>下列说法错误的是（）</p>
+<p>A 决策树学习时，给定划分属性，若样本在该属性上的值缺失，会随机进入一个分支</p>
+<p>B 信息增益准则对可取值较多的属性有所偏好</p>
+<p>C 基尼指数越小，数据集的纯度越高</p>
+<p>D 随着决策树学习时的深度增加，位于叶结点的样本越来越少</p>
+<p>正确答案： A</p>
+<h2 id="28"><a href="#28" class="headerlink" title="28"></a>28</h2><p>下列有关支持向量机，说法正确的是？</p>
+<p>A 通过支持向量机求解出的划分超平面是对训练样本局部扰动的“容忍”性最好的划分超平面</p>
+<p>B 利用SMO算法求解支持向量机时，只需要迭代更新参数一次</p>
+<p>C 支持向量机只能处理线性可分的数据</p>
+<p>D 一般情况下，支持向量机训练完后解与全部样本都有关系</p>
+<p>正确答案： A</p>
+<h2 id="29"><a href="#29" class="headerlink" title="29"></a>29</h2><p>Sigmoid函数在一点的函数值总是 大于(大于/等于/小于/无法确定) 该点的导数值。</p>
+<p>正确答案：<br>填空1 : 大于</p>
+<h2 id="30"><a href="#30" class="headerlink" title="30"></a>30</h2><p>下列说法错误的是（）</p>
+<p>A 留一法对模型性能的估计总是比交叉验证方法更准确</p>
+<p>B 支持向量机的原问题和对偶问题都是二次规划问题</p>
+<p>C 决策树相比于对数几率回归更适合分线性分类问题</p>
+<p>D 根据训练数据是否拥有标记信息，学习任务可以大致划分为两类: 监督学习、无监督学习</p>
+<p>正确答案： A</p>
+<h2 id="31"><a href="#31" class="headerlink" title="31"></a>31</h2><p>以下关于机器学习的说法错误的是（）</p>
+<p>A 预测离散值的任务一般称为分类任务</p>
+<p>B 学得模型后，待测试的样本我们称为“测试样本”，亦称“测试示例”</p>
+<p>C 同一个算法在不同数据集上，一般不能得到同样一个模型</p>
+<p>D 在聚类任务中，我们需要事先知道数据的标记信息</p>
+<p>正确答案： D</p>
+<h2 id="32"><a href="#32" class="headerlink" title="32"></a>32</h2><p>下列哪一种数据集切分方式会导致划分的训练集和测试集与初始数据集分布不同？</p>
+<p>A 留出法</p>
+<p>B 自助法</p>
+<p>C 以上做法均不会</p>
+<p>D 交叉验证法</p>
+<p>正确答案： B</p>
+<h2 id="33"><a href="#33" class="headerlink" title="33"></a>33</h2><script type="math/tex; mode=display">
+表1\ 数据集 \\
+\begin{array}{cccccccccccccccc}
+\hline 编号 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+\hline
+x_1 & -1 & -1 & -1 & -1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+\hline 
+x_2 & B & M & M & B & B & B & M & M & S & S & S & M & M & S & S \\
+\hline 
+y & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+\hline
+\end{array}</script><p>考虑如图数据集，其中 $x_1$ 与 $x_2$ 为特征，其取值集合分别为 $x_1=\{-1,0,1\}, x_2=\{B, M, S\}$ ， $y$ 为类别标记，其取值集合 为 $y=\{0,1\}$ 。<br>使用所给训练数据，学习一个朴素贝叶斯分类器，考虑样本 $x=\{0, B\}$ ，请计算 $P(y=1) P(x \mid y=1)$ 的值 0.030 (保留2位有效数字)。</p>
+<p>正确答案：<br>填空1 : 0.03</p>
+<p><strong>注. 这道题答案错了</strong></p>
+<h2 id="34"><a href="#34" class="headerlink" title="34"></a>34</h2><p>使用BP算法优化神经网络，若发现损失函数剧烈波动，可能是优化步长偏 大 (大/小)。</p>
+<p>正确答案：<br>填空1 : 大</p>
+<h2 id="35"><a href="#35" class="headerlink" title="35"></a>35</h2><p>考虑如下三分类的例子，使用投票法集成的结果的精度为 0.200 (保留3位小数)。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>测试例1</th>
+<th>测试例2</th>
+<th>测试例3</th>
+<th>测试例4</th>
+<th>测试例5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>真实标记</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>分类器1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>分类器2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>分类器3</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>正确答案：<br>填空1 : 0.200</p>
+<h2 id="36"><a href="#36" class="headerlink" title="36"></a>36</h2><p>当学习器在训练集上把训练样本自身的一些特征当作了所有潜在样本都具有的一般性质时，泛化性能可能会因此下降，这种现象一般称为 过拟合。（过拟合/欠拟合）</p>
+<p>正确答案：<br>填空1 : 过拟合</p>
+<h2 id="37"><a href="#37" class="headerlink" title="37"></a>37</h2><p>以下关于模型评估与选择的说法，错误的是</p>
+<p>A 训练模型时，仅仅保证训练误差为0是不够的</p>
+<p>B 当数据集很大时，通过留一法进行模型评估的计算代价是非常高昂的</p>
+<p>C 交叉验证t检验是基于列联表的</p>
+<p>D 模型的超参选择需要在验证集上进行测试</p>
+<p>正确答案： C</p>
+<h2 id="38"><a href="#38" class="headerlink" title="38"></a>38</h2><p>考虑正类样本(-1,0),(0,1),(-1,1) 和负类样本(1,0),(0,-1),(1,-1)，通过支持向量机的基本型得到的解为</p>
+<p>A y=x</p>
+<p>B y=x-1</p>
+<p>C 以上答案均不是</p>
+<p>D y=x+1</p>
+<p>正确答案： A</p>
+<h2 id="39"><a href="#39" class="headerlink" title="39"></a>39</h2><p>下列关于多元线性回归中使用正则项的说法中正确的是？</p>
+<p>A 使用正则项只有理论意义，实际应用中无需使用</p>
+<p>B 即便计算机具有无限精度，多元线性回归也需要使用正则项</p>
+<p>C 样例维度小于样例数是使用正则项的原因之一</p>
+<p>D 使用正则化后，多元线性回归可以找到多个最优解</p>
+<p>正确答案： B</p>
+<h2 id="40"><a href="#40" class="headerlink" title="40"></a>40</h2><p>下列说法错误的是（）</p>
+<p>A 机器学习一般有“独立同分布”假设</p>
+<p>B 用数据建立模型的过程叫训练</p>
+<p>C 学得模型适用于新样本的能力称为“泛化”能力</p>
+<p>D 测试数据应和训练数据一样</p>
+<p>正确答案： D</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://xuwp.top/Zhihua-Zhou-Machine-Learning-Prelim-Questions.html">https://xuwp.top/Zhihua-Zhou-Machine-Learning-Prelim-Questions.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2022 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"># 机器学习</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/Test.html">MathJax3 Formula Test</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Stay hungry. Stay foolish.</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
