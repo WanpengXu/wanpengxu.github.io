@@ -369,6 +369,16 @@ l(y, y^{\prime}) = \begin{cases}
 <p>A：将网络设置为评估模式后，pytorch不会计算梯度，进而不会计算与梯度相关的操作，可以提升效率、不影响训练过程。</p>
 <p>Q：optimizer是怎么获取Model的参数的？</p>
 <p>A：初始化时传递的，<code>optimizer = torch.optim.SGD(net.parameters(), lr=0.1)</code></p>
+<h1 id="multilayer-perceptrons"><a href="#multilayer-perceptrons" class="headerlink" title="multilayer-perceptrons"></a>multilayer-perceptrons</h1><p>Q：单层神经网络有万有逼近性，为什么神经网络趋向于增加隐藏层的层数（深度）而不是神经元的个数（宽度）？</p>
+<p>A：理论上，单层感知机具有万有逼近性，可以拟合任何函数；实际上，优化算法解不了。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032025502.png" style="zoom:33%;" /></p>
+<p>两种神经网络，左侧为“浅度学习”的神经网络，右侧为深度学习的神经网络。理论上，二者的拟合能力相同；但实际上，左侧的网络特别容易overfitting，因为所有神经元都是并行的，不容易迭代到理论解。</p>
+<p>直观的例子：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032025154.png" style="zoom:33%;" /></p>
+<p>让每层学出部分特征，如第一层学个耳朵/嘴，第二层学个头等等。</p>
+<h1 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h1><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032037721.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032039687.png" alt=""></p>
+<p>模型容量：参数数量+参数值的范围</p>
 
         </div>
 
