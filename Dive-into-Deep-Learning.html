@@ -329,7 +329,7 @@
 <p>广播。</p>
 <p>广播就是当两个tensor相加时，如果shape不相同，但<strong>维数相同</strong>且有些维度的数量为1，可以复制这些维度上的小tensor，使其shape在这个维度上的数量与较大者相等。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132131018.png" alt=""></p>
-<h1 id="Linear-networks"><a href="#Linear-networks" class="headerlink" title="Linear-networks"></a>Linear-networks</h1><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>Q：损失为什么要求平均？</p>
+<h1 id="Linear-networks"><a href="#Linear-networks" class="headerlink" title="Linear-networks"></a>Linear-networks</h1><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><h3 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h3><p>Q：损失为什么要求平均？</p>
 <p>A：除以n的好处是，不论批量多大，梯度的值都差不多（都是平均值），与学习率$\eta$解耦。</p>
 <p>Q：batchsize是否会影响模型结果？</p>
 <p>A：事实上，batchsize越小，模型结果越好，这一点比较反直觉。因为SGD理论上是给模型带来噪音，batchsize越小，噪音越大，但噪音对神经网络是一件好事，因为深度神经网络比较复杂，有噪音可以不容易“跑偏”，更鲁棒，泛化能力更强。</p>
@@ -358,7 +358,7 @@ l(y, y^{\prime}) = \begin{cases}
 \left\vert y - y^{\prime}\right\vert - \frac{1}{2} & if \left\vert y - y^{\prime}\right\vert > 1\\
 \frac{1}{2}\left(y - y^{\prime}\right)^2 & otherwise
 \end{cases}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210151008693.png" alt=""></p>
-<p>Q：soft label？</p>
+<h3 id="QA-1"><a href="#QA-1" class="headerlink" title="QA"></a>QA</h3><p>Q：soft label？</p>
 <p>A：softmax回归很难用指数逼近0或1这种极端数值，所以将正确的类记为$0.9$，不正确的类记为$\frac{0.1}{n-1}$。</p>
 <p>更多：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/410491474">从<em>Label</em> Smoothing和Knowledge Distillation理解<em>Soft Label</em></a>（陀飞轮）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210152022225.png" alt=""></p>
@@ -369,16 +369,52 @@ l(y, y^{\prime}) = \begin{cases}
 <p>A：将网络设置为评估模式后，pytorch不会计算梯度，进而不会计算与梯度相关的操作，可以提升效率、不影响训练过程。</p>
 <p>Q：optimizer是怎么获取Model的参数的？</p>
 <p>A：初始化时传递的，<code>optimizer = torch.optim.SGD(net.parameters(), lr=0.1)</code></p>
-<h1 id="multilayer-perceptrons"><a href="#multilayer-perceptrons" class="headerlink" title="multilayer-perceptrons"></a>multilayer-perceptrons</h1><p>Q：单层神经网络有万有逼近性，为什么神经网络趋向于增加隐藏层的层数（深度）而不是神经元的个数（宽度）？</p>
+<h1 id="multilayer-perceptrons"><a href="#multilayer-perceptrons" class="headerlink" title="multilayer-perceptrons"></a>multilayer-perceptrons</h1><h2 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h2><h3 id="QA-2"><a href="#QA-2" class="headerlink" title="QA"></a>QA</h3><p>Q：单层神经网络有万有逼近性，为什么神经网络趋向于增加隐藏层的层数（深度）而不是神经元的个数（宽度）？</p>
 <p>A：理论上，单层感知机具有万有逼近性，可以拟合任何函数；实际上，优化算法解不了。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032025502.png" style="zoom:33%;" /></p>
 <p>两种神经网络，左侧为“浅度学习”的神经网络，右侧为深度学习的神经网络。理论上，二者的拟合能力相同；但实际上，左侧的网络特别容易overfitting，因为所有神经元都是并行的，不容易迭代到理论解。</p>
 <p>直观的例子：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032025154.png" style="zoom:33%;" /></p>
 <p>让每层学出部分特征，如第一层学个耳朵/嘴，第二层学个头等等。</p>
-<h1 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h1><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032037721.png" alt=""></p>
+<h2 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032037721.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032039687.png" alt=""></p>
 <p>模型容量：参数数量+参数值的范围</p>
+<p>理论依据：VC维，在深度学习中很难计算</p>
+<h3 id="QA-3"><a href="#QA-3" class="headerlink" title="QA"></a>QA</h3><p>Q：SVM相对于神经网络的缺点</p>
+<p>A：1. SVM使用kernel，很难达到百万级</p>
+<ol>
+<li>可调整的参数少</li>
+<li>神经网络更灵活，可编程性强</li>
+</ol>
+<p>Q：K折交叉验证在深度学习中是否常用？</p>
+<p>A：K折交叉验证确实在深度学习中用的不多。K折交叉验证主要解决机器学习中数据集太小的情况，深度学习的数据集很大，所以很少用。</p>
+<h2 id="权重衰减"><a href="#权重衰减" class="headerlink" title="权重衰减"></a>权重衰减</h2><p>一种处理过拟合的方法</p>
+<p>模型过拟合，是因为其复杂度太高，即<strong>模型容量太大</strong>，所以我们有两种方法处理过拟合。</p>
+<ol>
+<li>减少参数数量 </li>
+<li><strong>限制参数值的范围</strong>，如$|\boldsymbol{w}|^2 \leq \theta$</li>
+</ol>
+<p>在模型结构上做出创新不是一件容易的事，所以我们应该先在现有的模型上找到更优的模型参数。</p>
+<p>因此，我们可以使用罚函数法限制模型参数的范围，即</p>
+<p>形式化原问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}}{\min}\ &\ell(\boldsymbol{w}, b)\\
+\text{s.t.}\ &\|\boldsymbol{w}\|^2 \leq \theta
+\end{aligned}</script><p>应用罚函数法</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\boldsymbol{w}}{\min}\ &\ell(\boldsymbol{w}, b) + \frac{\lambda}{2}\|\boldsymbol{w}\|^2
+\end{aligned}</script><p>反向传播更新参数时</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial}{\partial \boldsymbol{w}}\left(\ell(\boldsymbol{w}, b)+\frac{\lambda}{2}\|\boldsymbol{w}\|^2\right) &= \frac{\partial \ell(\boldsymbol{w}, b)}{\partial \boldsymbol{w}}+\lambda \boldsymbol{w} \\
+\boldsymbol{w}_{t+1} &\leftarrow \boldsymbol{w}_{t} - \eta \frac{\partial}{\partial \boldsymbol{w}_t}\left(\ell(\boldsymbol{w}_t, b_t) + \frac{\lambda}{2}\|\boldsymbol{w}_t\|^2\right) \\
+\boldsymbol{w}_{t+1} &\leftarrow (1-\eta\lambda)\boldsymbol{w}_t - \eta \frac{\partial \ell(\boldsymbol{w}_t, b_t)}{\partial \boldsymbol{w}_t}
+\end{aligned}</script><p>未增加“罚”（penalty）时，权重迭代公式为</p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}_{t+1} \leftarrow \boldsymbol{w}_t - \eta \frac{\partial \ell(\boldsymbol{w}_t, b_t)}{\partial \boldsymbol{w}_t}</script><p>通常，$\eta\lambda&lt;1$。因此，权重$\boldsymbol{w}_t$<strong>在梯度下降前会衰减一次</strong>，所以罚函数法在深度学习中就称为权重衰减。</p>
+<p>Note. 一般不对$b$做权重衰减，因为效果不大。</p>
 
         </div>
 
