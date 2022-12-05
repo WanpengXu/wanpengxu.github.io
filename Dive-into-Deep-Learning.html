@@ -415,6 +415,16 @@ l(y, y^{\prime}) = \begin{cases}
 <script type="math/tex; mode=display">
 \boldsymbol{w}_{t+1} \leftarrow \boldsymbol{w}_t - \eta \frac{\partial \ell(\boldsymbol{w}_t, b_t)}{\partial \boldsymbol{w}_t}</script><p>通常，$\eta\lambda&lt;1$。因此，权重$\boldsymbol{w}_t$<strong>在梯度下降前会衰减一次</strong>，所以罚函数法在深度学习中就称为权重衰减。</p>
 <p>Note. 一般不对$b$做权重衰减，因为效果不大。</p>
+<h3 id="QA-4"><a href="#QA-4" class="headerlink" title="QA"></a>QA</h3><p>Q：为什么限制参数值的范围可以降低复杂度？</p>
+<p>A：当参数的范围很大时，可能会出现下图的“陡峭”情况。（想象一下$y=\text{big number}\cdot \sin(x)$的泰勒展开式，次数为1的项和次数为7的项，它们的范围就很大）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202212052109290.png" alt=""></p>
+<p>所以限制参数的范围，即限制拟合函数必须“平滑”（类似PhotoShop的钢笔工具，把锚点相互离得很近），所以就减少了复杂性。</p>
+<p>Q：L2 norm的符号？</p>
+<p>A：L2 norm（二范数）的符号应该是$|\boldsymbol{w}|_2$，表示$\sqrt{\sum_{i = 1}^{m}w_i^2}$。所以$|w|_2^2 = \sum_{i = 1}^{m}w_i^2$，即分量的平方和。对于向量来说，二范数就是默认的范数。所以对向量，有$|w|_2 = |w|$，$|w|_2^2 = |w|^2$。</p>
+<p>Q：假如真正的$\boldsymbol{w}$就是比较大，那加入参数衰减令参数减小，会有反作用吗？</p>
+<p>A：因为我们获取到的数据是真实数据的一部分，所以肯定会有噪音，$\lambda$的作用就是处理这些噪音；</p>
+<p>假设没有噪音，那么就不会train到奇怪的地方，就不需要参数衰减了；</p>
+<p>（我个人觉得是有的，但是与他所对抗噪音带来的好处比，可以忽略它的反作用）</p>
 
         </div>
 
