@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Introduction-to-Artificial-Intelligence.html</loc>
+    <loc>https://xuwp.top/Man-in-the-middle-Attack.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Man-in-the-middle-Attack.html</loc>
+    <loc>https://xuwp.top/Introduction-to-Artificial-Intelligence.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -146,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Machine-Learning.html</loc>
+    <loc>https://xuwp.top/Deep-Learing.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/Deep-Learing.html</loc>
+    <loc>https://xuwp.top/Machine-Learning.html</loc>
     
     <lastmod>2022-08-30</lastmod>
     
@@ -315,13 +315,6 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/tags/Java/</loc>
-    <lastmod>2022-12-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-12-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -336,7 +329,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <loc>https://xuwp.top/tags/Java/</loc>
     <lastmod>2022-12-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -351,6 +344,13 @@
   
   <url>
     <loc>https://xuwp.top/tags/DHCP%E8%80%97%E5%B0%BD%E6%94%BB%E5%87%BB/</loc>
+    <lastmod>2022-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuwp.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2022-12-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -387,13 +387,6 @@
 
   
   <url>
-    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2022-12-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xuwp.top/categories/AI/</loc>
     <lastmod>2022-12-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -401,7 +394,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/</loc>
+    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2022-12-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -409,6 +402,13 @@
   
   <url>
     <loc>https://xuwp.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2022-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/</loc>
     <lastmod>2022-12-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
