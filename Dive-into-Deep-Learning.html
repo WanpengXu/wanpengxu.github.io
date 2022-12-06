@@ -425,7 +425,29 @@ l(y, y^{\prime}) = \begin{cases}
 <p>A：因为我们获取到的数据是真实数据的一部分，所以肯定会有噪音，$\lambda$的作用就是处理这些噪音；</p>
 <p>假设没有噪音，那么就不会train到奇怪的地方，就不需要参数衰减了；</p>
 <p>（我个人觉得是有的，但是与他所对抗噪音带来的好处比，可以忽略它的反作用）</p>
-
+<h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h2><h3 id="motivation"><a href="#motivation" class="headerlink" title="motivation"></a>motivation</h3><p>一个好的模型要对输入数据的扰动“鲁棒”。</p>
+<p>就像下面这张High School Graduation dropout rate（高中毕业辍学率）一样，淘汰掉一部分输入的学生，可以让输出的结果更优。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202212061953464.png" style="zoom: 50%;" /></p>
+<h3 id="process"><a href="#process" class="headerlink" title="process"></a>process</h3><p>在层间“无偏差地”加入噪音，等价于对数据进行一个Tikhonov正则。</p>
+<p>“无偏差”，即对$\boldsymbol{x}$加入噪音，形成$\boldsymbol{x}^\prime$，使得</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(\boldsymbol{x}^\prime) = \boldsymbol{x}</script><p><strong>Note.</strong> 这里是element-wise相等，不是说“一个期望等于一个向量”，而是说“$x^\prime$的每个元素的期望与$\boldsymbol{x}$的对应元素相等”（重载的等于号）</p>
+<p>Dropout对每个元素做如下扰动</p>
+<script type="math/tex; mode=display">
+x_i^{\prime}= 
+\begin{cases}
+0 & \text { with probablity } p \\
+\frac{x_i}{1-p} & \text { otherise }
+\end{cases}</script><p>使得</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(x^\prime_i) = p \times 0 + (1-p) \cdot \frac{x_i}{1-p} = x_i</script><p>即</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(\boldsymbol{x}^\prime) = \boldsymbol{x}</script><p>通常在层间使用Dropout，如</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202212062120483.jpg" alt=""></p>
+<p>注意.</p>
+<p>droupout只在train时生效，使$h \gets \operatorname{dropout}(h)$</p>
+<p>在test/inference时关闭，即$h \gets h$，可以保证输出的确定性。</p>
+<h3 id="QA-5"><a href="#QA-5" class="headerlink" title="QA"></a>QA</h3>
         </div>
 
         
