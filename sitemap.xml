@@ -254,6 +254,15 @@
   </url>
   
   <url>
+    <loc>https://xuwp.top/css/normalize.css</loc>
+    
+    <lastmod>2022-04-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xuwp.top/css/style.css</loc>
     
     <lastmod>2022-04-10</lastmod>
@@ -264,15 +273,6 @@
   
   <url>
     <loc>https://xuwp.top/css/media.css</loc>
-    
-    <lastmod>2022-04-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xuwp.top/css/normalize.css</loc>
     
     <lastmod>2022-04-10</lastmod>
     
@@ -308,6 +308,13 @@
 
   
   <url>
+    <loc>https://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2022-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xuwp.top/tags/topSecret/</loc>
     <lastmod>2022-12-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -323,13 +330,6 @@
   
   <url>
     <loc>https://xuwp.top/tags/Java/</loc>
-    <lastmod>2022-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xuwp.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -387,13 +387,6 @@
 
   
   <url>
-    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2022-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xuwp.top/categories/AI/</loc>
     <lastmod>2022-12-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -401,7 +394,7 @@
   </url>
   
   <url>
-    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/</loc>
+    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2022-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -409,6 +402,13 @@
   
   <url>
     <loc>https://xuwp.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2022-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuwp.top/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/</loc>
     <lastmod>2022-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
