@@ -447,7 +447,31 @@ x_i^{\prime}=
 <p>注意.</p>
 <p>droupout只在train时生效，使$h \gets \operatorname{dropout}(h)$</p>
 <p>在test/inference时关闭，即$h \gets h$，可以保证输出的确定性。</p>
-<h3 id="QA-5"><a href="#QA-5" class="headerlink" title="QA"></a>QA</h3>
+<h3 id="QA-5"><a href="#QA-5" class="headerlink" title="QA"></a>QA</h3><p>Q：dropout随即丢弃，如何保证结果的正确性、可重复性？</p>
+<p>A：首先，机器学习没有“正确性”，只有“准确性”。</p>
+<p>神经网络的“可重复性”一直是一件困难的事情，但可以固定一些参数以减小“随机性”：</p>
+<ol>
+<li>固定random seed</li>
+<li>固定神经网络的初始权重</li>
+<li>禁用NVDIA CUDA中的DNN Library。DNN Library会带来50%~80%的加速，但是受计算机体系结构的限制，并行化导致相加顺序变化，所以每次矩阵运算的结果是不同的，</li>
+</ol>
+<p>但是其实没必要保证可重复性，只要精度在一个范围内就行。“随机性”不是一个坏事情，也可以让神经网络更稳定、平滑。如果神经网络在各种随机下仍然能够收敛，那么以后训练时也可以收敛。</p>
+<p>Q：BN和dropout会同时使用吗？</p>
+<p>A：BatchNorm是给卷积层用的，而dropout作用于全连接层，二者没有什么相关性。</p>
+<p>Q：dropout是否会让loss曲线不平滑？</p>
+<p>A：正常情况下，如果每个batch后都计算一次loss的话，是平滑的，但这样很“贵”，所以一般都是10个batch后计算一次loss并作图，这时可能是不平滑的。但我们对loss曲线不care，不平滑就不平滑，因为曲线的最后肯定是平滑的，否则代表无法收敛。</p>
+<p>Q：dropout每个epoch随机选择子网络，最后做平均。这种做法是不是类似于投票的思想？</p>
+<p>A：Geoffrey Hinton最初设计dropout时是这样认为的，但有几篇paper认为”Dropout is a regularization”，大家通过实验认为它更像一个正则项。所以Hinton在2017年提出了Capsule Networks，但是这个网络还没有work。</p>
+<p>Q：dropout已被Google申请专利，产品开发时可以使用吗？</p>
+<p>A：Google不仅申请了dropout，也给RNN和transformer等许多技术申请了专利。我在Amazon用dropout，我们的律师也没有说不可以用，但也没有说可以用。（好搞笑啊哈哈哈哈）</p>
+<p>Q：dropout和weight decay都属于正则，哪个更常用呢？</p>
+<p>A：一般weight decay更常用，dropout主要对全连接层使用，而weight decay对CNN、transformer等都可以使用。weight decay的lambda不太好调参。dropout的probability更好调参，因为它很直观，一般只有三种经验值：0.1、0.5、0.9。</p>
+<p>什么时候使用dropout呢？假如有一个单隐层MLP，隐层的大小为64，当没有使用dropout时，训练结果没有那么过拟合。那么接下来就可以尝试大小为128的隐层+<code>dropout(p=0.5)</code>。</p>
+<p>总得来说，深度学习是希望模型够强，然后通过正则来保证它不过拟合（学偏）。</p>
+<p>回到这个问题，dropout使用的多还是因为比较好调参，例如模型特别大、隐藏层特别复杂，就可以<code>dropout(p=0.9)</code>，丢弃90%层间数据，成为强回归器；反之，则<code>dropout(p=0.1)</code>，成为弱回归器。</p>
+<p>Q：在同样的lr下，使用dropout是否会使得参数收敛变慢，需要调高lr吗？</p>
+<p>A：是有可能减慢收敛的，因为参数梯度更新的更少了。但是没有哪种经验说需要调高lr，因为lr对期望和方差更敏感，而dropout不改变期望。</p>
+<h2 id="数值稳定性"><a href="#数值稳定性" class="headerlink" title="数值稳定性"></a>数值稳定性</h2><h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3>
         </div>
 
         
