@@ -329,16 +329,21 @@
 <p>广播。</p>
 <p>广播就是当两个tensor相加时，如果shape不相同，但<strong>维数相同</strong>且有些维度的数量为1，可以复制这些维度上的小tensor，使其shape在这个维度上的数量与较大者相等。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210132131018.png" alt=""></p>
-<h1 id="Linear-networks"><a href="#Linear-networks" class="headerlink" title="Linear-networks"></a>Linear-networks</h1><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><h3 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h3><p>Q：损失为什么要求平均？</p>
+<h1 id="Linear-Networks"><a href="#Linear-Networks" class="headerlink" title="Linear Networks"></a>Linear Networks</h1><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><h3 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h3><p>Q：损失为什么要求平均？</p>
 <p>A：除以n的好处是，不论批量多大，梯度的值都差不多（都是平均值），与学习率$\eta$解耦。</p>
+<hr>
 <p>Q：batchsize是否会影响模型结果？</p>
 <p>A：事实上，batchsize越小，模型结果越好，这一点比较反直觉。因为SGD理论上是给模型带来噪音，batchsize越小，噪音越大，但噪音对神经网络是一件好事，因为深度神经网络比较复杂，有噪音可以不容易“跑偏”，更鲁棒，泛化能力更强。</p>
+<hr>
 <p>Q：随机梯度下降中的随机？</p>
 <p>A：随机，指的是元素是随机的，即随机采样。</p>
+<hr>
 <p>Q：为什么机器学习优化算法采用梯度下降这种一阶导算法，而不采用收敛更快的牛顿法等二阶导算法？</p>
 <p>A：首先牛顿法用不了，只能用近似的牛顿法。机器学习中有两个模型，统计模型（Loss）、优化模型（Optim），这两个东西都是错的（可能是想说和现实规则不一样？），所以我们不关心收敛速度，而关心收敛到什么地方，是否泛化能力更强。</p>
+<hr>
 <p>Q：detach的作用？</p>
 <p>A：将其从计算图中剥离，不再计算其梯度，某些pytorch需要先进行这步操作再转为numpy。</p>
+<hr>
 <p>Q：样本大小不是batchsize的整数倍怎么办？</p>
 <p>A：做法一：剩下多少就拿多少，做法二：丢弃，做法三：从下一个epoch补缺少的的过来</p>
 <h2 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h2><p>Softmax回归中exp的作用是将输入域映射到$(0, +\inf)$，其本质上是将预测的值转为概率，分类问题给出的标签本就是一种概率，衡量两个概率间的区别使用交叉熵（CE）</p>
@@ -363,20 +368,23 @@ l(y, y^{\prime}) = \begin{cases}
 <p>更多：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/410491474">从<em>Label</em> Smoothing和Knowledge Distillation理解<em>Soft Label</em></a>（陀飞轮）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210152022225.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202210152021026.jpeg" alt=""></p>
+<hr>
 <p>Q：batchsize的大小为什么没有影响训练速度？</p>
 <p>A：batchsize不影响计算量，只影响并行度，进而影响执行的效率。不影响的原因可能是模型很小或是在CPU上训练。</p>
+<hr>
 <p>Q：测试时为什么要设net.eval()？</p>
 <p>A：将网络设置为评估模式后，pytorch不会计算梯度，进而不会计算与梯度相关的操作，可以提升效率、不影响训练过程。</p>
+<hr>
 <p>Q：optimizer是怎么获取Model的参数的？</p>
 <p>A：初始化时传递的，<code>optimizer = torch.optim.SGD(net.parameters(), lr=0.1)</code></p>
-<h1 id="multilayer-perceptrons"><a href="#multilayer-perceptrons" class="headerlink" title="multilayer-perceptrons"></a>multilayer-perceptrons</h1><h2 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h2><h3 id="QA-2"><a href="#QA-2" class="headerlink" title="QA"></a>QA</h3><p>Q：单层神经网络有万有逼近性，为什么神经网络趋向于增加隐藏层的层数（深度）而不是神经元的个数（宽度）？</p>
+<h1 id="MultiLayer-Perceptrons"><a href="#MultiLayer-Perceptrons" class="headerlink" title="MultiLayer Perceptrons"></a>MultiLayer Perceptrons</h1><h2 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h2><h3 id="QA-2"><a href="#QA-2" class="headerlink" title="QA"></a>QA</h3><p>Q：单层神经网络有万有逼近性，为什么神经网络趋向于增加隐藏层的层数（深度）而不是神经元的个数（宽度）？</p>
 <p>A：理论上，单层感知机具有万有逼近性，可以拟合任何函数；实际上，优化算法解不了。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032025502.png" style="zoom:33%;" /></p>
 <p>两种神经网络，左侧为“浅度学习”的神经网络，右侧为深度学习的神经网络。理论上，二者的拟合能力相同；但实际上，左侧的网络特别容易overfitting，因为所有神经元都是并行的，不容易迭代到理论解。</p>
 <p>直观的例子：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032025154.png" style="zoom:33%;" /></p>
 <p>让每层学出部分特征，如第一层学个耳朵/嘴，第二层学个头等等。</p>
-<h2 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032037721.png" alt=""></p>
+<h2 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h2><h3 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032037721.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo//img/202212032039687.png" alt=""></p>
 <p>模型容量：参数数量+参数值的范围</p>
 <p>理论依据：VC维，在深度学习中很难计算</p>
@@ -386,9 +394,10 @@ l(y, y^{\prime}) = \begin{cases}
 <li>可调整的参数少</li>
 <li>神经网络更灵活，可编程性强</li>
 </ol>
+<hr>
 <p>Q：K折交叉验证在深度学习中是否常用？</p>
 <p>A：K折交叉验证确实在深度学习中用的不多。K折交叉验证主要解决机器学习中数据集太小的情况，深度学习的数据集很大，所以很少用。</p>
-<h2 id="权重衰减"><a href="#权重衰减" class="headerlink" title="权重衰减"></a>权重衰减</h2><p>一种处理过拟合的方法</p>
+<h2 id="权重衰减"><a href="#权重衰减" class="headerlink" title="权重衰减"></a>权重衰减</h2><h3 id="introduction-1"><a href="#introduction-1" class="headerlink" title="introduction"></a>introduction</h3><p>一种处理过拟合的方法</p>
 <p>模型过拟合，是因为其复杂度太高，即<strong>模型容量太大</strong>，所以我们有两种方法处理过拟合。</p>
 <ol>
 <li>减少参数数量 </li>
@@ -419,8 +428,10 @@ l(y, y^{\prime}) = \begin{cases}
 <p>A：当参数的范围很大时，可能会出现下图的“陡峭”情况。（想象一下$y=\text{big number}\cdot \sin(x)$的泰勒展开式，次数为1的项和次数为7的项，它们的范围就很大）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202212052109290.png" alt=""></p>
 <p>所以限制参数的范围，即限制拟合函数必须“平滑”（类似PhotoShop的钢笔工具，把锚点相互离得很近），所以就减少了复杂性。</p>
+<hr>
 <p>Q：L2 norm的符号？</p>
 <p>A：L2 norm（二范数）的符号应该是$|\boldsymbol{w}|_2$，表示$\sqrt{\sum_{i = 1}^{m}w_i^2}$。所以$|w|_2^2 = \sum_{i = 1}^{m}w_i^2$，即分量的平方和。对于向量来说，二范数就是默认的范数。所以对向量，有$|w|_2 = |w|$，$|w|_2^2 = |w|^2$。</p>
+<hr>
 <p>Q：假如真正的$\boldsymbol{w}$就是比较大，那加入参数衰减令参数减小，会有反作用吗？</p>
 <p>A：因为我们获取到的数据是真实数据的一部分，所以肯定会有噪音，$\lambda$的作用就是处理这些噪音；</p>
 <p>假设没有噪音，那么就不会train到奇怪的地方，就不需要参数衰减了；</p>
@@ -456,22 +467,52 @@ x_i^{\prime}=
 <li>禁用NVDIA CUDA中的DNN Library。DNN Library会带来50%~80%的加速，但是受计算机体系结构的限制，并行化导致相加顺序变化，所以每次矩阵运算的结果是不同的，</li>
 </ol>
 <p>但是其实没必要保证可重复性，只要精度在一个范围内就行。“随机性”不是一个坏事情，也可以让神经网络更稳定、平滑。如果神经网络在各种随机下仍然能够收敛，那么以后训练时也可以收敛。</p>
+<hr>
 <p>Q：BN和dropout会同时使用吗？</p>
 <p>A：BatchNorm是给卷积层用的，而dropout作用于全连接层，二者没有什么相关性。</p>
+<hr>
 <p>Q：dropout是否会让loss曲线不平滑？</p>
 <p>A：正常情况下，如果每个batch后都计算一次loss的话，是平滑的，但这样很“贵”，所以一般都是10个batch后计算一次loss并作图，这时可能是不平滑的。但我们对loss曲线不care，不平滑就不平滑，因为曲线的最后肯定是平滑的，否则代表无法收敛。</p>
+<hr>
 <p>Q：dropout每个epoch随机选择子网络，最后做平均。这种做法是不是类似于投票的思想？</p>
 <p>A：Geoffrey Hinton最初设计dropout时是这样认为的，但有几篇paper认为”Dropout is a regularization”，大家通过实验认为它更像一个正则项。所以Hinton在2017年提出了Capsule Networks，但是这个网络还没有work。</p>
+<hr>
 <p>Q：dropout已被Google申请专利，产品开发时可以使用吗？</p>
 <p>A：Google不仅申请了dropout，也给RNN和transformer等许多技术申请了专利。我在Amazon用dropout，我们的律师也没有说不可以用，但也没有说可以用。（好搞笑啊哈哈哈哈）</p>
+<hr>
 <p>Q：dropout和weight decay都属于正则，哪个更常用呢？</p>
 <p>A：一般weight decay更常用，dropout主要对全连接层使用，而weight decay对CNN、transformer等都可以使用。weight decay的lambda不太好调参。dropout的probability更好调参，因为它很直观，一般只有三种经验值：0.1、0.5、0.9。</p>
 <p>什么时候使用dropout呢？假如有一个单隐层MLP，隐层的大小为64，当没有使用dropout时，训练结果没有那么过拟合。那么接下来就可以尝试大小为128的隐层+<code>dropout(p=0.5)</code>。</p>
 <p>总得来说，深度学习是希望模型够强，然后通过正则来保证它不过拟合（学偏）。</p>
 <p>回到这个问题，dropout使用的多还是因为比较好调参，例如模型特别大、隐藏层特别复杂，就可以<code>dropout(p=0.9)</code>，丢弃90%层间数据，成为强回归器；反之，则<code>dropout(p=0.1)</code>，成为弱回归器。</p>
+<hr>
 <p>Q：在同样的lr下，使用dropout是否会使得参数收敛变慢，需要调高lr吗？</p>
 <p>A：是有可能减慢收敛的，因为参数梯度更新的更少了。但是没有哪种经验说需要调高lr，因为lr对期望和方差更敏感，而dropout不改变期望。</p>
-<h2 id="数值稳定性"><a href="#数值稳定性" class="headerlink" title="数值稳定性"></a>数值稳定性</h2><h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3>
+<h2 id="数值稳定性"><a href="#数值稳定性" class="headerlink" title="数值稳定性"></a>数值稳定性</h2><h3 id="introduction-2"><a href="#introduction-2" class="headerlink" title="introduction"></a>introduction</h3><p>考虑如下的d层神经网络</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\boldsymbol{h}^t=f_t\left(\boldsymbol{h}^{t-1}\right) \\
+y=\ell \circ f_d \circ \ldots \circ f_1(\boldsymbol{x})
+\end{cases}</script><p>计算损失$\ell$关于参数$\boldsymbol{W}_t$的梯度时，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial \ell}{\partial \boldsymbol{W}^t}
+&=\frac{\partial \ell}{\partial \boldsymbol{h}^d} \frac{\partial \boldsymbol{h}^d}{\partial \boldsymbol{h}^{d-1}} \ldots \frac{\partial \boldsymbol{h}^{t+1}}{\partial \boldsymbol{h}^t} \frac{\partial \boldsymbol{h}^t}{\partial \boldsymbol{W}^t} \\
+&=\frac{\partial \ell}{\partial \boldsymbol{h}^d} \cdot \prod_{i=t}^{d-1}\frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^{i}} \cdot \frac{\partial \boldsymbol{h}^t}{\partial \boldsymbol{W}^t}
+\end{aligned}</script><p>其中，因向量对向量的微分为矩阵，所以需计算包含$d-1-t+1=d-t$次矩阵乘法。</p>
+<p>当神经网络的深度增加时，大量的矩阵乘法会带来两个问题：</p>
+<ul>
+<li>梯度爆炸：如$1.5^{100} \approx 4 \times 10^7$</li>
+<li>梯度消失，如$0.8^{100} \approx 2 \times 10^{-10}$</li>
+</ul>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><p>假如有以下MLP（偏移并入$\boldsymbol{W}$中）</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}^t=f_t\left(\boldsymbol{h}^{t-1}\right)=\sigma\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)</script><p>每层的输出对输入的微分为</p>
+<script type="math/tex; mode=display">
+\frac{\partial \boldsymbol{h}^t}{\partial \boldsymbol{h}^{t-1}}
+=\operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)\right)\left(W^t\right)^T</script><p>$\ell$对$\boldsymbol{W}_t$微分需要的矩阵乘积为</p>
+<script type="math/tex; mode=display">
+\prod_{i=t}^{d-1} \frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^i}=\prod_{i=t}^{d-1} \operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)\left(W^i\right)^T</script><h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3>
         </div>
 
         
