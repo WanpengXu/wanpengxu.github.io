@@ -510,9 +510,10 @@ y=\ell \circ f_d \circ \ldots \circ f_1(\boldsymbol{x})
 \boldsymbol{h}^t=f_t\left(\boldsymbol{h}^{t-1}\right)=\sigma\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)</script><p>每层的输出对输入的微分为</p>
 <script type="math/tex; mode=display">
 \frac{\partial \boldsymbol{h}^t}{\partial \boldsymbol{h}^{t-1}}
-=\operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)\right)\left(W^t\right)^T</script><p>$\ell$对$\boldsymbol{W}_t$微分需要的矩阵乘积为</p>
+=\operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)\right)W^t</script><p>Note. 这里不应该有转置，每层的微分是这样得到的：事实上，按分子布局，有$\frac{\partial A\cdot\boldsymbol{x}}{\partial \boldsymbol{x}}=A$。所以，即使加入sigmoid函数，也应该是一个$m<em>n$的矩阵。按嵌套求导规则大概可以得到$\sigma^{\prime}\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)W^t$，但是这个结果的矩阵布局是$(m</em>1)<em>(m</em>n)$，不符合求导规则，所以要让前面的向量对角化（这里的$\operatorname{diag}(\cdot)$）以成为成$(m<em>m)</em>(m<em>n)=m</em>n$。</p>
+<p>$\ell$对$\boldsymbol{W}_t$微分需要的矩阵乘积为</p>
 <script type="math/tex; mode=display">
-\prod_{i=t}^{d-1} \frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^i}=\prod_{i=t}^{d-1} \operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)\left(W^i\right)^T</script><h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3>
+\prod_{i=t}^{d-1} \frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^i}=\prod_{i=t}^{d-1} \operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)W^i</script><h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3>
         </div>
 
         
