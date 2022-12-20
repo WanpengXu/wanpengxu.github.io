@@ -513,7 +513,151 @@ y=\ell \circ f_d \circ \ldots \circ f_1(\boldsymbol{x})
 =\operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)\right)W^t</script><p>Note. 这里不应该有转置，每层的微分是这样得到的：事实上，按分子布局，有$\frac{\partial A\cdot\boldsymbol{x}}{\partial \boldsymbol{x}}=A$。所以，即使加入sigmoid函数，也应该是一个$m \times n$的矩阵。按嵌套求导规则大概可以得到$\sigma^{\prime}\left(\boldsymbol{W}^t \boldsymbol{h}^{t-1}\right)W^t$，但是这个结果的矩阵布局是$(m \times 1) \times (m \times n)$，不符合求导规则，所以要让前面的向量对角化（这里的$\operatorname{diag}(\cdot)$）以成为成$(m \times m) \times (m \times n)=m \times n$。</p>
 <p>$\ell$对$\boldsymbol{W}_t$微分需要的矩阵乘积为</p>
 <script type="math/tex; mode=display">
-\prod_{i=t}^{d-1} \frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^i}=\prod_{i=t}^{d-1} \operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)W^i</script><h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3>
+\prod_{i=t}^{d-1} \frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^i}
+=\prod_{i=t}^{d-1} \operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)W^i</script><h4 id="梯度爆炸"><a href="#梯度爆炸" class="headerlink" title="梯度爆炸"></a>梯度爆炸</h4><p>当$\sigma(\cdot)=\operatorname{ReLU}(\cdot)$时</p>
+<script type="math/tex; mode=display">
+\sigma(x)=
+\begin{cases}
+x &,x \geq 0 \\
+0 &,\text{otherwise}
+\end{cases} \\
+
+\sigma^{\prime}(x)=
+\begin{cases}
+1 &,x \geq 0 \\
+0 &,\text{otherwise}
+\end{cases}</script><p>$\operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)$中仅有对角线元素，且为0或1。这时，其与$W^i$相乘，会使$W^i$的某些行清零，其他行保留原来的值（将左边矩阵的每行转置后依次放在右边矩阵的列上，列向量为onehot则保留右侧矩阵的行，列向量为零向量则清零右侧矩阵的行）。这样，$\prod_{i=t}^{d-1} \frac{\partial \boldsymbol{h}^{i+1}}{\partial \boldsymbol{h}^i}$中的一些元素会来自$\prod_{i=t}^{d-1}W^i$。当网络加深时，$d-t$就会很大，如果$W^i$中的元素大于1，累乘会使最终结果很大，即梯度爆炸。</p>
+<p><strong>梯度爆炸带来的问题</strong></p>
+<ul>
+<li><p>累乘值会超出值域（当超过值域时成为infinity）</p>
+<ul>
+<li><p>对16位浮点数（float16，半精度浮点数）尤为严重</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202212201954933.png" alt=""></p>
+<p>可见，最小正规数（下溢阈值）$\approx 6e-5$，最大值$\approx6e4$，数值区间很小。</p>
+</li>
+</ul>
+</li>
+<li><p>对学习率敏感</p>
+<ul>
+<li>学习率太大$\to$大参数值$\to$更大的梯度</li>
+<li>学习率太小$\to$训练无进展</li>
+<li>需要在训练过程动态调整学习率</li>
+</ul>
+</li>
+</ul>
+<h4 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h4><p>当$\sigma(\cdot)=\operatorname{logistic}(\cdot)$时</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma(x) &= \frac{1}{1+\exp(-x)} \\
+\sigma^{\prime}(x) &= \sigma(x)(1-\sigma(x))
+\end{aligned}</script><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202212202128620.png" alt=""></p>
+<p>当输入值很大时，激活函数的梯度值很小，即$\operatorname{diag}\left(\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)\right)$中仅有对角线元素，且值很小。当网络加深时，$d-t$就会很大，如果$\boldsymbol{W}^i \boldsymbol{h}^{i-1}$的每个元素很大，$\sigma^{\prime}\left(\boldsymbol{W}^i \boldsymbol{h}^{i-1}\right)$中的每个元素就会很小，累乘会使最终结果很小，即梯度消失。</p>
+<p><strong>梯度消失带来的问题</strong></p>
+<ul>
+<li>梯度值变成0<ul>
+<li>对16位浮点数尤为严重</li>
+</ul>
+</li>
+<li>训练没有进展<ul>
+<li>不论学习率大小</li>
+</ul>
+</li>
+<li>对于底层部尤为严重<ul>
+<li>仅仅顶层部（靠近输出的层）训练的较好</li>
+<li>神经网络无法加深</li>
+</ul>
+</li>
+</ul>
+<h3 id="模型初始化和激活函数"><a href="#模型初始化和激活函数" class="headerlink" title="模型初始化和激活函数"></a>模型初始化和激活函数</h3><p>如何让训练更加稳定，增加数值稳定性呢？</p>
+<p>目标：让梯度值在合理的范围内，如[1e-6, 1e3]</p>
+<p>方法：</p>
+<ul>
+<li><strong>将乘法变为加法。</strong>如：ResNet, LSTM</li>
+<li><strong>归一化。</strong>如：权重归一化、梯度裁剪（clipping）</li>
+<li><strong>合理的权重初始化和激活函数。</strong></li>
+</ul>
+<p>这里讲解“合理的权重初始化和激活函数”</p>
+<h4 id="motivation：让层间的方差为同一个常数"><a href="#motivation：让层间的方差为同一个常数" class="headerlink" title="motivation：让层间的方差为同一个常数"></a>motivation：让层间的方差为同一个常数</h4><p>将每层的输出和梯度看作随机变量，让所有层间的均值和方差都保持一致。</p>
+<p>即设计神经网络，使其对$\forall i, t$，有</p>
+<p>正向传播时</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}\left[h_i^t\right] & =0 \\
+\operatorname{Var}\left[h_i^t\right] & =a
+\end{aligned}</script><p>反向传播时</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}\left[\frac{\partial \ell}{\partial h_i^t}\right] &= 0 \quad \\
+\operatorname{Var}\left[\frac{\partial \ell}{\partial h_i^t}\right] &= b
+\end{aligned}</script><p>其中，$a, b$为常数。</p>
+<p>怎么达到这个要求呢？</p>
+<h4 id="权重初始化"><a href="#权重初始化" class="headerlink" title="权重初始化"></a>权重初始化</h4><p>对$h^t$层，</p>
+<p>假设其权重$w_{ij}^t$都是从同一分布中独立抽取的。设该分布的均值和方差为$\mu=0, \sigma_t^2$（不一定是高斯/正态分布）。</p>
+<p>假设其输入$h_i^{t-1}$也服从一个分布，设该分布的均值和方差为$\mu=0, \operatorname{Var}[h_i^{t-1}]$，且独立于$w_{ij}^t$。</p>
+<p>假设没有激活函数，即$\boldsymbol{h}^t = \boldsymbol{W}^t\boldsymbol{h}^{t-1}, \boldsymbol{W}^t\in\mathbb{R}^{n_t \times n_{t-1}}$</p>
+<p>正向传播时，经推导，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}[h_i^t] &= 0 \\
+\operatorname{Var}[h_i^t] &= n_{t-1} \sigma_t^2 \operatorname{Var}[h_i^{t-1}]
+\end{aligned}</script><p>反向传播时，经推导，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}\left[\frac{\partial \ell}{\partial h_i^{t-1}}\right] &= 0 \\
+\operatorname{Var}\left[\frac{\partial \ell}{\partial h_i^{t-1}}\right] &= n_t \sigma_t^2 \operatorname{Var}\left[\frac{\partial \ell}{\partial h_j^t}\right]
+\end{aligned}</script><p>为了使得层间的方差保持一致，那么必须有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+n_{t-1} \sigma_t^2 &= 1 \\
+n_t \sigma_t^2 &= 1
+\end{aligned}</script><p>但这个条件难以满足，但我们可以满足两式平均得到的条件</p>
+<script type="math/tex; mode=display">
+\frac{n_{t-1} + n_t}{2} \sigma_t^2 = 1</script><p>即</p>
+<script type="math/tex; mode=display">
+\sigma_t^2 = \frac{2}{n_{t-1} + n_t}</script><p>这就是<strong>Xavier初始化</strong>的基础：<strong>通过该层的输入数量和输出数量确定权重分布的方差</strong>。</p>
+<p>若采用正态分布，有</p>
+<script type="math/tex; mode=display">
+N(0, \frac{2}{n_\text{in} + n_\text{out}})</script><p>若采用均匀分布，有</p>
+<script type="math/tex; mode=display">
+U(-\sqrt{\frac{6}{n_\text{in} + n_\text{out}}}, \sqrt{\frac{6}{n_\text{in} + n_\text{out}}})</script><p>Note. 为保持均值为0，$U(a, b)$中$a=b$；为保证方差为$\frac{2}{n_\text{in} + n_\text{out}}$，$U(a, a)$的方差$\frac{a^2}{3} = \frac{2}{n_\text{in} + n_\text{out}}$。</p>
+<p>Xavier初始化是很常用的一种初始化方法。</p>
+<h4 id="合适的激活函数"><a href="#合适的激活函数" class="headerlink" title="合适的激活函数"></a>合适的激活函数</h4><p>假设激活函数是线性的（事实上不使用，网络不会产生非线性、万有逼近能力），即$\sigma(x) = \alpha x + \beta$</p>
+<p>设</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}^t = \sigma(\boldsymbol{h}^\text{temp}), \boldsymbol{h}^\text{temp} = \boldsymbol{W}^t\boldsymbol{h}^{t-1}</script><p>同时，有</p>
+<script type="math/tex; mode=display">
+\frac{\partial{\ell}}{\partial{\boldsymbol{h}^{t-1}}} = \alpha \frac{\partial{\ell}}{\partial{\boldsymbol{h}^\text{temp}}}\frac{\partial\boldsymbol{h}^\text{temp}}{\partial\boldsymbol{h}^{t-1}}, \frac{\partial\boldsymbol{h}^\text{temp}}{\partial\boldsymbol{h}^{t-1}} = \boldsymbol{W}^t</script><p>正向传播时，经推导，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}[h_i^t] &= \beta \\
+\operatorname{Var}[h_i^t] &= \alpha^2 \operatorname{Var}[h_i^\text{temp}]
+\end{aligned}</script><p>为满足motivation，需要</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\beta  &= 0 \\
+\alpha &= 1
+\end{aligned}</script><p>反向传播时，经推导，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}\left[\frac{\partial \ell}{\partial h_i^{t-1}}\right] & =0 \\
+\operatorname{Var}\left[\frac{\partial \ell}{\partial h_i^{t-1}}\right] & =\alpha^2 \operatorname{Var}\left[\frac{\partial \ell}{\partial h_i^\text{temp}}\right]
+\end{aligned}</script><p>为满足motivation，需要</p>
+<script type="math/tex; mode=display">
+\alpha = 1</script><p>即$\sigma(x) = x$时，满足motivation，训练更稳定。</p>
+<p>为此，我们使用泰勒展开检查常用激活函数</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{logistic}(x) & =\frac{1}{2}+\frac{x}{4}-\frac{x^3}{48}+O\left(x^5\right) \\
+\tanh (x) & =0+x-\frac{x^3}{3}+O\left(x^5\right) \\
+\operatorname{ReLU}(x) & =0+x \quad \text { for } x \geq 0
+\end{aligned}</script><p>其中，$\tanh(x), \operatorname{ReLU}(x)$在零点附近近似$f(x) = x$，这也从数值稳定性角度解释了这二者为何效果比较好。</p>
+<p>为使得logistic函数在零点附近也近似$f(x) = x$，我们对其进行调整，即</p>
+<script type="math/tex; mode=display">
+\operatorname{scaled logistic}(x) = 4 \times \operatorname{logistic}(x) - 2</script><p>这样得到的scaled logistic函数，在零点附近时即为<strong>identity function</strong> / $f(x) = x$，可以解决掉logistic函数存在的问题。</p>
+<h3 id="QA-6"><a href="#QA-6" class="headerlink" title="QA"></a>QA</h3><p>Q：nan, inf产生的原因？解决方法？</p>
+<p>A：inf就是今天讲到的原因（lr太大，权重初始值太大），nan（Not A Number）一般是因为除零，如梯度值较小时将其除零；调小学习率，调小方差，直到正确计算出值，然后再调大使得训练有进展。</p>
+<hr>
+
         </div>
 
         
