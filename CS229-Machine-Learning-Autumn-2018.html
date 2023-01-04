@@ -205,6 +205,65 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
 
     
     <article class="post-wrap">
@@ -244,7 +303,41 @@
 <p><strong>学习笔记Offical</strong>（简中）: <a target="_blank" rel="noopener" href="https://stanford.edu/~shervine/l/zh/teaching/cs-229/">https://stanford.edu/~shervine/l/zh/teaching/cs-229/</a></p>
 </blockquote>
 <p>（开新坑？希望三个月能弄完然后学CS230😢）</p>
-
+<h1 id="Lecture-1-Logistics-and-Introduction"><a href="#Lecture-1-Logistics-and-Introduction" class="headerlink" title="Lecture 1 - Logistics and Introduction"></a>Lecture 1 - Logistics and Introduction</h1><h2 id="Machine-Learning-Define"><a href="#Machine-Learning-Define" class="headerlink" title="Machine Learning Define"></a>Machine Learning Define</h2><p>Machine Learning(Arthur Samuel, 1959): Field of study that gives computersthe ability to learn without being explicitly programmed.</p>
+<p>Well-posed Learning Problem(Tom Mitchell, 1998): A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P,improves with experience E.</p>
+<h2 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h2><p>You are given a datasets with inputs X and lables Y and your goal is to learn a mapping from X to Y.</p>
+<p>regression</p>
+<p>the term regression refers to that the value Y you’re trying to predict is continuous.</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041357678.png" alt=""></p>
+<p>classfication</p>
+<p>the term classification refers to the Y takes on a discrete number of variables. (the output is discrete)</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041359439.png" alt="image-20230104135902376"></p>
+<p>(the top symbol is a different way of visualizing the same data)</p>
+<p>classfication - muliple features</p>
+<p>two features</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041400301.png" alt=""></p>
+<p>more features in reality problem</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041401905.png" alt=""></p>
+<p>[VEDIO]</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041405799.png" alt=""></p>
+<p>X: road state / Driver direction</p>
+<p>Y: steering direction</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041405149.png" alt=""></p>
+<p>X: road state / Arbitrator Direction</p>
+<p>Y1: steering direction in one -lane road</p>
+<p>Y2：steering direction in two-lane road</p>
+<h2 id="Machine-Learning-Strategy-Learning-Theory"><a href="#Machine-Learning-Strategy-Learning-Theory" class="headerlink" title="Machine Learning Strategy(Learning Theory)"></a>Machine Learning Strategy(Learning Theory)</h2><p>Learn more systematic engineering principles for machine learning to efficiently figure out what to do next.</p>
+<h2 id="Deep-learning"><a href="#Deep-learning" class="headerlink" title="Deep learning"></a>Deep learning</h2><p>It’s one subset of machine learning that’s really hot right now.</p>
+<p>CS330 more narrowly covers just deep learning.</p>
+<h2 id="Unsupervised-learning"><a href="#Unsupervised-learning" class="headerlink" title="Unsupervised learning"></a>Unsupervised learning</h2><p>You given a dataset with  no labels, just given inputs X and no Y and your goal is find something interesting(eg. figure out  the structure in this data) about that.</p>
+<p>some unsupervised learning problem example:</p>
+<p>news clusters / genetic microarray data / organize computing clusters / social network cohesive communities analysis / market segmentation / astronomical data analysis: clustering problem</p>
+<p>cocktail party problem: a ICA(Independent  Componenets Analysis) problem</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301041430868.png" alt=""></p>
+<p>learning analogies: man is to  woman as king is to queen, Tokyo is to Japan as Washington DC is to the United States. You can learning this relation just from texts on the Internet.</p>
+<h2 id="Reinforcement-learning"><a href="#Reinforcement-learning" class="headerlink" title="Reinforcement learning"></a>Reinforcement learning</h2><p>Giving signals called a reward signal, you can have a learning algorithm figure out by itself how to optimize the reward.</p>
+<p>For example: you can’t teach a dog the optimal way to behave(you aren’t a dog), but you can go “Oh, good dog” whenever it behavs well, go “bad dog” when it misbeaves. Over time, the dog learns to do more of the good dog things and fewer of the bad dog things.</p>
+<h1 id="Lecture-2-Linear-Regression-and-Gradient-Descent"><a href="#Lecture-2-Linear-Regression-and-Gradient-Descent" class="headerlink" title="Lecture 2 - Linear Regression and Gradient Descent"></a>Lecture 2 - Linear Regression and Gradient Descent</h1>
         </div>
 
         
