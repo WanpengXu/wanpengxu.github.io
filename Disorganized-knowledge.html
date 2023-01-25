@@ -286,7 +286,13 @@
         </header>
 
         <div class="post-content">
-            <h1 id="vscode的配置文件"><a href="#vscode的配置文件" class="headerlink" title="vscode的配置文件"></a>vscode的配置文件</h1><p>写完上一条后顺手整理了一下配置文件，顺便记录一下。</p>
+            <h1 id="确定正在使用文件-文件夹的程序"><a href="#确定正在使用文件-文件夹的程序" class="headerlink" title="确定正在使用文件/文件夹的程序"></a>确定正在使用文件/文件夹的程序</h1><p>在删除文件/文件夹的某些时时候，资源管理器会提示“操作无法完成，因为其中的文件夹或文件已在另一程序中打开”</p>
+<p>比较好的方法是确定这个正在占用文件/文件夹的进程到底是什么。</p>
+<p>进入 任务管理器-性能-…-资源监视器-CPU-关联的句柄</p>
+<p>输入 被占用的文件/文件夹的名称</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202301251659735.png" alt=""></p>
+<p>即可确定是哪些进程占用了文件/文件夹，如果没有GUI可以关闭该程序，可以使用<code>taskkill /pid processid /t /f</code></p>
+<h1 id="vscode的配置文件"><a href="#vscode的配置文件" class="headerlink" title="vscode的配置文件"></a>vscode的配置文件</h1><p>写完上一条后顺手整理了一下配置文件，顺便记录一下。</p>
 <p>vscode像一个瑞士军刀的壳，全新的vscode只有编辑器的功能。</p>
 <p>当PC上存在编译器/解释器时，vscode就有了编辑器+编译器/解释器的功能</p>
 <p>vscode的Debug功能，也就是大名鼎鼎的<code>F5</code>（如图），它的配置位于<code>launch.json</code>文件中，写好它就可以用gdb（minGW自带的debugger）去debug了。</p>
