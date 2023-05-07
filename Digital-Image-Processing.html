@@ -438,20 +438,13 @@ N_8(p)=N_4(p)+N_D(p)</script><h3 id="邻接"><a href="#邻接" class="headerlink
 <p>自然语言表述：</p>
 <p>如果$p$和$q$的值都在V内，且“$q$在$p$的4邻域内”或“$q$在$p$的对角邻域内，且它俩的4邻域交集中的像素点不属于$V$”，那么$p$与$q$m邻接。</p>
 <p>即必须只能通过1次4通路或1次8通路到达，而不能通过2次4通路到达的两像素为m邻接的。</p>
-<h3 id="连通"><a href="#连通" class="headerlink" title="连通"></a>连通</h3><p>起点是坐标为$(x_0, y_0)$的像素点$p$，终点是坐标为$(x_n, y_n)$的像素点$q$的像素序列$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$中，若像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$是邻接的，则称$p$和$q$是连通的。</p>
-<h4 id="4连通"><a href="#4连通" class="headerlink" title="4连通"></a>4连通</h4><p>每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都仅可以视为是4邻接的，则称$p$和$q$是4连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为4通路。</p>
+<h3 id="连通"><a href="#连通" class="headerlink" title="连通"></a>连通</h3><p>起点是坐标为$(x_0, y_0)$的像素点$p$，终点是坐标为$(x_n, y_n)$的像素点$q$的像素序列$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$中，若像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$是邻接的，则称$p$和$q$是连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$是一条通路。</p>
+<h4 id="4连通"><a href="#4连通" class="headerlink" title="4连通"></a>4连通</h4><p>若每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都可以视为是4邻接的，则称$p$和$q$是4连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为4通路。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305022102785.png" style="zoom:25%;" /></p>
-<h4 id="8连通"><a href="#8连通" class="headerlink" title="8连通"></a>8连通</h4><p>每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都仅可以视为是8邻接的，则称$p$和$q$是8连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为8通路。</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305022106343.png" style="zoom:25%;" /></p>
-<p>圈出的<strong>三个点</strong>（画错了）是4邻接的，而非m邻接的；且图中具有8邻接；且4邻接可以被视为8邻接，所以$p$和$q$是8连通的。</p>
-<h4 id="m连通"><a href="#m连通" class="headerlink" title="m连通"></a>m连通</h4><p>每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都可以视为是m邻接的，则称$p$和$q$是m连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为m通路。</p>
+<h4 id="8连通"><a href="#8连通" class="headerlink" title="8连通"></a>8连通</h4><p>若每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都可以视为是8邻接的，且不全为4邻接，则称$p$和$q$是8连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为8通路。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305022109530.png" style="zoom:25%;" /></p>
-<p>圈出的<strong>三个点</strong>（画错了）不再是4邻接，而是。。。</p>
-<p>起点是坐标为$(x_0, y_0)$的像素点$p$，终点是坐标为$(x_n, y_n)$的像素点$q$的像素序列$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$中，若像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$是邻接的，则称$p$和$q$是连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$是一条通路。</p>
-<p>每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都仅可以视为是4邻接的，则称$p$和$q$是4连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为4通路。</p>
-<p>每对像素点$(x_i, y_i)$和像素点$(x_{i-1}, y_{i-1})$都仅可以视为是8邻接的，则称$p$和$q$是8连通的，称$(x_0, y_0), (x_1, y_1), \cdots, (x_n, y_n)$为8通路。</p>
-<p>称对8通路去除第二类m邻接所得到的通路为m通路。</p>
-<p>（这里有问题，回来再补）</p>
+<h4 id="m连通"><a href="#m连通" class="headerlink" title="m连通"></a>m连通</h4><p>若将8通路中<strong>不满足</strong>第二类m邻接的像素点对$(x_i, y_i), (x_{i-1}, y_{i-1})$断开，这些像素点对仍可用其4邻点形成新通路$\cdots, (x_i, y_i), (x_r, y_r), (x_{i-1}, y_{i-1}), \cdots$，则称$p$和$q$是m连通的，称新通路为m通路。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305022106343.png" style="zoom:25%;" /></p>
 <p>例HW2  Q4</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305050948580.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305050947000.png" alt=""></p>
@@ -1132,13 +1125,12 @@ g(x, y)= \begin{cases}\frac{c}{a} f(x, y), & 0 \leqslant f(x, y)<a \\ \frac{d-c}
 <p>实例2（重点）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042116267.png" alt=""></p>
 <p>（这里老师写错了，不是三段而是一段）</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305072038055.png" alt=""></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305072039978.png" alt=""></p>
 <p>给定一张低对比度图像b，</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042125905.png" alt=""></p>
-<p>（合着这个图c不是按图a拉伸的，而是横折横）</p>
-<p>将图像所处灰度区$[r_{\min}, r_{\max}]$拉伸到整个灰度区$[0, L-1]$，增强对比度，即可得到图c，</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042128909.png" alt=""></p>
+<p>将图像所处灰度区$[r_{\min}, r_{\max}]$拉伸到整个灰度区$[0, L-1]$（横折横），增强对比度，即可得到图c，</p>
 <p>将图像按平均灰度级进行二值化（横间断横）可都到图d。</p>
-<p>一般假设控制三段的两点是递增的，这样会保留灰度级顺序，防止产生灰度伪影。</p>
+<p>一般假设控制三段的两点是递增的，这样可以<strong>保留灰度级顺序，防止产生灰度伪影</strong>。</p>
 <p>例HW1 Q2</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042113597.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042113607.png" alt=""></p>
