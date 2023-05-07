@@ -293,7 +293,10 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Chap1-绪论"><a href="#Chap1-绪论" class="headerlink" title="Chap1 绪论"></a>Chap1 绪论</h1><h2 id="图像的基本概念"><a href="#图像的基本概念" class="headerlink" title="图像的基本概念"></a>图像的基本概念</h2><p>人类从外界获得的信息绝大部分都是由视觉获取的。</p>
+            <blockquote>
+<p>教材：<a target="_blank" rel="noopener" href="https://item.jd.com/12595624.html">蔡利梅，王利娟. 数字图像处理：使用MATLAB分析与实现[M]. 清华大学出版社，2019.</a><br>说明：CUMT为计科和大数据开设的图像处理课程，考的和学的没有一点关系。</p>
+</blockquote>
+<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="图像的基本概念"><a href="#图像的基本概念" class="headerlink" title="图像的基本概念"></a>图像的基本概念</h2><p>人类从外界获得的信息绝大部分都是由视觉获取的。</p>
 <p>图像是光和大脑相结合的产物，分为可见光成像和不可见光成像（红外、紫外、X光）。</p>
 <p>图像是二维信号，可定义为一个二维函数$f(x, y)$，当空间坐标$(x, y)$和幅值$f$为有限的离散数值时，称改图像为数字图像，$f(x, y)$是点$(x, y)$的幅值。</p>
 <p>视频是动态图像，可定义为一个三位函数$f(x, y, t)$。其中，$t$为时间坐标，$f(x, y)$是$t$时刻上点$(x, y)$的幅值。</p>
@@ -341,7 +344,7 @@
 <p>下图包含图像通信模块</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[图像输入] --模数转换--&gt; B[(图像处理, 图像分析)]</span><br><span class="line">    B &lt;--图像压缩编码--&gt; C[图像通信]</span><br><span class="line">    B --数模转换--&gt; D[图像输出]</span><br><span class="line">    B &lt;--图像压缩编码--&gt; E[图像存储]</span><br></pre></td></tr></table></figure>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305021215551.png" alt=""></p>
-<h1 id="Chap2-数字图像基础"><a href="#Chap2-数字图像基础" class="headerlink" title="Chap2 数字图像基础"></a>Chap2 数字图像基础</h1><h2 id="2-1-图像感知与获取"><a href="#2-1-图像感知与获取" class="headerlink" title="2.1 图像感知与获取"></a>2.1 图像感知与获取</h2><h3 id="人眼的亮度适应范围"><a href="#人眼的亮度适应范围" class="headerlink" title="人眼的亮度适应范围"></a>人眼的亮度适应范围</h3><p>人的视觉系统有很大的亮度适应范围，但并不能同时在整个范围内工作，通过改变人眼的具体敏感度（改变瞳孔大小、明暗视觉转换）来实现亮度适应。</p>
+<h1 id="数字图像基础"><a href="#数字图像基础" class="headerlink" title="数字图像基础"></a>数字图像基础</h1><h2 id="图像感知与获取"><a href="#图像感知与获取" class="headerlink" title="图像感知与获取"></a>图像感知与获取</h2><h3 id="人眼的亮度适应范围"><a href="#人眼的亮度适应范围" class="headerlink" title="人眼的亮度适应范围"></a>人眼的亮度适应范围</h3><p>人的视觉系统有很大的亮度适应范围，但并不能同时在整个范围内工作，通过改变人眼的具体敏感度（改变瞳孔大小、明暗视觉转换）来实现亮度适应。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305021235901.png" alt=""></p>
 <p>亮度是一种外界辐射的物理量在视觉中反应出来的<strong>心理</strong>物理量，感觉亮度（主观亮度）与实际亮度之间呈非线性关系。</p>
 <p>马赫（Mach）带效应：在亮度变换边界附近的暗区和亮区，感觉存在一条更暗和更亮的条带，即马赫带。</p>
@@ -355,7 +358,7 @@ f(x, y) = i(x, y) \cdot r(x, y)</script><p>其中，</p>
 <p>$f(x, y)$是图像幅值分布</p>
 <p>$i(x, y)$是入射场分布，取决于照射源性质，$0&lt;i(x, y)&lt;\infty$</p>
 <p>$r(x, y)$是反射系数分布，取决于成像物体的性质，$0&lt;r(x, y)&lt;1$</p>
-<h2 id="2-2-图像采样和量化"><a href="#2-2-图像采样和量化" class="headerlink" title="2.2 图像采样和量化"></a>2.2 图像采样和量化</h2><p>图像信号的数字化：将图像的连续模拟信号转变为离散数字信号。</p>
+<h2 id="图像采样和量化"><a href="#图像采样和量化" class="headerlink" title="图像采样和量化"></a>图像采样和量化</h2><p>图像信号的数字化：将图像的连续模拟信号转变为离散数字信号。</p>
 <p>采样：图像空间坐标的离散化。（画格）</p>
 <p>对空间坐标x和y离散化，即确定水平和垂直方向上的像素数</p>
 <p>图像分辨率（Image resolution）就是采样所获得的图像的总像素的数量，由垂直像素数M列和水平像素数N行的乘积表示，即$M \times N$</p>
@@ -408,7 +411,7 @@ f(x, y) = i(x, y) \cdot r(x, y)</script><p>其中，</p>
 <li>对于<strong>缓变</strong>的图像，粗采样、<strong>细量化</strong>，以避免伪轮廓（粗量化导致荷花叶颜色分块）</li>
 <li>对于<strong>细节丰富</strong>的图像，<strong>细采样</strong>、粗量化，以避免模糊（粗采样导致青蛙的眼睛被采样成眼皮）</li>
 </ul>
-<h2 id="2-5-图像间的一些基本关系"><a href="#2-5-图像间的一些基本关系" class="headerlink" title="2.5 图像间的一些基本关系"></a>2.5 图像间的一些基本关系</h2><h3 id="邻域"><a href="#邻域" class="headerlink" title="邻域"></a>邻域</h3><p>中心像素的邻点（相邻的像素点）的集合</p>
+<h2 id="图像间的一些基本关系"><a href="#图像间的一些基本关系" class="headerlink" title="图像间的一些基本关系"></a>图像间的一些基本关系</h2><h3 id="邻域"><a href="#邻域" class="headerlink" title="邻域"></a>邻域</h3><p>中心像素的邻点（相邻的像素点）的集合</p>
 <h4 id="4邻域"><a href="#4邻域" class="headerlink" title="4邻域"></a>4邻域</h4><p>坐标为$(x, y)$的像素P，其水平和垂直方向上的4个邻点，即坐标为$(x-1, y),(x+1, y),(x, y-1),(x, y+1)$的像素点构成的集合，称为P的4邻域，记作$N_4(p)$。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305022024103.png" style="zoom:25%;" /></p>
 <h4 id="对角邻域（D邻域）"><a href="#对角邻域（D邻域）" class="headerlink" title="对角邻域（D邻域）"></a>对角邻域（D邻域）</h4><p>坐标为$(x, y)$的像素P，其两对角线方向上的4个邻点，即坐标为$(x-1, y-1),(x-1, y+1),(x+1, y-1),(x+1, y+1)$的像素点构成的集合，称为P的对角邻域，记作$N_D(p)$。</p>
@@ -495,7 +498,7 @@ D_p(x,y) &= \left(\sum_{i=1}^n |x_i - y_i|^p\right)^{1/p} \\
 <script type="math/tex; mode=display">
 \lim_{p \to \infty} D_p(x,y) = \lim_{q \to 0} \left(\max_{i=1}^n |x_i - y_i|^q\right)^{q} = D_{\infty}(x,y)</script><p>因此，当 $p$ 趋近于无穷大时，明考夫斯基距离 $D_p(x,y)$ 会趋近于切比雪夫距离 $D_{\infty}(x,y)$。</p>
 </blockquote>
-<h1 id="Chap3-图像基本运算"><a href="#Chap3-图像基本运算" class="headerlink" title="Chap3 图像基本运算"></a>Chap3 图像基本运算</h1><h2 id="3-1-图像几何变换"><a href="#3-1-图像几何变换" class="headerlink" title="3.1 图像几何变换"></a>3.1 图像几何变换</h2><p>对图像进行大小、形状、位置等方面的变换即图像的几何变换。</p>
+<h1 id="图像基本运算"><a href="#图像基本运算" class="headerlink" title="图像基本运算"></a>图像基本运算</h1><h2 id="图像几何变换"><a href="#图像几何变换" class="headerlink" title="图像几何变换"></a>图像几何变换</h2><p>对图像进行大小、形状、位置等方面的变换即图像的几何变换。</p>
 <p>图像的几何变换是一种空间变换，关键在于确定点与点之间的映射关系。</p>
 <h3 id="几何变换基础"><a href="#几何变换基础" class="headerlink" title="几何变换基础"></a>几何变换基础</h3><h4 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h4><p>齐次坐标表示法：用$n+1$维向量表示$n$维向量的方法。</p>
 <p>例如对于某一点，将$(x, y)$表示为$(x, y, 1)^T$，也就是$3\times1$向量</p>
@@ -535,12 +538,18 @@ f(x+a, y+b) = f(x, y)</script><p>当图像中临近像素的灰度级有较大�
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305030945391.png" alt=""></p>
 <p>例如，在这张图中，</p>
 <script type="math/tex; mode=display">
+\begin{aligned}
 f(x, y+b)&=f(x, y)+b \cdot \frac{f(x, y+1)-f(x, y)}{(y+1)-y}\\
-&=f(x, y)+b[f(x, y+1)-f(x, y)]</script><script type="math/tex; mode=display">
+&=f(x, y)+b[f(x, y+1)-f(x, y)]
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
 f(x+1, y+b)&=f(x+1, y)+b\cdot\frac{f(x+1, y+1)-f(x+1, y)}{(y+1)-y}\\
-&=f(x+1, y)+b[f(x+1, y+1)-f(x+1, y)]</script><script type="math/tex; mode=display">
+&=f(x+1, y)+b[f(x+1, y+1)-f(x+1, y)]
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
 f(x+a, y+b)&=f(x, y+b)+a\cdot\frac{f(x+1, y+b)-f(x, y+b)}{(x+1)-x}\\
-&=f(x, y+b)+a[f(x+1, y+b)-f(x, y+b)]</script><p>计算过程很简单，算法如其名，要进行两次线性方程的计算：</p>
+&=f(x, y+b)+a[f(x+1, y+b)-f(x, y+b)]
+\end{aligned}</script><p>计算过程很简单，算法如其名，要进行两次线性方程的计算：</p>
 <ol>
 <li>计算两条线性方程（实际上只需要算一下斜率然后用三角关系）</li>
 <li>代入坐标得到$f(x, y+b)$和$f(x+1, y+b)$</li>
@@ -833,7 +842,7 @@ y^{\prime}=y + d_y x
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305032108637.png" alt=""></p>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305032107440.png" alt=""></p>
-<h2 id="3-2-图像代数运算"><a href="#3-2-图像代数运算" class="headerlink" title="3.2 图像代数运算"></a>3.2 图像代数运算</h2><p>图像的代数运算：对多幅输入图像进行点对点（pixel-wise）的算术运算（加减乘除）或逻辑运算（与或非）。</p>
+<h2 id="图像代数运算"><a href="#图像代数运算" class="headerlink" title="图像代数运算"></a>图像代数运算</h2><p>图像的代数运算：对多幅输入图像进行点对点（pixel-wise）的算术运算（加减乘除）或逻辑运算（与或非）。</p>
 <h3 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h3><h4 id="加法运算"><a href="#加法运算" class="headerlink" title="加法运算"></a>加法运算</h4><script type="math/tex; mode=display">
 g(x, y) = f_1(x, y) + f_2(x, y)</script><p>其中，$f_1$和$f_2$是同等尺寸的两幅图像。</p>
 <p>加法运算中像素值的和可能会超出灰度值表达范围，可以用以下方法进行和值处理：</p>
@@ -852,7 +861,7 @@ g(x, y) = \alpha_1f_1(x, y) + \alpha_2f_2(x, y) \quad ,\sum_i\alpha_i=1</script>
 <ol>
 <li>去除叠加性噪声</li>
 <li>改善图像视觉效果</li>
-<li>加宽波段</li>
+<li><strong>加宽波段</strong></li>
 <li>图像合成、拼接</li>
 </ol>
 <h4 id="减法运算"><a href="#减法运算" class="headerlink" title="减法运算"></a>减法运算</h4><script type="math/tex; mode=display">
@@ -911,7 +920,7 @@ g(x, y) = \overline{f(x, y)} = 255 -  f(x, y)</script><p>用于画的原图像�
 g(x, y) = f_1(x, y) \& f_2(x, y)</script><p>求两幅图像的相交子图，可作为模板运算。（类似使用二值模板的乘法运算）</p>
 <h4 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h4><script type="math/tex; mode=display">
 g(x, y) = f_1(x, y) | f_2(x, y)</script><p>合并两幅图像（有短路现象），可作为模板运算。</p>
-<h1 id="Chap4-图像正交变换"><a href="#Chap4-图像正交变换" class="headerlink" title="Chap4 图像正交变换"></a>Chap4 图像正交变换</h1><h2 id="4-1-离散傅里叶变换"><a href="#4-1-离散傅里叶变换" class="headerlink" title="4.1 离散傅里叶变换"></a>4.1 离散傅里叶变换</h2><p>离散傅里叶变换（Discrete Fourier Transform, DFT）是直接处理离散时间信号（从时间域转换到频率域）的傅里叶变换，在数字信号处理中应用广泛。</p>
+<h1 id="图像正交变换"><a href="#图像正交变换" class="headerlink" title="图像正交变换"></a>图像正交变换</h1><h2 id="离散傅里叶变换"><a href="#离散傅里叶变换" class="headerlink" title="离散傅里叶变换"></a>离散傅里叶变换</h2><p>离散傅里叶变换（Discrete Fourier Transform, DFT）是直接处理离散时间信号（从时间域转换到频率域）的傅里叶变换，在数字信号处理中应用广泛。</p>
 <p>注. 如何理解傅里叶变换呢？冈萨雷斯认为棱镜可以将可见光转化为光谱，傅里叶变换就是数学领域的“棱镜”，将信号转化为频谱。</p>
 <h3 id="一维离散傅里叶变换"><a href="#一维离散傅里叶变换" class="headerlink" title="一维离散傅里叶变换"></a>一维离散傅里叶变换</h3><p>对于有限长数字序列$f(x), x=0,1, \cdots N-1$，</p>
 <p>一维DFT，即$f(x) \rightarrow F(u)$公式为</p>
@@ -1071,10 +1080,10 @@ f(ax, by) \Leftrightarrow \frac{1}{|ab|}F(\frac{u}{a}, \frac{v}{b})</script><p><
 <h4 id="二维DFT在图像压缩中的应用"><a href="#二维DFT在图像压缩中的应用" class="headerlink" title="二维DFT在图像压缩中的应用"></a>二维DFT在图像压缩中的应用</h4><p>由于人眼的惰性，适当去除高频部分，会造成边缘信息损失，但图像质量在一定范围内的降低不会被人眼察觉到。</p>
 <p>所以可以适当去除高频分量（将高频系数置为0），降低数据量，实现图像压缩。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042032353.png" alt=""></p>
-<p>这里的去除高频分量是准确地将高频系数置为0（甚至保留了中心的亮横线和亮竖线），与上一节的低通滤波不太一样。</p>
+<p>这里的去除高频分量是准确地将高频系数置为0（甚至保留了中心的亮横线和亮竖线），与上一节的低通滤波不太一样。一个按坐标粗略划分频率、一个按频率准确划分。</p>
 <p>注. 低频信息（概貌）对于图像和视频的重建非常重要。这些信息对图像和视频的整体外观和结构起着关键作用</p>
 <h4 id="二维DFT卷积定理性质的应用"><a href="#二维DFT卷积定理性质的应用" class="headerlink" title="二维DFT卷积定理性质的应用"></a>二维DFT卷积定理性质的应用</h4><p>卷积运算可以把空间域卷积 变为 频域相乘再二维IDFT，以简化运算。</p>
-<h2 id="4-2-离散余弦变换"><a href="#4-2-离散余弦变换" class="headerlink" title="4.2 离散余弦变换"></a>4.2 离散余弦变换</h2><p>离散余弦变换（Discrete Cosine Transform, DCT），是离散傅里叶变换的一种特殊形式，其仅采用正弦函数（DFT的e用欧拉展开后实际上包含正弦函数和余弦函数），且系数仅由实数组成（DFT有实数和复数）。</p>
+<h2 id="离散余弦变换"><a href="#离散余弦变换" class="headerlink" title="离散余弦变换"></a>离散余弦变换</h2><p>离散余弦变换（Discrete Cosine Transform, DCT），是离散傅里叶变换的一种特殊形式，其仅采用正弦函数（DFT的e用欧拉展开后实际上包含正弦函数和余弦函数），且系数仅由实数组成（DFT有实数和复数）。</p>
 <p>因此，DCT参数量更小，更好算（对计算机）。</p>
 <p>一维DCT</p>
 <script type="math/tex; mode=display">
@@ -1097,8 +1106,8 @@ C(u) = \left\{
 <p>注. 低频信息（概貌）对于图像和视频的重建非常重要。这些信息对图像和视频的<strong>整体外观</strong>和结构起着关键作用，所以图像和视频压缩一般去除高频信息（边缘/噪声）。</p>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042037698.png" style="zoom:50%;" /></p>
-<h1 id="Chap5-图像增强"><a href="#Chap5-图像增强" class="headerlink" title="Chap5 图像增强"></a>Chap5 图像增强</h1><p>图像增强是为了让图像由差变好，如改善图像质量、增强感兴趣部分、改善图像视觉效果、使图像变得更利于计算机处理。</p>
-<h2 id="5-1-灰度级变换"><a href="#5-1-灰度级变换" class="headerlink" title="5.1 灰度级变换"></a>5.1 灰度级变换</h2><p>灰度级变换：借助于变换函数将输入的像素灰度值映射成一个新的输出值，通过改善像素的亮度值来增强图像。</p>
+<h1 id="图像增强"><a href="#图像增强" class="headerlink" title="图像增强"></a>图像增强</h1><p>图像增强是为了让图像由差变好，如改善图像质量、增强感兴趣部分、改善图像视觉效果、使图像变得更利于计算机处理。</p>
+<h2 id="灰度级变换"><a href="#灰度级变换" class="headerlink" title="灰度级变换"></a>灰度级变换</h2><p>灰度级变换：借助于变换函数将输入的像素灰度值映射成一个新的输出值，通过改善像素的亮度值来增强图像。</p>
 <script type="math/tex; mode=display">
 g(x, y) = T[f(x, y)]</script><p>其中，</p>
 <p>$T(\cdot)$是灰度变换函数。</p>
@@ -1157,7 +1166,7 @@ g(x, y) = c\cdot [f(x, y)]^{\gamma}</script><p>特点：兼具对数变换和指
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305042337192.png" alt=""></p>
 <p>对于这种过亮的图像，若使用非线性灰度变换，可以采用$c=1, \gamma&gt;1$的幂次变换。</p>
 <p>若采用分段线性灰度变换，要将高灰度区（亮的那片）用大斜率（$\tan\alpha&gt;1$）缩小拉伸，低的那片用小斜率（$\tan\alpha&lt;1$）压缩。即拟合幂次变换函数。</p>
-<h2 id="5-2-直方图修正"><a href="#5-2-直方图修正" class="headerlink" title="5.2 直方图修正"></a>5.2 直方图修正</h2><h3 id="灰度直方图"><a href="#灰度直方图" class="headerlink" title="灰度直方图"></a>灰度直方图</h3><p>灰度直方图式灰度级的离散函数，表示数字图像中每一个灰度级与其出现频数间的统计关系。</p>
+<h2 id="直方图修正"><a href="#直方图修正" class="headerlink" title="直方图修正"></a>直方图修正</h2><h3 id="灰度直方图"><a href="#灰度直方图" class="headerlink" title="灰度直方图"></a>灰度直方图</h3><p>灰度直方图式灰度级的离散函数，表示数字图像中每一个灰度级与其出现频数间的统计关系。</p>
 <script type="math/tex; mode=display">
 p(r_k) = \frac{n_k}{N}</script><p>其中，</p>
 <p>$r_k$表示第$k$个灰度级，</p>
@@ -1206,8 +1215,8 @@ s_k = T(r_k) = \sum_{i=0}^{k}p_r(r_i) = \sum_{i=0}^{k}\frac{n_i}{N}</script><p>�
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305050954293.png" alt=""></p>
 <p>例HW2 Q6</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305050954471.png" alt=""></p>
-<h1 id="Chap6-图像平滑"><a href="#Chap6-图像平滑" class="headerlink" title="Chap6 图像平滑"></a>Chap6 图像平滑</h1><p>图像平滑（Image Smoothing）：抑制或消除图像中存在的噪声，改善图像质量的过程。</p>
-<h2 id="6-1-噪声"><a href="#6-1-噪声" class="headerlink" title="6.1 噪声"></a>6.1 噪声</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>噪声：妨碍人的视觉感官或系统传感器对所接收到的图像信息进行理解或分析的各种因素 / 真实信号与理想信号之间存在的偏差。记作$n(x, y)$。</p>
+<h1 id="图像平滑"><a href="#图像平滑" class="headerlink" title="图像平滑"></a>图像平滑</h1><p>图像平滑（Image Smoothing）：抑制或消除图像中存在的噪声，改善图像质量的过程。</p>
+<h2 id="噪声"><a href="#噪声" class="headerlink" title="噪声"></a>噪声</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>噪声：妨碍人的视觉感官或系统传感器对所接收到的图像信息进行理解或分析的各种因素 / 真实信号与理想信号之间存在的偏差。记作$n(x, y)$。</p>
 <p>根据噪声产生的原因，可将噪声源分为3类：</p>
 <ol>
 <li><p>高斯噪声：零均值高斯白噪声</p>
@@ -1249,7 +1258,7 @@ P_b & x = b \\
 <p>特点：位置是随机的，幅值是近似相等的。</p>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305050034777.png" alt=""></p>
-<h2 id="6-2-空间域平滑滤波"><a href="#6-2-空间域平滑滤波" class="headerlink" title="6.2 空间域平滑滤波"></a>6.2 空间域平滑滤波</h2><p>（考计算，还有记得写效果分析）</p>
+<h2 id="空间域平滑滤波"><a href="#空间域平滑滤波" class="headerlink" title="空间域平滑滤波"></a>空间域平滑滤波</h2><p>（考计算，还有记得写效果分析）</p>
 <p>空域滤波：基于图像空间的邻域模板运算。</p>
 <p>模板本身被称为空间滤波器，也被称为做窗口、掩模或核。</p>
 <p>二维模板通常是一副形状规则的图像，且模板的尺寸一般远远小于图像的尺寸。</p>
@@ -1335,7 +1344,7 @@ g(x, y) = \frac{1}{M} \sum_{(m, n)\in S}f(m, n)</script><p>其中，</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051057505.png" alt=""></p>
 <p>这是一副盐噪声图像，自然使用中值滤波</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051058142.png" alt=""></p>
-<h2 id="6-3-频率域平滑滤波"><a href="#6-3-频率域平滑滤波" class="headerlink" title="6.3 频率域平滑滤波"></a>6.3 频率域平滑滤波</h2><p>因为要去的<strong>空域噪声位于频域高频</strong>，所以设计频域低通。</p>
+<h2 id="频率域平滑滤波"><a href="#频率域平滑滤波" class="headerlink" title="频率域平滑滤波"></a>频率域平滑滤波</h2><p>因为要去的<strong>空域噪声位于频域高频</strong>，所以设计频域低通。</p>
 <p>基本思路：</p>
 <script type="math/tex; mode=display">
 G(u, v) = F(u, v) \cdot H(u, v) \\
@@ -1369,15 +1378,15 @@ g(x, y) = \mathscr{F}^{-1}[G(u, v)]</script><p>对频谱图做低通滤波$H$，
 <p><strong>效果分析</strong></p>
 <p>优点：可以有效去除噪声、图像模糊现象减弱、没有振铃现象（高斯函数的傅里叶变换仍然是高斯函数）</p>
 <p>好像没什么缺点</p>
-<h1 id="Chap7-图像锐化"><a href="#Chap7-图像锐化" class="headerlink" title="Chap7 图像锐化"></a>Chap7 图像锐化</h1><p>图像锐化（Image Sharpening）：加强图像中景物的边缘和轮廓，突出图像中的细节或者增强被模糊了的细节。</p>
+<h1 id="图像锐化"><a href="#图像锐化" class="headerlink" title="图像锐化"></a>图像锐化</h1><p>图像锐化（Image Sharpening）：加强图像中景物的边缘和轮廓，突出图像中的细节或者增强被模糊了的细节。</p>
 <p>下面先讲空间域平滑滤波</p>
-<h2 id="7-1-图像边缘分析"><a href="#7-1-图像边缘分析" class="headerlink" title="7.1 图像边缘分析"></a>7.1 图像边缘分析</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051132833.png" alt=""></p>
+<h2 id="图像边缘分析"><a href="#图像边缘分析" class="headerlink" title="图像边缘分析"></a>图像边缘分析</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051132833.png" alt=""></p>
 <p>1突变型 2细线型（两侧突变型） 3渐变型</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051137828.png" alt=""></p>
 <p>这里完全没介绍一阶导数和二阶导数的定义，看得我一愣一愣的，这里补上冈萨雷斯的定义和示例。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051141896.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051143397.png" alt=""></p>
-<h2 id="7-2-一阶微分算子"><a href="#7-2-一阶微分算子" class="headerlink" title="7.2 一阶微分算子"></a>7.2 一阶微分算子</h2><h3 id="梯度算子"><a href="#梯度算子" class="headerlink" title="梯度算子"></a>梯度算子</h3><p>梯度幅值（一维）代替梯度（二维）-&gt;使用绝对值一阶拟合-&gt;差分代替微分，得到</p>
+<h2 id="一阶微分算子"><a href="#一阶微分算子" class="headerlink" title="一阶微分算子"></a>一阶微分算子</h2><h3 id="梯度算子"><a href="#梯度算子" class="headerlink" title="梯度算子"></a>梯度算子</h3><p>梯度幅值（一维）代替梯度（二维）-&gt;使用绝对值一阶拟合-&gt;差分代替微分，得到</p>
 <script type="math/tex; mode=display">
 g(x, y) = |f(x+1, y) - f(x, y)| + |f(x, y+1) - f(x, y)|</script><p>锐化的实质是原图像和边缘图像相加以锐化边缘。</p>
 <p>把梯度图像变为边缘图像：设置一个阈值，大于该阈值置为1；小于该阈值设为0。</p>
@@ -1433,7 +1442,7 @@ H_y = \begin{pmatrix}
 -1&0&1\\
 \end{pmatrix}</script><p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051231772.png" alt=""></p>
-<h2 id="7-3-二阶微分算子"><a href="#7-3-二阶微分算子" class="headerlink" title="7.3 二阶微分算子"></a>7.3 二阶微分算子</h2><h3 id="拉普拉斯（Laplace）算子"><a href="#拉普拉斯（Laplace）算子" class="headerlink" title="拉普拉斯（Laplace）算子"></a>拉普拉斯（Laplace）算子</h3><p>展开以后表现为中心像素点对四周像素点的加/减运算</p>
+<h2 id="二阶微分算子"><a href="#二阶微分算子" class="headerlink" title="二阶微分算子"></a>二阶微分算子</h2><h3 id="拉普拉斯（Laplace）算子"><a href="#拉普拉斯（Laplace）算子" class="headerlink" title="拉普拉斯（Laplace）算子"></a>拉普拉斯（Laplace）算子</h3><p>展开以后表现为中心像素点对四周像素点的加/减运算</p>
 <p><strong>合成</strong>拉普拉斯锐化算子（中间是5，一般的是4/-4）</p>
 <script type="math/tex; mode=display">
 H = \begin{pmatrix}
@@ -1449,7 +1458,7 @@ H = \begin{pmatrix}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051256509.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051257666.png" alt=""></p>
 <p>特点：对噪声敏感、产生双边缘</p>
-<h2 id="7-4-高斯滤波与边缘检测"><a href="#7-4-高斯滤波与边缘检测" class="headerlink" title="7.4 高斯滤波与边缘检测"></a>7.4 高斯滤波与边缘检测</h2><p>高斯滤波由于其标准差可以控制领域范围，因此适合生成锐化滤波器权值。</p>
+<h2 id="高斯滤波与边缘检测"><a href="#高斯滤波与边缘检测" class="headerlink" title="高斯滤波与边缘检测"></a>高斯滤波与边缘检测</h2><p>高斯滤波由于其标准差可以控制领域范围，因此适合生成锐化滤波器权值。</p>
 <p>其二阶导数形式类似于一个墨西哥草帽的截面</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051307213.png" alt=""></p>
 <div class="table-container">
@@ -1482,7 +1491,7 @@ H = \begin{pmatrix}
 </ol>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051315041.png" alt=""></p>
-<h2 id="7-5-频率域锐化滤波"><a href="#7-5-频率域锐化滤波" class="headerlink" title="7.5 频率域锐化滤波"></a>7.5 频率域锐化滤波</h2><p>和前面的频率域平滑滤波一个低通一个高通。</p>
+<h2 id="频率域锐化滤波"><a href="#频率域锐化滤波" class="headerlink" title="频率域锐化滤波"></a>频率域锐化滤波</h2><p>和前面的频率域平滑滤波一个低通一个高通。</p>
 <h3 id="理想高通滤波"><a href="#理想高通滤波" class="headerlink" title="理想高通滤波"></a>理想高通滤波</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051316591.png" alt=""></p>
 <h3 id="梯形高通滤波"><a href="#梯形高通滤波" class="headerlink" title="梯形高通滤波"></a>梯形高通滤波</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051317043.png" alt=""></p>
 <h3 id="巴特沃斯高通滤波"><a href="#巴特沃斯高通滤波" class="headerlink" title="巴特沃斯高通滤波"></a>巴特沃斯高通滤波</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051316081.png" alt=""></p>
@@ -1499,14 +1508,15 @@ H = \begin{pmatrix}
 <p><strong>滤波器对比</strong></p>
 <p>平滑滤波器：权重都为正，一般权重之和等于0</p>
 <p>锐化滤波器：权重有正有负，权重之和等于0时没有提升；权重之后大于0是有提升（拉普拉斯算子和合成拉普拉斯算子）</p>
-<h1 id="Chap8-彩色图像增强"><a href="#Chap8-彩色图像增强" class="headerlink" title="Chap8 彩色图像增强"></a>Chap8 彩色图像增强</h1><h2 id="8-1-彩色视觉"><a href="#8-1-彩色视觉" class="headerlink" title="8.1 彩色视觉"></a>8.1 彩色视觉</h2><p>颜色是一种强力的描述子。</p>
+<p>（后面时间不够了，有点地方比较潦草）</p>
+<h1 id="彩色图像增强"><a href="#彩色图像增强" class="headerlink" title="彩色图像增强"></a>彩色图像增强</h1><h2 id="彩色视觉"><a href="#彩色视觉" class="headerlink" title="彩色视觉"></a>彩色视觉</h2><p>颜色是一种强力的描述子。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051324320.png" alt=""></p>
 <p>三基色：红绿蓝</p>
 <p>相加混色：把三基色按不同的比例相加进行的混色（光的叠加，彩灯照在墙上呈现颜色）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051329756.png" alt=""></p>
 <p>相减混色：从白光中滤去某种颜色而得到另一种颜色（光的被吸收，颜料画在墙上呈现颜色）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051328051.png" alt=""></p>
-<h2 id="8-2-颜色模型"><a href="#8-2-颜色模型" class="headerlink" title="8.2 颜色模型"></a>8.2 颜色模型</h2><p>颜色空间是表示颜色的空间坐标系，颜色通过建立彩色模型描述。各种不同的颜色模型之间，可以通过数学方法转换。</p>
+<h2 id="颜色模型"><a href="#颜色模型" class="headerlink" title="颜色模型"></a>颜色模型</h2><p>颜色空间是表示颜色的空间坐标系，颜色通过建立彩色模型描述。各种不同的颜色模型之间，可以通过数学方法转换。</p>
 <h3 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h3><p>基于红、绿、蓝，使用相加混色原理构建的颜色模型。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051331887.png" alt=""></p>
 <p>归一化后</p>
@@ -1568,7 +1578,12 @@ H = \begin{pmatrix}
 <p>YCbCr转RGB</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051731658.png" alt=""></p>
 <p>这种信号用于采用国际标准的电视系统。</p>
-<h1 id="Chap9-图像复原"><a href="#Chap9-图像复原" class="headerlink" title="Chap9 图像复原"></a>Chap9 图像复原</h1><p>图像退化：在图像生成、记录、传输的过程中，产生的图像质量下降。</p>
+<h2 id="彩色变换"><a href="#彩色变换" class="headerlink" title="彩色变换"></a>彩色变换</h2><p>真彩色图像（True Color）：真实反映自然界物体本来颜色的图像。</p>
+<p>假彩色图像（False Color）：由假彩色增强产生的彩色图像。</p>
+<p>假彩色增强：根据波长的不同赋予不同颜色的处理，是彩色到彩色的映射。</p>
+<p>伪彩色图像（Pseudo Color）：由伪彩色增强产生的彩色图像。</p>
+<p>伪彩色增强：根据一定的准则，将单色图像的不同灰度赋予不同颜色的处理，是灰度到彩色的映射。</p>
+<h1 id="图像复原"><a href="#图像复原" class="headerlink" title="图像复原"></a>图像复原</h1><p>图像退化：在图像生成、记录、传输的过程中，产生的图像质量下降。</p>
 <p>图像复原：对退化图像进行处理并使之恢复原貌的技术。</p>
 <p>图像复原的关键在于确定图像退化的过程，将其模型化，采用相反的过程尽可能地将退化图像恢复原貌。</p>
 <p><strong>图像复原与图像增强</strong></p>
@@ -1576,7 +1591,7 @@ H = \begin{pmatrix}
 <p>图像复原：强调找出并去除退化因素，恢复或重建退化图像，<strong>以保真原则为前提</strong>。把手机拍照时产生的模糊去除。</p>
 <p>二者都可以提高图像的质量，区别在于一种考虑退化因素，保真；另一种考虑视觉效果，不保真。</p>
 <p>（这一章估计只考到这）</p>
-<h2 id="9-1-图像退化模型"><a href="#9-1-图像退化模型" class="headerlink" title="9.1 图像退化模型"></a>9.1 图像退化模型</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051855565.png" alt="image-20230505185536397"></p>
+<h2 id="图像退化模型"><a href="#图像退化模型" class="headerlink" title="图像退化模型"></a>图像退化模型</h2><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051855565.png" alt="image-20230505185536397"></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051856178.png" alt="image-20230505185600022"></p>
 <p>所以，先去噪-n，然后采用H^{-1}即可复原出fhat</p>
 <h3 id="关于噪声"><a href="#关于噪声" class="headerlink" title="关于噪声"></a>关于噪声</h3><h4 id="高斯噪声-1"><a href="#高斯噪声-1" class="headerlink" title="高斯噪声"></a>高斯噪声</h4><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051918592.png" alt="image-20230505191838140"></p>
@@ -1593,28 +1608,29 @@ H = \begin{pmatrix}
 <p>因为这个图片的每个区域都是单色的，只有一个灰度级，所以大致上会呈现噪声的分布（某一个灰度级会特别高）</p>
 <p>因为原图像服从某种分布的，噪声图像也是服从某种分布的，二者可以相加，所以最好从原图像中取一个分布简单的（比如只有一两种颜色）子图像，这样更好直接地去分析噪声的分布。</p>
 <h3 id="连续退化模型"><a href="#连续退化模型" class="headerlink" title="连续退化模型"></a>连续退化模型</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051857088.png" alt="image-20230505185742918"></p>
-<h3 id="图像复原"><a href="#图像复原" class="headerlink" title="图像复原"></a>图像复原</h3><p>已知退化图像g、点扩散函数h、噪声n，估计原始图像步骤：</p>
+<h3 id="图像复原-1"><a href="#图像复原-1" class="headerlink" title="图像复原"></a>图像复原</h3><p>已知退化图像g、点扩散函数h、噪声n，估计原始图像步骤：</p>
 <ol>
 <li>确定（估计）图像的退化函数</li>
 <li>采用合适的图像复原方法复原图像</li>
 </ol>
 <h2 id="图像退化函数的估计"><a href="#图像退化函数的估计" class="headerlink" title="图像退化函数的估计"></a>图像退化函数的估计</h2><p>基于模型（过程）的：运动模糊、散焦模糊、高斯退化</p>
 <p>基于退化图像本身（统计）的：略</p>
-<h2 id="9-4-典型图像复原方法"><a href="#9-4-典型图像复原方法" class="headerlink" title="9.4 典型图像复原方法"></a>9.4 典型图像复原方法</h2><h3 id="逆滤波复原"><a href="#逆滤波复原" class="headerlink" title="逆滤波复原"></a>逆滤波复原</h3><p>逆滤波复原是无约束复原的频域表示方法。</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051905074.png" alt="image-20230505190503897"></p>
-<p>N移过去，除以H，可以得到估计Fhat</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051906688.png" alt="image-20230505190642543"></p>
-<p>二维IDFT回来即可得到f的最优估计fhat</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051906411.png" alt="image-20230505190658259"></p>
-<p>由于乘H是滤波，公式中除以H，进行了反向滤波，所以被称为逆滤波。</p>
+<h2 id="典型图像复原方法"><a href="#典型图像复原方法" class="headerlink" title="典型图像复原方法"></a>典型图像复原方法</h2><h3 id="逆滤波复原"><a href="#逆滤波复原" class="headerlink" title="逆滤波复原"></a>逆滤波复原</h3><p>逆滤波复原是无约束复原的频域表示方法。</p>
+<p>根据傅里叶变换的卷积定理，退化模型可表示为</p>
+<script type="math/tex; mode=display">
+G(u, v) = F(u, v)\cdot H(u, v) + N(u, v)</script><p>$N$移过去，除以$H$，可以得到估计$\hat{F}$</p>
+<script type="math/tex; mode=display">
+\hat{F}(u, v) = \frac{G(u, v)}{H(u, v)} - \frac{N(u, v)}{H(u, v)}</script><p>二维IDFT回来即可得到$f$的最优估计$\hat{f}$</p>
+<script type="math/tex; mode=display">
+\hat{f}(x, y) = \mathscr{F}^{-1}[\hat{F}(u, v)]</script><p>由于乘$H$是滤波，公式中除以$H$，进行了反向滤波，所以被称为逆滤波。</p>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051945716.png" alt=""></p>
 <p>当有噪声存在时，需要使用有低通特性的逆滤波（课本上有）。</p>
 <p>当信噪比小于一定值时，逆滤波显示的是噪声的图像。</p>
 <h3 id="维纳滤波复原"><a href="#维纳滤波复原" class="headerlink" title="维纳滤波复原"></a>维纳滤波复原</h3><p>维纳滤波是是约束复原的频域表示方法。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305051951073.png" alt=""></p>
-<h1 id="Chap10-图像的数字形态学处理"><a href="#Chap10-图像的数字形态学处理" class="headerlink" title="Chap10 图像的数字形态学处理"></a>Chap10 图像的数字形态学处理</h1><p>数字形态学（Mathematical Morphology, MM）是数字图像处理的重要工具之一。</p>
-<h2 id="10-1-形态学基础"><a href="#10-1-形态学基础" class="headerlink" title="10.1 形态学基础"></a>10.1 形态学基础</h2><p>形态学建立在严格的数学理论基础上，其数学基础是集合论。</p>
+<h1 id="图像的数字形态学处理"><a href="#图像的数字形态学处理" class="headerlink" title="图像的数字形态学处理"></a>图像的数字形态学处理</h1><p>数字形态学（Mathematical Morphology, MM）是数字图像处理的重要工具之一。</p>
+<h2 id="形态学基础"><a href="#形态学基础" class="headerlink" title="形态学基础"></a>形态学基础</h2><p>形态学建立在严格的数学理论基础上，其数学基础是集合论。</p>
 <p>MM中用集合来描述目标图像或感兴趣区域。分析图像时，需要创建一种几何形态滤波模板——结构元素，用于收集图像信息。</p>
 <p>结构元素选取原则：</p>
 <ol>
@@ -1623,7 +1639,7 @@ H = \begin{pmatrix}
 <li>指定一个参考原点，可以在结构元素外</li>
 </ol>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052004808.png" alt=""></p>
-<h2 id="10-2-二值形态学的基础运算"><a href="#10-2-二值形态学的基础运算" class="headerlink" title="10.2 二值形态学的基础运算"></a>10.2 二值形态学的基础运算</h2><p>应用于二值图像的数字形态学称为二值形态学。在这里用0/白色表示背景，1/深色表示前景。</p>
+<h2 id="二值形态学的基础运算"><a href="#二值形态学的基础运算" class="headerlink" title="二值形态学的基础运算"></a>二值形态学的基础运算</h2><p>应用于二值图像的数字形态学称为二值形态学。在这里用0/白色表示背景，1/深色表示前景。</p>
 <h3 id="膨胀运算"><a href="#膨胀运算" class="headerlink" title="膨胀运算"></a>膨胀运算</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052013601.png" alt=""></p>
 <p>意思就是新图像=原图像+可行结构元素的参考点（可行指结构元素的任一“探针”与原图像重合）</p>
 <p>膨胀的白话：把原图像的每个像素作为参考点，以填满结构元素为目的“蔓延”（填满结构元素就行了）。（这个其实就是向量定义）</p>
@@ -1647,13 +1663,13 @@ H = \begin{pmatrix}
 <p>膨胀和腐蚀具有增长性/包含性/稳定性</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052049080.png" alt="image-20230505204921908"></p>
 <h3 id="开运算"><a href="#开运算" class="headerlink" title="开运算"></a>开运算</h3><p>使用同一结构元素腐蚀之后再膨胀（先打开连接）</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052050364.png" alt="image-20230505205027207"></p>
-<p>作用</p>
+<script type="math/tex; mode=display">
+X\circ S = (X \ominus S)\oplus S</script><p>作用</p>
 <p>平滑图像轮廓（膨胀）、削弱狭窄部分、去除细长突出、毛刺、孤立斑点（腐蚀）</p>
 <p>磨光图像外边界</p>
 <h3 id="闭运算"><a href="#闭运算" class="headerlink" title="闭运算"></a>闭运算</h3><p>使用同一结构元素膨胀之后再腐蚀（先闭合连接）</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052050607.png" alt="image-20230505205054457"></p>
-<p>作用</p>
+<script type="math/tex; mode=display">
+X\bullet S = (X \oplus S)\ominus S</script><p>作用</p>
 <p>平滑图像轮廓（腐蚀）、融合窄缺口和细长碗、填补图像的裂缝、破洞（膨胀）</p>
 <p>磨光图像内边界</p>
 <p>示例</p>
@@ -1667,10 +1683,11 @@ H = \begin{pmatrix}
 <p>开运算和闭运算都具有同前行/幂等性：连续进行几次运算和做一次效果一样</p>
 <p>对偶关系</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052057487.png" alt="image-20230505205759298"></p>
-<h2 id="10-3-二值图像的形态学处理"><a href="#10-3-二值图像的形态学处理" class="headerlink" title="10.3 二值图像的形态学处理"></a>10.3 二值图像的形态学处理</h2><h3 id="形态学滤波"><a href="#形态学滤波" class="headerlink" title="形态学滤波"></a>形态学滤波</h3><p>结构元素的形状和大小直接影响形态滤波输出结果</p>
+<h2 id="二值图像的形态学处理"><a href="#二值图像的形态学处理" class="headerlink" title="二值图像的形态学处理"></a>二值图像的形态学处理</h2><h3 id="形态学滤波"><a href="#形态学滤波" class="headerlink" title="形态学滤波"></a>形态学滤波</h3><p>结构元素的形状和大小直接影响形态滤波输出结果</p>
 <h3 id="形态学平滑"><a href="#形态学平滑" class="headerlink" title="形态学平滑"></a>形态学平滑</h3><p>开闭运算具有平滑图像的作用，所以可以通过串行结合开闭运算构成形态学平滑滤波器</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052105006.png" alt="image-20230505210534849"></p>
-<p>关键点在于结构元素的选取：大于噪声（让开运算中的腐蚀将其去除）、大于空洞（在闭运算的膨胀中将其填充）</p>
+<script type="math/tex; mode=display">
+Y = (X\circ S)\bullet S\\
+Y = (X\bullet S)\circ S</script><p>关键点在于结构元素的选取：大于噪声（让开运算中的腐蚀将其去除）、大于空洞（在闭运算的膨胀中将其填充）</p>
 <p>例9.12</p>
 <p>这里的结构元素S大于所有噪声孔和噪声块的尺寸</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052111226.png" alt="image-20230505211130024"></p>
@@ -1682,11 +1699,11 @@ H = \begin{pmatrix}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052111348.png" alt="image-20230505211101161"></p>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052112374.png" alt="image-20230505211224136"></p>
-<h3 id="区域填充"><a href="#区域填充" class="headerlink" title="区域填充"></a>区域填充</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052116551.png" alt="image-20230505211645328"></p>
-<p>确定一个初始点为X，一直膨胀，膨胀后只取待填充的区，当膨胀后和上次一样就停止。</p>
+<h3 id="区域填充"><a href="#区域填充" class="headerlink" title="区域填充"></a>区域填充</h3><script type="math/tex; mode=display">
+X_k = (X_{k+1}\oplus S)\cap A^{C}</script><p>确定一个初始点为X，一直膨胀，膨胀后只取待填充的区，当膨胀后和上次一样就停止。</p>
 <h3 id="目标检测——击中击不中变换"><a href="#目标检测——击中击不中变换" class="headerlink" title="目标检测——击中击不中变换"></a>目标检测——击中击不中变换</h3><p>目标必须同时被击中、目标背景必须同时被击不中，才能说明这是一个目标</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052125651.png" alt="image-20230505212550175"></p>
-<p>例9.18</p>
+<script type="math/tex; mode=display">
+X * S = (X \ominus S_1) \cap (X^C \ominus S_2)</script><p>例9.18</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052127228.png" alt="image-20230505212707003"></p>
 <h3 id="细化"><a href="#细化" class="headerlink" title="细化"></a>细化</h3><p>细化：求图像的中央骨架，使其成为一个像素宽的线条</p>
 <p>细化基本算法</p>
@@ -1697,7 +1714,7 @@ H = \begin{pmatrix}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052131803.png" alt=""></p>
 <p>实例</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052134809.png" alt="image-20230505213401611"></p>
-<h2 id="10-4-灰度形态学的基础运算"><a href="#10-4-灰度形态学的基础运算" class="headerlink" title="10.4 灰度形态学的基础运算"></a>10.4 灰度形态学的基础运算</h2><p>二值-&gt;亮度/灰度</p>
+<h2 id="灰度形态学的基础运算"><a href="#灰度形态学的基础运算" class="headerlink" title="灰度形态学的基础运算"></a>灰度形态学的基础运算</h2><p>二值-&gt;亮度/灰度</p>
 <p>定性-&gt;定量</p>
 <p>交、并-&gt;最大极值、最小极值</p>
 <h3 id="膨胀运算-1"><a href="#膨胀运算-1" class="headerlink" title="膨胀运算"></a>膨胀运算</h3><ol>
@@ -1712,13 +1729,19 @@ H = \begin{pmatrix}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052147869.png" alt="image-20230505214733635"></p>
 <h3 id="开闭运算"><a href="#开闭运算" class="headerlink" title="开闭运算"></a>开闭运算</h3><p>一致</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052148591.png" alt="image-20230505214802436"></p>
-<h2 id="10-5-灰度图像的形态学处理"><a href="#10-5-灰度图像的形态学处理" class="headerlink" title="10.5 灰度图像的形态学处理"></a>10.5 灰度图像的形态学处理</h2><p>跟二值一样</p>
+<h2 id="灰度图像的形态学处理"><a href="#灰度图像的形态学处理" class="headerlink" title="灰度图像的形态学处理"></a>灰度图像的形态学处理</h2><p>跟二值一样</p>
 <h3 id="形态学平滑-1"><a href="#形态学平滑-1" class="headerlink" title="形态学平滑"></a>形态学平滑</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052149295.png" alt="image-20230505214908134"></p>
 <h3 id="形态学边缘提取-梯度"><a href="#形态学边缘提取-梯度" class="headerlink" title="形态学边缘提取/梯度"></a>形态学边缘提取/梯度</h3><p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052149547.png" alt="image-20230505214918376"></p>
-<h1 id="Chap11-图像分割"><a href="#Chap11-图像分割" class="headerlink" title="Chap11 图像分割"></a>Chap11 图像分割</h1><p>图像分割：把一副图像分成不同的具有特定性质的区域。</p>
-<h2 id="11-1-阈值分割"><a href="#11-1-阈值分割" class="headerlink" title="11.1 阈值分割"></a>11.1 阈值分割</h2><p>阈值分割：根据图像灰度值的分布特性确定某个阈值来进行图像分割的一类方法。</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052151253.png" alt="image-20230505215125026"></p>
-<h3 id="波谷法选择阈值"><a href="#波谷法选择阈值" class="headerlink" title="波谷法选择阈值"></a>波谷法选择阈值</h3><p>选择波谷为阈值</p>
+<h1 id="图像分割"><a href="#图像分割" class="headerlink" title="图像分割"></a>图像分割</h1><p>图像分割：把一副图像分成不同的具有特定性质的区域。是图像识别和图像理解的基本前提步骤</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305072003167.png" alt=""></p>
+<h2 id="阈值分割"><a href="#阈值分割" class="headerlink" title="阈值分割"></a>阈值分割</h2><p>阈值分割：根据图像灰度值的分布特性确定某个阈值来进行图像分割的一类方法。</p>
+<script type="math/tex; mode=display">
+g(x, y) = \left\{
+\begin{array}{l}
+1,&f(x, y) \geq T\\
+0,&f(x, y) < T
+\end{array}
+\right.</script><h3 id="波谷法选择阈值"><a href="#波谷法选择阈值" class="headerlink" title="波谷法选择阈值"></a>波谷法选择阈值</h3><p>选择波谷为阈值</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052154781.png" alt="image-20230505215426414"></p>
 <p>一个波谷分成两类，两个波谷分成三类或两类</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052156583.png" alt=""></p>
@@ -1728,7 +1751,7 @@ H = \begin{pmatrix}
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305052158433.png" alt=""></p>
 <h3 id="最大类间方差法选择阈值"><a href="#最大类间方差法选择阈值" class="headerlink" title="最大类间方差法选择阈值"></a>最大类间方差法选择阈值</h3><p>思路：类内数据尽量密集，各类间尽量分离</p>
 <p>迭代T，根据T计算出1. 类内方差最小的T 2. 类间方差最大的T 3.类内和类间方差比值最小的T</p>
-<h2 id="11-2-边界分割"><a href="#11-2-边界分割" class="headerlink" title="11.2 边界分割"></a>11.2 边界分割</h2><p>通过检测区域的边界轮廓来实现图像分割的方法。</p>
+<h2 id="边界分割"><a href="#边界分割" class="headerlink" title="边界分割"></a>边界分割</h2><p>通过检测区域的边界轮廓来实现图像分割的方法。</p>
 <p><strong>边界分割的三个步骤：边界检测、边界改良、边界跟踪</strong></p>
 <p>边界检测：通过“图像锐化”节中的各种边缘检测算子从图像中抽取边缘线段。</p>
 <p>边界改良：对检测出的线段进行改良边界的处理（闭合、细化），以方便形成完整边界。</p>
@@ -1771,7 +1794,7 @@ H = \begin{pmatrix}
 <p>圆$(x-a)^2 + (y-b)^2-r^2=0$中，$x = (a, y), a=(a, b, r)$</p>
 <p>椭圆$\frac{(x-x_c)^2}{a^2}+\frac{(y-y_c)^2}{b^2}-1=0$中，$x=(x, y), a=(x_c, y_c, a, b)$</p>
 <p>把$x, a, f(x, a)=0$这仨往上面的模板上套就行了。</p>
-<h2 id="11-3-区域分割"><a href="#11-3-区域分割" class="headerlink" title="11.3 区域分割"></a>11.3 区域分割</h2><p>区域分割：根据特定区域与其他背景区域<strong>特性上的不同</strong>来进行图像分割的技术。</p>
+<h2 id="区域分割"><a href="#区域分割" class="headerlink" title="区域分割"></a>区域分割</h2><p>区域分割：根据特定区域与其他背景区域<strong>特性上的不同</strong>来进行图像分割的技术。</p>
 <h3 id="区域生长"><a href="#区域生长" class="headerlink" title="区域生长"></a>区域生长</h3><p>区域生长：从图像的某个位置开始，使每块区域变大，直到被比较的像素与区域像素具有显著差异为止。</p>
 <p>三个关键技术：</p>
 <ol>
@@ -1808,7 +1831,7 @@ H = \begin{pmatrix}
 <p>架桥，让它们连通，然后进行集合划分（灌水，实际上同一划分内标1标2就可以了）</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305060008570.png" alt="image-20230506000803403" style="zoom:50%;" /></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305060010208.png" alt="image-20230506001026020" style="zoom:50%;" /></p>
-<h2 id="11-6-综合实例"><a href="#11-6-综合实例" class="headerlink" title="11.6 综合实例"></a>11.6 综合实例</h2><p>理解如何使用图像处理和分析技术设计一个完整的程序。</p>
+<h2 id="综合实例"><a href="#综合实例" class="headerlink" title="综合实例"></a>综合实例</h2><p>理解如何使用图像处理和分析技术设计一个完整的程序。</p>
 <p>例10.19 答题卡分割</p>
 <h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><p>答题卡成像时会有畸变，所以预处理：几何校正（图像几何变换）</p>
 <p>个人信息区和答题区域，上下两部分分开处理</p>
@@ -1821,7 +1844,7 @@ H = \begin{pmatrix}
 <h4 id="信息区分割"><a href="#信息区分割" class="headerlink" title="信息区分割"></a>信息区分割</h4><p>后面就是画流程图、简单说说关键步骤就行了。</p>
 <h4 id="答题区分割"><a href="#答题区分割" class="headerlink" title="答题区分割"></a>答题区分割</h4><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本设计方案综合利用了…技术</p>
 <p>本设计方案也存在一些不足之处，…</p>
-<h1 id="Chap12-图像压缩编码"><a href="#Chap12-图像压缩编码" class="headerlink" title="Chap12 图像压缩编码"></a>Chap12 图像压缩编码</h1><h2 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h2><h3 id="重要指标"><a href="#重要指标" class="headerlink" title="重要指标"></a>重要指标</h3><p>一副分辨率为$M\times N$，灰度级为$L$的图像，每个像素的比特数为$a$，编码前第$i$个灰度级出现的概率为$p_i$，编码后第$i$个灰度级对应的比特数为$b_i$，每两帧图像间隔为$\Delta t$。</p>
+<h1 id="图像压缩编码"><a href="#图像压缩编码" class="headerlink" title="图像压缩编码"></a>图像压缩编码</h1><h2 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h2><h3 id="重要指标"><a href="#重要指标" class="headerlink" title="重要指标"></a>重要指标</h3><p>一副分辨率为$M\times N$，灰度级为$L$的图像，每个像素的比特数为$a$，编码前第$i$个灰度级出现的概率为$p_i$，编码后第$i$个灰度级对应的比特数为$b_i$，每两帧图像间隔为$\Delta t$。</p>
 <h4 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h4><p>对数概率加权平均取负</p>
 <script type="math/tex; mode=display">
 H = -\sum_{i = 1}^{L}p_i\log_2 p_i</script><h4 id="平均码字长度-平均比特数"><a href="#平均码字长度-平均比特数" class="headerlink" title="平均码字长度 / 平均比特数"></a>平均码字长度 / 平均比特数</h4><p>灰度级对应的比特数加权平均</p>
@@ -1834,7 +1857,7 @@ R = \sum_{i = 1}^{L}b_ip_i</script><h4 id="编码效率"><a href="#编码效率"
 <script type="math/tex; mode=display">
 r = \frac{a}{R}</script><h4 id="bps（每秒钟所需的传输比特数）"><a href="#bps（每秒钟所需的传输比特数）" class="headerlink" title="bps（每秒钟所需的传输比特数）"></a>bps（每秒钟所需的传输比特数）</h4><p>总码字长度（比特数）除以时间间隔</p>
 <script type="math/tex; mode=display">
-bps = \frac{M\times N \times R}{\Delta t}</script><h2 id="12-2-编码方法"><a href="#12-2-编码方法" class="headerlink" title="12.2 编码方法"></a>12.2 编码方法</h2><h3 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h3><p>步骤</p>
+bps = \frac{M\times N \times R}{\Delta t}</script><h2 id="编码方法"><a href="#编码方法" class="headerlink" title="编码方法"></a>编码方法</h2><h3 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h3><p>步骤</p>
 <ol>
 <li>对灰度级进行概率统计；</li>
 <li>排序，从低到高两两合并，合并出来的概率有序放回序列；（注意）概率相同时，把无意义的放前面合并，字符放到后面，码长小！</li>
@@ -1873,9 +1896,9 @@ bps = \frac{M\times N \times R}{\Delta t}</script><h2 id="12-2-编码方法"><a 
 <p>例 PPT P83</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305060153851.png" alt=""></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305060210600.png" alt=""></p>
-<h3 id="变换编码"><a href="#变换编码" class="headerlink" title="变换编码"></a>变换编码</h3><p>将空域中的图像信号， 变换到另外一些正交空间中去，用变换系数来表 示原始图像，并对变换系数进行编码。</p>
-<p>略</p>
-<h1 id="Chap13-深度学习"><a href="#Chap13-深度学习" class="headerlink" title="Chap13 深度学习"></a>Chap13 深度学习</h1><p>略</p>
+<h3 id="变换编码"><a href="#变换编码" class="headerlink" title="变换编码"></a>变换编码</h3><p>将空域中的图像信号， 变换到另外一些正交空间中去，用变换系数来表示原始图像，并对变换系数进行编码。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/202305061105378.png" alt="image-20230506110536138"></p>
+<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><p>略</p>
 
         </div>
 
