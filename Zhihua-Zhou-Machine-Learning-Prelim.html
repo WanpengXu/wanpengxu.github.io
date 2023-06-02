@@ -443,9 +443,9 @@ acc(f ; D) &= 1 - E(f ; \mathcal{D})) \\
 <p>TF：预测对了或错了</p>
 <p>PN：预测结果</p>
 <p>例如FN（假反例）：预测错了，给预测成反例了。</p>
-<p>查准率（precision）：预测结果准确的比率，如“预测出的好瓜里有多少是真的好瓜”</p>
+<p>查准率（precision）：预测结果准确的比率，如“预测出的真的好瓜（$TP$）占预测出的好瓜（$TP+FP$）的多少”</p>
 <script type="math/tex; mode=display">
-P = \frac{TP}{TP + FP}</script><p>查全率（recall）：预测结果全面的比率，如“预测出的好瓜占所有好瓜的多少”</p>
+P = \frac{TP}{TP + FP}</script><p>查全率（recall）：预测结果全面的比率，如“预测出的真的好瓜（$TP$）占所有好瓜（$TP+FN$）的多少”</p>
 <script type="math/tex; mode=display">
 R = \frac{TP}{TP + FN}</script><h3 id="F1-、-F-beta"><a href="#F1-、-F-beta" class="headerlink" title="$F1$、$F_\beta$"></a>$F1$、$F_\beta$</h3><p>为了同时考虑查准率与查全率，同时又<strong>不忽视较小值</strong>，我们可以对二者进行调和平均，得到F1度量。</p>
 <script type="math/tex; mode=display">
