@@ -581,7 +581,7 @@
 <p><img src="https://testingcf.jsdelivr.net/gh/WanpengXu/myPicGo/img/ms20231128161530679.png" alt="image-20231128161529901"></p>
 <p>这张图把下一个 item 的 title 当成 author 爬上来了</p>
 <p>ps. 两次爬取间（2-3s左右），下一本书还多了1个五星评价。</p>
-<h2 id="实现细节-1"><a href="#实现细节-1" class="headerlink" title="实现细节"></a>实现细节</h2><h3 id="通过-select-解析-HTML-获取信息"><a href="#通过-select-解析-HTML-获取信息" class="headerlink" title="通过 select 解析 HTML 获取信息"></a>通过 select 解析 HTML 获取信息</h3><p>先获取在某个元素内（<code>`）继承了指定类（</code>.`）的元素，但这些解析到的元素不一定是渲染书 item 的，只有当所有元素都不为空时才是描述书 item 的，所以要先进行非空检验。</p>
+<h2 id="实现细节-1"><a href="#实现细节-1" class="headerlink" title="实现细节"></a>实现细节</h2><h3 id="通过-select-解析-HTML-获取信息"><a href="#通过-select-解析-HTML-获取信息" class="headerlink" title="通过 select 解析 HTML 获取信息"></a>通过 select 解析 HTML 获取信息</h3><p>先获取在某个元素内（<code>空格</code>）继承了指定类（<code>.</code>）的元素，但这些解析到的元素不一定是渲染书 item 的，只有当所有元素都不为空时才是描述书 item 的，所以要先进行非空检验。</p>
 <h3 id="空键处理"><a href="#空键处理" class="headerlink" title="空键处理"></a>空键处理</h3><p>如果某些书没有提供作者信息，方括号<code>[]</code> / 重载的<code>__getitem__()</code>是不能从空key获取到value的，会报KeyError，这时要用<code>get()</code>方法提供空键时的返回值。</p>
 <h1 id="Demo-2-豆瓣-Top-250-电影"><a href="#Demo-2-豆瓣-Top-250-电影" class="headerlink" title="Demo 2: 豆瓣 Top 250 电影"></a>Demo 2: 豆瓣 Top 250 电影</h1><h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><p>目标 url: <a target="_blank" rel="noopener" href="https://movie.douban.com/top250">https://movie.douban.com/top250</a></p>
 <p>1. 每页显示 25 个电影</p>
@@ -839,7 +839,7 @@
 <h3 id="逻辑顺序"><a href="#逻辑顺序" class="headerlink" title="逻辑顺序"></a>逻辑顺序</h3><p>scrapy 默认是多线程的，所以尽量用递归（在这里是回调）来写，不要用到顺序逻辑和循环逻辑。</p>
 <h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>主要用 <code>response.xpath()</code> 和 <code>response.css()</code></p>
 <p>更多见：<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/selectors.html">Selectors — Scrapy 2.11.0 documentation</a></p>
-<h1 id="反爬"><a href="#反爬" class="headerlink" title="反爬"></a>反爬</h1><p>本来不打算写这个的，好朋友最近要爬一个gov网站，selenium被检测出来了（“正受到自动化测试软件的控制”），这时可以用undetected_chromedriver。</p>
+<h1 id="Anti-Crawler"><a href="#Anti-Crawler" class="headerlink" title="Anti-Crawler"></a>Anti-Crawler</h1><p>本来不打算写这个的，好朋友最近要爬一个gov网站，selenium被检测出来了（“正受到自动化测试软件的控制”），这时可以用undetected_chromedriver。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> undetected_chromedriver <span class="keyword">as</span> uc</span><br><span class="line">driver = uc.Chrome()</span><br></pre></td></tr></table></figure>
 <p>即可。</p>
 
