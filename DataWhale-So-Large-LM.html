@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="baidu-site-verification" content="code-dlFXc2180h" />
+
+
+    <meta name="google-site-verification" content="qlTU_n7RT-JIFfLGMsgqxNsTEkVlsWnOfvoPzzHzSR0" />
+    <!-- <meta name="google-site-verification" content="wNw6ZIFTz_hFtiJ2w108gXZcLcg3e8tLeSGIC36Wn_M" /> -->
+
+
+    <meta name="author" content="许">
+
+
+
+
+
+<title>DataWhale. So Large LM 训练营 | 须臾所学之野</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+
+
+
+    
+    
+        <script>
+    MathJax = {
+        tex: {
+            // 行内公式标志
+            inlineMath: [
+                ['$', '$']
+            ],
+            // 块级公式标志
+            displayMath: [
+                ['$$', '$$']
+            ],
+            // 下面两个主要是支持渲染某些公式，可以自己了解
+            processEnvironments: true,
+            processRefs: true,
+        },
+        options: {
+            // 跳过渲染的标签
+            skipHtmlTags: ['noscript', 'style', 'textarea', 'pre', 'code'],
+            // 跳过mathjax处理的元素的类名，任何元素指定一个类 tex2jax_ignore 将被跳过，多个累=类名'class1|class2'
+            ignoreHtmlClass: 'tex2jax_ignore',
+        },
+        // 这里可能是因为我的MathJax2仍有残留，导致行间公式被渲染成了type="math/tex"，所以要用这种2、3版本混合查找方式进行渲染
+        // 这样可能效率低，有机会再改。
+        options: {
+            renderActions: {
+                /* add a new named action not to override the original 'find' action */
+                find_script_mathtex: [10, function (doc) {
+                    for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                        const display = !!node.type.match(/; *mode=display/);
+                        const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                        const text = document.createTextNode('');
+                        node.parentNode.replaceChild(text, node);
+                        math.start = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        math.end = {
+                            node: text,
+                            delim: '',
+                            n: 0
+                        };
+                        doc.math.push(math);
+                    }
+                }, '']
+            }
+        },
+        svg: {
+            fontCache: 'global',
+        },
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<!-- <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js">
+</script> -->
+    
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xuwp&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">CV(Profile)</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xuwp&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="https://xuwp.top/cv-en/">CV(Profile)</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">DataWhale. So Large LM 训练营</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 15, 2024&nbsp;&nbsp;0:00:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/LLM/">LLM</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="So-Large-LM-导航"><a href="#So-Large-LM-导航" class="headerlink" title="So-Large-LM-导航"></a>So-Large-LM-导航</h1><blockquote>
+<p>So-Large-LM wiki：<br><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/so-large-lm/wiki">https://github.com/datawhalechina/so-large-lm/wiki</a><br>So-Large-LM 源文件：<br><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/so-large-lm/tree/main/docs/content">https://github.com/datawhalechina/so-large-lm/tree/main/docs/content</a><br>So-Large-LM 渲染版本（非最新）：<br><a target="_blank" rel="noopener" href="https://datawhalechina.github.io/so-large-lm/">https://datawhalechina.github.io/so-large-lm/</a><br>CS324 winter2022 讲义：<br><a target="_blank" rel="noopener" href="https://stanford-cs324.github.io/winter2022/lectures/introduction/">https://stanford-cs324.github.io/winter2022/lectures/introduction/</a><br>CS324 winter2023 topics：<br><a target="_blank" rel="noopener" href="https://stanford-cs324.github.io/winter2023/syllabus/">https://stanford-cs324.github.io/winter2023/syllabus/</a></p>
+</blockquote>
+<p>Task01: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/Vfu6wipnRiWWg8kl08CcxaPknSd">So-Large-LLM-Task01</a></p>
+<p>Task02: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/QC36wxJ5eiUe0ZknlfkcZsNpnm7">So-Large-LM-Task02</a></p>
+<p>Task03: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/RbExwNmCUisVIskxau5cq7uPnEc">So-Large-LM-Task03: 模型架构</a></p>
+<p>Task04: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/Dj3Tw7qIliplmAkwX8ncpcsKnGb">So-Large-LM-Task04: 大模型的数据</a></p>
+<p>Task05: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/CHCCwyuMair249k0qV5cD4L8nCh">So-Large-LM-Task05: 模型训练</a></p>
+<p>Task06: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/GHjVw2ddhiqdJqkWCR7c1nCsnP0">So-Large-LM-Task06:  大模型的 Adaptation</a></p>
+<p>Task07: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/XnqcwlBaviZmzBkJKLAcq2VDn8f">So-Large-LM-Task07: 大模型的分布式训练</a></p>
+<p>Task08: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/GR1cwwbx2iXg8IkHOR2ckIxenUb">So-Large-LM-Task08: 大模型的有害性</a></p>
+<p>Task09: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/OmjOwWDMgi1V3lk9mQ0c02i0n4e">So-Large-LM-Task08: 大模型的法律</a></p>
+<p>Task10: <a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/U58cwyXnNi6NiRkIoBXc5sVWnih">So-Large-LM-Task10: 大模型的环境影响</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://xuwp.top/DataWhale-So-Large-LM.html">https://xuwp.top/DataWhale-So-Large-LM.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2022 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/LLM/"># LLM</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/DataWhale-Hugging-Multi-Agent.html">DataWhale. Hugging Multi Agent 训练营</a>
+            
+            
+            <a class="next" rel="next" href="/ailab-InternLM-Phase-One.html">ailab. 书生·浦语大模型实战营第一期</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Stay hungry. Stay foolish.</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

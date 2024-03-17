@@ -20,7 +20,7 @@
 
 
 
-<title>tag | 须臾所学之野</title>
+<title>ailab. 书生·浦语大模型实战营第一期 | 须臾所学之野</title>
 
 
 
@@ -202,46 +202,167 @@
     }
 </script>
             <div class="main">
-                
-
-    <div class="container">
-        <div class="post-wrap tags">
-            <h2 class="post-title">-&nbsp;Tag Cloud&nbsp;-</h2>
-
-            <div class="tag-cloud-tags">
-                
-                    <a href="/tags/topSecret/">topSecret<small>(1)</small></a>
-                
-                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习<small>(3)</small></a>
-                
-                    <a href="/tags/LLM/">LLM<small>(3)</small></a>
-                
-                    <a href="/tags/Java/">Java<small>(3)</small></a>
-                
-                    <a href="/tags/Android/">Android<small>(1)</small></a>
-                
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉<small>(1)</small></a>
-                
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习<small>(3)</small></a>
-                
-                    <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能<small>(1)</small></a>
-                
-                    <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/">中间人攻击<small>(1)</small></a>
-                
-                    <a href="/tags/DHCP%E8%80%97%E5%B0%BD%E6%94%BB%E5%87%BB/">DHCP耗尽攻击<small>(1)</small></a>
-                
-                    <a href="/tags/Tools/">Tools<small>(1)</small></a>
-                
-                    <a href="/tags/%E7%88%AC%E8%99%AB/">爬虫<small>(1)</small></a>
-                
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">算法<small>(2)</small></a>
-                
-                    <a href="/tags/CSP/">CSP<small>(1)</small></a>
-                
-            </div>
-        </div>
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
     </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
 
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;    // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function () {
+            tocbot.refresh(obj_merge(tocbot_default_config, { hasInnerContainers: true }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function () {
+        tocbot.init(obj_merge(tocbot_default_config, { collapseDepth: 1 }));
+    });
+
+    function expandToc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, { collapseDepth: expanded ? 1 : DEPTH_MAX }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ailab. 书生·浦语大模型实战营第一期</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">许</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 12, 2024&nbsp;&nbsp;0:00:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/LLM/">LLM</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="书生·浦语大模型实战营-导航"><a href="#书生·浦语大模型实战营-导航" class="headerlink" title="书生·浦语大模型实战营-导航"></a>书生·浦语大模型实战营-导航</h1><blockquote>
+<p>InternLM 实战营 Github repo / Tutorial:<br><a target="_blank" rel="noopener" href="https://github.com/InternLM/Tutorial">https://github.com/InternLM/Tutorial</a></p>
+</blockquote>
+<p>第一节：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/B7XawUAO5i6r47kwZsMc9MaLnfh">书生·浦语大模型实战营-第一节</a></p>
+<p>第二节：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/SaBQwkCy7iZRTakm9AncNU2xnyb">书生·浦语大模型实战营-第二节</a></p>
+<p>第二节作业：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/G259wLRCSi933tkIPlycWfC1nFb">[作业] 书生·浦语大模型实战营-第二节</a></p>
+<p>第三节：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/YuJ8whwO2irzgskoRkfcxBwdnHb">书生·浦语大模型实战营-第三节</a></p>
+<p>第三节作业：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/ZtQXwB4NFirXjwk47ebc6BG5nMd">[作业] 书生·浦语大模型实战营-第三节</a></p>
+<p>第四节：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/XKexwBaSrikI1BkeY6ucyAzQnEC">书生·浦语大模型实战营-第四节</a></p>
+<p>第四节作业：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/ODJcwjqhBi7aAkkXRdgchaytnQX">[作业]书生·浦语大模型实战营-第四节</a></p>
+<p>第五节：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/TJDqwA8RUixRZ4ksfO6cG955n2f">书生·浦语大模型实战营-第五节</a></p>
+<p>第五节作业：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/CGZRwloQii8uZck26HFci5wfnmd">[作业]书生·浦语大模型实战营-第五节</a></p>
+<p>第六节：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/Lt1EwHuWViHJtVkuI0XcNmE8nuh">书生·浦语大模型实战营-第六节</a></p>
+<p>第六节作业：<a target="_blank" rel="noopener" href="https://b07ofnm9xj7.feishu.cn/wiki/CdzKwxJx8i5JJfkgMdkca5uMnsf">[作业]书生·浦语大模型实战营-第六节</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>许</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://xuwp.top/ailab-InternLM-Phase-One.html">https://xuwp.top/ailab-InternLM-Phase-One.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2022 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/LLM/"># LLM</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/DataWhale-So-Large-LM.html">DataWhale. So Large LM 训练营</a>
+            
+            
+            <a class="next" rel="next" href="/Python-Crawler.html">Python爬虫基础</a>
+            
+        </section>
+
+
+    </article>
+</div>
 
             </div>
             <footer id="footer" class="footer">
